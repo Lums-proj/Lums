@@ -39,7 +39,7 @@
 		9C8281D7190DD8B2009D27C5 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2.framework; sourceTree = "<group>"; };
 		9C8281D8190DD8B2009D27C5 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SDL2_image.framework; sourceTree = "<group>"; };
 		9C8281E2190DDAC3009D27C5 /* header.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = header.txt; sourceTree = "<group>"; };
-		9C8281E7190DDF49009D27C5 /* Angle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Angle.h; sourceTree = "<group>"; };
+		9C8281E7190DDF49009D27C5 /* Angle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Angle.h; sourceTree = "<group>"; usesTabs = 0; };
 		9C8281E9190DDF56009D27C5 /* Angle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Angle.cpp; sourceTree = "<group>"; };
 		9C8281EB190DF215009D27C5 /* NGL_Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NGL_Test.cpp; sourceTree = "<group>"; };
 		9C8281EC190DF215009D27C5 /* NGL_Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGL_Test.h; sourceTree = "<group>"; };
@@ -437,6 +437,7 @@
 				9CE5D272190DF5AA00256340 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
