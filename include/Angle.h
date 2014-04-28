@@ -25,9 +25,97 @@ public:
 	 * Create a null angle.
 	 */
 	Angle();
-	
-	
-	/**
+    
+    /**
+     * @param The angle to be compared
+     * Return true if and only if the two angles are equals.
+     */
+    bool            operator==(const Angle& rhs);
+    
+    /**
+     * @param The angle to be compared
+     * Return false if and only if the two angles are equals.
+     */
+    bool            operator!=(const Angle& rhs);
+    
+    /**
+     * @param The angle to be compared
+     * Inferior than operator.
+     */
+    bool            operator<(const Angle& rhs);
+    
+    /**
+     * @param The angle to be compared
+     * Superior than operator.
+     */
+    bool            operator>(const Angle& rhs);
+    
+    /**
+     * @param The angle to be compared
+     * Inferior or equal operator.
+     */
+    bool            operator<=(const Angle& rhs);
+    
+    /**
+     * @param The angle to be compared
+     * Superior or equal operator.
+     */
+    bool            operator>=(const Angle& rhs);
+    
+    /**
+     * Return the opposite of an angle.
+     */
+    Angle           operator!();
+    
+    /**
+     * @param The angle to be added
+     * Add an angle.
+     */
+	Angle&          operator+=(const Angle& rhs);
+    
+    /**
+     * @param The angle to be substracted
+     * Substract an angle.
+     */
+	Angle&          operator-=(const Angle& rhs);
+    
+    /**
+     * @param A coefficient
+     * Multiply an angle with a coefficient.
+     */
+	Angle&          operator*=(const double rhs);
+    
+    /**
+     * @param A coefficient
+     * Divide an angle with a coefficient.
+     */
+	Angle&          operator/=(const double rhs);
+    
+    /**
+     * @param The angle to be added
+     * Add an angle, and returns a copy of the result.
+     */
+    Angle           operator+(const Angle& rhs);
+    
+    /**
+     * @param The angle to be substracted
+     * Substract an angle, and returns a copy of the result.
+     */
+    Angle           operator-(const Angle& rhs);
+    
+    /**
+     * @param A coefficient
+     * Multiply an angle, and returns a copy of the result.
+     */
+    Angle           operator*(const double rhs);
+    
+    /**
+     * @param A coefficient
+     * Divide an angle, and returns a copy of the result.
+     */
+    Angle           operator/(const double rhs);
+    
+    /**
 	 * @param angle in turns
 	 * Create an angle from turns.
 	 */
@@ -62,6 +150,24 @@ public:
 	 * Get the angle value in degrees.
 	 */
 	double			toDegrees();
+    
+    /**
+     * @return the sinus of the angle.
+     * Get the sinus of the angle.
+     */
+    double          Sin();
+    
+    /**
+     * @return the cosinus of the angle.
+     * Get the cosinus of the angle.
+     */
+    double          Cos();
+    
+    /**
+     * @return the tangent of the angle.
+     * Get the tangent of the angle.
+     */
+    double          Tan();
 
 private:
 	void			Clamp();

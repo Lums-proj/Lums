@@ -29,6 +29,9 @@ void		test_angle()
 	Angle	d = Angle::Turns(2.4);
 	Angle	e = Angle::Turns(-0.6);
 	Angle	f = Angle::Radians(M_PI / 2.0);
+    Angle   g = Angle::Radians(2.0);
+	Angle	h = Angle::Degrees(360.0);
+	Angle	i = Angle::Degrees(0);
 
 	assert(FLO_EQ(a.toTurns(), 0.0));
 	assert(FLO_EQ(b.toTurns(), 0.0));
@@ -36,6 +39,10 @@ void		test_angle()
 	assert(FLO_EQ(d.toTurns(), 0.4));
 	assert(FLO_EQ(e.toTurns(), 0.4));
 	assert(FLO_EQ(f.toDegrees(), 90.0));
+    assert(FLO_EQ(g.Sin(), sin(2)));
+    assert(FLO_EQ(g.Cos(), cos(2)));
+    assert(FLO_EQ(g.Tan(), tan(2)));
+	assert(h == i);
 }
 
 int			main()

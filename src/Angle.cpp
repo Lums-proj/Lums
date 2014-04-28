@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include <cmath>
+#include <limits>
 #include <Angle.h>
 
 using namespace ngl;
@@ -18,6 +19,105 @@ using namespace ngl;
 Angle::Angle() : _angle(0.0)
 {
 	
+}
+
+bool		Angle::operator==(const Angle& rhs)
+{
+	return (fabs(_angle - rhs._angle) < std::numeric_limits<double>::epsilon());
+}
+
+bool		Angle::operator!=(const Angle &rhs)
+{
+	return !(*this == rhs);
+}
+
+bool		Angle::operator<(const Angle &rhs)
+{
+	return (_angle < rhs._angle && *this != rhs);
+}
+
+
+bool		Angle::operator>(const Angle &rhs)
+{
+	return !(*this < rhs || *this == rhs);
+}
+
+bool		Angle::operator<=(const Angle &rhs)
+{
+	return !(*this > rhs);
+}
+
+bool		Angle::operator>=(const Angle &rhs)
+{
+	return !(*this < rhs);
+}
+
+Angle		Angle::operator!()
+{
+	Angle	a;
+
+	a._angle = -_angle;
+	return a;
+}
+
+Angle&      Angle::operator+=(const Angle &rhs)
+{
+    _angle += rhs._angle;
+    Clamp();
+    return *this;
+}
+
+Angle&      Angle::operator-=(const Angle &rhs)
+{
+    _angle -= rhs._angle;
+    Clamp();
+    return *this;
+}
+
+Angle&      Angle::operator*=(const double rhs)
+{
+    _angle *= rhs;
+    Clamp();
+    return *this;
+}
+
+Angle&      Angle::operator/=(const double rhs)
+{
+    _angle /= rhs;
+    Clamp();
+    return *this;
+}
+
+Angle		Angle::operator+(const Angle &rhs)
+{
+	Angle	a(*this);
+
+	a += rhs;
+	return a;
+}
+
+Angle		Angle::operator-(const Angle &rhs)
+{
+	Angle	a(*this);
+	
+	a -= rhs;
+	return a;
+}
+
+Angle		Angle::operator*(const double rhs)
+{
+	Angle	a(*this);
+	
+	a *= rhs;
+	return a;
+}
+
+Angle		Angle::operator/(const double rhs)
+{
+	Angle	a(*this);
+	
+	a /= rhs;
+	return a;
 }
 
 Angle		Angle::Turns(double angle)
@@ -60,6 +160,21 @@ double		Angle::toRadians()
 double		Angle::toDegrees()
 {
 	return _angle * 360.0;
+}
+
+double      Angle::Sin()
+{
+    return sin(toRadians());
+}
+
+double      Angle::Cos()
+{
+    return cos(toRadians());
+}
+
+double      Angle::Tan()
+{
+    return tan(toRadians());
 }
 
 void		Angle::Clamp()
