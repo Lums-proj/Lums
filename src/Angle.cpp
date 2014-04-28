@@ -21,42 +21,42 @@ Angle::Angle() : _angle(0.0)
 	
 }
 
-bool		Angle::operator==(const Angle& rhs)
+bool		Angle::operator==(const Angle& rhs) const
 {
 	return (fabs(_angle - rhs._angle) < std::numeric_limits<double>::epsilon());
 }
 
-bool		Angle::operator!=(const Angle &rhs)
+bool		Angle::operator!=(const Angle &rhs) const
 {
 	return !(*this == rhs);
 }
 
-bool		Angle::operator<(const Angle &rhs)
+bool		Angle::operator<(const Angle &rhs) const
 {
 	return (_angle < rhs._angle && *this != rhs);
 }
 
 
-bool		Angle::operator>(const Angle &rhs)
+bool		Angle::operator>(const Angle &rhs) const
 {
 	return !(*this < rhs || *this == rhs);
 }
 
-bool		Angle::operator<=(const Angle &rhs)
+bool		Angle::operator<=(const Angle &rhs) const
 {
 	return !(*this > rhs);
 }
 
-bool		Angle::operator>=(const Angle &rhs)
+bool		Angle::operator>=(const Angle &rhs) const
 {
 	return !(*this < rhs);
 }
 
-Angle		Angle::operator!()
+Angle		Angle::operator!() const
 {
 	Angle	a;
 
-	a._angle = -_angle;
+	a._angle = 1.0 - _angle;
 	return a;
 }
 
@@ -88,7 +88,7 @@ Angle&      Angle::operator/=(const double rhs)
     return *this;
 }
 
-Angle		Angle::operator+(const Angle &rhs)
+Angle		Angle::operator+(const Angle &rhs) const
 {
 	Angle	a(*this);
 
@@ -96,7 +96,7 @@ Angle		Angle::operator+(const Angle &rhs)
 	return a;
 }
 
-Angle		Angle::operator-(const Angle &rhs)
+Angle		Angle::operator-(const Angle &rhs) const
 {
 	Angle	a(*this);
 	
@@ -104,7 +104,7 @@ Angle		Angle::operator-(const Angle &rhs)
 	return a;
 }
 
-Angle		Angle::operator*(const double rhs)
+Angle		Angle::operator*(const double rhs) const
 {
 	Angle	a(*this);
 	
@@ -112,7 +112,7 @@ Angle		Angle::operator*(const double rhs)
 	return a;
 }
 
-Angle		Angle::operator/(const double rhs)
+Angle		Angle::operator/(const double rhs) const
 {
 	Angle	a(*this);
 	
@@ -147,32 +147,32 @@ Angle		Angle::Degrees(double angle)
 	return a;
 }
 
-double		Angle::toTurns()
+double		Angle::toTurns() const
 {
 	return _angle;
 }
 
-double		Angle::toRadians()
+double		Angle::toRadians() const
 {
 	return _angle * M_PI * 2;
 }
 
-double		Angle::toDegrees()
+double		Angle::toDegrees() const
 {
 	return _angle * 360.0;
 }
 
-double      Angle::Sin()
+double      Angle::Sin() const
 {
     return sin(toRadians());
 }
 
-double      Angle::Cos()
+double      Angle::Cos() const
 {
     return cos(toRadians());
 }
 
-double      Angle::Tan()
+double      Angle::Tan() const
 {
     return tan(toRadians());
 }
