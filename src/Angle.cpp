@@ -52,7 +52,7 @@ bool		Angle::operator>=(const Angle &rhs) const
 	return !(*this < rhs);
 }
 
-Angle		Angle::operator!() const
+Angle		Angle::operator-() const
 {
 	Angle	a;
 
@@ -74,14 +74,14 @@ Angle&      Angle::operator-=(const Angle &rhs)
     return *this;
 }
 
-Angle&      Angle::operator*=(const double rhs)
+Angle&      Angle::operator*=(double rhs)
 {
     _angle *= rhs;
     Clamp();
     return *this;
 }
 
-Angle&      Angle::operator/=(const double rhs)
+Angle&      Angle::operator/=(double rhs)
 {
     _angle /= rhs;
     Clamp();
@@ -104,7 +104,7 @@ Angle		Angle::operator-(const Angle &rhs) const
 	return a;
 }
 
-Angle		Angle::operator*(const double rhs) const
+Angle		Angle::operator*(double rhs) const
 {
 	Angle	a(*this);
 	
@@ -112,7 +112,7 @@ Angle		Angle::operator*(const double rhs) const
 	return a;
 }
 
-Angle		Angle::operator/(const double rhs) const
+Angle		Angle::operator/(double rhs) const
 {
 	Angle	a(*this);
 	
