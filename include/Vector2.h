@@ -274,9 +274,24 @@ private:
 	T			_y;
 };
 
+/**
+ * An alias for Vector2<int>
+ */
 typedef Vector2<int>	Vector2i;
+
+/**
+ * An alias for Vector2<float>
+ */
 typedef Vector2<float>	Vector2f;
+
+/**
+ * An alias for Vector2<double>
+ */
 typedef Vector2<double>	Vector2d;
+
+/**
+ * An alias for Vector2<Angle>
+ */
 typedef Vector2<Angle>	Vector2a;
 
 }
