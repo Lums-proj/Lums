@@ -16,6 +16,7 @@
 namespace ngl
 {
 /**
+ * @class Angle
  * A class used to represent arbitrary angles.
  */
 class Angle
@@ -27,168 +28,167 @@ public:
 	Angle();
     
     /**
-     * @param rhs The angle to be compared
-     *
      * Return true if and only if the two angles are equals.
+     * @param rhs The angle to be compared.
+     * @return True if the angles are equal, false otherwise.
      */
     bool            operator==(const Angle& rhs) const;
     
     /**
-     * @param rhs The angle to be compared
-     *
      * Return false if and only if the two angles are equals.
+     * @param rhs The angle to be compared.
+     * @return True if the angles are not equal, false otherwise.
      */
     bool            operator!=(const Angle& rhs) const;
     
     /**
-     * @param rhs The angle to be compared
-     *
      * Inferior than operator.
+     * @param rhs The angle to be compared.
+     * @return True if the first angle is inferior to the second one,
+     *         false otherwise.
      */
     bool            operator<(const Angle& rhs) const;
     
     /**
-     * @param rhs The angle to be compared
-     *
      * Superior than operator.
+     * @param rhs The angle to be compared.
+     * @return True if the first angle is superior to the second one,
+     *         false otherwise.
      */
     bool            operator>(const Angle& rhs) const;
     
     /**
-     * @param rhs The angle to be compared
-     *
      * Inferior or equal operator.
+     * @param rhs The angle to be compared.
+     * @return True if the first angle is inferior or equal to the second one,
+     *         false otherwise.
      */
     bool            operator<=(const Angle& rhs) const;
     
     /**
-     * @param rhs The angle to be compared
-     *
      * Superior or equal operator.
+     * @param rhs The angle to be compared.
+     * @return True if the first angle is superior or equal to the second one,
+     *         false otherwise.
      */
     bool            operator>=(const Angle& rhs) const;
     
     /**
      * Return the opposite of an angle.
+     * @return The opposite of the angle.
      */
     Angle           operator-() const;
     
     /**
-     * @param rhs The angle to be added
-     *
      * Add an angle.
+     * @param rhs The angle to be added.
+     * @return This angle.
      */
 	Angle&          operator+=(const Angle& rhs);
     
     /**
-     * @param rhs The angle to be substracted
-     *
      * Substract an angle.
+     * @param rhs The angle to be substracted.
+     * @return This angle.
      */
 	Angle&          operator-=(const Angle& rhs);
     
     /**
-     * @param rhs A coefficient
-     *
      * Multiply an angle with a coefficient.
+     * @param rhs A coefficient.
+     * @return This angle.
      */
 	Angle&          operator*=(double rhs);
     
     /**
-     * @param rhs A coefficient
-     *
      * Divide an angle with a coefficient.
+     * @param rhs A coefficient.
+     * @return This angle.
      */
 	Angle&          operator/=(double rhs);
     
     /**
-     * @param rhs The angle to be added
-     *
      * Add an angle, and returns a copy of the result.
+     * @param rhs The angle to be added.
+     * @return A new angle, resulting of the sum.
      */
     Angle           operator+(const Angle& rhs) const;
     
     /**
-     * @param rhs The angle to be substracted
-     *
      * Substract an angle, and returns a copy of the result.
+     * @param rhs The angle to be substracted.
+     * @return A new angle, resulting of the difference.
      */
     Angle           operator-(const Angle& rhs) const;
     
     /**
-     * @param rhs A coefficient
-     *
      * Multiply an angle, and returns a copy of the result.
+     * @param rhs A coefficient.
+     * @return A new angle, resulting of the product.
      */
     Angle           operator*(double rhs) const;
     
     /**
-     * @param rhs A coefficient
-     *
      * Divide an angle, and returns a copy of the result.
+     * @param rhs A coefficient.
+     * @return A new angle, resulting of the division.
      */
     Angle           operator/(double rhs) const;
     
     /**
-	 * @param angle Angle in turns
-     *
 	 * Create an angle from turns.
+     * @param angle Angle in turns
+     * @return A new angle with the corresponding value.
 	 */
 	static Angle	Turns(double angle);
 	
 	/**
-	 * @param angle Angle in radians
-     *
 	 * Create an angle from radians.
+     * @param angle Angle in radians.
+     * @return A new angle with the corresponding value.
 	 */
 	static Angle	Radians(double angle);
 	
 	/**
-	 * @param angle Angle in degrees
-     *
 	 * Create an angle from degrees.
+     * @param angle Angle in degrees.
+     * @return A new angle with the corresponding value.
 	 */
 	static Angle	Degrees(double angle);
 	
 	/**
-	 * @return Angle value in turns
-     *
 	 * Get the angle value in turns.
+     * @return Angle value in turns.
 	 */
 	double			toTurns() const;
 	
 	/**
-	 * @return Angle value in radians
-     *
 	 * Get the angle value in radians.
+     * @return Angle value in radians
 	 */
 	double			toRadians() const;
 	
 	/**
-	 * @return Angle value in degrees
-     *
 	 * Get the angle value in degrees.
+     * @return Angle value in degrees
 	 */
 	double			toDegrees() const;
     
     /**
-     * @return the sinus of the angle.
-     *
      * Get the sinus of the angle.
+     * @return the sinus of the angle.
      */
     double          Sin() const;
     
     /**
-     * @return the cosinus of the angle.
-     *
      * Get the cosinus of the angle.
+     * @return the cosinus of the angle.
      */
     double          Cos() const;
     
     /**
-     * @return the tangent of the angle.
-     *
      * Get the tangent of the angle.
+     * @return the tangent of the angle.
      */
     double          Tan() const;
 
