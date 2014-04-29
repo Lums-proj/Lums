@@ -20,5 +20,9 @@
 *.out
 *.app
 
+# Documentation
+
+doc/
+
 # Mac OS X
 .DS_Store
