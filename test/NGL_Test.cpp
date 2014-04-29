@@ -45,8 +45,19 @@ void		test_angle()
 	assert(h == i);
 }
 
+void		test_vector2()
+{
+	Vector2<int>	a;
+	Vector2<int>	b(3,4);
+
+	assert(a.X() == 0);
+	assert(a.Null());
+	assert(b.Length() == 5);
+}
+
 int			main()
 {
 	NGL_Test("Angle", test_angle);
+	NGL_Test("Vector2", test_vector2);
 	NGL_Test::Run();
 }

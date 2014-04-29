@@ -14,5 +14,12 @@
 #define NGL_H
 
 #include <NGL/Angle.h>
+#include <NGL/Vector2.h>
+#include <NGL/Vector3.h>
+#include <NGL/Vector4.h>
+
+// SDL2 includes
+
+// TODO
 
 #endif /* !NGL_H */
