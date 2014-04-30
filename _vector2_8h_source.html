@@ -139,7 +139,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">return</span> (*<span class="keyword">this</span>);</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    </div>
-<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="classngl_1_1_vector2.html#a0213d64ca3b4fefa633ef40f3f72ed60">   91</a></span>&#160;    <a class="code" href="classngl_1_1_vector2.html">Vector2&lt;T&gt;</a>&amp; <a class="code" href="classngl_1_1_vector2.html#a0213d64ca3b4fefa633ef40f3f72ed60">operator-=</a>(<span class="keyword">const</span> T&amp; rhs)</div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="classngl_1_1_vector2.html#a9537515e2f5d26e1fdef94d6126524d4">   91</a></span>&#160;    <a class="code" href="classngl_1_1_vector2.html">Vector2&lt;T&gt;</a>&amp; <a class="code" href="classngl_1_1_vector2.html#a9537515e2f5d26e1fdef94d6126524d4">operator*=</a>(<span class="keyword">const</span> T&amp; rhs)</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    {</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        _x *= rhs;</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        _y *= rhs;</div>
@@ -215,43 +215,56 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;        _y /= l;</div>
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    }</div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    </div>
-<div class="line"><a name="l00238"></a><span class="lineno"><a class="line" href="classngl_1_1_vector2.html#a127da5c86089fb9ec3a182e41a038f61">  238</a></span>&#160;    <span class="keywordtype">double</span>      <a class="code" href="classngl_1_1_vector2.html#a127da5c86089fb9ec3a182e41a038f61">Dist</a>(<span class="keyword">const</span> <a class="code" href="classngl_1_1_vector2.html">Vector2&lt;T&gt;</a>&amp; rhs)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        <span class="keywordflow">return</span> std::sqrt((_x - rhs._x) * (_x - rhs._x)</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;                         + (_y - rhs._y) * (_y - rhs._y));</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    }</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    </div>
-<div class="line"><a name="l00250"></a><span class="lineno"><a class="line" href="classngl_1_1_vector2.html#a9ac9b5b6c87567e149cba0d4e426b8c7">  250</a></span>&#160;    T           <a class="code" href="classngl_1_1_vector2.html#a9ac9b5b6c87567e149cba0d4e426b8c7">Dot</a>(<span class="keyword">const</span> <a class="code" href="classngl_1_1_vector2.html">Vector2&lt;T&gt;</a>&amp; rhs)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        <span class="keywordflow">return</span> _x * rhs._x + _y * rhs._y;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    }</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    </div>
-<div class="line"><a name="l00262"></a><span class="lineno"><a class="line" href="classngl_1_1_vector2.html#aa9f8a7307931ef9508edc8cc0c7b7c8f">  262</a></span>&#160;    <a class="code" href="classngl_1_1_angle.html">Angle</a>       <a class="code" href="classngl_1_1_vector2.html#aa9f8a7307931ef9508edc8cc0c7b7c8f">Angle</a>(<span class="keyword">const</span> <a class="code" href="classngl_1_1_vector2.html">Vector2&lt;T&gt;</a>&amp; rhs)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="keyword">    </span>{</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        <span class="keywordtype">double</span>  c;</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classngl_1_1_vector2.html#a07c0666dea25cc6ad54ebab18a9cfed6">Null</a>() || rhs.<a class="code" href="classngl_1_1_vector2.html#a07c0666dea25cc6ad54ebab18a9cfed6">Null</a>())</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="classngl_1_1_vector2.html#aa9f8a7307931ef9508edc8cc0c7b7c8f">Angle</a>());</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;        c = <a class="code" href="classngl_1_1_vector2.html#a9ac9b5b6c87567e149cba0d4e426b8c7">Dot</a>(rhs) / (<a class="code" href="classngl_1_1_vector2.html#aa101294a8e849468f5a0aa20c2d32466">Length</a>() * rhs.<a class="code" href="classngl_1_1_vector2.html#aa101294a8e849468f5a0aa20c2d32466">Length</a>());</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classngl_1_1_angle.html#a27ef077b39cf18ff2f1efc3638bf36d5">Angle::Radians</a>(std::acos(c));</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;    }</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    </div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    T           _x;</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    T           _y;</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;};</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="keyword">typedef</span> Vector2&lt;int&gt;    Vector2i;</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="keyword">typedef</span> Vector2&lt;float&gt;  Vector2f;</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;<span class="keyword">typedef</span> Vector2&lt;double&gt; Vector2d;</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="keyword">typedef</span> Vector2&lt;Angle&gt;  Vector2a;</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;}</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !NGL_VECTOR2_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00237"></a><span class="lineno"><a class="line" href="classngl_1_1_vector2.html#a1d6bd42d4ffc5f2223666e016f7ef72b">  237</a></span>&#160;    <a class="code" href="classngl_1_1_vector2.html">Vector2&lt;T&gt;</a>  <a class="code" href="classngl_1_1_vector2.html#a1d6bd42d4ffc5f2223666e016f7ef72b">Unit</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        <a class="code" href="classngl_1_1_vector2.html">Vector2&lt;T&gt;</a>  v(*<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        v.<a class="code" href="classngl_1_1_vector2.html#a3af71d5702b7b404174cd031b3577e63">Normalize</a>();</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;        <span class="keywordflow">return</span> (v);</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    }</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    </div>
+<div class="line"><a name="l00251"></a><span class="lineno"><a class="line" href="classngl_1_1_vector2.html#a127da5c86089fb9ec3a182e41a038f61">  251</a></span>&#160;    <span class="keywordtype">double</span>      <a class="code" href="classngl_1_1_vector2.html#a127da5c86089fb9ec3a182e41a038f61">Dist</a>(<span class="keyword">const</span> <a class="code" href="classngl_1_1_vector2.html">Vector2&lt;T&gt;</a>&amp; rhs)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        <span class="keywordflow">return</span> std::sqrt((_x - rhs._x) * (_x - rhs._x)</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                         + (_y - rhs._y) * (_y - rhs._y));</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    }</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    </div>
+<div class="line"><a name="l00263"></a><span class="lineno"><a class="line" href="classngl_1_1_vector2.html#a9ac9b5b6c87567e149cba0d4e426b8c7">  263</a></span>&#160;    T           <a class="code" href="classngl_1_1_vector2.html#a9ac9b5b6c87567e149cba0d4e426b8c7">Dot</a>(<span class="keyword">const</span> <a class="code" href="classngl_1_1_vector2.html">Vector2&lt;T&gt;</a>&amp; rhs)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        <span class="keywordflow">return</span> _x * rhs._x + _y * rhs._y;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    }</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;    </div>
+<div class="line"><a name="l00273"></a><span class="lineno"><a class="line" href="classngl_1_1_vector2.html#af8b6c9b0f786d9a493228827c700191d">  273</a></span>&#160;    <a class="code" href="classngl_1_1_vector2.html">Vector2&lt;T&gt;</a>  <a class="code" href="classngl_1_1_vector2.html#af8b6c9b0f786d9a493228827c700191d">Cross</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classngl_1_1_vector2.html">Vector2&lt;T&gt;</a>(-_y, _x);</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    }</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    </div>
+<div class="line"><a name="l00285"></a><span class="lineno"><a class="line" href="classngl_1_1_vector2.html#aa9f8a7307931ef9508edc8cc0c7b7c8f">  285</a></span>&#160;    <a class="code" href="classngl_1_1_angle.html">Angle</a>       <a class="code" href="classngl_1_1_vector2.html#aa9f8a7307931ef9508edc8cc0c7b7c8f">Angle</a>(<span class="keyword">const</span> <a class="code" href="classngl_1_1_vector2.html">Vector2&lt;T&gt;</a>&amp; rhs)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="keyword">    </span>{</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;        <span class="keywordtype">double</span>  c;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="classngl_1_1_vector2.html#a07c0666dea25cc6ad54ebab18a9cfed6">Null</a>() || rhs.<a class="code" href="classngl_1_1_vector2.html#a07c0666dea25cc6ad54ebab18a9cfed6">Null</a>())</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            <span class="keywordflow">return</span> (<a class="code" href="classngl_1_1_vector2.html#aa9f8a7307931ef9508edc8cc0c7b7c8f">Angle</a>());</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;        c = <a class="code" href="classngl_1_1_vector2.html#a9ac9b5b6c87567e149cba0d4e426b8c7">Dot</a>(rhs) / (<a class="code" href="classngl_1_1_vector2.html#aa101294a8e849468f5a0aa20c2d32466">Length</a>() * rhs.<a class="code" href="classngl_1_1_vector2.html#aa101294a8e849468f5a0aa20c2d32466">Length</a>());</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="classngl_1_1_angle.html#a27ef077b39cf18ff2f1efc3638bf36d5">Angle::Radians</a>(std::acos(c));</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    }</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    </div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    T           _x;</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    T           _y;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;};</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;<span class="keyword">typedef</span> Vector2&lt;int&gt;    Vector2i;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;<span class="keyword">typedef</span> Vector2&lt;float&gt;  Vector2f;</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;<span class="keyword">typedef</span> Vector2&lt;double&gt; Vector2d;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;<span class="keyword">typedef</span> Vector2&lt;Angle&gt;  Vector2a;</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;}</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* !NGL_VECTOR2_H */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="classngl_1_1_vector2_html_aaca56245e79b7258b5f53e081e9e2d1d"><div class="ttname"><a href="classngl_1_1_vector2.html#aaca56245e79b7258b5f53e081e9e2d1d">ngl::Vector2::operator*</a></div><div class="ttdeci">Vector2&lt; T &gt; operator*(const T &amp;rhs) const </div><div class="ttdef"><b>Definition:</b> Vector2.h:141</div></div>
 <div class="ttc" id="classngl_1_1_angle_html"><div class="ttname"><a href="classngl_1_1_angle.html">ngl::Angle</a></div><div class="ttdef"><b>Definition:</b> Angle.h:22</div></div>
 <div class="ttc" id="classngl_1_1_vector2_html_aa101294a8e849468f5a0aa20c2d32466"><div class="ttname"><a href="classngl_1_1_vector2.html#aa101294a8e849468f5a0aa20c2d32466">ngl::Vector2::Length</a></div><div class="ttdeci">double Length() const </div><div class="ttdef"><b>Definition:</b> Vector2.h:213</div></div>
@@ -259,14 +272,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classngl_1_1_vector2_html_a40d7fb3416f8914df63a4424897ebb99"><div class="ttname"><a href="classngl_1_1_vector2.html#a40d7fb3416f8914df63a4424897ebb99">ngl::Vector2::Y</a></div><div class="ttdeci">const T &amp; Y() const </div><div class="ttdef"><b>Definition:</b> Vector2.h:181</div></div>
 <div class="ttc" id="classngl_1_1_vector2_html_abf546e3e6e853696b5a55ac7d64c65c9"><div class="ttname"><a href="classngl_1_1_vector2.html#abf546e3e6e853696b5a55ac7d64c65c9">ngl::Vector2::operator/</a></div><div class="ttdeci">Vector2&lt; T &gt; operator/(const T &amp;rhs) const </div><div class="ttdef"><b>Definition:</b> Vector2.h:154</div></div>
 <div class="ttc" id="classngl_1_1_vector2_html_a8bdeb4f144768bde71225f28282ff562"><div class="ttname"><a href="classngl_1_1_vector2.html#a8bdeb4f144768bde71225f28282ff562">ngl::Vector2::X</a></div><div class="ttdeci">const T &amp; X() const </div><div class="ttdef"><b>Definition:</b> Vector2.h:175</div></div>
+<div class="ttc" id="classngl_1_1_vector2_html_a1d6bd42d4ffc5f2223666e016f7ef72b"><div class="ttname"><a href="classngl_1_1_vector2.html#a1d6bd42d4ffc5f2223666e016f7ef72b">ngl::Vector2::Unit</a></div><div class="ttdeci">Vector2&lt; T &gt; Unit() const </div><div class="ttdef"><b>Definition:</b> Vector2.h:237</div></div>
 <div class="ttc" id="classngl_1_1_vector2_html_a1cd6e78e160131c96c0029b1f324ef0c"><div class="ttname"><a href="classngl_1_1_vector2.html#a1cd6e78e160131c96c0029b1f324ef0c">ngl::Vector2::operator-=</a></div><div class="ttdeci">Vector2&lt; T &gt; &amp; operator-=(const Vector2&lt; T &gt; &amp;rhs)</div><div class="ttdef"><b>Definition:</b> Vector2.h:79</div></div>
 <div class="ttc" id="classngl_1_1_vector2_html"><div class="ttname"><a href="classngl_1_1_vector2.html">ngl::Vector2</a></div><div class="ttdef"><b>Definition:</b> Vector2.h:27</div></div>
-<div class="ttc" id="classngl_1_1_vector2_html_a127da5c86089fb9ec3a182e41a038f61"><div class="ttname"><a href="classngl_1_1_vector2.html#a127da5c86089fb9ec3a182e41a038f61">ngl::Vector2::Dist</a></div><div class="ttdeci">double Dist(const Vector2&lt; T &gt; &amp;rhs) const </div><div class="ttdef"><b>Definition:</b> Vector2.h:238</div></div>
+<div class="ttc" id="classngl_1_1_vector2_html_a127da5c86089fb9ec3a182e41a038f61"><div class="ttname"><a href="classngl_1_1_vector2.html#a127da5c86089fb9ec3a182e41a038f61">ngl::Vector2::Dist</a></div><div class="ttdeci">double Dist(const Vector2&lt; T &gt; &amp;rhs) const </div><div class="ttdef"><b>Definition:</b> Vector2.h:251</div></div>
 <div class="ttc" id="classngl_1_1_vector2_html_a4e44a1a2532698f7117d422b30936be4"><div class="ttname"><a href="classngl_1_1_vector2.html#a4e44a1a2532698f7117d422b30936be4">ngl::Vector2::SetY</a></div><div class="ttdeci">void SetY(const T &amp;y)</div><div class="ttdef"><b>Definition:</b> Vector2.h:193</div></div>
 <div class="ttc" id="classngl_1_1_vector2_html_a016bfdf72b7f21c474a345234ebfc8c0"><div class="ttname"><a href="classngl_1_1_vector2.html#a016bfdf72b7f21c474a345234ebfc8c0">ngl::Vector2::operator==</a></div><div class="ttdeci">bool operator==(const Vector2&lt; T &gt; &amp;rhs) const </div><div class="ttdef"><b>Definition:</b> Vector2.h:47</div></div>
-<div class="ttc" id="classngl_1_1_vector2_html_a0213d64ca3b4fefa633ef40f3f72ed60"><div class="ttname"><a href="classngl_1_1_vector2.html#a0213d64ca3b4fefa633ef40f3f72ed60">ngl::Vector2::operator-=</a></div><div class="ttdeci">Vector2&lt; T &gt; &amp; operator-=(const T &amp;rhs)</div><div class="ttdef"><b>Definition:</b> Vector2.h:91</div></div>
 <div class="ttc" id="classngl_1_1_vector2_html_a2fd529a15e539a5dc8d701e2d4bbbd2a"><div class="ttname"><a href="classngl_1_1_vector2.html#a2fd529a15e539a5dc8d701e2d4bbbd2a">ngl::Vector2::operator/=</a></div><div class="ttdeci">Vector2&lt; T &gt; &amp; operator/=(const T &amp;rhs)</div><div class="ttdef"><b>Definition:</b> Vector2.h:103</div></div>
-<div class="ttc" id="classngl_1_1_vector2_html_a9ac9b5b6c87567e149cba0d4e426b8c7"><div class="ttname"><a href="classngl_1_1_vector2.html#a9ac9b5b6c87567e149cba0d4e426b8c7">ngl::Vector2::Dot</a></div><div class="ttdeci">T Dot(const Vector2&lt; T &gt; &amp;rhs) const </div><div class="ttdef"><b>Definition:</b> Vector2.h:250</div></div>
+<div class="ttc" id="classngl_1_1_vector2_html_a9ac9b5b6c87567e149cba0d4e426b8c7"><div class="ttname"><a href="classngl_1_1_vector2.html#a9ac9b5b6c87567e149cba0d4e426b8c7">ngl::Vector2::Dot</a></div><div class="ttdeci">T Dot(const Vector2&lt; T &gt; &amp;rhs) const </div><div class="ttdef"><b>Definition:</b> Vector2.h:263</div></div>
 <div class="ttc" id="classngl_1_1_vector2_html_a3af71d5702b7b404174cd031b3577e63"><div class="ttname"><a href="classngl_1_1_vector2.html#a3af71d5702b7b404174cd031b3577e63">ngl::Vector2::Normalize</a></div><div class="ttdeci">void Normalize()</div><div class="ttdef"><b>Definition:</b> Vector2.h:221</div></div>
 <div class="ttc" id="classngl_1_1_vector2_html_a5f2f02272a46fe7037aca24ef6c0c518"><div class="ttname"><a href="classngl_1_1_vector2.html#a5f2f02272a46fe7037aca24ef6c0c518">ngl::Vector2::SetX</a></div><div class="ttdeci">void SetX(const T &amp;x)</div><div class="ttdef"><b>Definition:</b> Vector2.h:187</div></div>
 <div class="ttc" id="classngl_1_1_vector2_html_a336cb6481285c026c5f8c3ce1f7ad554"><div class="ttname"><a href="classngl_1_1_vector2.html#a336cb6481285c026c5f8c3ce1f7ad554">ngl::Vector2::operator+</a></div><div class="ttdeci">Vector2&lt; T &gt; operator+(const Vector2&lt; T &gt; &amp;rhs) const </div><div class="ttdef"><b>Definition:</b> Vector2.h:115</div></div>
@@ -274,15 +287,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classngl_1_1_vector2_html_a0fd5e3c3a18ab9ed3f2ac5da4030647b"><div class="ttname"><a href="classngl_1_1_vector2.html#a0fd5e3c3a18ab9ed3f2ac5da4030647b">ngl::Vector2::Vector2</a></div><div class="ttdeci">Vector2(T x, T y)</div><div class="ttdef"><b>Definition:</b> Vector2.h:40</div></div>
 <div class="ttc" id="classngl_1_1_vector2_html_ac358425ebd419fd725b8743c3f8190eb"><div class="ttname"><a href="classngl_1_1_vector2.html#ac358425ebd419fd725b8743c3f8190eb">ngl::Vector2::operator-</a></div><div class="ttdeci">Vector2&lt; T &gt; operator-(const Vector2&lt; T &gt; &amp;rhs) const </div><div class="ttdef"><b>Definition:</b> Vector2.h:128</div></div>
 <div class="ttc" id="classngl_1_1_vector2_html_aedec018d983960925e193c3269374de1"><div class="ttname"><a href="classngl_1_1_vector2.html#aedec018d983960925e193c3269374de1">ngl::Vector2::Vector2</a></div><div class="ttdeci">Vector2()</div><div class="ttdef"><b>Definition:</b> Vector2.h:33</div></div>
-<div class="ttc" id="classngl_1_1_vector2_html_aa9f8a7307931ef9508edc8cc0c7b7c8f"><div class="ttname"><a href="classngl_1_1_vector2.html#aa9f8a7307931ef9508edc8cc0c7b7c8f">ngl::Vector2::Angle</a></div><div class="ttdeci">Angle Angle(const Vector2&lt; T &gt; &amp;rhs) const </div><div class="ttdef"><b>Definition:</b> Vector2.h:262</div></div>
+<div class="ttc" id="classngl_1_1_vector2_html_aa9f8a7307931ef9508edc8cc0c7b7c8f"><div class="ttname"><a href="classngl_1_1_vector2.html#aa9f8a7307931ef9508edc8cc0c7b7c8f">ngl::Vector2::Angle</a></div><div class="ttdeci">Angle Angle(const Vector2&lt; T &gt; &amp;rhs) const </div><div class="ttdef"><b>Definition:</b> Vector2.h:285</div></div>
 <div class="ttc" id="classngl_1_1_vector2_html_a4fc915ec48779a5b0b4ee9a3f24e0e92"><div class="ttname"><a href="classngl_1_1_vector2.html#a4fc915ec48779a5b0b4ee9a3f24e0e92">ngl::Vector2::operator+=</a></div><div class="ttdeci">Vector2&lt; T &gt; &amp; operator+=(const Vector2&lt; T &gt; &amp;rhs)</div><div class="ttdef"><b>Definition:</b> Vector2.h:67</div></div>
 <div class="ttc" id="classngl_1_1_vector2_html_adf257dae5508e3d76c90b5e31a865a6c"><div class="ttname"><a href="classngl_1_1_vector2.html#adf257dae5508e3d76c90b5e31a865a6c">ngl::Vector2::operator-</a></div><div class="ttdeci">Vector2&lt; T &gt; operator-() const </div><div class="ttdef"><b>Definition:</b> Vector2.h:166</div></div>
 <div class="ttc" id="classngl_1_1_vector2_html_acd3643cdafdab4453585f121762b62bf"><div class="ttname"><a href="classngl_1_1_vector2.html#acd3643cdafdab4453585f121762b62bf">ngl::Vector2::Set</a></div><div class="ttdeci">void Set(const T &amp;x, const T &amp;y)</div><div class="ttdef"><b>Definition:</b> Vector2.h:200</div></div>
+<div class="ttc" id="classngl_1_1_vector2_html_af8b6c9b0f786d9a493228827c700191d"><div class="ttname"><a href="classngl_1_1_vector2.html#af8b6c9b0f786d9a493228827c700191d">ngl::Vector2::Cross</a></div><div class="ttdeci">Vector2&lt; T &gt; Cross() const </div><div class="ttdef"><b>Definition:</b> Vector2.h:273</div></div>
+<div class="ttc" id="classngl_1_1_vector2_html_a9537515e2f5d26e1fdef94d6126524d4"><div class="ttname"><a href="classngl_1_1_vector2.html#a9537515e2f5d26e1fdef94d6126524d4">ngl::Vector2::operator*=</a></div><div class="ttdeci">Vector2&lt; T &gt; &amp; operator*=(const T &amp;rhs)</div><div class="ttdef"><b>Definition:</b> Vector2.h:91</div></div>
 <div class="ttc" id="classngl_1_1_angle_html_a27ef077b39cf18ff2f1efc3638bf36d5"><div class="ttname"><a href="classngl_1_1_angle.html#a27ef077b39cf18ff2f1efc3638bf36d5">ngl::Angle::Radians</a></div><div class="ttdeci">static Angle Radians(double angle)</div><div class="ttdef"><b>Definition:</b> Angle.cpp:132</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Apr 29 2014 05:39:26 for NGL by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Apr 30 2014 03:41:57 for NGL by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
