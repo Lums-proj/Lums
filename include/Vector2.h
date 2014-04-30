@@ -88,7 +88,7 @@ public:
 	 * @param rhs The coefficient.
 	 * @return The current vector.
 	 */
-	Vector2<T>&	operator-=(const T& rhs)
+	Vector2<T>&	operator*=(const T& rhs)
 	{
 		_x *= rhs;
 		_y *= rhs;
@@ -207,7 +207,7 @@ public:
 	
 	/**
 	 * Get the length of the vector.
-	 * This only have a meaning for vectors representing points.
+	 * This only have a meaning for vectors representing vectors.
 	 * @return The length of the vector.
 	 */
 	double		Length() const { return std::sqrt(_x * _x + _y * _y); }
@@ -227,6 +227,19 @@ public:
 		l = Length();
 		_x /= l;
 		_y /= l;
+	}
+	
+	/**
+	 * Return a normalized copy of this vector.
+	 * If this vector is null, this function return a null vector.
+	 * @return A normalized vector with the same direction as this one.
+	 */
+	Vector2<T>	Unit() const
+	{
+		Vector2<T>	v(*this);
+
+		v.Normalize();
+		return (v);
 	}
 	
 	/**
@@ -250,6 +263,16 @@ public:
 	T			Dot(const Vector2<T>& rhs) const
 	{
 		return _x * rhs._x + _y * rhs._y;
+	}
+	
+	/**
+	 * Get a new vector perpendicular to this one.
+	 * If this vector is null, a null vector is returned.
+	 * @return A vector perpendicular to this one.
+	 */
+	Vector2<T>	Cross() const
+	{
+		return Vector2<T>(-_y, _x);
 	}
 	
 	/**
