@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                        ::::    :::  ::::::::  :::          */
-/*    NGL.h                               :+:+:   :+: :+:    :+: :+:          */
+/*    RenderContext.h                     :+:+:   :+: :+:    :+: :+:          */
 /*                                        :+:+:+  +:+ +:+        +:+          */
 /*                                        +#+ +:+ +#+ :#:        +#+          */
 /*                                        +#+  +#+#+# +#+   +#+# +#+          */
@@ -10,18 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NGL_H
-#define NGL_H
-
-#include <NGL/Angle.h>
-#include <NGL/Application.h>
-#include <NGL/RenderContext.h>
-#include <NGL/Vector2.h>
-#include <NGL/Vector3.h>
-
-// NGL depends on SDL2.
+#ifndef RENDERCONTEXT_H
+#define RENDERCONTEXT_H
 
 #include <SDL2/SDL.h>
-#include <SDL2_image/SDL_image.h>
 
-#endif /* !NGL_H */
+namespace ngl
+{
+
+/**
+ * @struct RenderContext
+ * A POD class representing a render context.
+ * All members are public.
+ */
+struct RenderContext
+{
+	SDL_Window*		window;
+	SDL_Renderer*	renderer;
+	int				w;
+	int				h;
+};
+
+}
+
+#endif /* !RENDERCONTEXT_H */

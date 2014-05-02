@@ -57,7 +57,9 @@ void		test_vector2()
 
 int			main()
 {
+	Application		a(800, 600);
 	NGL_Test("Angle", test_angle);
 	NGL_Test("Vector2", test_vector2);
 	NGL_Test::Run();
+	a.Run();
 }

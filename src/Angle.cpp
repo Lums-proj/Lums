@@ -12,7 +12,7 @@
 
 #include <cmath>
 #include <limits>
-#include <Angle.h>
+#include <NGL/Angle.h>
 
 using namespace ngl;
 
