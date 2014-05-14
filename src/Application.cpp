@@ -10,13 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
+#include <chrono>
+#include <thread>
 #include <NGL/Application.h>
 #include <NGL/GameState.h>
 
 using namespace ngl;
+using namespace std::chrono;
 
 Application::Application(int w, int h, std::string title)
-: _running(false), _physicDelta(1 / 120), _renderDelta(1 / 60)
+: _running(false), _physicDelta(1.0f / 120.0f)
+, _renderDelta(1.0f / 60.0f)
 {
 	_context.w = w;
 	_context.h = h;
@@ -53,39 +58,43 @@ void			Application::SetTitle(std::string title)
 
 void			Application::Run()
 {
-	SDL_Event	event;
-	Uint32		lastUpdate;
-	Uint32		lastRender;
-	Uint32		now;
+	SDL_Event							event;
+	float								updateAcc;
+	float								renderAcc;
+	float								dt;
+	high_resolution_clock::time_point	now;
 
 	_running = true;
 	_deleteMark = true;
 	for (auto state : _states)
 		state->Load();
 	StackRender();
-	lastRender = SDL_GetTicks();
-	lastUpdate = lastRender;
+	now = high_resolution_clock::now();
+	updateAcc = renderAcc = 0.0f;
 	while (_running)
 	{
+		dt = duration_cast<duration<float>>(high_resolution_clock::now() - now).count();
+		now = high_resolution_clock::now();
+		updateAcc += dt;
+		renderAcc += dt;
 		if (_deleteMark)
 		{
 			_deleteMark = false;
 			StackDelete();
 		}
-		now = SDL_GetTicks();
-		if (now - lastUpdate > _physicDelta)
+		while (SDL_PollEvent(&event))
+			StackEvent(event);
+		if (updateAcc > _physicDelta)
 		{
-			lastUpdate = now;
-			while (SDL_PollEvent(&event))
-				StackEvent(event);
+			updateAcc -= _physicDelta;
 			StackUpdate();
 		}
-		if (now - lastRender > _renderDelta)
+		if (renderAcc > _renderDelta)
 		{
-			lastRender = now;
+			renderAcc -= _renderDelta;
 			StackRender();
 		}
-		SDL_Delay(1);
+		std::this_thread::sleep_for(microseconds(1000));
 	}
 }
 

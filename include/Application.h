@@ -119,8 +119,8 @@ private:
 	void					StackDelete();
 	RenderContext			_context;
 	bool					_running;
-	Uint32					_physicDelta;
-	Uint32					_renderDelta;
+	float					_physicDelta;
+	float					_renderDelta;
 	static int				_count;
 	std::list<GameState*>	_states;
 	bool					_deleteMark;
