@@ -115,7 +115,7 @@ public:
 	/**
 	 * Destructor.
 	 */
-	virtual ~GameState();
+	virtual ~GameState() {};
 	
 private:
 	Application*		_app;
