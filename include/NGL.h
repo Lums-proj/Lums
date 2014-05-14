@@ -16,6 +16,7 @@
 #include <NGL/Angle.h>
 #include <NGL/Application.h>
 #include <NGL/RenderContext.h>
+#include <NGL/GameState.h>
 #include <NGL/Vector2.h>
 #include <NGL/Vector3.h>
 

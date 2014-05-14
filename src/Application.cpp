@@ -60,6 +60,8 @@ void			Application::Run()
 
 	_running = true;
 	_deleteMark = true;
+	for (auto state : _states)
+		state->Load();
 	StackRender();
 	lastRender = SDL_GetTicks();
 	lastUpdate = lastRender;
@@ -96,6 +98,8 @@ void			Application::PushState(GameState *state)
 {
 	state->_app = this;
 	_states.push_front(state);
+	if (_running)
+		state->Load();
 }
 
 void			Application::PopState()
