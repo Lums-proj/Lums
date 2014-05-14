@@ -16,9 +16,12 @@
 #include <SDL2/SDL.h>
 #include <NGL/RenderContext.h>
 #include <string>
+#include <list>
 
 namespace ngl
 {
+
+class GameState;
 
 /**
  * @class Application
@@ -30,6 +33,7 @@ namespace ngl
  */
 class Application
 {
+friend class GameState;
 public:
 	/**
 	 * Create an Application.
@@ -76,15 +80,50 @@ public:
 	void			Quit();
 	
 	/**
+	 * Push a state on the state stack.
+	 * @param state The state to be pushed.
+	 */
+	void			PushState(GameState* state);
+	
+	/**
+	 * Pop a state from the state stack.
+	 */
+	void			PopState();
+	
+	/**
+	 * Empty the state stack.
+	 */
+	void			EmptyState();
+	
+	/**
+	 * Replace the stack state with a single state.
+	 * This is equivalent to calling EmptyState() and PushState().
+	 * @param state A state.
+	 */
+	void			SetState(GameState* state)
+	{
+		EmptyState();
+		PushState(state);
+	};
+	
+	/**
 	 * Destructor.
 	 */
 	~Application();
 	
 private:
-	RenderContext	_context;
-	bool			_running;
-	double			_physicDelta;
-	static int		_count;
+	void					Render(std::list<GameState*>::iterator it);
+	void					StackRender();
+	void					StackUpdate();
+	void					StackEvent(SDL_Event& event);
+	void					StackDelete();
+	RenderContext			_context;
+	bool					_running;
+	Uint32					_physicDelta;
+	Uint32					_renderDelta;
+	static int				_count;
+	std::list<GameState*>	_states;
+	bool					_deleteMark;
 };
 	
 }
