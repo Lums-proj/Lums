@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['unit',['Unit',['../classngl_1_1_vector2.html#a1d6bd42d4ffc5f2223666e016f7ef72b',1,'ngl::Vector2::Unit()'],['../classngl_1_1_vector3.html#a9f751de16acc996e189e70fc899d018f',1,'ngl::Vector3::Unit()']]]
+  ['popstate',['PopState',['../classngl_1_1_application.html#a84d5c8219899b20b1de7a5a09e816a40',1,'ngl::Application']]],
+  ['pushstate',['PushState',['../classngl_1_1_application.html#ae092bf5fb76386e0a6c3fe45b982214c',1,'ngl::Application']]]
 ];
