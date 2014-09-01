@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                        ::::    :::  ::::::::  :::          */
-/*    Vector3.h                           :+:+:   :+: :+:    :+: :+:          */
-/*                                        :+:+:+  +:+ +:+        +:+          */
-/*                                        +#+ +:+ +#+ :#:        +#+          */
-/*                                        +#+  +#+#+# +#+   +#+# +#+          */
-/*    This file is part of the            #+#   #+#+# #+#    #+# #+#          */
-/*    NGL library.                        ###    ####  ########  ##########   */
+/*                                                  &&&&&&       &&&&&&       */
+/*    Vector3.h                                    &------&     &------&      */
+/*                                                  &&-----&   &-----&&       */
+/*                                                    &&&&#######&&&&         */
+/*                                                       #.......#            */
+/*                                                       #.....  #            */
+/*    This file is part of the                           #...    #            */
+/*    Lums library.                                       #######             */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef NGL_VECTOR3_H
-#define NGL_VECTOR3_H
+#ifndef LUMS_VECTOR3_H
+#define LUMS_VECTOR3_H
 
 #include <NGL/Angle.h>
 #include <cmath>
 
-namespace ngl
+namespace lm
 {
-	
 	/**
-	 * @class Vector3
 	 * This class define a tridimensional vector.
 	 */
 	template <typename T>
@@ -353,7 +352,6 @@ namespace ngl
 	 * An alias for Vector3<Angle>
 	 */
 	typedef Vector3<Angle>	Vector3a;
-	
 }
 
-#endif /* !NGL_VECTOR3_H */
+#endif

@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9C8281A9190DD86E009D27C5"
-               BuildableName = "NGL.framework"
-               BlueprintName = "NGL"
-               ReferencedContainer = "container:NGL.xcodeproj">
+               BlueprintIdentifier = "9C130DC5191340CD00E9C424"
+               BuildableName = "Unit Test.app"
+               BlueprintName = "Unit Test"
+               ReferencedContainer = "container:Lums.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,13 +32,22 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "9C8281BF190DD86E009D27C5"
-               BuildableName = "NGLTests.xctest"
-               BlueprintName = "NGLTests"
-               ReferencedContainer = "container:NGL.xcodeproj">
+               BlueprintIdentifier = "9C130DE0191340CD00E9C424"
+               BuildableName = "Unit TestTests.xctest"
+               BlueprintName = "Unit TestTests"
+               ReferencedContainer = "container:Lums.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9C130DC5191340CD00E9C424"
+            BuildableName = "Unit Test.app"
+            BlueprintName = "Unit Test"
+            ReferencedContainer = "container:Lums.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -49,6 +58,15 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9C130DC5191340CD00E9C424"
+            BuildableName = "Unit Test.app"
+            BlueprintName = "Unit Test"
+            ReferencedContainer = "container:Lums.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -58,6 +76,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "9C130DC5191340CD00E9C424"
+            BuildableName = "Unit Test.app"
+            BlueprintName = "Unit Test"
+            ReferencedContainer = "container:Lums.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

@@ -10,16 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <NGL/NGL.h>
+#include <Lums/Lums.h>
 #include "NGL_Test.h"
 
 #include <cassert>
 #include <cmath>
+#include <iostream>
 
 #define FLO_EQ(a, b)		(((a)-(b)) < 0.001 && ((a)-(b)) > -0.001)
 
 using namespace		std;
-using namespace		ngl;
+using namespace		lm;
 
 void		test_angle()
 {
@@ -43,6 +44,8 @@ void		test_angle()
     assert(FLO_EQ(g.Cos(), cos(2)));
     assert(FLO_EQ(g.Tan(), tan(2)));
 	assert(h == i);
+    assert(90.0_deg == 90.0_deg);
+    assert(90_deg == -270_deg);
 }
 
 void		test_vector2()
@@ -57,9 +60,7 @@ void		test_vector2()
 
 int			main()
 {
-	Application		a(800, 600);
 	NGL_Test("Angle", test_angle);
 	NGL_Test("Vector2", test_vector2);
 	NGL_Test::Run();
-	a.Run();
 }
