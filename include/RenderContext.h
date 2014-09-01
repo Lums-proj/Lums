@@ -1,36 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                        ::::    :::  ::::::::  :::          */
-/*    RenderContext.h                     :+:+:   :+: :+:    :+: :+:          */
-/*                                        :+:+:+  +:+ +:+        +:+          */
-/*                                        +#+ +:+ +#+ :#:        +#+          */
-/*                                        +#+  +#+#+# +#+   +#+# +#+          */
-/*    This file is part of the            #+#   #+#+# #+#    #+# #+#          */
-/*    NGL library.                        ###    ####  ########  ##########   */
+/*                                                  &&&&&&       &&&&&&       */
+/*    RenderContext.h                              &------&     &------&      */
+/*                                                  &&-----&   &-----&&       */
+/*                                                    &&&&#######&&&&         */
+/*                                                       #.......#            */
+/*                                                       #.....  #            */
+/*    This file is part of the                           #...    #            */
+/*    Lums library.                                       #######             */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RENDERCONTEXT_H
-#define RENDERCONTEXT_H
+#ifndef LUMS_RENDERCONTEXT_H
+#define LUMS_RENDERCONTEXT_H
 
 #include <SDL2/SDL.h>
 
-namespace ngl
+namespace lm
 {
-
-/**
- * @struct RenderContext
- * A POD class representing a render context.
- * All members are public.
- */
-struct RenderContext
-{
-	SDL_Window*		window;
-	SDL_Renderer*	renderer;
-	int				w;
-	int				h;
-};
-
+    /**
+     * A POD class representing a render context.
+     * All members are public.
+     */
+    struct RenderContext
+    {
+        SDL_Window*		window;
+        SDL_Renderer*	renderer;
+        int				w;
+        int				h;
+    };
 }
 
-#endif /* !RENDERCONTEXT_H */
+#endif

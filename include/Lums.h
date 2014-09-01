@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                  &&&&&&       &&&&&&       */
-/*    GameState.cpp                                &------&     &------&      */
+/*    Lums.h                                       &------&     &------&      */
 /*                                                  &&-----&   &-----&&       */
 /*                                                    &&&&#######&&&&         */
 /*                                                       #.......#            */
@@ -11,18 +11,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "GameState.h"
-#include "Core.h"
+#ifndef LUMS_H
+#define LUMS_H
 
-using namespace lm;
+#include <Lums/Angle.h>
+#include <Lums/Core.h>
+#include <Lums/RenderContext.h>
+#include <Lums/GameState.h>
+#include <Lums/Vector2.h>
+#include <Lums/Vector3.h>
 
-Core&	GameState::Core() const
-{
-	return *_core;
-}
+#include <SDL2/SDL.h>
+#include <SDL2_image/SDL_image.h>
 
-void			GameState::Close()
-{
-	_deleteMark = true;
-	_core->_deleteMark = true;
-}
+#endif

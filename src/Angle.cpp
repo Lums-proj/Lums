@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                        ::::    :::  ::::::::  :::          */
-/*    Angle.cpp                           :+:+:   :+: :+:    :+: :+:          */
-/*                                        :+:+:+  +:+ +:+        +:+          */
-/*                                        +#+ +:+ +#+ :#:        +#+          */
-/*                                        +#+  +#+#+# +#+   +#+# +#+          */
-/*    This file is part of the            #+#   #+#+# #+#    #+# #+#          */
-/*    NGL library.                        ###    ####  ########  ##########   */
+/*                                                  &&&&&&       &&&&&&       */
+/*    Angle.cpp                                    &------&     &------&      */
+/*                                                  &&-----&   &-----&&       */
+/*                                                    &&&&#######&&&&         */
+/*                                                       #.......#            */
+/*                                                       #.....  #            */
+/*    This file is part of the                           #...    #            */
+/*    Lums library.                                       #######             */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cmath>
 #include <limits>
-#include <NGL/Angle.h>
+#include "Angle.h"
 
-using namespace ngl;
-
-Angle::Angle() : _angle(0.0)
-{
-	
-}
+using namespace lm;
 
 bool		Angle::operator==(const Angle& rhs) const
 {
@@ -52,39 +48,31 @@ bool		Angle::operator>=(const Angle &rhs) const
 	return !(*this < rhs);
 }
 
-Angle		Angle::operator-() const
-{
-	Angle	a;
-
-	a._angle = 1.0 - _angle;
-	return a;
-}
-
 Angle&      Angle::operator+=(const Angle &rhs)
 {
     _angle += rhs._angle;
-    Clamp();
+    _angle = Clamp(_angle);
     return *this;
 }
 
 Angle&      Angle::operator-=(const Angle &rhs)
 {
     _angle -= rhs._angle;
-    Clamp();
+    _angle = Clamp(_angle);
     return *this;
 }
 
 Angle&      Angle::operator*=(double rhs)
 {
     _angle *= rhs;
-    Clamp();
+    _angle = Clamp(_angle);
     return *this;
 }
 
 Angle&      Angle::operator/=(double rhs)
 {
     _angle /= rhs;
-    Clamp();
+    _angle = Clamp(_angle);
     return *this;
 }
 
@@ -99,7 +87,7 @@ Angle		Angle::operator+(const Angle &rhs) const
 Angle		Angle::operator-(const Angle &rhs) const
 {
 	Angle	a(*this);
-	
+
 	a -= rhs;
 	return a;
 }
@@ -107,7 +95,7 @@ Angle		Angle::operator-(const Angle &rhs) const
 Angle		Angle::operator*(double rhs) const
 {
 	Angle	a(*this);
-	
+
 	a *= rhs;
 	return a;
 }
@@ -117,33 +105,6 @@ Angle		Angle::operator/(double rhs) const
 	Angle	a(*this);
 	
 	a /= rhs;
-	return a;
-}
-
-Angle		Angle::Turns(double angle)
-{
-	Angle	a;
-
-	a._angle = angle;
-	a.Clamp();
-	return a;
-}
-
-Angle		Angle::Radians(double angle)
-{
-	Angle	a;
-	
-	a._angle = angle * (1.0 / (M_PI * 2) );
-	a.Clamp();
-	return a;
-}
-
-Angle		Angle::Degrees(double angle)
-{
-	Angle	a;
-	
-	a._angle = angle * (1.0 / 360.0);
-	a.Clamp();
 	return a;
 }
 
@@ -175,16 +136,4 @@ double      Angle::Cos() const
 double      Angle::Tan() const
 {
     return tan(toRadians());
-}
-
-void		Angle::Clamp()
-{
-	if (_angle < 0.0)
-	{
-		_angle = 1.0 + (_angle - static_cast<int>(_angle));
-	}
-	if (_angle >= 1.0)
-	{
-		_angle = (_angle - static_cast<int>(_angle));
-	}
 }

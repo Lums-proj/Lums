@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                        ::::    :::  ::::::::  :::          */
-/*    Application.cpp                     :+:+:   :+: :+:    :+: :+:          */
-/*                                        :+:+:+  +:+ +:+        +:+          */
-/*                                        +#+ +:+ +#+ :#:        +#+          */
-/*                                        +#+  +#+#+# +#+   +#+# +#+          */
-/*    This file is part of the            #+#   #+#+# #+#    #+# #+#          */
-/*    NGL library.                        ###    ####  ########  ##########   */
+/*                                                  &&&&&&       &&&&&&       */
+/*    Core.cpp                                     &------&     &------&      */
+/*                                                  &&-----&   &-----&&       */
+/*                                                    &&&&#######&&&&         */
+/*                                                       #.......#            */
+/*                                                       #.....  #            */
+/*    This file is part of the                           #...    #            */
+/*    Lums library.                                       #######             */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <chrono>
 #include <thread>
-#include <NGL/Application.h>
-#include <NGL/GameState.h>
+#include "Core.h"
+#include "GameState.h"
 
-using namespace ngl;
+using namespace lm;
 using namespace std::chrono;
 
-Application::Application(int w, int h, std::string title)
+Core::Core(int w, int h, std::string title)
 : _running(false), _physicDelta(1.0f / 120.0f)
 , _renderDelta(1.0f / 60.0f)
 {
@@ -34,29 +35,29 @@ Application::Application(int w, int h, std::string title)
 										   SDL_RENDERER_ACCELERATED);
 }
 
-SDL_Window*		Application::Window() const
+SDL_Window*		Core::Window() const
 {
 	return _context.window;
 }
 
-SDL_Renderer*	Application::Renderer() const
+SDL_Renderer*	Core::Renderer() const
 {
 	return _context.renderer;
 }
 
-void			Application::SetWindowSize(int w, int h)
+void			Core::SetWindowSize(int w, int h)
 {
 	_context.w = w;
 	_context.h = h;
 	SDL_SetWindowSize(_context.window, w, h);
 }
 
-void			Application::SetTitle(std::string title)
+void			Core::SetTitle(std::string title)
 {
 	SDL_SetWindowTitle(_context.window, title.c_str());
 }
 
-void			Application::Run()
+void			Core::Run()
 {
 	SDL_Event							event;
 	float								updateAcc;
@@ -98,20 +99,20 @@ void			Application::Run()
 	}
 }
 
-void			Application::Quit()
+void			Core::Quit()
 {
 	_running = false;
 }
 
-void			Application::PushState(GameState *state)
+void			Core::PushState(GameState *state)
 {
-	state->_app = this;
+	state->_core = this;
 	_states.push_front(state);
 	if (_running)
 		state->Load();
 }
 
-void			Application::PopState()
+void			Core::PopState()
 {
 	for (auto it = _states.begin(); it != _states.end(); ++it)
 	{
@@ -124,14 +125,14 @@ void			Application::PopState()
 	}
 }
 
-void			Application::EmptyState()
+void			Core::EmptyState()
 {
 	for (auto it = _states.begin(); it != _states.end(); ++it)
 		(*it)->_deleteMark = true;
 	_deleteMark = true;
 }
 
-Application::~Application()
+Core::~Core()
 {
 	SDL_DestroyRenderer(_context.renderer);
 	SDL_DestroyWindow(_context.window);
@@ -140,7 +141,7 @@ Application::~Application()
 		SDL_Quit();
 }
 
-void			Application::Render(std::list<GameState*>::iterator it)
+void			Core::Render(std::list<GameState*>::iterator it)
 {
 	GameState	*state;
 
@@ -150,7 +151,7 @@ void			Application::Render(std::list<GameState*>::iterator it)
 	state->Render(_context);
 }
 
-void			Application::StackRender()
+void			Core::StackRender()
 {
 	SDL_SetRenderDrawColor(_context.renderer, 0, 0, 0, 255);
 	SDL_RenderClear(_context.renderer);
@@ -159,7 +160,7 @@ void			Application::StackRender()
 	SDL_RenderPresent(_context.renderer);
 }
 
-void			Application::StackUpdate()
+void			Core::StackUpdate()
 {
 	auto		it = _states.begin();
 	GameState*	state;
@@ -174,7 +175,7 @@ void			Application::StackUpdate()
 	}
 }
 
-void			Application::StackEvent(SDL_Event &event)
+void			Core::StackEvent(SDL_Event &event)
 {
 	auto		it = _states.begin();
 	GameState*	state;
@@ -189,7 +190,7 @@ void			Application::StackEvent(SDL_Event &event)
 	}
 }
 
-void			Application::StackDelete()
+void			Core::StackDelete()
 {
 	GameState*	state;
 	auto		it = _states.begin();
@@ -208,4 +209,4 @@ void			Application::StackDelete()
 	}
 }
 
-int				Application::_count = 0;
+int				Core::_count = 0;
