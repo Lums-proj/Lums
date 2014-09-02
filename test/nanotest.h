@@ -2,7 +2,7 @@
 // (c) Nax, 2014
 // All distribution authorized.
 
-// Version 1.1.0
+// Version 1.1.1
 
 #ifndef NANOTEST_H
 #define NANOTEST_H
