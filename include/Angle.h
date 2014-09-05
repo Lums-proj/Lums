@@ -162,7 +162,7 @@ namespace lm
          * @param angle Angle in turns
          * @return A new angle with the corresponding value.
          */
-        static constexpr  Angle	Turns(double angle)
+        static constexpr  Angle Turns(double angle)
         {
             return Angle(angle);
         }
@@ -172,7 +172,7 @@ namespace lm
          * @param angle Angle in radians.
          * @return A new angle with the corresponding value.
          */
-        static constexpr Angle	Radians(double angle)
+        static constexpr Angle Radians(double angle)
         {
             return Angle(angle * (1.0 / (M_PI * 2.0)));
         }
@@ -182,7 +182,7 @@ namespace lm
          * @param angle Angle in degrees.
          * @return A new angle with the corresponding value.
          */
-        static constexpr Angle	Degrees(double angle)
+        static constexpr Angle  Degrees(double angle)
         {
             return Angle(angle * (1.0 / 360.0));
         }
@@ -191,19 +191,19 @@ namespace lm
          * Get the angle value in turns.
          * @return Angle value in turns.
          */
-        double			toTurns() const;
+        double          toTurns() const;
 
         /**
          * Get the angle value in radians.
          * @return Angle value in radians
          */
-        double			toRadians() const;
+        double          toRadians() const;
 
         /**
          * Get the angle value in degrees.
          * @return Angle value in degrees
          */
-        double			toDegrees() const;
+        double          toDegrees() const;
 
         /**
          * Get the sinus of the angle.

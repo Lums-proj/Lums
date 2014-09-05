@@ -1,8 +1,10 @@
-// This is nanotest
+// NanoTest.h
+
+// This is NanoTest
 // (c) Nax, 2014
 // All distribution authorized.
 
-// Version 1.1.1
+// Version 1.1.2a
 
 #ifndef NANOTEST_H
 #define NANOTEST_H
@@ -63,10 +65,10 @@
 #define assert_more(a, b)       NANOTEST_ASSERT((a) > (b))
 #define assert_less_equal(a, b) NANOTEST_ASSERT((a) <= (b))
 #define assert_more_equal(a, b) NANOTEST_ASSERT((a) >= (b))
-#define assert_max_diff(a, b,c) NANOTEST_ASSERT((a) - (b) < (c) &&             \
-                                                (a) - (b) > -(c))
-#define assert_min_diff(a, b,c) NANOTEST_ASSERT((a) - (b) > (c) ||             \
-                                                (a) - (b) < -(c))
+#define assert_max_diff(a, b,c) NANOTEST_ASSERT((a) - (b) <= (c) &&            \
+                                                (a) - (b) >= -(c))
+#define assert_min_diff(a, b,c) NANOTEST_ASSERT((a) - (b) >= (c) ||            \
+                                                (a) - (b) <= -(c))
 
 #define assert_throw(expr, klass) do {                                         \
                                   try { (expr); }                              \

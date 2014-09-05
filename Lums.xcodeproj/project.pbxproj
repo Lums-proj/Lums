@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9C130DC7191340CD00E9C424 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8281AC190DD86E009D27C5 /* Cocoa.framework */; };
-		9C130DF5191340F800E9C424 /* NGL_Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8281EB190DF215009D27C5 /* NGL_Test.cpp */; };
+		9C130DF5191340F800E9C424 /* TestAngle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C8281EB190DF215009D27C5 /* TestAngle.cpp */; };
 		9C130DF61913419800E9C424 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8281D7190DD8B2009D27C5 /* SDL2.framework */; };
 		9C130DF71913419800E9C424 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8281D8190DD8B2009D27C5 /* SDL2_image.framework */; };
 		9C130DF81913419C00E9C424 /* Lums.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8281AA190DD86E009D27C5 /* Lums.framework */; };
@@ -23,6 +23,9 @@
 		9C130E0A1913797700E9C424 /* GameState.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C130E091913797700E9C424 /* GameState.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9C2997DE190F1B2000ACBA7E /* Vector2.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C2997DB190F1B2000ACBA7E /* Vector2.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9C2997DF190F1B2000ACBA7E /* Vector3.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C2997DC190F1B2000ACBA7E /* Vector3.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9C32EFA219B9FC280013CBB0 /* Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C32EFA119B9FC280013CBB0 /* Test.cpp */; };
+		9C32EFA419BA01EA0013CBB0 /* TestVector2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C32EFA319BA01EA0013CBB0 /* TestVector2.cpp */; };
+		9C32EFA619BA17DD0013CBB0 /* TestVector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C32EFA519BA17DD0013CBB0 /* TestVector3.cpp */; };
 		9C8281AD190DD86E009D27C5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8281AC190DD86E009D27C5 /* Cocoa.framework */; };
 		9C8281DA190DD8B2009D27C5 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8281D8190DD8B2009D27C5 /* SDL2_image.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		9C8281E8190DDF49009D27C5 /* Angle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C8281E7190DDF49009D27C5 /* Angle.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -55,6 +58,9 @@
 		9C130E091913797700E9C424 /* GameState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameState.h; sourceTree = "<group>"; };
 		9C2997DB190F1B2000ACBA7E /* Vector2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector2.h; sourceTree = "<group>"; };
 		9C2997DC190F1B2000ACBA7E /* Vector3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector3.h; sourceTree = "<group>"; };
+		9C32EFA119B9FC280013CBB0 /* Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Test.cpp; sourceTree = "<group>"; };
+		9C32EFA319BA01EA0013CBB0 /* TestVector2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestVector2.cpp; sourceTree = "<group>"; };
+		9C32EFA519BA17DD0013CBB0 /* TestVector3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestVector3.cpp; sourceTree = "<group>"; };
 		9C8281AA190DD86E009D27C5 /* Lums.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Lums.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8281AC190DD86E009D27C5 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		9C8281AF190DD86E009D27C5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -64,8 +70,8 @@
 		9C8281E2190DDAC3009D27C5 /* header.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = header.txt; sourceTree = "<group>"; };
 		9C8281E7190DDF49009D27C5 /* Angle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Angle.h; sourceTree = "<group>"; usesTabs = 0; };
 		9C8281E9190DDF56009D27C5 /* Angle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Angle.cpp; sourceTree = "<group>"; };
-		9C8281EB190DF215009D27C5 /* NGL_Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NGL_Test.cpp; sourceTree = "<group>"; };
-		9C8281EC190DF215009D27C5 /* NGL_Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGL_Test.h; sourceTree = "<group>"; };
+		9C8281EB190DF215009D27C5 /* TestAngle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestAngle.cpp; sourceTree = "<group>"; };
+		9CD2996019B5349A00209B29 /* NanoTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NanoTest.h; sourceTree = "<group>"; };
 		9CE5D276190DF60300256340 /* Lums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Lums.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -187,8 +193,11 @@
 		9C8281E5190DDAC3009D27C5 /* test */ = {
 			isa = PBXGroup;
 			children = (
-				9C8281EC190DF215009D27C5 /* NGL_Test.h */,
-				9C8281EB190DF215009D27C5 /* NGL_Test.cpp */,
+				9CD2996019B5349A00209B29 /* NanoTest.h */,
+				9C32EFA119B9FC280013CBB0 /* Test.cpp */,
+				9C8281EB190DF215009D27C5 /* TestAngle.cpp */,
+				9C32EFA319BA01EA0013CBB0 /* TestVector2.cpp */,
+				9C32EFA519BA17DD0013CBB0 /* TestVector3.cpp */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -299,7 +308,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9C130DF5191340F800E9C424 /* NGL_Test.cpp in Sources */,
+				9C130DF5191340F800E9C424 /* TestAngle.cpp in Sources */,
+				9C32EFA419BA01EA0013CBB0 /* TestVector2.cpp in Sources */,
+				9C32EFA619BA17DD0013CBB0 /* TestVector3.cpp in Sources */,
+				9C32EFA219B9FC280013CBB0 /* Test.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +340,11 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(PROJECT_DIR)/test",
+				);
 				INFOPLIST_FILE = "";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -343,6 +360,11 @@
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/lib/osx";
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREFIX_HEADER = "";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"$(PROJECT_DIR)/test",
+				);
 				INFOPLIST_FILE = "";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
