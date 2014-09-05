@@ -23,20 +23,19 @@ namespace lm
      * This class define a bidimentional vector.
      */
     template <typename T>
-    class Vector2
+    struct Vector2
     {
-    public:
         /**
          * Create an empty vector.
          */
-        Vector2() : _x(T()), _y(T()) {}
+        Vector2() : x(T()), y(T()) {}
 
         /**
          * Create a vector from values.
          * @param x Value for x
          * @param y Value for y
          */
-        Vector2(T x, T y) : _x(x), _y(y) {}
+        Vector2(T x, T y) : x(x), y(y) {}
 
         /**
          * Check if two vectors are equal.
@@ -45,7 +44,7 @@ namespace lm
          */
         bool		operator==(const Vector2<T>& rhs) const
         {
-            return (_x == rhs._x && _y == rhs._y);
+            return (x == rhs.x && y == rhs.y);
         }
 
         /**
@@ -65,9 +64,9 @@ namespace lm
          */
         Vector2<T>&	operator+=(const Vector2<T>& rhs)
         {
-            _x += rhs._x;
-            _y += rhs._y;
-            return (*this);
+            x += rhs.x;
+            y += rhs.y;
+            return *this;
         }
 
         /**
@@ -77,9 +76,9 @@ namespace lm
          */
         Vector2<T>&	operator-=(const Vector2<T>& rhs)
         {
-            _x -= rhs._x;
-            _y -= rhs._y;
-            return (*this);
+            x -= rhs.x;
+            y -= rhs.y;
+            return *this;
         }
 
         /**
@@ -89,9 +88,9 @@ namespace lm
          */
         Vector2<T>&	operator*=(const T& rhs)
         {
-            _x *= rhs;
-            _y *= rhs;
-            return (*this);
+            x *= rhs;
+            y *= rhs;
+            return *this;
         }
 
         /**
@@ -101,9 +100,9 @@ namespace lm
          */
         Vector2<T>&	operator/=(const T& rhs)
         {
-            _x /= rhs;
-            _y /= rhs;
-            return (*this);
+            x /= rhs;
+            y /= rhs;
+            return *this;
         }
 
         /**
@@ -116,7 +115,7 @@ namespace lm
             Vector2<T>	v(*this);
 
             v += rhs;
-            return (v);
+            return v;
         }
 
         /**
@@ -129,7 +128,7 @@ namespace lm
             Vector2<T>	v(*this);
 
             v -= rhs;
-            return (v);
+            return v;
         }
 
         /**
@@ -142,7 +141,7 @@ namespace lm
             Vector2<T>	v(*this);
 
             v *= rhs;
-            return (v);
+            return v;
         }
 
         /**
@@ -155,7 +154,7 @@ namespace lm
             Vector2<T>	v(*this);
 
             v /= rhs;
-            return (v);
+            return v;
         }
 
         /**
@@ -164,52 +163,47 @@ namespace lm
          */
         Vector2<T>	operator-() const
         {
-            return (Vector2<T>(-_x, -_y));
+            return Vector2<T>(-x, -y);
+        }
+        
+        /**
+         * Identity operator.
+         * @return The vector.
+         */
+        Vector2<T>  operator+() const
+        {
+            return *this;
         }
 
         /**
-         * Get the x value of the vector.
-         * @return The x value of the vector
-         */
-        const T&	X() const { return _x; }
-
-        /**
-         * Get the y value of the vector.
-         * @return The y value of the vector
-         */
-        const T&	Y() const { return _y; }
-
-        /**
-         * Set the x value of the vector.
-         * @param x The new x value.
-         */
-        void		SetX(const T& x) { _x = x; }
-
-        /**
-         * Set the y value of the vector.
-         * @param y The new y value.
-         */
-        void		SetY(const T& y) { _y = y; }
-
-        /**
          * Set both x and y.
-         * @param x The new x value.
-         * @param y The new y value.
+         * @param nx The new x value.
+         * @param ny The new y value.
          */
-        void		Set(const T& x, const T& y) { _x = x; _y = y; }
+        void		Set(const T& nx, const T& ny)
+        {
+            x = nx;
+            y = ny;
+        }
 
         /**
          * Check if the vector is null.
          * @return True if the vector is null, false otherwise.
          */
-        bool		Null() const { return (_x == T() && _y == T()); }
+        bool		Null() const
+        {
+            return (x == T() && y == T());
+        }
 
         /**
          * Get the length of the vector.
          * This only have a meaning for vectors representing vectors.
          * @return The length of the vector.
          */
-        double		Length() const { return std::sqrt(_x * _x + _y * _y); }
+        double		Length() const
+        {
+            return std::sqrt(x * x + y * y);
+        }
 
         /**
          * Normalize the vector.
@@ -224,8 +218,8 @@ namespace lm
             if (Null())
                 return;
             l = Length();
-            _x /= l;
-            _y /= l;
+            x /= l;
+            y /= l;
         }
 
         /**
@@ -238,7 +232,7 @@ namespace lm
             Vector2<T>	v(*this);
 
             v.Normalize();
-            return (v);
+            return v;
         }
 
         /**
@@ -249,8 +243,8 @@ namespace lm
          */
         double		Dist(const Vector2<T>& rhs) const
         {
-            return std::sqrt((_x - rhs._x) * (_x - rhs._x)
-                             + (_y - rhs._y) * (_y - rhs._y));
+            return std::sqrt((x - rhs.x) * (x - rhs.x)
+                             + (y - rhs.y) * (y - rhs.y));
         }
 
         /**
@@ -261,7 +255,7 @@ namespace lm
          */
         T			Dot(const Vector2<T>& rhs) const
         {
-            return _x * rhs._x + _y * rhs._y;
+            return x * rhs.x + y * rhs.y;
         }
 
         /**
@@ -271,7 +265,7 @@ namespace lm
          */
         Vector2<T>	Cross() const
         {
-            return Vector2<T>(-_y, _x);
+            return Vector2<T>(-y, x);
         }
 
         /**
@@ -291,9 +285,8 @@ namespace lm
             return Angle::Radians(std::acos(c));
         }
 
-    private:
-        T			_x;
-        T			_y;
+        T	x;
+        T	y;
     };
 
     /**

@@ -14,7 +14,7 @@
 #ifndef LUMS_VECTOR3_H
 #define LUMS_VECTOR3_H
 
-#include <NGL/Angle.h>
+#include <Lums/Angle.h>
 #include <cmath>
 
 namespace lm
@@ -23,13 +23,12 @@ namespace lm
 	 * This class define a tridimensional vector.
 	 */
 	template <typename T>
-	class Vector3
+	struct Vector3
 	{
-	public:
 		/**
 		 * Create an empty vector.
 		 */
-		Vector3() : _x(T()), _y(T()), _z(T()) {}
+		Vector3() : x(T()), y(T()), z(T()) {}
 		
 		/**
 		 * Create a vector from values.
@@ -37,7 +36,7 @@ namespace lm
 		 * @param y Value for y
 		 * @param z Value for z
 		 */
-		Vector3(T x, T y, T z) : _x(x), _y(y), _z(z) {}
+		Vector3(T x, T y, T z) : x(x), y(y), z(z) {}
 		
 		/**
 		 * Check if two vectors are equal.
@@ -46,7 +45,7 @@ namespace lm
 		 */
 		bool		operator==(const Vector3<T>& rhs) const
 		{
-			return (_x == rhs._x && _y == rhs._y && _z == rhs._z);
+			return (x == rhs.x && y == rhs.y && z == rhs.z);
 		}
 		
 		/**
@@ -66,10 +65,10 @@ namespace lm
 		 */
 		Vector3<T>&	operator+=(const Vector3<T>& rhs)
 		{
-			_x += rhs._x;
-			_y += rhs._y;
-			_z += rhs._z;
-			return (*this);
+			x += rhs.x;
+			y += rhs.y;
+			z += rhs.z;
+			return *this;
 		}
 		
 		/**
@@ -79,10 +78,10 @@ namespace lm
 		 */
 		Vector3<T>&	operator-=(const Vector3<T>& rhs)
 		{
-			_x -= rhs._x;
-			_y -= rhs._y;
-			_z -= rhs._z;
-			return (*this);
+			x -= rhs.x;
+			y -= rhs.y;
+			z -= rhs.z;
+			return *this;
 		}
 		
 		/**
@@ -92,10 +91,10 @@ namespace lm
 		 */
 		Vector3<T>&	operator*=(const T& rhs)
 		{
-			_x *= rhs;
-			_y *= rhs;
-			_z *= rhs;
-			return (*this);
+			x *= rhs;
+			y *= rhs;
+			z *= rhs;
+			return *this;
 		}
 		
 		/**
@@ -105,10 +104,10 @@ namespace lm
 		 */
 		Vector3<T>&	operator/=(const T& rhs)
 		{
-			_x /= rhs;
-			_y /= rhs;
-			_z /= rhs;
-			return (*this);
+			x /= rhs;
+			y /= rhs;
+			z /= rhs;
+			return *this;
 		}
 		
 		/**
@@ -121,7 +120,7 @@ namespace lm
 			Vector3<T>	v(*this);
 			
 			v += rhs;
-			return (v);
+			return v;
 		}
 		
 		/**
@@ -134,7 +133,7 @@ namespace lm
 			Vector3<T>	v(*this);
 			
 			v -= rhs;
-			return (v);
+			return v;
 		}
 		
 		/**
@@ -147,7 +146,7 @@ namespace lm
 			Vector3<T>	v(*this);
 			
 			v *= rhs;
-			return (v);
+			return v;
 		}
 		
 		/**
@@ -160,7 +159,7 @@ namespace lm
 			Vector3<T>	v(*this);
 			
 			v /= rhs;
-			return (v);
+			return v;
 		}
 		
 		/**
@@ -169,56 +168,29 @@ namespace lm
 		 */
 		Vector3<T>	operator-() const
 		{
-			return (Vector3<T>(-_x, -_y, -_z));
+			return Vector3<T>(-x, -y, -z);
 		}
-		
-		/**
-		 * Get the x value of the vector.
-		 * @return The x value of the vector
+        
+        /**
+		 * Indentity operator.
+		 * @return The vector.
 		 */
-		const T&	X() const { return _x; }
-		
-		/**
-		 * Get the y value of the vector.
-		 * @return The y value of the vector
-		 */
-		const T&	Y() const { return _y; }
-		
-		/**
-		 * Get the z value of the vector.
-		 * @return The z value of the vector
-		 */
-		const T&	Z() const { return _z; }
-		
-		/**
-		 * Set the x value of the vector.
-		 * @param x The new x value.
-		 */
-		void		SetX(const T& x) { _x = x; }
-		
-		/**
-		 * Set the y value of the vector.
-		 * @param y The new y value.
-		 */
-		void		SetY(const T& y) { _y = y; }
-		
-		/**
-		 * Set the z value of the vector.
-		 * @param z The new z value.
-		 */
-		void		SetZ(const T& z) { _z = z; }
-		
+		Vector3<T>	operator+() const
+		{
+			return *this;
+		}
+
 		/**
 		 * Set x, y and z.
-		 * @param x The new x value.
-		 * @param y The new y value.
-		 * @param z The new z value.
+		 * @param nx The new x value.
+		 * @param ny The new y value.
+		 * @param nz The new z value.
 		 */
-		void		Set(const T& x, const T& y, const T& z)
+		void		Set(const T& nx, const T& ny, const T& nz)
 		{
-			_x = x;
-			_y = y;
-			_z = z;
+			x = nx;
+			y = ny;
+			z = nz;
 		}
 		
 		/**
@@ -227,7 +199,7 @@ namespace lm
 		 */
 		bool		Null() const
 		{
-			return (_x == T() && _y == T() && _z == T());
+			return (x == T() && y == T() && z == T());
 		}
 		
 		/**
@@ -237,7 +209,7 @@ namespace lm
 		 */
 		double		Length() const
 		{
-			return std::sqrt(_x * _x + _y * _y + _z * _z);
+			return std::sqrt(x * x + y * y + z * z);
 		}
 		
 		/**
@@ -253,9 +225,9 @@ namespace lm
 			if (Null())
 				return;
 			l = Length();
-			_x /= l;
-			_y /= l;
-			_z /= l;
+			x /= l;
+			y /= l;
+			z /= l;
 		}
 		
 		/**
@@ -268,7 +240,7 @@ namespace lm
 			Vector3<T>	v(*this);
 			
 			v.Normalize();
-			return (v);
+			return v;
 		}
 		
 		/**
@@ -279,9 +251,9 @@ namespace lm
 		 */
 		double		Dist(const Vector3<T>& rhs) const
 		{
-			return std::sqrt((_x - rhs._x) * (_x - rhs._x)
-							 + (_y - rhs._y) * (_y - rhs._y)
-							 + (_z - rhs._z) * (_z - rhs._z));
+			return std::sqrt((x - rhs.x) * (x - rhs.x)
+							 + (y - rhs.y) * (y - rhs.y)
+							 + (z - rhs.z) * (z - rhs.z));
 		}
 		
 		/**
@@ -292,7 +264,7 @@ namespace lm
 		 */
 		T			Dot(const Vector3<T>& rhs) const
 		{
-			return _x * rhs._x + _y * rhs._y + _z * rhs._z;
+			return x * rhs.x + y * rhs.y + z * rhs.z;
 		}
 		
 		/**
@@ -305,9 +277,9 @@ namespace lm
 		{
 			if (Null() || rhs.Null())
 				return Vector3<T>();
-			return Vector3<T>(_y * rhs._z - _z * rhs._y,
-							  _z * rhs._x - _x * rhs._z,
-							  _x * rhs._y - _y * rhs._x);
+			return Vector3<T>(y * rhs.z - z * rhs.y,
+							  z * rhs.x - x * rhs.z,
+							  x * rhs.y - y * rhs.x);
 		}
 		
 		/**
@@ -326,11 +298,10 @@ namespace lm
 			c = Dot(rhs) / (Length() * rhs.Length());
 			return Angle::Radians(std::acos(c));
 		}
-		
-	private:
-		T			_x;
-		T			_y;
-		T			_z;
+
+		T			x;
+		T			y;
+		T			z;
 	};
 	
 	/**
