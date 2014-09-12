@@ -15,9 +15,9 @@
 #define LUMS_H
 
 #include <Lums/Angle.h>
-#include <Lums/Core.h>
+#include <Lums/CoreGL.h>
 #include <Lums/RenderContext.h>
-#include <Lums/GameState.h>
+#include <Lums/GameStateGL.h>
 #include <Lums/Vector2.h>
 #include <Lums/Vector3.h>
 

@@ -14,14 +14,17 @@
 #ifndef LUMS_CORE_H
 #define LUMS_CORE_H
 
-#include <SDL2/SDL.h>
 #include <string>
 #include <list>
-#include "RenderContext.h"
+#include <iterator>
 
 namespace lm
 {
-    class GameState;
+    /**
+     * An helper template to deduce types.
+     */
+    template <class T>
+    struct CoreTraits;
 
     /**
      * This class defines a core.
@@ -30,99 +33,91 @@ namespace lm
      * The goal of this class is to provide a simple, yet efficient way to
      * handle the context of your game.
      */
+    template <class T>
     class Core
     {
-    friend class GameState;
     public:
-        /**
-         * Create a Core.
-         * @param w The width of the window.
-         * @param h The height of the window.
-         * @param title The window title.
-         */
-        Core(int w, int h, std::string title = "");
+        Core() : _it(_stack.end()) {};
+
+        typedef typename CoreTraits<T>::State    State;
+        typedef typename CoreTraits<T>::Event    Event;
 
         /**
-         * Get the application window.
-         * @return The application window, or nullptr if not defined.
+         * Start the core.
          */
-        SDL_Window*		Window() const;
-
-        /**
-         * Get the application renderer.
-         * @return The application renderer, or nullptr if not defined.
-         */
-        SDL_Renderer*	Renderer() const;
-
-        /**
-         * Set the window size.
-         * @param w The width of the window.
-         * @param h the height of the window.
-         */
-        void			SetWindowSize(int w, int h);
-
-        /**
-         * Set the window title.
-         * @param title The window's new title.
-         */
-        void			SetTitle(std::string title);
-
-        /**
-         * Run the application.
-         * This function return once a call to Quit() has been made.
-         */
-        void			Run();
-
-        /**
-         * Quit the application.
-         */
-        void			Quit();
-
-        /**
-         * Push a state on the state stack.
-         * @param state The state to be pushed.
-         */
-        void			PushState(GameState* state);
-
-        /**
-         * Pop a state from the state stack.
-         */
-        void			PopState();
-
-        /**
-         * Empty the state stack.
-         */
-        void			EmptyState();
-
-        /**
-         * Replace the stack state with a single state.
-         * This is equivalent to calling EmptyState() and PushState().
-         * @param state A state.
-         */
-        void			SetState(GameState* state)
+        void        Start()
         {
-            EmptyState();
-            PushState(state);
-        };
+            _running = true;
+            while (_running)
+            {
+                // Do things
+            }
+        }
 
         /**
-         * Destructor.
+         * Stop the core
          */
-        ~Core();
+        void        Stop()
+        {
+            _running = false;
+        }
+        
+        /**
+         * Push a new State.
+         * @param state The new state.
+         */
+        void        Push(State* state)
+        {
+            state->_core = static_cast<T*>(this);
+            state->Load();
+            _stack.push_front(state);
+        }
+        
+        /**
+         * Push a new State.
+         * @param state The new state.
+         */
+        void        Push(State& state)
+        {
+            Push(&state);
+        }
 
+        /**
+         * Pop the topmost State.
+         * If there is no state, it's undefined behavior.
+         * @return The top state.
+         */
+        State&      Pop()
+        {
+            State*  st;
+
+            // Check if the actual state is the removed one.
+            if (_it == _stack.begin())
+            {
+                ++_it;
+                _jmp = true;
+            }
+            st = _stack.pop_front();
+            st->Unload();
+        }
+        
+        /**
+         * Pop and delete the topmost State.
+         * If there is no state, it's undefined behavior.
+         */
+        void        Remove()
+        {
+            delete &Pop();
+        }
+        
+        ~Core() {};
+        
     private:
-        void					Render(std::list<GameState*>::iterator it);
-        void					StackRender();
-        void					StackUpdate();
-        void					StackEvent(SDL_Event& event);
-        void					StackDelete();
-        RenderContext			_context;
-        bool					_running;
-        float					_physicDelta;
-        float					_renderDelta;
-        static int				_count;
-        std::list<GameState*>	_states;
-        bool					_deleteMark;
+        
+        bool                                    _running;
+        std::list<State*>                       _stack;
+        typename std::list<State*>::iterator    _it;
+        bool                                    _jmp;
     };
 }
 

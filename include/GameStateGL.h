@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                  &&&&&&       &&&&&&       */
-/*    GameState.cpp                                &------&     &------&      */
+/*    GameStateGL.h                                &------&     &------&      */
 /*                                                  &&-----&   &-----&&       */
 /*                                                    &&&&#######&&&&         */
 /*                                                       #.......#            */
@@ -11,7 +11,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "GameState.h"
-#include "Core.h"
+#ifndef LUMS_GAMESTATE_GL_H
+#define LUMS_GAMESTATE_GL_H
 
-using namespace lm;
+#include <Lums/GameState.h>
+
+namespace lm
+{
+    class CoreGL;
+    
+    class GameStateGL : public GameState<GameStateGL, CoreGL>
+    {
+
+    };
+}
+
+#endif

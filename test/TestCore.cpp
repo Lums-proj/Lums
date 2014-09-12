@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                  &&&&&&       &&&&&&       */
-/*    GameState.cpp                                &------&     &------&      */
+/*    TestCore.cpp                                 &------&     &------&      */
 /*                                                  &&-----&   &-----&&       */
 /*                                                    &&&&#######&&&&         */
 /*                                                       #.......#            */
@@ -11,7 +11,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "GameState.h"
-#include "Core.h"
+#include <NanoTest.h>
+#include <Lums/Lums.h>
 
-using namespace lm;
+describe(Core)
+{
+    lm::CoreGL      core;
+
+    core.Push(new lm::GameStateGL);
+    core.Start();
+}
