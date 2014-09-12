@@ -14,42 +14,55 @@
 #ifndef LUMS_GAMESTATE_H
 #define LUMS_GAMESTATE_H
 
-#include <SDL2/SDL.h>
-
 namespace lm
 {
+    template <class T>
     class Core;
-    struct RenderContext;
 
     /**
-     * @class GameState
-     * This class represents a GameState.
+     * This template represents a GameState.
      * A GameState defines one state of your Game.
      * A state is a well-defined and encapsulated part of the game, such as
      * the Title screen, the game itself, a menu...
      * You should not use this class directly, instead, create your custom
      * gamestate that inherit from this base class.
      */
+    template<class T, class C>
     class GameState
     {
-    friend class Core;
     public:
+        typedef typename C::Event    Event;
         /**
          * GameState constructor.
          * You should only alocate gamestates on the heap using new, not on
          * the stack.
          */
-        GameState() : _core(nullptr), _deleteMark(false) {};
+        GameState() : _core(nullptr) {};
 
         /**
-         * This method is called when the GameState is loaded.
+         * Called when the GameState is loaded.
          */
-        virtual void		Load() {};
+        virtual void		Load()
+        {
+
+        };
 
         /**
-         * This method is called when the GameState is unloaded.
+         * Called when the GameState is unloaded.
          */
-        virtual void		Unload() {};
+        virtual void		Unload()
+        {
+
+        };
+        
+        /**
+         * Reload the State.
+         */
+        void                Reload()
+        {
+            Unload();
+            Load();
+        }
 
         /**
          * Get the core linked with this GameState.
@@ -57,27 +70,38 @@ namespace lm
          * Instead, call this method from Load().
          * @return A reference to the Core linked with this state.
          */
-        Core&               Core() const;
+        C&                  Core() const
+        {
+            return *_core;
+        }
 
         /**
          * Update the state.
          * This method is called on each physical tick.
          */
-        virtual void		Update() {};
+        virtual void		Update()
+        {
+
+        };
 
         /**
          * Render the state.
          * This method is called when the state has to be redrawn.
-         * @param context A rendering context.
          */
-        virtual void		Render(RenderContext& context) {};
+        virtual void		Render()
+        {
+
+        };
 
         /**
          * Process Events.
          * This method is called when a new event occurs.
-         * @param event An SDL event.
+         * @param event An event.
          */
-        virtual void		Event(SDL_Event& event) {};
+        virtual void		HandleEvent(Event event)
+        {
+
+        };
 
         /**
          * If this method return true, then Update() calls are forwarded
@@ -85,7 +109,10 @@ namespace lm
          * @return True if updates are forwarded, false otherwise.
          * The default value is false.
          */
-        virtual bool		ForwardUpdate() { return false; };
+        virtual bool		ForwardUpdate() const
+        {
+            return false;
+        };
 
         /**
          * If this method return true, then Render() calls are forwarded
@@ -93,24 +120,33 @@ namespace lm
          * @return True if renders are forwarded, false otherwise.
          * The default value is false.
          */
-        virtual bool		ForwardRender() { return false; };
+        virtual bool		ForwardRender() const
+        {
+            return false;
+        };
 
         /**
-         * If this method return true, then Event() calls are forwarded
+         * If this method return true, then HandleEvent() calls are forwarded
          * to the next state.
          * This method is called for each event.
          * @param event The event to be forwarded.
          * @return True if events are forwarded, false otherwise.
          * The default value is false.
          */
-        virtual bool		ForwardEvent(SDL_Event& event) { return false; };
+        virtual bool		ForwardEvent(Event event) const
+        {
+            return false;
+        };
 
         /**
          * Remove this GameState from the Application stack.
          * After a call to this method, Unload() is called, the GameState
          * is removed from the stack, and is then deleted.
          */
-        void				Close();
+        void				Remove()
+        {
+
+        };
 
         /**
          * Destructor.
@@ -118,8 +154,9 @@ namespace lm
         virtual ~GameState() {};
 
     private:
-        lm::Core*           _core;
-        bool				_deleteMark;
+        C*      _core;
+        
+        friend class lm::Core<C>;
     };
 }
 
