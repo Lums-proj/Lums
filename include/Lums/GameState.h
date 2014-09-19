@@ -14,6 +14,8 @@
 #ifndef LUMS_GAMESTATE_H
 #define LUMS_GAMESTATE_H
 
+#include <iostream>
+
 namespace lm
 {
     template <class T>
@@ -37,7 +39,10 @@ namespace lm
          * You should only alocate gamestates on the heap using new, not on
          * the stack.
          */
-        GameState() : _core(nullptr) {};
+        GameState() : _core(nullptr)
+        {
+
+        };
 
         /**
          * Called when the GameState is loaded.
@@ -90,7 +95,7 @@ namespace lm
          */
         virtual void		Render()
         {
-
+            std::cout << "I render" << std::endl;
         };
 
         /**
@@ -145,14 +150,17 @@ namespace lm
          */
         void				Remove()
         {
-
+            if (_core)
+                _core->Remove(this);
         };
 
         /**
          * Destructor.
          */
-        virtual ~GameState() {};
-
+        virtual ~GameState()
+        {
+        
+        };
     private:
         C*      _core;
         

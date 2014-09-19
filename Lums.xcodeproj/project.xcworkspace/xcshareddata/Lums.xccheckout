@@ -10,29 +10,29 @@
 	<string>Lums</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>4E364F7D-F2A5-4CBC-ABFB-6EC68480B838</key>
-		<string>ssh://github.com/Nax/Lums.git</string>
+		<key>40EFB77983F1732FB5D76427F93CD5D5089AEE5A</key>
+		<string>github.com:Nax/Lums.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Lums.xcodeproj/project.xcworkspace</string>
+	<string>Lums.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>4E364F7D-F2A5-4CBC-ABFB-6EC68480B838</key>
+		<key>40EFB77983F1732FB5D76427F93CD5D5089AEE5A</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/Nax/Lums.git</string>
+	<string>github.com:Nax/Lums.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>4E364F7D-F2A5-4CBC-ABFB-6EC68480B838</string>
+	<string>40EFB77983F1732FB5D76427F93CD5D5089AEE5A</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>4E364F7D-F2A5-4CBC-ABFB-6EC68480B838</string>
+			<string>40EFB77983F1732FB5D76427F93CD5D5089AEE5A</string>
 			<key>IDESourceControlWCCName</key>
 			<string>Lums</string>
 		</dict>

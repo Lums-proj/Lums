@@ -15,6 +15,10 @@
 #define LUMS_GAMESTATE_GL_H
 
 #include <Lums/GameState.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_opengl.h>
+#include <Lums/GL.h>
+#include <Lums/Angle.h>
 
 namespace lm
 {
