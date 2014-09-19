@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                  &&&&&&       &&&&&&       */
-/*    CoreGL.cpp                                   &------&     &------&      */
+/*    GL.h                                         &------&     &------&      */
 /*                                                  &&-----&   &-----&&       */
 /*                                                    &&&&#######&&&&         */
 /*                                                       #.......#            */
@@ -11,29 +11,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Lums/CoreGL.h"
+#ifndef LUMS_GL_H
+#define LUMS_GL_H
 
-using namespace lm;
+#include <SDL2/SDL_opengl.h>
+#include <Lums/Vector3.h>
 
-CoreGL::CoreGL(int w, int h, const char* name, bool fullscreen) : _width(w),
-                                                                  _height(h)
+namespace lm
 {
-    SDL_Init(SDL_INIT_EVERYTHING);
-    _win = SDL_CreateWindow(name,
-                            SDL_WINDOWPOS_CENTERED,
-                            SDL_WINDOWPOS_CENTERED,
-                            w,
-                            h,
-                            SDL_WINDOW_OPENGL | (fullscreen
-                                                 ? SDL_WINDOW_FULLSCREEN
-                                                 : 0));
-    _glcontext = SDL_GL_CreateContext(_win);
-    glClearColor(0, 0, 0, 1);
+    void        glPerspective(GLdouble fovY, GLdouble aspect, GLdouble zNear, GLdouble zFar);
+    void        glLookAt(Vector3f eye, Vector3f lookAt, Vector3f up);
+
+    inline void glLookAt(float eyeX, float eyeY, float eyeZ,
+                         float lookAtX, float lookAtY, float lookAtZ,
+                         float upX, float upY, float upZ)
+    {
+        glLookAt(Vector3f(eyeX, eyeY, eyeZ),
+                 Vector3f(lookAtX, lookAtY, lookAtZ),
+                 Vector3f(upX, upY, upZ));
+    }
 }
 
-CoreGL::~CoreGL()
-{
-    SDL_GL_DeleteContext(_glcontext);
-    SDL_DestroyWindow(_win);
-    SDL_Quit();
-}
+#endif
