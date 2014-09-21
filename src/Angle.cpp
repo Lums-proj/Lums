@@ -13,7 +13,7 @@
 
 #include <cmath>
 #include <limits>
-#include "Angle.h"
+#include <Lums/Angle.h>
 
 using namespace lm;
 
