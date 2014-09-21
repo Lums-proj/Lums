@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                  &&&&&&       &&&&&&       */
-/*    CoreGL.cpp                                   &------&     &------&      */
+/*    Curses.h                                     &------&     &------&      */
 /*                                                  &&-----&   &-----&&       */
 /*                                                    &&&&#######&&&&         */
 /*                                                       #.......#            */
@@ -11,29 +11,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Lums/CoreGL.h>
+#ifndef LUMS_CURSES_H
+#define LUMS_CURSES_H
 
-using namespace lm;
+#include <ncurses.h>
 
-CoreGL::CoreGL(int w, int h, const char* name, bool fullscreen) : _width(w),
-                                                                  _height(h)
+namespace lm
 {
-    SDL_Init(SDL_INIT_EVERYTHING);
-    _win = SDL_CreateWindow(name,
-                            SDL_WINDOWPOS_CENTERED,
-                            SDL_WINDOWPOS_CENTERED,
-                            w,
-                            h,
-                            SDL_WINDOW_OPENGL | (fullscreen
-                                                 ? SDL_WINDOW_FULLSCREEN
-                                                 : 0));
-    _glcontext = SDL_GL_CreateContext(_win);
-    glClearColor(0, 0, 0, 1);
+    inline constexpr int    curseColor(int fg, int bg)
+    {
+        return 1 + fg + bg * 8;
+    }
+
+    inline void             curseSetColor(int fg, int bg)
+    {
+        color_set(curseColor(fg, bg), NULL);
+    }
 }
 
-CoreGL::~CoreGL()
-{
-    SDL_GL_DeleteContext(_glcontext);
-    SDL_DestroyWindow(_win);
-    SDL_Quit();
-}
+#endif
