@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['unit',['Unit',['../classngl_1_1_vector2.html#a1d6bd42d4ffc5f2223666e016f7ef72b',1,'ngl::Vector2::Unit()'],['../classngl_1_1_vector3.html#a9f751de16acc996e189e70fc899d018f',1,'ngl::Vector3::Unit()']]],
-  ['unload',['Unload',['../classngl_1_1_game_state.html#aa6f0a1f0efa8d205d1782d41cc7cb709',1,'ngl::GameState']]],
-  ['update',['Update',['../classngl_1_1_game_state.html#ab46dd15c8a5d782a0268a928f2b1ff19',1,'ngl::GameState']]]
+  ['vector2',['Vector2',['../structlm_1_1_vector2.html',1,'lm']]],
+  ['vector2',['Vector2',['../structlm_1_1_vector2.html#a8cd0140830301bd30b1f053c7540a81b',1,'lm::Vector2::Vector2()'],['../structlm_1_1_vector2.html#aaef7385779024e83cf7e58b8926dfd10',1,'lm::Vector2::Vector2(T x, T y)']]],
+  ['vector3',['Vector3',['../structlm_1_1_vector3.html#af7f57d536761f5a82af7bb92dc3ae87a',1,'lm::Vector3::Vector3()'],['../structlm_1_1_vector3.html#a11c23b94c258c81fabd3fe76d2fefd21',1,'lm::Vector3::Vector3(T x, T y, T z)']]],
+  ['vector3',['Vector3',['../structlm_1_1_vector3.html',1,'lm']]]
 ];

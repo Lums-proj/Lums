@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['window',['Window',['../classngl_1_1_application.html#a644b7e4d9aa6a28a2bbc0a704865f5eb',1,'ngl::Application']]]
+  ['_7egamestate',['~GameState',['../classlm_1_1_game_state.html#ae623df5042cd0c17daa3394fdcb397b3',1,'lm::GameState']]]
 ];
