@@ -13,6 +13,7 @@
 
 #include <Lums/Core.h>
 #include <Lums/GL.h>
+#include <SDL2_image/SDL_image.h>
 
 using namespace lm;
 
@@ -20,6 +21,7 @@ Core::Core(int w, int h, const char* name, bool fullscreen)
 : _it(0), _width(w), _height(h)
 {
     SDL_Init(SDL_INIT_EVERYTHING);
+    IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF);
     _win = SDL_CreateWindow(name,
                             SDL_WINDOWPOS_CENTERED,
                             SDL_WINDOWPOS_CENTERED,
@@ -128,6 +130,7 @@ Core::~Core()
     SDL_GL_DeleteContext(_glcontext);
     SDL_DestroyWindow(_win);
     SDL_Quit();
+    IMG_Quit();
 }
 
 
