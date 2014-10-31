@@ -26,6 +26,11 @@
 		9C32EFA619BA17DD0013CBB0 /* TestVector3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C32EFA519BA17DD0013CBB0 /* TestVector3.cpp */; };
 		9C8281AD190DD86E009D27C5 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8281AC190DD86E009D27C5 /* Cocoa.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		9C8281DA190DD8B2009D27C5 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8281D8190DD8B2009D27C5 /* SDL2_image.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		9C9A68801A03F89000C5A5B8 /* Image.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C9A687F1A03F89000C5A5B8 /* Image.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9C9A68821A03F97600C5A5B8 /* Image.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A68811A03F97600C5A5B8 /* Image.cpp */; };
+		9C9A68841A03FBC700C5A5B8 /* MacOSX.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A68831A03FBC700C5A5B8 /* MacOSX.mm */; };
+		9C9A68861A03FE5200C5A5B8 /* OperatingSystem.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C9A68851A03FE5200C5A5B8 /* OperatingSystem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9C9A68881A04002900C5A5B8 /* TestOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9A68871A04002900C5A5B8 /* TestOS.cpp */; };
 		9C9D45571A024F47004E684B /* GameState.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9C9D45561A024F47004E684B /* GameState.cpp */; };
 		9CEDE96719C9F8F20017F383 /* Angle.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CEDE95D19C9F8F20017F383 /* Angle.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9CEDE96819C9F8F20017F383 /* Core.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CEDE95E19C9F8F20017F383 /* Core.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -114,6 +119,11 @@
 		9C8281D7190DD8B2009D27C5 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = lib/osx/SDL2.framework; sourceTree = "<group>"; };
 		9C8281D8190DD8B2009D27C5 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = lib/osx/SDL2_image.framework; sourceTree = "<group>"; };
 		9C8281EB190DF215009D27C5 /* TestAngle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestAngle.cpp; sourceTree = "<group>"; };
+		9C9A687F1A03F89000C5A5B8 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
+		9C9A68811A03F97600C5A5B8 /* Image.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Image.cpp; sourceTree = "<group>"; };
+		9C9A68831A03FBC700C5A5B8 /* MacOSX.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MacOSX.mm; sourceTree = "<group>"; };
+		9C9A68851A03FE5200C5A5B8 /* OperatingSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OperatingSystem.h; sourceTree = "<group>"; };
+		9C9A68871A04002900C5A5B8 /* TestOS.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestOS.cpp; sourceTree = "<group>"; };
 		9C9D45561A024F47004E684B /* GameState.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameState.cpp; sourceTree = "<group>"; };
 		9CD2996019B5349A00209B29 /* NanoTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NanoTest.h; sourceTree = "<group>"; };
 		9CEDE95D19C9F8F20017F383 /* Angle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Angle.h; sourceTree = "<group>"; };
@@ -237,6 +247,8 @@
 				9C130E011913444600E9C424 /* Core.cpp */,
 				9C9D45561A024F47004E684B /* GameState.cpp */,
 				9C01567B19C9EC200094DC72 /* GL.cpp */,
+				9C9A68811A03F97600C5A5B8 /* Image.cpp */,
+				9C9A68831A03FBC700C5A5B8 /* MacOSX.mm */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -249,6 +261,7 @@
 				9C8281EB190DF215009D27C5 /* TestAngle.cpp */,
 				9C32EFA319BA01EA0013CBB0 /* TestVector2.cpp */,
 				9C32EFA519BA17DD0013CBB0 /* TestVector3.cpp */,
+				9C9A68871A04002900C5A5B8 /* TestOS.cpp */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -260,7 +273,9 @@
 				9CEDE95E19C9F8F20017F383 /* Core.h */,
 				9CEDE96019C9F8F20017F383 /* GameState.h */,
 				9CEDE96219C9F8F20017F383 /* GL.h */,
+				9C9A687F1A03F89000C5A5B8 /* Image.h */,
 				9CEDE96319C9F8F20017F383 /* Lums.h */,
+				9C9A68851A03FE5200C5A5B8 /* OperatingSystem.h */,
 				9CEDE96519C9F8F20017F383 /* Vector2.h */,
 				9CEDE96619C9F8F20017F383 /* Vector3.h */,
 			);
@@ -308,8 +323,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C9A68801A03F89000C5A5B8 /* Image.h in Headers */,
 				9CEDE96D19C9F8F20017F383 /* Lums.h in Headers */,
 				9CEDE96F19C9F8F20017F383 /* Vector2.h in Headers */,
+				9C9A68861A03FE5200C5A5B8 /* OperatingSystem.h in Headers */,
 				9CEDE96A19C9F8F20017F383 /* GameState.h in Headers */,
 				9CEDE96719C9F8F20017F383 /* Angle.h in Headers */,
 				9CEDE96C19C9F8F20017F383 /* GL.h in Headers */,
@@ -466,6 +483,7 @@
 			files = (
 				9C130DF5191340F800E9C424 /* TestAngle.cpp in Sources */,
 				9C32EFA419BA01EA0013CBB0 /* TestVector2.cpp in Sources */,
+				9C9A68881A04002900C5A5B8 /* TestOS.cpp in Sources */,
 				9C32EFA619BA17DD0013CBB0 /* TestVector3.cpp in Sources */,
 				9C32EFA219B9FC280013CBB0 /* Test.cpp in Sources */,
 			);
@@ -476,7 +494,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C130E021913444600E9C424 /* Core.cpp in Sources */,
+				9C9A68821A03F97600C5A5B8 /* Image.cpp in Sources */,
 				9C9D45571A024F47004E684B /* GameState.cpp in Sources */,
+				9C9A68841A03FBC700C5A5B8 /* MacOSX.mm in Sources */,
 				9C01567C19C9EC200094DC72 /* GL.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
