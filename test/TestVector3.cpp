@@ -16,7 +16,7 @@
 
 using namespace		lm;
 
-describe(Vector3)
+describe (Vector3)
 {
     it ("must create a null Vector3")
     {

@@ -2,10 +2,15 @@
 
 using namespace lm;
 
+/*
+ * This example is broken
+ * TODO : Make it work
+ */
+
 int main()
 {
-    CoreGL  gl(800, 600, "Platformer");
+    Core  gl(800, 600, "Platformer");
     
-    gl.Push(new Game);
+    gl.Push<Game>();
     gl.Start();
 }

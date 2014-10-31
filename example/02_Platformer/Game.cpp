@@ -1,6 +1,11 @@
 #include "Game.h"
 #include <iostream>
 
+Game::Game(lm::Core* core) : lm::GameState(core)
+{
+    
+}
+
 void    Game::Load()
 {
     glMatrixMode(GL_PROJECTION);
@@ -21,7 +26,7 @@ void    Game::Update()
     _map.ResolveCollision(_player);
 }
 
-void    Game::HandleEvent(SDL_Event& event)
+void    Game::HandleEvent(const lm::Event& event)
 {
     bool    b;
 
