@@ -4,8 +4,8 @@ using namespace lm;
 
 int main()
 {
-    CoreGL  gl(800, 600, "Cube");
+    Core  gl(800, 600, "Cube");
 
-    gl.Push(new Cube);
+    gl.Push<Cube>();
     gl.Start();
 }

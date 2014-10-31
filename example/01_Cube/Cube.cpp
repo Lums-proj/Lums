@@ -1,4 +1,5 @@
 #include "Cube.h"
+#include <iostream>
 
 using namespace lm;
 
@@ -33,7 +34,7 @@ const GLubyte   indices[] = {
     2, 4, 7, 6
 };
 
-Cube::Cube() : speed(10, 0)
+Cube::Cube(lm::Core* core) : lm::GameState(core), speed(10, 0)
 {
     
 }
@@ -52,7 +53,7 @@ void    Cube::Update()
     angle.y += 0.1_deg * speed.y;
 }
 
-void    Cube::HandleEvent(SDL_Event &event)
+void    Cube::HandleEvent(const Event& event)
 {
     if (event.type == SDL_KEYDOWN)
     {

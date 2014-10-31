@@ -3,15 +3,15 @@
 
 #include <Lums/Lums.h>
 
-class Cube : public lm::GameStateGL
+class Cube : public lm::GameState
 {
 public:
-    Cube();
-    void            Load();
-    void            Update();
-    void            HandleEvent(SDL_Event& event);
-    void            Render();
-    void            Unload();
+    Cube(lm::Core*);
+    void    Load();
+    void    Update();
+    void    HandleEvent(const lm::Event& event);
+    void    Render();
+    void    Unload();
     
 private:
     lm::Vector2a    angle;

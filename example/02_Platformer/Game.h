@@ -6,13 +6,14 @@
 #include "Player.h"
 #include "Map.h"
 
-class Game : public lm::GameStateGL
+class Game : public lm::GameState
 {
 public:
+    Game(lm::Core* core);
     void    Load();
     void    Render();
     void    Update();
-    void    HandleEvent(SDL_Event& event);
+    void    HandleEvent(const lm::Event& event);
     
 private:
     Player              _player;

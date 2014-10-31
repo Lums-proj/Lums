@@ -14,68 +14,56 @@
 #ifndef LUMS_GAMESTATE_H
 #define LUMS_GAMESTATE_H
 
-#include <iostream>
+#include <SDL2/SDL.h>
 
 namespace lm
 {
-    template <class T>
     class Core;
 
+    typedef SDL_Event   Event;
     /**
-     * This template represents a GameState.
+     * This class represents a GameState.
      * A GameState defines one state of your Game.
      * A state is a well-defined and encapsulated part of the game, such as
      * the Title screen, the game itself, a menu...
      * You should not use this class directly, instead, create your custom
      * gamestate that inherit from this base class.
      */
-    template<class T, class C>
     class GameState
     {
     public:
-        typedef typename C::Event    Event;
         /**
          * GameState constructor.
-         * You should only alocate gamestates on the heap using new, not on
-         * the stack.
+         * You should not instanciate gamestates yourself.
+         * Instead, use the factory methods Core::Push and Core::Transition.
+         * @param core A core pointer.
          */
-        GameState() : _core(nullptr)
-        {
-
-        };
+        GameState(Core* core);
 
         /**
          * Called when the GameState is loaded.
+         * By default, do nothing.
          */
-        virtual void		Load()
-        {
-
-        };
+        virtual void    Load();
 
         /**
          * Called when the GameState is unloaded.
+         * By default, do nothing.
          */
-        virtual void		Unload()
-        {
-
-        };
+        virtual void    Unload();
         
         /**
          * Reload the State.
+         * It's equivalent to a call to Unload, then a call to Load.
          */
-        void                Reload()
-        {
-            Unload();
-            Load();
-        }
+        void            Reload();
 
         /**
          * Get the core linked with this GameState.
-         * Calling this method from the constructor is undefined behavior.
-         * Instead, call this method from Load().
          * @return A reference to the Core linked with this state.
          */
-        C&                  Core() const
+        Core&
+        Core() const
         {
             return *_core;
         }
@@ -83,88 +71,80 @@ namespace lm
         /**
          * Update the state.
          * This method is called on each physical tick.
+         * You must overwrite this method.
          */
-        virtual void		Update()
-        {
-
-        };
+        virtual void    Update() = 0;
 
         /**
          * Render the state.
          * This method is called when the state has to be redrawn.
+         * You must overwrite this method.
          */
-        virtual void		Render()
-        {
-            std::cout << "I render" << std::endl;
-        };
+        virtual void    Render() = 0;
 
         /**
          * Process Events.
          * This method is called when a new event occurs.
+         * You must overwrite this method.
          * @param event An event.
          */
-        virtual void		HandleEvent(Event event)
-        {
-
-        };
+        virtual void    HandleEvent(const Event& event) = 0;
 
         /**
          * If this method return true, then Update() calls are forwarded
          * to the next state.
-         * @return True if updates are forwarded, false otherwise.
          * The default value is false.
+         * @return True if updates are forwarded, false otherwise.
          */
-        virtual bool		ForwardUpdate() const
+        virtual bool
+        ForwardUpdate() const
         {
             return false;
-        };
+        }
 
         /**
          * If this method return true, then Render() calls are forwarded
          * to the next state.
-         * @return True if renders are forwarded, false otherwise.
          * The default value is false.
+         * @return True if renders are forwarded, false otherwise.
          */
-        virtual bool		ForwardRender() const
+        virtual bool
+        ForwardRender() const
         {
             return false;
-        };
+        }
 
         /**
          * If this method return true, then HandleEvent() calls are forwarded
          * to the next state.
          * This method is called for each event.
+         * The default value is false.
          * @param event The event to be forwarded.
          * @return True if events are forwarded, false otherwise.
-         * The default value is false.
          */
-        virtual bool		ForwardEvent(Event event) const
+        virtual bool
+        ForwardEvent(const Event& event) const
         {
             return false;
-        };
+        }
 
         /**
          * Remove this GameState from the Application stack.
          * After a call to this method, Unload() is called, the GameState
          * is removed from the stack, and is then deleted.
+         * Deletion occurs immediately, so you must exit the gamestate scope
+         * immediately after calling this method, else it's
+         * undefined behavior.
          */
-        void				Remove()
-        {
-            if (_core)
-                _core->Remove(this);
-        };
+        void        Remove();
 
         /**
          * Destructor.
          */
-        virtual ~GameState()
-        {
-        
-        };
+        virtual ~GameState();
+
     private:
-        C*      _core;
-        
-        friend class lm::Core<C>;
+        lm::Core*   _core;
     };
 }
 
