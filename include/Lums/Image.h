@@ -15,6 +15,7 @@
 #define LUMS_IMAGE_H
 
 #include <SDL2/SDL.h>
+#include <Lums/GL.h>
 #include <string>
 
 namespace lm
@@ -23,15 +24,18 @@ namespace lm
     {
     public:
         Image();
-        void    LoadFile(const std::string path, bool resource = true);
-        
+        Image(const Image&);
+        Image(Image&&);
+        Image&          operator=(const Image&);
+        Image&          operator=(Image&&);
+        void            LoadFile(const std::string path, bool resource = true);
+        static Image    FromFile(const std::string path);
         ~Image();
     private:
-        unsigned int    _width;
-        unsigned int    _height;
-        unsigned int    _mem_width;
-        unsigned int    _mem_height;
+        int             _width;
+        int             _height;
         SDL_Surface*    _image;
+        GLuint          _texture;
     };
 }
 
