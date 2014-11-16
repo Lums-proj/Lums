@@ -24,5 +24,7 @@
 .DS_Store
 
 # Project internal
-*.xcworkspace
-xcuserdata
+*.xcodeproj
+CMakeCache.txt
+Makefile
+/build

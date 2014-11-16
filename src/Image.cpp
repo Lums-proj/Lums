@@ -14,7 +14,7 @@
 #include <cmath>
 #include <Lums/Image.h>
 #include <Lums/OperatingSystem.h>
-#include <SDL2_image/SDL_image.h>
+#include <SDL2/SDL_image.h>
 
 using namespace lm;
 
@@ -76,11 +76,10 @@ Image::LoadFile(const std::string path, bool resource)
     tmp = IMG_Load(file.c_str());
     _width = tmp->w;
     _height = tmp->h;
-    _image = SDL_CreateRGBSurface(0, _mem_width, _mem_height, 32,
+    _image = SDL_CreateRGBSurface(0, _width, _height, 32,
                                   0xff000000, 0x00ff0000, 0x0000ff00, 0x000000ff);
     SDL_BlitSurface(tmp, 0, _image, 0);
     SDL_FreeSurface(tmp);
-    
 }
 
 Image
