@@ -1,0 +1,36 @@
+<svg width="480" height="480" viewBox="210 110 242 242" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <linearGradient id="svg_5">
+   <stop offset="0" stop-color="#f7f4ea"/>
+   <stop offset="1" stop-color="#080b15"/>
+  </linearGradient>
+  <linearGradient y2="0" x2="1" y1="0" x1="0" id="svg_6">
+   <stop offset="0" stop-color="#f7f4ea"/>
+   <stop offset="1" stop-opacity="0.996094" stop-color="#f9f7e0"/>
+  </linearGradient>
+  <linearGradient y2="0" x2="1" y1="0" x1="0" id="svg_7">
+   <stop offset="0" stop-color="#f7f4ea"/>
+   <stop offset="1" stop-opacity="0.992188" stop-color="#f7f4cf"/>
+  </linearGradient>
+  <linearGradient id="svg_8">
+   <stop offset="0" stop-color="#c4c4c4"/>
+   <stop offset="1" stop-color="#3b3b3b"/>
+  </linearGradient>
+  <linearGradient y2="0" x2="1" y1="0" x1="0" id="svg_9">
+   <stop offset="0" stop-color="#c4c4c4"/>
+   <stop offset="1" stop-opacity="0.996094" stop-color="#7f7f7f"/>
+  </linearGradient>
+ </defs>
+ <g>
+  <title>Layer 1</title>
+  <circle stroke="url(#svg_9)" id="svg_3" r="116" cy="233" cx="329" stroke-width="5" fill="url(#svg_7)"/>
+  <circle stroke="#c4c4c4" id="svg_12" r="21.903669" cy="180.500014" cx="273.500014" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" fill="none"/>
+  <circle id="svg_13" r="1.414214" cy="369" cx="793" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="url(#svg_9)" fill="none"/>
+  <circle id="svg_14" r="27.658634" cy="245" cx="293" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#c4c4c4" fill="none"/>
+  <circle stroke="#c4c4c4" id="svg_15" r="11.78418" cy="179.431524" cx="336.079236" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="none"/>
+  <circle id="svg_16" r="38.418747" cy="256" cx="382" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#c4c4c4" fill="none"/>
+  <circle id="svg_17" r="10" cy="270" cx="241" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#c4c4c4" fill="none"/>
+  <circle stroke="#c4c4c4" id="svg_18" r="22.10498" cy="313" cx="314" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="url(#svg_7)"/>
+  <circle id="svg_19" r="21.213203" cy="179" cx="392" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#c4c4c4" fill="none"/>
+ </g>
+</svg>
