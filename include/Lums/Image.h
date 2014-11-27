@@ -39,6 +39,7 @@ namespace lm
         static Image    FromFile(const std::string path);
         ~Image();
     private:
+        void            Gen(SDL_Surface* surface);
         int             _width;
         int             _height;
         SDL_Surface*    _image;
