@@ -1,4 +1,4 @@
-# Lums
+# <img src="https://rawgit.com/Lums-proj/Lums/dev/logo.svg" height="30"/> Lums 
 
 **Lums** is a powerful, easy to use, C++ game library.
 The basic idea behind Lums is to provide a framework-based solution, where the developper
