@@ -41,7 +41,7 @@ Image::operator=(Image&& rhs)
     return *this;
 }
 
-void
+Image&
 Image::LoadFile(const std::string path, bool resource)
 {
     std::string     file = resource ? resourcePath() + path : path;
@@ -54,6 +54,7 @@ Image::LoadFile(const std::string path, bool resource)
     _height = tmp->h;
     Gen(tmp);
     SDL_FreeSurface(tmp);
+    return *this;
 }
 
 Image

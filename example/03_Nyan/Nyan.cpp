@@ -25,6 +25,8 @@ public:
     void
     Render()
     {
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
         glEnable(GL_TEXTURE_2D);
         _image.Bind();
         glBegin(GL_QUADS);
