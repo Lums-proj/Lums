@@ -39,8 +39,14 @@ namespace lm
          * @param rhs The image to be moved from.
          */
         Image(Image&& rhs);
-        Image&          operator=(const Image&) = delete;
-        Image&          operator=(Image&&);
+
+        Image&  operator=(const Image&) = delete;
+
+        /**
+         * Move-copy an Image.
+         * @param rhs The image to be moved from.
+         */
+        Image&  operator=(Image&& rhs);
         
         void
         Bind() const
@@ -72,7 +78,7 @@ namespace lm
             return _height;
         }
 
-        void            LoadFile(const std::string path, bool resource = true);
+        Image&          LoadFile(const std::string path, bool resource = true);
         static Image    FromFile(const std::string path);
         ~Image();
     private:
