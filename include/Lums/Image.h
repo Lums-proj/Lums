@@ -28,6 +28,13 @@ namespace lm
         Image(Image&&);
         Image&          operator=(const Image&);
         Image&          operator=(Image&&);
+        
+        void
+        Bind() const
+        {
+            glBindTexture(GL_TEXTURE_2D, _texture);
+        }
+
         void            LoadFile(const std::string path, bool resource = true);
         static Image    FromFile(const std::string path);
         ~Image();
