@@ -32,6 +32,7 @@ Image::Image(const Image& rhs)
                                   0xff000000, 0x00ff0000, 0x0000ff00, 0x000000ff);
     SDL_BlitSurface(rhs._image, 0, _image, 0);
     glGenTextures(1, &_texture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _width, _height, 0, GL_RGBA, GL_UNSIGNED_BYTE, _image->pixels);
 }
 
 Image::Image(Image&& rhs)
@@ -45,11 +46,14 @@ Image::operator=(const Image& rhs)
 {
     _width = rhs._width;
     _height = rhs._height;
+    _texture = 0;
     if (rhs._image)
     {
         _image = SDL_CreateRGBSurface(0, _width, _height, 32,
                                       0xff000000, 0x00ff0000, 0x0000ff00, 0x000000ff);
         SDL_BlitSurface(rhs._image, 0, _image, 0);
+        glGenTextures(1, &_texture);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _width, _height, 0, GL_RGBA, GL_UNSIGNED_BYTE, _image->pixels);
     }
     return *this;
 }
@@ -72,7 +76,10 @@ Image::LoadFile(const std::string path, bool resource)
     SDL_Surface*    tmp;
 
     if (_image)
+    {
+        glDeleteTextures(1, &_texture);
         SDL_FreeSurface(_image);
+    }
     tmp = IMG_Load(file.c_str());
     _width = tmp->w;
     _height = tmp->h;
@@ -80,6 +87,8 @@ Image::LoadFile(const std::string path, bool resource)
                                   0xff000000, 0x00ff0000, 0x0000ff00, 0x000000ff);
     SDL_BlitSurface(tmp, 0, _image, 0);
     SDL_FreeSurface(tmp);
+    glGenTextures(1, &_texture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _width, _height, 0, GL_RGBA, GL_UNSIGNED_BYTE, _image->pixels);
 }
 
 Image
