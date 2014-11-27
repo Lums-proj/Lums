@@ -12,7 +12,7 @@
 /* ************************************************************************** */
 
 #include <iostream>
-#include <NanoTest.h>
+#include "NanoTest.h"
 #include <Lums/Lums.h>
 
 int main(int argc, char**argv)
