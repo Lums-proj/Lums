@@ -24,13 +24,13 @@
  <g>
   <title>Layer 1</title>
   <circle stroke="url(#svg_9)" id="svg_3" r="116" cy="233" cx="329" stroke-width="5" fill="url(#svg_7)"/>
-  <circle stroke="#c4c4c4" id="svg_12" r="21.903669" cy="180.500014" cx="273.500014" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" fill="none"/>
-  <circle id="svg_13" r="1.414214" cy="369" cx="793" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="url(#svg_9)" fill="none"/>
-  <circle id="svg_14" r="27.658634" cy="245" cx="293" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#c4c4c4" fill="none"/>
-  <circle stroke="#c4c4c4" id="svg_15" r="11.78418" cy="179.431524" cx="336.079236" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="none"/>
-  <circle id="svg_16" r="38.418747" cy="256" cx="382" stroke-linecap="null" stroke-linejoin="null" stroke-width="5" stroke="#c4c4c4" fill="none"/>
-  <circle id="svg_17" r="10" cy="270" cx="241" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#c4c4c4" fill="none"/>
-  <circle stroke="#c4c4c4" id="svg_18" r="22.10498" cy="313" cx="314" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" fill="url(#svg_7)"/>
-  <circle id="svg_19" r="21.213203" cy="179" cx="392" stroke-linecap="null" stroke-linejoin="null" stroke-dasharray="null" stroke-width="5" stroke="#c4c4c4" fill="none"/>
+  <circle stroke="#c4c4c4" id="svg_12" r="21.903669" cy="180.500014" cx="273.500014"   stroke-width="5" fill="none"/>
+  <circle id="svg_13" r="1.414214" cy="369" cx="793"   stroke-width="5" stroke="url(#svg_9)" fill="none"/>
+  <circle id="svg_14" r="27.658634" cy="245" cx="293"   stroke-dasharray="null" stroke-width="5" stroke="#c4c4c4" fill="none"/>
+  <circle stroke="#c4c4c4" id="svg_15" r="11.78418" cy="179.431524" cx="336.079236"   stroke-dasharray="null" stroke-width="5" fill="none"/>
+  <circle id="svg_16" r="38.418747" cy="256" cx="382"   stroke-width="5" stroke="#c4c4c4" fill="none"/>
+  <circle id="svg_17" r="10" cy="270" cx="241"   stroke-dasharray="null" stroke-width="5" stroke="#c4c4c4" fill="none"/>
+  <circle stroke="#c4c4c4" id="svg_18" r="22.10498" cy="313" cx="314"   stroke-dasharray="null" stroke-width="5" fill="url(#svg_7)"/>
+  <circle id="svg_19" r="21.213203" cy="179" cx="392"   stroke-dasharray="null" stroke-width="5" stroke="#c4c4c4" fill="none"/>
  </g>
 </svg>
