@@ -20,12 +20,25 @@
 
 namespace lm
 {
+    /**
+     * This class represents an Image, stored in the most efficient way speed-wise.
+     */
     class Image
     {
     public:
+
+        /**
+         * Create an empty Image.
+         */
         Image();
+
         Image(const Image&) = delete;
-        Image(Image&&);
+
+        /**
+         * Move-copy an Image.
+         * @param rhs The image to be moved from.
+         */
+        Image(Image&& rhs);
         Image&          operator=(const Image&) = delete;
         Image&          operator=(Image&&);
         
@@ -45,6 +58,18 @@ namespace lm
         Valid() const
         {
             return _texture != 0;
+        }
+
+        int
+        Width() const
+        {
+            return _width;
+        }
+
+        int
+        Height() const
+        {
+            return _height;
         }
 
         void            LoadFile(const std::string path, bool resource = true);
