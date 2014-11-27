@@ -78,6 +78,15 @@ namespace lm
             return _height;
         }
 
+        Image&
+        Linear(bool linear = true)
+        {
+            Bind();
+            glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER , linear ? GL_LINEAR : GL_NEAREST);
+            glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , linear ? GL_LINEAR : GL_NEAREST);
+            return *this;
+        }
+
         Image&          LoadFile(const std::string path, bool resource = true);
         static Image    FromFile(const std::string path);
         ~Image();

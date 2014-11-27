@@ -4,7 +4,7 @@ class Nyan : public lm::GameState
 {
 public:
     Nyan(lm::Core* core)
-    : lm::GameState(core)
+    : lm::GameState(core), _linear(true)
     {
         _image.LoadFile("Nyan.png");
     }
@@ -19,7 +19,15 @@ public:
     HandleEvent(const lm::Event& event)
     {
         if (event.type == SDL_KEYDOWN)
-            Core().Stop();
+        {
+            if (event.key.keysym.sym == SDLK_v)
+            {
+                _linear = !_linear;
+                _image.Linear(_linear);
+            }
+            else
+                Core().Stop();
+        }
     }
 
     void
@@ -45,6 +53,7 @@ public:
 
 private:
     lm::Image   _image;
+    bool        _linear;
 };
 
 int
