@@ -58,11 +58,11 @@ Image::LoadFile(const std::string path, bool resource)
 }
 
 Image
-Image::FromFile(const std::string path)
+Image::FromFile(const std::string path, bool resource)
 {
     Image   a;
 
-    a.LoadFile(path);
+    a.LoadFile(path, resource);
     return a;
 }
 
