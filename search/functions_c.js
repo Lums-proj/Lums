@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['tan',['Tan',['../classlm_1_1_angle.html#ad6053eafebb4adbc15f2924fd68756ce',1,'lm::Angle']]],
-  ['todegrees',['toDegrees',['../classlm_1_1_angle.html#a436d279d2f5eed0a1845732ec29dbdc9',1,'lm::Angle']]],
-  ['toradians',['toRadians',['../classlm_1_1_angle.html#a6f1215a11cb615f3f4f89062de675b17',1,'lm::Angle']]],
-  ['toturns',['toTurns',['../classlm_1_1_angle.html#a3ca7aefdb77bbe0eb7302315fba15b0e',1,'lm::Angle']]],
-  ['transition',['Transition',['../classlm_1_1_core.html#a3dd137242ad886614b75b0cc1051c69a',1,'lm::Core']]],
-  ['turns',['Turns',['../classlm_1_1_angle.html#aa7efbf30b44d07ff509d47ee8cf64eb1',1,'lm::Angle']]]
+  ['radians',['Radians',['../classlm_1_1_angle.html#a8c5ce3add3cf39380355b8d115f3ca9d',1,'lm::Angle']]],
+  ['reload',['Reload',['../classlm_1_1_game_state.html#a4fafa028b44d83b7f4e2b78357c35a3e',1,'lm::GameState']]],
+  ['remove',['Remove',['../classlm_1_1_core.html#a27c42fcf7e3b75a9bbadea2e2881fc56',1,'lm::Core::Remove()'],['../classlm_1_1_game_state.html#a15eae2a4365d07a416fd9f029fdaee9a',1,'lm::GameState::Remove()']]],
+  ['render',['Render',['../classlm_1_1_game_state.html#a2e5c9cae71f7e5506ec04b5311c13f67',1,'lm::GameState']]]
 ];

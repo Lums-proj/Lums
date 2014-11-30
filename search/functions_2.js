@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['degrees',['Degrees',['../classlm_1_1_angle.html#a40afcee7fea6e4497f56e8bba7922efa',1,'lm::Angle']]],
-  ['dist',['Dist',['../structlm_1_1_vector2.html#a20bc29a0e74050ab3b5719825ede3aa8',1,'lm::Vector2::Dist()'],['../structlm_1_1_vector3.html#a647aff217c4dd1ecdfc5925a170309cc',1,'lm::Vector3::Dist()']]],
-  ['dot',['Dot',['../structlm_1_1_vector2.html#ad2d27c456a02db2d4f6104de28f65114',1,'lm::Vector2::Dot()'],['../structlm_1_1_vector3.html#a0c27fafe53e4881c7ed63bfd8e95c8a7',1,'lm::Vector3::Dot()']]]
+  ['clear',['Clear',['../classlm_1_1_core.html#acfa5b4fe53b048217475fde01c1397a5',1,'lm::Core']]],
+  ['core',['Core',['../classlm_1_1_core.html#a21e240927cb65acbac60a312c2f48eca',1,'lm::Core::Core()'],['../classlm_1_1_game_state.html#aa4dd91894e9b8055476d53317fb92a14',1,'lm::GameState::Core()']]],
+  ['cos',['Cos',['../classlm_1_1_angle.html#a1dbb9f8add116dd67787dd1000a1921e',1,'lm::Angle']]],
+  ['cross',['Cross',['../structlm_1_1_vector2.html#a035d58fc7c8deed3db45d63eddd14534',1,'lm::Vector2::Cross()'],['../structlm_1_1_vector3.html#a1cb3c1fba91d9daca33de2e8f6d3d2f8',1,'lm::Vector3::Cross()']]]
 ];

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['forwardevent',['ForwardEvent',['../classlm_1_1_game_state.html#a26cb8b492181f66d95b10622165a37ec',1,'lm::GameState']]],
-  ['forwardrender',['ForwardRender',['../classlm_1_1_game_state.html#adfa3c88cd0d23286dba5fc3602ca7591',1,'lm::GameState']]],
-  ['forwardupdate',['ForwardUpdate',['../classlm_1_1_game_state.html#a2d3006cf8d8feecd1faca3082f39e10e',1,'lm::GameState']]]
+  ['degrees',['Degrees',['../classlm_1_1_angle.html#a40afcee7fea6e4497f56e8bba7922efa',1,'lm::Angle']]],
+  ['dist',['Dist',['../structlm_1_1_vector2.html#a20bc29a0e74050ab3b5719825ede3aa8',1,'lm::Vector2::Dist()'],['../structlm_1_1_vector3.html#a647aff217c4dd1ecdfc5925a170309cc',1,'lm::Vector3::Dist()']]],
+  ['dot',['Dot',['../structlm_1_1_vector2.html#ad2d27c456a02db2d4f6104de28f65114',1,'lm::Vector2::Dot()'],['../structlm_1_1_vector3.html#a0c27fafe53e4881c7ed63bfd8e95c8a7',1,'lm::Vector3::Dot()']]]
 ];
