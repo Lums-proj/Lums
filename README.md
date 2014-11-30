@@ -25,7 +25,7 @@ the magic happen.
 ## Documentation
 
 An offline version of the documentation is available in the `doc` folder.  
-An online version is also available [here](http://nax.github.io/Lums).
+An online version is also available [here](http://lums-proj.github.io/Lums/).
 
 ## Why Lums ?
 
