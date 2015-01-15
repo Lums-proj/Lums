@@ -39,7 +39,7 @@ Cube::Cube(lm::Core* core) : lm::GameState(core), speed(10, 0)
     
 }
 
-void    Cube::Load()
+void    Cube::load()
 {
     glEnable(GL_DEPTH_TEST);
     glMatrixMode(GL_PROJECTION);
@@ -47,20 +47,20 @@ void    Cube::Load()
     glMatrixMode(GL_MODELVIEW);
 }
 
-void    Cube::Update()
+void    Cube::update()
 {
     angle.x += 0.1_deg * speed.x;
     angle.y += 0.1_deg * speed.y;
 }
 
-void    Cube::HandleEvent(const Event& event)
+void    Cube::handleEvent(const Event& event)
 {
     if (event.type == Event::Type::KeyDown)
     {
         switch (event.key)
         {
             case Key::Escape:
-                Core().Stop();
+                Core().stop();
                 break;
             case Key::Right:
                 speed.x++;
@@ -80,7 +80,7 @@ void    Cube::HandleEvent(const Event& event)
     }
 }
 
-void    Cube::Render()
+void    Cube::render()
 {
     glLookAt(-2, 2, -2, 0, 0, 0, 0, 1, 0);
     glRotatef(angle.x.toDegrees(), 0, 1, 0);
@@ -95,7 +95,7 @@ void    Cube::Render()
 
 }
 
-void    Cube::Unload()
+void    Cube::unload()
 {
     glDisable(GL_DEPTH_TEST);
 }
