@@ -59,7 +59,7 @@ void Map::Load()
                 _gfx.push_back((y + 1) * 20);
                 break;
             case 'S':
-                _spawn.Set(x, y);
+                _spawn.set(x, y);
                 break;
         }
     }

@@ -11,6 +11,6 @@ int main()
 {
     Core  gl(800, 600, "Platformer");
     
-    gl.Push<Game>();
-    gl.Start();
+    gl.push<Game>();
+    gl.start();
 }

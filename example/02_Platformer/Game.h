@@ -10,10 +10,10 @@ class Game : public lm::GameState
 {
 public:
     Game(lm::Core* core);
-    void    Load();
-    void    Render();
-    void    Update();
-    void    HandleEvent(const lm::Event& event);
+    void    load();
+    void    render();
+    void    update();
+    void    handleEvent(const lm::Event& event);
     
 private:
     Player              _player;

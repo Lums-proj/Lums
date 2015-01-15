@@ -6,27 +6,27 @@ Game::Game(lm::Core* core) : lm::GameState(core)
     
 }
 
-void    Game::Load()
+void    Game::load()
 {
     glMatrixMode(GL_PROJECTION);
-    glOrtho(0, Core().Width(), Core().Height(), 0, -1, 1);
+    glOrtho(0, Core().width(), Core().height(), 0, -1, 1);
     glMatrixMode(GL_MODELVIEW);
     _map.Spawn(_player);
 }
 
-void    Game::Render()
+void    Game::render()
 {
     _map.Render();
     _player.Render();
 }
 
-void    Game::Update()
+void    Game::update()
 {
     _player.Update();
     _map.ResolveCollision(_player);
 }
 
-void    Game::HandleEvent(const lm::Event& event)
+void    Game::handleEvent(const lm::Event& event)
 {
     bool    b;
 
@@ -37,7 +37,7 @@ void    Game::HandleEvent(const lm::Event& event)
         switch (event.key)
         {
             case lm::Key::Escape:
-                Core().Stop();
+                Core().stop();
                 break;
             case lm::Key::Left:
                 _player.Left(b);

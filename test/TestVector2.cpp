@@ -36,7 +36,7 @@ describe(Vector2)
     {
         Vector2i v;
 
-        v.Set(8, 42);
+        v.set(8, 42);
         assert_equal(v.x, 8);
         assert_equal(v.y, 42);
     }
@@ -75,17 +75,17 @@ describe(Vector2)
     
     it ("must support null")
     {
-        assert_if(Vector2i().Null());
-        assert_unless(Vector2i(0, 1).Null());
+        assert_if(Vector2i().null());
+        assert_unless(Vector2i(0, 1).null());
     }
     
     it ("must support length")
     {
-        assert_equal(Vector2i(3, -4).Length(), 5);
+        assert_equal(Vector2i(3, -4).length(), 5);
     }
     
     it ("must support unit and normalize")
     {
-        assert_max_diff(Vector2d(7, 349).Unit().Length(), 1.0, 0.001);
+        assert_max_diff(Vector2d(7, 349).unit().length(), 1.0, 0.001);
     }
 }
