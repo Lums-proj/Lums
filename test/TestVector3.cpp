@@ -38,7 +38,7 @@ describe (Vector3)
     {
         Vector3i v;
         
-        v.Set(8, 42, 19);
+        v.set(8, 42, 19);
         assert_equal(v.x, 8);
         assert_equal(v.y, 42);
         assert_equal(v.z, 19);
@@ -82,17 +82,17 @@ describe (Vector3)
     
     it ("must support null")
     {
-        assert_if(Vector3i().Null());
-        assert_unless(Vector3i(0, 0, 1).Null());
+        assert_if(Vector3i().null());
+        assert_unless(Vector3i(0, 0, 1).null());
     }
     
     it ("must support length")
     {
-        assert_equal(Vector3i(2, -3, -6).Length(), 7);
+        assert_equal(Vector3i(2, -3, -6).length(), 7);
     }
     
     it ("must support unit and normalize")
     {
-        assert_max_diff(Vector3d(7, 349, -1024).Unit().Length(), 1.0, 0.001);
+        assert_max_diff(Vector3d(7, 349, -1024).unit().length(), 1.0, 0.001);
     }
 }

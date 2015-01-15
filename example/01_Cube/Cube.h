@@ -7,11 +7,11 @@ class Cube : public lm::GameState
 {
 public:
     Cube(lm::Core*);
-    void    Load();
-    void    Update();
-    void    HandleEvent(const lm::Event& event);
-    void    Render();
-    void    Unload();
+    void    load();
+    void    update();
+    void    handleEvent(const lm::Event& event);
+    void    render();
+    void    unload();
     
 private:
     lm::Vector2a    angle;
