@@ -20,7 +20,7 @@
 #include <chrono>
 #include <thread>
 #include <memory>
-#include <SDL2/SDL.h>
+#include <Lums/Window.h>
 #include <Lums/GameState.h>
 
 namespace lm
@@ -145,8 +145,7 @@ namespace lm
         int             _it;
         int             _width;
         int             _height;
-        SDL_Window*     _win;
-        SDL_GLContext   _glcontext;
+        Window          _win;
         bool            _jmp;
         bool            _running;
     };

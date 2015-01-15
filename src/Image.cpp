@@ -14,8 +14,9 @@
 #include <cmath>
 #include <Lums/Image.h>
 #include <Lums/OperatingSystem.h>
-#include <SDL2/SDL_image.h>
 #include <iostream>
+
+#if 0
 
 using namespace lm;
 
@@ -100,3 +101,5 @@ Image::~Image()
     if (_texture)
         glDeleteTextures(1, &_texture);
 }
+
+#endif

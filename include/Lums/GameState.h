@@ -14,13 +14,12 @@
 #ifndef LUMS_GAMESTATE_H
 #define LUMS_GAMESTATE_H
 
-#include <SDL2/SDL.h>
+#include <Lums/Event.h>
 
 namespace lm
 {
     class Core;
 
-    typedef SDL_Event   Event;
     /**
      * This class represents a GameState.
      * A GameState defines one state of your Game.
