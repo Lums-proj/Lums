@@ -17,8 +17,6 @@
 #include <Lums/GL.h>
 #include <string>
 
-#if 0
-
 namespace lm
 {
     /**
@@ -121,6 +119,14 @@ namespace lm
         Image&          LoadFile(const std::string path, bool resource = true);
 
         /**
+         * Load a png image from a file.
+         * @param path The file path.
+         * @param resource If true, prepend resourcePath() to the path.
+         * @return A reference to an image.
+         */
+        Image&          LoadFilePNG(const std::string path, bool resource = true);
+
+        /**
          * Load an image from a file.
          * @param path The file path.
          * @param resource If true, prepend resourcePath() to the path.
@@ -132,14 +138,12 @@ namespace lm
          * Destructor
          */
         ~Image();
+
     private:
-        void            Gen(SDL_Surface* surface);
         int             _width;
         int             _height;
         GLuint          _texture;
     };
 }
-
-#endif
 
 #endif
