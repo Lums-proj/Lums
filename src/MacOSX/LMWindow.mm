@@ -9,7 +9,7 @@
 
     e.type = lm::Event::Type::KeyDown;
     e.key = static_cast<lm::Key>([event keyCode]);
-    [self window]->PushEvent(e);
+    [self window]->pushEvent(e);
 }
 
 -(void)keyUp:(NSEvent*)event
@@ -18,7 +18,7 @@
 
     e.type = lm::Event::Type::KeyUp;
     e.key = static_cast<lm::Key>([event keyCode]);
-    [self window]->PushEvent(e);
+    [self window]->pushEvent(e);
 }
 
 @synthesize window = _window;

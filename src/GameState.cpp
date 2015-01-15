@@ -23,28 +23,28 @@ GameState::GameState(lm::Core* core)
 }
 
 void
-GameState::Load()
+GameState::load()
 {
     
 }
 
 void
-GameState::Unload()
+GameState::unload()
 {
     
 }
 
 void
-GameState::Reload()
+GameState::reload()
 {
-    Unload();
-    Load();
+    unload();
+    load();
 }
 
 void
-GameState::Remove()
+GameState::remove()
 {
-    _core->Remove(this);
+    _core->remove(this);
 }
 
 GameState::~GameState()

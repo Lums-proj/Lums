@@ -58,7 +58,7 @@ namespace lm
          */
         explicit constexpr
         Angle(double angle)
-        : _angle(Clamp(angle))
+        : _angle(clamp(angle))
         {
             
         }
@@ -163,7 +163,7 @@ namespace lm
         operator+=(const Angle &rhs)
         {
             _angle += rhs._angle;
-            _angle = Clamp(_angle);
+            _angle = clamp(_angle);
             return *this;
         }
         
@@ -176,7 +176,7 @@ namespace lm
         operator-=(const Angle &rhs)
         {
             _angle -= rhs._angle;
-            _angle = Clamp(_angle);
+            _angle = clamp(_angle);
             return *this;
         }
         
@@ -189,7 +189,7 @@ namespace lm
         operator*=(double rhs)
         {
             _angle *= rhs;
-            _angle = Clamp(_angle);
+            _angle = clamp(_angle);
             return *this;
         }
         
@@ -202,7 +202,7 @@ namespace lm
         operator/=(double rhs)
         {
             _angle /= rhs;
-            _angle = Clamp(_angle);
+            _angle = clamp(_angle);
             return *this;
         }
         
@@ -268,7 +268,7 @@ namespace lm
          * @return A new angle with the corresponding value.
          */
         static constexpr
-        Angle Turns(double angle)
+        Angle turns(double angle)
         {
             return Angle(angle);
         }
@@ -279,7 +279,7 @@ namespace lm
          * @return A new angle with the corresponding value.
          */
         static constexpr
-        Angle Radians(double angle)
+        Angle radians(double angle)
         {
             return Angle(angle * (1.0 / (M_PI * 2.0)));
         }
@@ -290,7 +290,7 @@ namespace lm
          * @return A new angle with the corresponding value.
          */
         static constexpr
-        Angle  Degrees(double angle)
+        Angle  degrees(double angle)
         {
             return Angle(angle * (1.0 / 360.0));
         }
@@ -330,7 +330,7 @@ namespace lm
          * @return the sinus of the angle.
          */
         double
-        Sin() const
+        sin() const
         {
             return std::sin(toRadians());
         }
@@ -340,7 +340,7 @@ namespace lm
          * @return the cosinus of the angle.
          */
         double
-        Cos() const
+        cos() const
         {
             return std::cos(toRadians());
         }
@@ -350,14 +350,14 @@ namespace lm
          * @return the tangent of the angle.
          */
         double
-        Tan() const
+        tan() const
         {
             return std::tan(toRadians());
         }
         
     private:
         constexpr static
-        double Clamp(double a)
+        double clamp(double a)
         {
             return (a < 0.0 ? 1.0 + (a - static_cast<long long>(a))
                     : (a >= 1.0 ? a - static_cast<long long>(a) : a));
@@ -376,7 +376,7 @@ namespace lm
         constexpr Angle
         operator"" _turn(long double angle)
         {
-            return Angle::Turns(angle);
+            return Angle::turns(angle);
         }
         
         /**
@@ -387,7 +387,7 @@ namespace lm
         constexpr Angle
         operator"" _turn(unsigned long long angle)
         {
-            return Angle::Turns(angle);
+            return Angle::turns(angle);
         }
         
         /**
@@ -398,7 +398,7 @@ namespace lm
         constexpr Angle
         operator"" _rad(long double angle)
         {
-            return Angle::Radians(angle);
+            return Angle::radians(angle);
         }
         
         /**
@@ -409,7 +409,7 @@ namespace lm
         constexpr Angle
         operator"" _rad(unsigned long long angle)
         {
-            return Angle::Radians(angle);
+            return Angle::radians(angle);
         }
         
         /**
@@ -420,7 +420,7 @@ namespace lm
         constexpr Angle
         operator"" _deg(long double angle)
         {
-            return Angle::Degrees(angle);
+            return Angle::degrees(angle);
         }
         
         /**
@@ -431,7 +431,7 @@ namespace lm
         constexpr Angle
         operator"" _deg(unsigned long long angle)
         {
-            return Angle::Degrees(angle);
+            return Angle::degrees(angle);
         }
     }
 }

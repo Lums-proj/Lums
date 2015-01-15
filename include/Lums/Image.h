@@ -17,6 +17,8 @@
 #include <Lums/GL.h>
 #include <string>
 
+#if 0
+
 namespace lm
 {
     /**
@@ -51,7 +53,7 @@ namespace lm
          * Bind the image to the OpenGL context.
          */
         void
-        Bind() const
+        bind() const
         {
             glBindTexture(GL_TEXTURE_2D, _texture);
         }
@@ -61,7 +63,7 @@ namespace lm
          * @return A texture identifier, or 0 if the image is not valid.
          */
         GLuint
-        Texture() const
+        texture() const
         {
             return _texture;
         }
@@ -71,7 +73,7 @@ namespace lm
          * @return true if the image is valid.
          */
         bool
-        Valid() const
+        valid() const
         {
             return _texture != 0;
         }
@@ -81,7 +83,7 @@ namespace lm
          * @return The image width.
          */
         int
-        Width() const
+        width() const
         {
             return _width;
         }
@@ -91,7 +93,7 @@ namespace lm
          * @return The image height.
          */
         int
-        Height() const
+        height() const
         {
             return _height;
         }
@@ -102,7 +104,7 @@ namespace lm
          * @return A reference to the image.
          */
         Image&
-        Linear(bool linear = true)
+        linear(bool linear = true)
         {
             Bind();
             glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER , linear ? GL_LINEAR : GL_NEAREST);
@@ -116,7 +118,7 @@ namespace lm
          * @param resource If true, prepend resourcePath() to the path.
          * @return A reference to an image.
          */
-        Image&          LoadFile(const std::string path, bool resource = true);
+        Image&          loadFile(const std::string path, bool resource = true);
 
         /**
          * Load a png image from a file.
@@ -124,7 +126,7 @@ namespace lm
          * @param resource If true, prepend resourcePath() to the path.
          * @return A reference to an image.
          */
-        Image&          LoadFilePNG(const std::string path, bool resource = true);
+        Image&          loadFilePNG(const std::string path, bool resource = true);
 
         /**
          * Load an image from a file.
@@ -132,7 +134,7 @@ namespace lm
          * @param resource If true, prepend resourcePath() to the path.
          * @return A reference to an image.
          */
-        static Image    FromFile(const std::string path, bool resource = true);
+        static Image    fromFile(const std::string path, bool resource = true);
 
         /**
          * Destructor
@@ -145,5 +147,7 @@ namespace lm
         GLuint          _texture;
     };
 }
+
+#endif
 
 #endif

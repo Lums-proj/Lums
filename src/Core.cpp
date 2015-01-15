@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                  &&&&&&       &&&&&&       */
-/*    Core.cpp                                     &------&     &------&      */
-/*                                                  &&-----&   &-----&&       */
-/*                                                    &&&&#######&&&&         */
-/*                                                       #.......#            */
-/*                                                       #.....  #            */
-/*    This file is part of the                           #...    #            */
-/*    Lums library.                                       #######             */
+/*                                                                            */
+/*    GameState.cpp                                    oooooo       oooooo    */
+/*                                                   oooooooooo   oooooooooo  */
+/*                                                           o%%%%%o          */
+/*                                                           %:::::%          */
+/*                                                          %:::::::%         */
+/*    This file is part of the                               %:::::%          */
+/*    Lums library.                                           %%%%%           */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <Lums/Core.h>
 #include <Lums/GL.h>
-#include <SDL2/SDL_image.h>
 
 using namespace lm;
 
@@ -27,7 +26,7 @@ Core::Core(int w, int h, const char* name, bool fullscreen)
 }
 
 void
-Core::Start()
+Core::start()
 {
     // The renderer created time, and we must consume this time
     // in discrete chunks. That allow us to run the game
@@ -61,16 +60,16 @@ Core::Start()
         while (acc >= delta)
         {
             acc -= delta;
-            DoEvent();
-            DoUpdate();
+            doEvent();
+            doUpdate();
         }
-        DoRender();
+        doRender();
         std::this_thread::sleep_for(microseconds(400)); // CPU is happy
     }
 }
 
 void
-Core::Pop()
+Core::pop()
 {
     if (_stack.empty())
         return;
@@ -78,12 +77,12 @@ Core::Pop()
         _it--;
     else
         _jmp = true;
-    _stack.front()->Unload();
+    _stack.front()->unload();
     _stack.erase(_stack.begin());
 }
 
 void
-Core::Remove(GameState* state)
+Core::remove(GameState* state)
 {
     long idx = std::find_if(_stack.begin(), _stack.end(), [&](std::unique_ptr<GameState>& p){ return p.get() == state; }) - _stack.begin();
     
@@ -93,25 +92,25 @@ Core::Remove(GameState* state)
         _jmp = true;
     else if (idx < _it)
         _it--;
-    _stack[idx]->Unload();
+    _stack[idx]->unload();
     _stack.erase(_stack.begin() + idx);
 }
 
 void
-Core::Clear()
+Core::clear()
 {
-    while (!Stateless())
-        Pop();
+    while (!stateless())
+        pop();
 }
 
 bool
-Core::Stateless() const
+Core::stateless() const
 {
     return _stack.empty();
 }
 
 void
-Core::Stop()
+Core::stop()
 {
     _running = false;
 }
@@ -127,7 +126,7 @@ Core::~Core()
 
 
 void
-Core::DoEvent()
+Core::doEvent()
 {
     GameState*  st;
     Event       event;
@@ -135,14 +134,14 @@ Core::DoEvent()
     
     do
     {
-        _win.PollEvent(event);
+        _win.pollEvent(event);
         for (_it = 0; _it < _stack.size(); _it++)
         {
         redo:
             _jmp = false;
             st = _stack[_it].get();
-            c = st->ForwardEvent(event);
-            st->HandleEvent(event);
+            c = st->forwardEvent(event);
+            st->handleEvent(event);
             if (_jmp)
                 goto redo;
         }
@@ -151,7 +150,7 @@ Core::DoEvent()
 }
 
 void
-Core::DoUpdate()
+Core::doUpdate()
 {
     GameState*  st;
     bool        c;
@@ -161,26 +160,26 @@ Core::DoUpdate()
     redo:
         _jmp = false;
         st = _stack[_it].get();
-        c = st->ForwardUpdate();
-        st->Update();
+        c = st->forwardUpdate();
+        st->update();
         if (_jmp)
             goto redo;
     }
 }
 
 void
-Core::DoRender()
+Core::doRender()
 {
     int     min;
 
     for (min = 0; min < _stack.size() - 1; min++)
     {
-        if (!_stack[min]->ForwardRender())
+        if (!_stack[min]->forwardRender())
             break;
     }
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
     while (min >= 0)
-        _stack[min--]->Render();
-    _win.Swap();
+        _stack[min--]->render();
+    _win.swap();
 }

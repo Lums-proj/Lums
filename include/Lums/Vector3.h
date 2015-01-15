@@ -30,7 +30,9 @@ namespace lm
          */
         constexpr
         Vector3()
-        : x(T()), y(T()), z(T())
+        : x(T())
+        , y(T())
+        , z(T())
         {
             
         }
@@ -42,7 +44,13 @@ namespace lm
          * @param z Value for z
          */
         constexpr
-        Vector3(T x, T y, T z) : x(x), y(y), z(z) {}
+        Vector3(T x, T y, T z)
+        : x(x)
+        , y(y)
+        , z(z)
+        {
+
+        }
         
         /**
          * Check if two vectors are equal.
@@ -205,7 +213,7 @@ namespace lm
          * @param nz The new z value.
          */
         void
-        Set(const T& nx, const T& ny, const T& nz)
+        set(const T& nx, const T& ny, const T& nz)
         {
             x = nx;
             y = ny;
@@ -217,7 +225,7 @@ namespace lm
          * @return True if the vector is null, false otherwise.
          */
         constexpr bool
-        Null() const
+        null() const
         {
             return (x == T() && y == T() && z == T());
         }
@@ -228,7 +236,7 @@ namespace lm
          * @return The length of the vector.
          */
         constexpr double
-        Length() const
+        length() const
         {
             return std::sqrt(x * x + y * y + z * z);
         }
@@ -240,13 +248,13 @@ namespace lm
          * Null vectors are not affected.
          */
         void
-        Normalize()
+        normalize()
         {
             double	l;
             
-            if (Null())
+            if (null())
                 return;
-            l = Length();
+            l = length();
             x /= l;
             y /= l;
             z /= l;
@@ -258,11 +266,11 @@ namespace lm
          * @return A normalized vector with the same direction as this one.
          */
         Vector3<T>
-        Unit() const
+        unit() const
         {
             Vector3<T>	v(*this);
             
-            v.Normalize();
+            v.normalize();
             return v;
         }
         
@@ -273,7 +281,7 @@ namespace lm
          * @return The distance between the two vectors
          */
         constexpr double
-        Dist(const Vector3<T>& rhs) const
+        dist(const Vector3<T>& rhs) const
         {
             return std::sqrt((x - rhs.x) * (x - rhs.x)
                              + (y - rhs.y) * (y - rhs.y)
@@ -287,7 +295,7 @@ namespace lm
          * @return The dot product between the two vectors
          */
         constexpr T
-        Dot(const Vector3<T>& rhs) const
+        dot(const Vector3<T>& rhs) const
         {
             return x * rhs.x + y * rhs.y + z * rhs.z;
         }
@@ -299,9 +307,9 @@ namespace lm
          * @return A vector perpendicular to both vectors.
          */
         Vector3<T>
-        Cross(const Vector3<T>& rhs) const
+        cross(const Vector3<T>& rhs) const
         {
-            if (Null() || rhs.Null())
+            if (null() || rhs.null())
                 return Vector3<T>();
             return Vector3<T>(y * rhs.z - z * rhs.y,
                               z * rhs.x - x * rhs.z,
@@ -316,14 +324,14 @@ namespace lm
          * @return The angle between the two vectors
          */
         Angle
-        Angle(const Vector3<T>& rhs) const
+        angle(const Vector3<T>& rhs) const
         {
             double	c;
             
-            if (Null() || rhs.Null())
+            if (null() || rhs.Null())
                 return (Angle());
-            c = Dot(rhs) / (Length() * rhs.Length());
-            return Angle::Radians(std::acos(c));
+            c = dot(rhs) / (length() * rhs.length());
+            return Angle::radians(std::acos(c));
         }
         
         /**

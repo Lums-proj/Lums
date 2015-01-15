@@ -9,6 +9,14 @@ static const char   map[] =         "########################################"
                                     "#                                      #"
                                     "#       S                              #"
                                     "#     #####                            #"
+                                    "#                         ##############"
+                                    "#                                      #"
+                                    "#                                      #"
+                                    "#                                      #"
+                                    "#                                      #"
+                                    "#                                      #"
+                                    "#                                      #"
+                                    "#               ####                   #"
                                     "#                                      #"
                                     "#                                      #"
                                     "#                                      #"
@@ -19,15 +27,7 @@ static const char   map[] =         "########################################"
                                     "#                                      #"
                                     "#                                      #"
                                     "#                                      #"
-                                    "#                                      #"
-                                    "#                                      #"
-                                    "#                                      #"
-                                    "#                                      #"
-                                    "#                                      #"
-                                    "#                                      #"
-                                    "#                                      #"
-                                    "#                                      #"
-                                    "#                                      #"
+                                    "#                                 ######"
                                     "#                                      #"
                                     "#                                      #"
                                     "#                                      #"
@@ -110,7 +110,11 @@ void    Map::ResolveCollision(Player &player, int x, int y)
         pos.x = player.Velocity().x > 0 ? x - size.x : x;
         player.Velocity().x = 0;
     }
-    player.Move(pos);
+    if (pos != player.Pos())
+    {
+    	player.Move(pos);
+    	ResolveCollision(player, x, y);
+    }
 }
 
 void    Map::Render()

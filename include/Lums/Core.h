@@ -49,7 +49,7 @@ namespace lm
          * @return The window width.
          */
         int
-        Width() const
+        width() const
         {
             return _width;
         }
@@ -59,7 +59,7 @@ namespace lm
          * @return The window height.
          */
         int
-        Height() const
+        height() const
         {
             return _height;
         }
@@ -69,12 +69,12 @@ namespace lm
          * This method will not return until Core::Stop
          * have been called.
          */
-        void    Start();
+        void    start();
         
         /**
          * Stop the core.
          */
-        void    Stop();
+        void    stop();
         
         /**
          * Push a new State.
@@ -84,11 +84,11 @@ namespace lm
          * @return A reference to the constructed object.
          */
         template<typename T, typename ...Args> T&
-        Push(Args ...args)
+        push(Args ...args)
         {
             T* state = new T(this, std::forward<Args>(args)...);
             _stack.insert(_stack.begin(), std::unique_ptr<GameState>(state));
-            state->Load();
+            state->load();
             return *state;
         }
         
@@ -96,7 +96,7 @@ namespace lm
          * Pop the topmost State.
          * If there is no state, it's a no-op.
          */
-        void    Pop();
+        void    pop();
         
         /**
          * Remove a state from the internal stack.
@@ -104,12 +104,12 @@ namespace lm
          * it's a no-op.
          * @param state The state to be removed
          */
-        void    Remove(GameState* state);
+        void    remove(GameState* state);
         
         /**
          * Clear the internal stack, and delete every element.
          */
-        void    Clear();
+        void    clear();
         
         /**
          * Do a transition.
@@ -120,24 +120,24 @@ namespace lm
          * @return A reference to the constructed object.
          */
         template<typename T, typename ...Args> T&
-        Transition(Args ...args)
+        transition(Args ...args)
         {
-            Clear();
-            return Push<T>(args...);
+            clear();
+            return push<T>(args...);
         }
         
         /**
          * Check if the core is stateless.
          * @return True if the core is stateless
          */
-        bool    Stateless() const;
+        bool    stateless() const;
         
         ~Core();
         
     private:
-        void    DoEvent();
-        void    DoUpdate();
-        void    DoRender();
+        void    doEvent();
+        void    doUpdate();
+        void    doRender();
         
         typedef std::vector<std::unique_ptr<GameState>> Stack;
         
