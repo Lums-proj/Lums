@@ -43,19 +43,19 @@ namespace lm
          * Called when the GameState is loaded.
          * By default, do nothing.
          */
-        virtual void    Load();
+        virtual void    load();
 
         /**
          * Called when the GameState is unloaded.
          * By default, do nothing.
          */
-        virtual void    Unload();
+        virtual void    unload();
         
         /**
          * Reload the State.
          * It's equivalent to a call to Unload, then a call to Load.
          */
-        void            Reload();
+        void            reload();
 
         /**
          * Get the core linked with this GameState.
@@ -72,14 +72,14 @@ namespace lm
          * This method is called on each physical tick.
          * You must overwrite this method.
          */
-        virtual void    Update() = 0;
+        virtual void    update() = 0;
 
         /**
          * Render the state.
          * This method is called when the state has to be redrawn.
          * You must overwrite this method.
          */
-        virtual void    Render() = 0;
+        virtual void    render() = 0;
 
         /**
          * Process Events.
@@ -87,7 +87,7 @@ namespace lm
          * You must overwrite this method.
          * @param event An event.
          */
-        virtual void    HandleEvent(const Event& event) = 0;
+        virtual void    handleEvent(const Event& event) = 0;
 
         /**
          * If this method return true, then Update() calls are forwarded
@@ -96,7 +96,7 @@ namespace lm
          * @return True if updates are forwarded, false otherwise.
          */
         virtual bool
-        ForwardUpdate() const
+        forwardUpdate() const
         {
             return false;
         }
@@ -108,7 +108,7 @@ namespace lm
          * @return True if renders are forwarded, false otherwise.
          */
         virtual bool
-        ForwardRender() const
+        forwardRender() const
         {
             return false;
         }
@@ -122,7 +122,7 @@ namespace lm
          * @return True if events are forwarded, false otherwise.
          */
         virtual bool
-        ForwardEvent(const Event& event) const
+        forwardEvent(const Event& event) const
         {
             return false;
         }
@@ -135,7 +135,7 @@ namespace lm
          * immediately after calling this method, else it's
          * undefined behavior.
          */
-        void        Remove();
+        void        remove();
 
         /**
          * Destructor.

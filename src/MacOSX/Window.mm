@@ -50,31 +50,13 @@ Window::Window(int w, int h, const char* name)
 }
 
 void
-Window::PushEvent(Event& event)
-{
-    _events.push(event);
-}
-
-void
-Window::PollEvent(Event& event)
-{
-    ExtractEvent(event, false);
-}
-
-void
-Window::WaitEvent(Event& event)
-{
-    ExtractEvent(event, true);
-}
-
-void
-Window::PumpEvent()
+Window::pumpEvent()
 {
     [LMApplication pumpEvents];
 }
 
 void
-Window::Swap()
+Window::swap()
 {
     NSOpenGLContext* context = static_cast<NSOpenGLContext*>(_openGlHandle);
 
@@ -84,24 +66,4 @@ Window::Swap()
 Window::~Window()
 {
 
-}
-
-void
-Window::ExtractEvent(Event& event, bool block)
-{
-    while (true)
-    {
-        PumpEvent();
-        if (!_events.empty())
-        {
-            event = _events.front();
-            _events.pop();
-            return;
-        }
-        else if (!block)
-        {
-            event.type = Event::Type::None;
-            return;
-        }
-    }
 }

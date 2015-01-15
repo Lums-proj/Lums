@@ -20,14 +20,20 @@
 
 using namespace lm;
 
+#if 0
+
 Image::Image()
-: _width(0), _height(0), _texture(0)
+: _width(0)
+, _height(0)
+, _texture(0)
 {
 
 }
 
 Image::Image(Image&& rhs)
-: _width(rhs._width), _height(rhs._height), _texture(rhs._texture)
+: _width(rhs._width)
+, _height(rhs._height)
+, _texture(rhs._texture)
 {
     rhs._texture = 0;
 }
@@ -111,3 +117,5 @@ Image::~Image()
     if (_texture)
         glDeleteTextures(1, &_texture);
 }
+
+#endif
