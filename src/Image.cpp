@@ -11,12 +11,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <map>
 #include <cmath>
+#include <iostream>
+#include <png.h>
 #include <Lums/Image.h>
 #include <Lums/OperatingSystem.h>
-#include <iostream>
-
-#if 0
 
 using namespace lm;
 
@@ -45,16 +45,26 @@ Image::operator=(Image&& rhs)
 Image&
 Image::LoadFile(const std::string path, bool resource)
 {
+    typedef Image& (Image::*imgptr_t)(std::string, bool);
+
+    static const std::map<std::string, imgptr_t> extFuncs = {
+        {"png", &Image::LoadFilePNG}
+    };
+
+    std::string ext = path.substr(path.find_last_of('.') + 1);
+
+    if (extFuncs.find(ext) != extFuncs.end())
+        return (this->*(extFuncs.at(ext)))(path, resource);
+    return *this;
+}
+
+Image&
+Image::LoadFilePNG(const std::string path, bool resource)
+{
     std::string     file = resource ? resourcePath() + path : path;
-    SDL_Surface*    tmp;
 
     if (_texture)
         glDeleteTextures(1, &_texture);
-    tmp = IMG_Load(file.c_str());
-    _width = tmp->w;
-    _height = tmp->h;
-    Gen(tmp);
-    SDL_FreeSurface(tmp);
     return *this;
 }
 
@@ -101,5 +111,3 @@ Image::~Image()
     if (_texture)
         glDeleteTextures(1, &_texture);
 }
-
-#endif
