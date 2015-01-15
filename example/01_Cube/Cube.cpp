@@ -55,23 +55,23 @@ void    Cube::Update()
 
 void    Cube::HandleEvent(const Event& event)
 {
-    if (event.type == SDL_KEYDOWN)
+    if (event.type == Event::Type::KeyDown)
     {
-        switch (event.key.keysym.sym)
+        switch (event.key)
         {
-            case SDLK_ESCAPE:
+            case Key::Escape:
                 Core().Stop();
                 break;
-            case SDLK_RIGHT:
+            case Key::Right:
                 speed.x++;
                 break;
-            case SDLK_LEFT:
+            case Key::Left:
                 speed.x--;
                 break;
-            case SDLK_UP:
+            case Key::Up:
                 speed.y++;
                 break;
-            case SDLK_DOWN:
+            case Key::Down:
                 speed.y--;
                 break;
             default:

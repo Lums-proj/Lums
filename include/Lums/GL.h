@@ -14,7 +14,7 @@
 #ifndef LUMS_GL_H
 #define LUMS_GL_H
 
-#include <SDL2/SDL_opengl.h>
+#include <OpenGL/gl.h>
 #include <Lums/Vector3.h>
 
 namespace lm

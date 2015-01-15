@@ -14,9 +14,10 @@
 #ifndef LUMS_IMAGE_H
 #define LUMS_IMAGE_H
 
-#include <SDL2/SDL.h>
 #include <Lums/GL.h>
 #include <string>
+
+#if 0
 
 namespace lm
 {
@@ -138,5 +139,7 @@ namespace lm
         GLuint          _texture;
     };
 }
+
+#endif
 
 #endif

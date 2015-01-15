@@ -18,20 +18,12 @@
 using namespace lm;
 
 Core::Core(int w, int h, const char* name, bool fullscreen)
-: _it(0), _width(w), _height(h)
+: _win(w, h, name)
+, _it(0)
+, _width(w)
+, _height(h)
 {
-    SDL_Init(SDL_INIT_EVERYTHING);
-    IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF);
-    _win = SDL_CreateWindow(name,
-                            SDL_WINDOWPOS_CENTERED,
-                            SDL_WINDOWPOS_CENTERED,
-                            w,
-                            h,
-                            SDL_WINDOW_OPENGL | (fullscreen
-                                                 ? SDL_WINDOW_FULLSCREEN
-                                                 : 0));
-    _glcontext = SDL_GL_CreateContext(_win);
-    glClearColor(0, 0, 0, 1);
+
 }
 
 void
@@ -127,10 +119,7 @@ Core::Stop()
 
 Core::~Core()
 {
-    SDL_GL_DeleteContext(_glcontext);
-    SDL_DestroyWindow(_win);
-    SDL_Quit();
-    IMG_Quit();
+    
 }
 
 
@@ -144,8 +133,9 @@ Core::DoEvent()
     Event       event;
     bool        c;
     
-    while (SDL_PollEvent(&event))
+    do
     {
+        _win.PollEvent(event);
         for (_it = 0; _it < _stack.size(); _it++)
         {
         redo:
@@ -157,6 +147,7 @@ Core::DoEvent()
                 goto redo;
         }
     }
+    while (event.type != Event::Type::None);
 }
 
 void
@@ -191,5 +182,5 @@ Core::DoRender()
     glLoadIdentity();
     while (min >= 0)
         _stack[min--]->Render();
-    SDL_GL_SwapWindow(_win);
+    _win.Swap();
 }
