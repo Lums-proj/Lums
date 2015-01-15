@@ -30,19 +30,22 @@ void    Game::HandleEvent(const lm::Event& event)
 {
     bool    b;
 
-    if (event.type == SDL_KEYDOWN || event.type == SDL_KEYUP)
+    if (event.type == lm::Event::Type::KeyDown
+        || event.type == lm::Event::Type::KeyUp)
     {
-        b = event.type == SDL_KEYDOWN;
-        switch (event.key.keysym.sym)
+        b = event.type == lm::Event::Type::KeyDown;
+        switch (event.key)
         {
-            case SDLK_ESCAPE:
+            case lm::Key::Escape:
                 Core().Stop();
                 break;
-            case SDLK_LEFT:
+            case lm::Key::Left:
                 _player.Left(b);
                 break;
-            case SDLK_RIGHT:
+            case lm::Key::Right:
                 _player.Right(b);
+                break;
+            default:
                 break;
         }
     }
