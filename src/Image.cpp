@@ -20,8 +20,6 @@
 
 using namespace lm;
 
-#if 0
-
 Image::Image()
 : _width(0)
 , _height(0)
@@ -49,12 +47,12 @@ Image::operator=(Image&& rhs)
 }
 
 Image&
-Image::LoadFile(const std::string path, bool resource)
+Image::loadFile(const std::string path, bool resource)
 {
     typedef Image& (Image::*imgptr_t)(std::string, bool);
 
     static const std::map<std::string, imgptr_t> extFuncs = {
-        {"png", &Image::LoadFilePNG}
+        {"png", &Image::loadFilePNG}
     };
 
     std::string ext = path.substr(path.find_last_of('.') + 1);
@@ -65,51 +63,44 @@ Image::LoadFile(const std::string path, bool resource)
 }
 
 Image&
-Image::LoadFilePNG(const std::string path, bool resource)
+Image::loadFilePNG(const std::string path, bool resource)
 {
     std::string     file = resource ? resourcePath() + path : path;
+    unsigned char*  image;
+    unsigned char** imageBuf;
+    FILE*           f = fopen(file.c_str(), "rb");
 
     if (_texture)
         glDeleteTextures(1, &_texture);
+    png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+    png_infop info_ptr = png_create_info_struct(png_ptr);
+    setjmp(png_jmpbuf(png_ptr));
+    png_init_io(png_ptr, f);
+    png_read_info(png_ptr, info_ptr);
+    _width = png_get_image_width(png_ptr, info_ptr);
+    _height = png_get_image_height(png_ptr, info_ptr);
+    image = new unsigned char[4 * _width * _height];
+    imageBuf = new unsigned char*[_height];
+    for (size_t i = 0; i < _height; i++)
+        imageBuf[i] = new unsigned char[4 * _width];
+    png_read_image(png_ptr, imageBuf);
+    for (int j = 0; j < _height; j++)
+    {
+        std::memcpy(image + _width * 4 * (_height - j - 1), imageBuf[j], _width * 4);
+        delete [] imageBuf[j];
+    }
+    delete [] imageBuf;
+    gen(image);
     return *this;
 }
 
 Image
-Image::FromFile(const std::string path, bool resource)
+Image::fromFile(const std::string path, bool resource)
 {
     Image   a;
 
-    a.LoadFile(path, resource);
+    a.loadFile(path, resource);
     return a;
-}
-
-void
-Image::Gen(SDL_Surface* surface)
-{
-    int             buf;
-    int             w = _width;
-    SDL_Surface*    image;
-
-    image = SDL_CreateRGBSurface(0, _width, _height, 32,
-                                 0xff, 0xff00, 0xff0000, 0xff000000);
-    SDL_BlitSurface(surface, 0, image, 0);
-
-    // We need to flip the image, because the crappy SDL_Image loader
-    // stores them upside down, for compatibility with the even more
-    // crappy SDL BMP Loader.
-    for (int j = 0; j < image->h / 2; j++)
-    {
-        for (int i = 0; i < w; i++)
-        {
-            buf = ((int*)image->pixels)[j * w + i];
-            ((int*)image->pixels)[j * w + i] = ((int*)image->pixels)[(image->h - 1 - j) * w + i];
-            ((int*)image->pixels)[(image->h - 1 - j) * w + i] = buf;
-        }
-    }
-    glGenTextures(1, &_texture);
-    Linear();
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _width, _height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image->pixels);
-    SDL_FreeSurface(image);
 }
 
 Image::~Image()
@@ -118,4 +109,13 @@ Image::~Image()
         glDeleteTextures(1, &_texture);
 }
 
-#endif
+// private
+
+void
+Image::gen(unsigned char* img)
+{
+    glGenTextures(1, &_texture);
+    linear();
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _width, _height, 0, GL_RGBA, GL_UNSIGNED_BYTE, img);
+    delete [] img;
+}
