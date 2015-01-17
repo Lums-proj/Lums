@@ -1,10 +1,23 @@
-#include <Lums/Lums.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                                            */
+/*    Nyan.cpp                                       oooooo       oooooo      */
+/*                                                 oooooooooo   oooooooooo    */
+/*                                                         o%%%%%o            */
+/*                                                         %:::::%            */
+/*                                                        %:::::::%           */
+/*    This file is part of the                             %:::::%            */
+/*    Lums library.                                         %%%%%             */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <Lums/Lums.hpp>
 
 class Nyan : public lm::GameState
 {
 public:
-    Nyan(lm::Core* core)
-    : lm::GameState(core), _linear(true)
+    Nyan()
+    : _linear(true)
     {
         _image.loadFile("Nyan.png");
     }
@@ -26,12 +39,12 @@ public:
                 _image.linear(_linear);
             }
             else
-                Core().stop();
+                lm::Core::get().stop();
         }
     }
 
     void
-    render()
+    render() const
     {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);

@@ -33,9 +33,9 @@ Because of this.
 
 ![A lums](http://raymanpc.com/wiki/script-en/images/f/f6/YellowLum-RR-TheWoodsofLight.jpg)
 
-## Some boring legal stuff
+## License
 
-This software is under the GPLv2 license.  
+This software is under the MIT license.  
 You may find a copy of the license along with this software.
 
 ## Author

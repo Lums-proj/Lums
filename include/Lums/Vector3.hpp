@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                  &&&&&&       &&&&&&       */
-/*    Vector2.h                                    &------&     &------&      */
-/*                                                  &&-----&   &-----&&       */
-/*                                                    &&&&#######&&&&         */
-/*                                                       #.......#            */
-/*                                                       #.....  #            */
-/*    This file is part of the                           #...    #            */
-/*    Lums library.                                       #######             */
+/*                                                                            */
+/*    Vector3.hpp                                    oooooo       oooooo      */
+/*                                                 oooooooooo   oooooooooo    */
+/*                                                         o%%%%%o            */
+/*                                                         %:::::%            */
+/*                                                        %:::::::%           */
+/*    This file is part of the                             %:::::%            */
+/*    Lums library.                                         %%%%%             */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_VECTOR2_H
-#define LUMS_VECTOR2_H
+#ifndef LUMS_VECTOR3_HPP
+#define LUMS_VECTOR3_HPP
 
-#include <Lums/Angle.h>
 #include <cmath>
+#include <Lums/Angle.hpp>
 
 namespace lm
 {
     /**
-     * This class define a bidimentional vector.
+     * This class define a tridimensional vector.
      */
     template <typename T>
-    struct Vector2
+    struct Vector3
     {
         /**
          * Create an empty vector.
          */
         constexpr
-        Vector2()
+        Vector3()
         : x(T())
         , y(T())
+        , z(T())
         {
             
         }
@@ -40,13 +41,15 @@ namespace lm
          * Create a vector from values.
          * @param x Value for x
          * @param y Value for y
+         * @param z Value for z
          */
         constexpr
-        Vector2(T x, T y)
+        Vector3(T x, T y, T z)
         : x(x)
         , y(y)
+        , z(z)
         {
-            
+
         }
         
         /**
@@ -55,9 +58,9 @@ namespace lm
          * @return True if and only if the vector are equal.
          */
         constexpr bool
-        operator==(const Vector2<T>& rhs) const
+        operator==(const Vector3<T>& rhs) const
         {
-            return (x == rhs.x && y == rhs.y);
+            return (x == rhs.x && y == rhs.y && z == rhs.z);
         }
         
         /**
@@ -66,7 +69,7 @@ namespace lm
          * @return True if and only if the vector are not equal.
          */
         constexpr bool
-        operator!=(const Vector2<T>& rhs) const
+        operator!=(const Vector3<T>& rhs) const
         {
             return !(*this == rhs);
         }
@@ -76,11 +79,12 @@ namespace lm
          * @param rhs The other vector.
          * @return The current vector.
          */
-        Vector2<T>&
-        operator+=(const Vector2<T>& rhs)
+        Vector3<T>&
+        operator+=(const Vector3<T>& rhs)
         {
             x += rhs.x;
             y += rhs.y;
+            z += rhs.z;
             return *this;
         }
         
@@ -89,11 +93,12 @@ namespace lm
          * @param rhs The other vector.
          * @return The current vector.
          */
-        Vector2<T>&
-        operator-=(const Vector2<T>& rhs)
+        Vector3<T>&
+        operator-=(const Vector3<T>& rhs)
         {
             x -= rhs.x;
             y -= rhs.y;
+            z -= rhs.z;
             return *this;
         }
         
@@ -102,11 +107,12 @@ namespace lm
          * @param rhs The coefficient.
          * @return The current vector.
          */
-        Vector2<T>&
+        Vector3<T>&
         operator*=(const T& rhs)
         {
             x *= rhs;
             y *= rhs;
+            z *= rhs;
             return *this;
         }
         
@@ -115,11 +121,12 @@ namespace lm
          * @param rhs The coefficient.
          * @return The current vector.
          */
-        Vector2<T>&
+        Vector3<T>&
         operator/=(const T& rhs)
         {
             x /= rhs;
             y /= rhs;
+            z /= rhs;
             return *this;
         }
         
@@ -128,10 +135,10 @@ namespace lm
          * @param rhs The other vector.
          * @return The sum of the two vectors.
          */
-        Vector2<T>
-        operator+(const Vector2<T>& rhs) const
+        Vector3<T>
+        operator+(const Vector3<T>& rhs) const
         {
-            Vector2<T>	v(*this);
+            Vector3<T>	v(*this);
             
             v += rhs;
             return v;
@@ -142,9 +149,10 @@ namespace lm
          * @param rhs The other vector.
          * @return The difference between the two vectors.
          */
-        Vector2<T>	operator-(const Vector2<T>& rhs) const
+        Vector3<T>
+        operator-(const Vector3<T>& rhs) const
         {
-            Vector2<T>	v(*this);
+            Vector3<T>	v(*this);
             
             v -= rhs;
             return v;
@@ -155,9 +163,10 @@ namespace lm
          * @param rhs A coefficient.
          * @return The product of the vector and the coefficient.
          */
-        Vector2<T>	operator*(const T& rhs) const
+        Vector3<T>
+        operator*(const T& rhs) const
         {
-            Vector2<T>	v(*this);
+            Vector3<T>	v(*this);
             
             v *= rhs;
             return v;
@@ -168,9 +177,10 @@ namespace lm
          * @param rhs A coefficient.
          * @return The vector divided by the coefficient.
          */
-        Vector2<T>	operator/(const T& rhs) const
+        Vector3<T>
+        operator/(const T& rhs) const
         {
-            Vector2<T>	v(*this);
+            Vector3<T>	v(*this);
             
             v /= rhs;
             return v;
@@ -180,32 +190,34 @@ namespace lm
          * Negate a vector.
          * @return The opposite of the vector.
          */
-        constexpr Vector2<T>
+        constexpr Vector3<T>
         operator-() const
         {
-            return Vector2<T>(-x, -y);
+            return Vector3<T>(-x, -y, -z);
         }
         
         /**
-         * Identity operator.
+         * Indentity operator.
          * @return The vector.
          */
-        constexpr Vector2<T>
+        constexpr Vector3<T>
         operator+() const
         {
             return *this;
         }
         
         /**
-         * Set both x and y.
+         * Set x, y and z.
          * @param nx The new x value.
          * @param ny The new y value.
+         * @param nz The new z value.
          */
         void
-        set(const T& nx, const T& ny)
+        set(const T& nx, const T& ny, const T& nz)
         {
             x = nx;
             y = ny;
+            z = nz;
         }
         
         /**
@@ -215,7 +227,7 @@ namespace lm
         constexpr bool
         null() const
         {
-            return (x == T() && y == T());
+            return (x == T() && y == T() && z == T());
         }
         
         /**
@@ -226,7 +238,7 @@ namespace lm
         constexpr double
         length() const
         {
-            return std::sqrt(x * x + y * y);
+            return std::sqrt(x * x + y * y + z * z);
         }
         
         /**
@@ -245,6 +257,7 @@ namespace lm
             l = length();
             x /= l;
             y /= l;
+            z /= l;
         }
         
         /**
@@ -252,10 +265,10 @@ namespace lm
          * If this vector is null, this function return a null vector.
          * @return A normalized vector with the same direction as this one.
          */
-        Vector2<T>
+        Vector3<T>
         unit() const
         {
-            Vector2<T>	v(*this);
+            Vector3<T>	v(*this);
             
             v.normalize();
             return v;
@@ -268,10 +281,11 @@ namespace lm
          * @return The distance between the two vectors
          */
         constexpr double
-        dist(const Vector2<T>& rhs) const
+        dist(const Vector3<T>& rhs) const
         {
             return std::sqrt((x - rhs.x) * (x - rhs.x)
-                             + (y - rhs.y) * (y - rhs.y));
+                             + (y - rhs.y) * (y - rhs.y)
+                             + (z - rhs.z) * (z - rhs.z));
         }
         
         /**
@@ -281,20 +295,25 @@ namespace lm
          * @return The dot product between the two vectors
          */
         constexpr T
-        dot(const Vector2<T>& rhs) const
+        dot(const Vector3<T>& rhs) const
         {
-            return x * rhs.x + y * rhs.y;
+            return x * rhs.x + y * rhs.y + z * rhs.z;
         }
         
         /**
-         * Get a new vector perpendicular to this one.
-         * If this vector is null, a null vector is returned.
-         * @return A vector perpendicular to this one.
+         * Get a new vector perpendicular to a pair of vectors.
+         * If one vector is null, a null vector is returned.
+         * @param rhs A vector.
+         * @return A vector perpendicular to both vectors.
          */
-        constexpr Vector2<T>
-        cross() const
+        Vector3<T>
+        cross(const Vector3<T>& rhs) const
         {
-            return Vector2<T>(-y, x);
+            if (null() || rhs.null())
+                return Vector3<T>();
+            return Vector3<T>(y * rhs.z - z * rhs.y,
+                              z * rhs.x - x * rhs.z,
+                              x * rhs.y - y * rhs.x);
         }
         
         /**
@@ -305,11 +324,11 @@ namespace lm
          * @return The angle between the two vectors
          */
         Angle
-        angle(const Vector2<T>& rhs) const
+        angle(const Vector3<T>& rhs) const
         {
             double	c;
             
-            if (null() || rhs.null())
+            if (null() || rhs.Null())
                 return (Angle());
             c = dot(rhs) / (length() * rhs.length());
             return Angle::radians(std::acos(c));
@@ -318,33 +337,38 @@ namespace lm
         /**
          * The x value
          */
-        T	x;
+        T   x;
         
         /**
          * The y value
          */
-        T	y;
+        T   y;
+        
+        /**
+         * The z value
+         */
+        T   z;
     };
     
     /**
-     * An alias for Vector2<int>
+     * An alias for Vector3<int>
      */
-    typedef Vector2<int>	Vector2i;
+    typedef Vector3<int>	Vector3i;
     
     /**
-     * An alias for Vector2<float>
+     * An alias for Vector3<float>
      */
-    typedef Vector2<float>	Vector2f;
+    typedef Vector3<float>	Vector3f;
     
     /**
-     * An alias for Vector2<double>
+     * An alias for Vector3<double>
      */
-    typedef Vector2<double>	Vector2d;
+    typedef Vector3<double>	Vector3d;
     
     /**
-     * An alias for Vector2<Angle>
+     * An alias for Vector3<Angle>
      */
-    typedef Vector2<Angle>	Vector2a;
+    typedef Vector3<Angle>	Vector3a;
 }
 
 #endif

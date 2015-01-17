@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                  &&&&&&       &&&&&&       */
-/*    GameState.h                                  &------&     &------&      */
-/*                                                  &&-----&   &-----&&       */
-/*                                                    &&&&#######&&&&         */
-/*                                                       #.......#            */
-/*                                                       #.....  #            */
-/*    This file is part of the                           #...    #            */
-/*    Lums library.                                       #######             */
+/*                                                                            */
+/*    Image.hpp                                      oooooo       oooooo      */
+/*                                                 oooooooooo   oooooooooo    */
+/*                                                         o%%%%%o            */
+/*                                                         %:::::%            */
+/*                                                        %:::::::%           */
+/*    This file is part of the                             %:::::%            */
+/*    Lums library.                                         %%%%%             */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_IMAGE_H
-#define LUMS_IMAGE_H
+#ifndef LUMS_IMAGE_HPP
+#define LUMS_IMAGE_HPP
 
-#include <Lums/GL.h>
 #include <string>
+#include <Lums/GL.hpp>
 
 namespace lm
 {

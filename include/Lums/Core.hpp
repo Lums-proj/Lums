@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                  &&&&&&       &&&&&&       */
-/*    Core.h                                       &------&     &------&      */
-/*                                                  &&-----&   &-----&&       */
-/*                                                    &&&&#######&&&&         */
-/*                                                       #.......#            */
-/*                                                       #.....  #            */
-/*    This file is part of the                           #...    #            */
-/*    Lums library.                                       #######             */
+/*                                                                            */
+/*    Core.hpp                                       oooooo       oooooo      */
+/*                                                 oooooooooo   oooooooooo    */
+/*                                                         o%%%%%o            */
+/*                                                         %:::::%            */
+/*                                                        %:::::::%           */
+/*    This file is part of the                             %:::::%            */
+/*    Lums library.                                         %%%%%             */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_CORE_H
-#define LUMS_CORE_H
+#ifndef LUMS_CORE_HPP
+#define LUMS_CORE_HPP
 
 #include <string>
 #include <vector>
@@ -20,8 +20,8 @@
 #include <chrono>
 #include <thread>
 #include <memory>
-#include <Lums/Window.h>
-#include <Lums/GameState.h>
+#include <Lums/Window.hpp>
+#include <Lums/GameState.hpp>
 
 namespace lm
 {
@@ -37,13 +37,26 @@ namespace lm
     public:
         /**
          * Create a new Core.
+         * If a Core was already created, and has not been destructed, it's
+         * undefined behavior.
          * @param w The width of the core window.
          * @param h The height of the core window.
          * @param name The window title.
          * @param fullscreen Wether to start the core fullscreen.
          */
         Core(int w, int h, const char* name = "", bool fullscreen = false);
-        
+
+        /**
+        * Get the Core singleton.
+        * If there is no singleton Core, this is undefined behavior.
+        * @return A reference to the singleton Core
+        */        
+        static Core&
+        get()
+        {
+            return *_singleton;
+        }
+
         /**
          * Return the window width.
          * @return The window width.
@@ -86,7 +99,7 @@ namespace lm
         template<typename T, typename ...Args> T&
         push(Args ...args)
         {
-            T* state = new T(this, std::forward<Args>(args)...);
+            T* state = new T(std::forward<Args>(args)...);
             _stack.insert(_stack.begin(), std::unique_ptr<GameState>(state));
             state->load();
             return *state;
@@ -148,6 +161,7 @@ namespace lm
         Window          _win;
         bool            _jmp;
         bool            _running;
+        static Core*    _singleton;
     };
 }
 

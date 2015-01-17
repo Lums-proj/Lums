@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                  &&&&&&       &&&&&&       */
-/*    GameState.h                                  &------&     &------&      */
-/*                                                  &&-----&   &-----&&       */
-/*                                                    &&&&#######&&&&         */
-/*                                                       #.......#            */
-/*                                                       #.....  #            */
-/*    This file is part of the                           #...    #            */
-/*    Lums library.                                       #######             */
+/*                                                                            */
+/*    GameState.hpp                                  oooooo       oooooo      */
+/*                                                 oooooooooo   oooooooooo    */
+/*                                                         o%%%%%o            */
+/*                                                         %:::::%            */
+/*                                                        %:::::::%           */
+/*    This file is part of the                             %:::::%            */
+/*    Lums library.                                         %%%%%             */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_GAMESTATE_H
-#define LUMS_GAMESTATE_H
+#ifndef LUMS_GAMESTATE_HPP
+#define LUMS_GAMESTATE_HPP
 
-#include <Lums/Event.h>
+#include <Lums/Event.hpp>
 
 namespace lm
 {
-    class Core;
-
     /**
      * This class represents a GameState.
      * A GameState defines one state of your Game.
@@ -35,9 +33,8 @@ namespace lm
          * GameState constructor.
          * You should not instanciate gamestates yourself.
          * Instead, use the factory methods Core::Push and Core::Transition.
-         * @param core A core pointer.
          */
-        GameState(Core* core);
+        GameState();
 
         /**
          * Called when the GameState is loaded.
@@ -58,16 +55,6 @@ namespace lm
         void            reload();
 
         /**
-         * Get the core linked with this GameState.
-         * @return A reference to the Core linked with this state.
-         */
-        Core&
-        Core() const
-        {
-            return *_core;
-        }
-
-        /**
          * Update the state.
          * This method is called on each physical tick.
          * You must overwrite this method.
@@ -79,7 +66,7 @@ namespace lm
          * This method is called when the state has to be redrawn.
          * You must overwrite this method.
          */
-        virtual void    render() = 0;
+        virtual void    render() const = 0;
 
         /**
          * Process Events.
@@ -141,9 +128,6 @@ namespace lm
          * Destructor.
          */
         virtual ~GameState();
-
-    private:
-        lm::Core*   _core;
     };
 }
 

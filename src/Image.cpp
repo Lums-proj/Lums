@@ -1,13 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                  &&&&&&       &&&&&&       */
-/*    Image.cpp                                    &------&     &------&      */
-/*                                                  &&-----&   &-----&&       */
-/*                                                    &&&&#######&&&&         */
-/*                                                       #.......#            */
-/*                                                       #.....  #            */
-/*    This file is part of the                           #...    #            */
-/*    Lums library.                                       #######             */
+/*                                                                            */
+/*    Image.cpp                                      oooooo       oooooo      */
+/*                                                 oooooooooo   oooooooooo    */
+/*                                                         o%%%%%o            */
+/*                                                         %:::::%            */
+/*                                                        %:::::::%           */
+/*    This file is part of the                             %:::::%            */
+/*    Lums library.                                         %%%%%             */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 #include <cmath>
 #include <iostream>
 #include <png.h>
-#include <Lums/Image.h>
-#include <Lums/OperatingSystem.h>
+#include <Lums/Image.hpp>
+#include <Lums/OperatingSystem.hpp>
 
 using namespace lm;
 
@@ -61,6 +61,10 @@ Image::loadFile(const std::string path, bool resource)
         return (this->*(extFuncs.at(ext)))(path, resource);
     return *this;
 }
+
+/*
+ * This is KLUDGE
+ */
 
 Image&
 Image::loadFilePNG(const std::string path, bool resource)

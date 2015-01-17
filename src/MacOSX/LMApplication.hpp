@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    MacOSX/LMApplication.mm                        oooooo       oooooo      */
+/*    MacOSX/LMApplication.hpp                       oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,21 +11,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#import "LMApplication.hpp"
+#ifndef LUMS_LMAPPLICATION_H
+#define LUMS_LMAPPLICATION_H
 
-@implementation LMApplication
+#import <Cocoa/Cocoa.h>
 
-+(void)pumpEvents
-{
-    NSEvent* event = nil;
-
-    while ((event = [NSApp nextEventMatchingMask:NSAnyEventMask
-                     untilDate:[NSDate distantPast]
-                     inMode:NSDefaultRunLoopMode
-                     dequeue:YES]))
-    {
-        [NSApp sendEvent:event];
-    }
-}
-
+@interface LMApplication : NSApplication
++(void)pumpEvents;
 @end
+
+#endif

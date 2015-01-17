@@ -1,13 +1,13 @@
-// NanoTest.h
+// NanoTest.hpp
 
 // This is NanoTest
-// (c) Nax, 2014
+// (c) Nax, 2014 - 2015
 // All distribution authorized.
 
-// Version 1.1.2a
+// Version 1.1.2b
 
-#ifndef NANOTEST_H
-#define NANOTEST_H
+#ifndef NANOTEST_HPP
+#define NANOTEST_HPP
 
 #include <cstdio>
 #include <ctime>

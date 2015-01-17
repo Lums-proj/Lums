@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    MacOSX/LMApplication.mm                        oooooo       oooooo      */
+/*    Cube.hpp                                       oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,21 +11,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#import "LMApplication.hpp"
+#ifndef CUBE_HPP
+#define CUBE_HPP
 
-@implementation LMApplication
+#include <Lums/Lums.hpp>
 
-+(void)pumpEvents
+class Cube : public lm::GameState
 {
-    NSEvent* event = nil;
+public:
+    Cube();
+    void    load();
+    void    update();
+    void    handleEvent(const lm::Event& event);
+    void    render() const;
+    void    unload();
+    
+private:
+    lm::Vector2a    angle;
+    lm::Vector2f    speed;
+};
 
-    while ((event = [NSApp nextEventMatchingMask:NSAnyEventMask
-                     untilDate:[NSDate distantPast]
-                     inMode:NSDefaultRunLoopMode
-                     dequeue:YES]))
-    {
-        [NSApp sendEvent:event];
-    }
-}
-
-@end
+#endif

@@ -1,5 +1,18 @@
-#import <Lums/Event.h>
-#import "LMWindow.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                                            */
+/*    MacOSX/LMWindow.mm                             oooooo       oooooo      */
+/*                                                 oooooooooo   oooooooooo    */
+/*                                                         o%%%%%o            */
+/*                                                         %:::::%            */
+/*                                                        %:::::::%           */
+/*    This file is part of the                             %:::::%            */
+/*    Lums library.                                         %%%%%             */
+/*                                                                            */
+/* ************************************************************************** */
+
+#import <Lums/Event.hpp>
+#import "LMWindow.hpp"
 
 @implementation LMWindow
 

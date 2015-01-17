@@ -1,10 +1,24 @@
-#ifndef LUMS_KEYCODE_H
-#define LUMS_KEYCODE_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                                            */
+/*    Key.hpp                                        oooooo       oooooo      */
+/*                                                 oooooooooo   oooooooooo    */
+/*                                                         o%%%%%o            */
+/*                                                         %:::::%            */
+/*                                                        %:::::::%           */
+/*    This file is part of the                             %:::::%            */
+/*    Lums library.                                         %%%%%             */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef LUMS_KEY_HPP
+#define LUMS_KEY_HPP
 
 namespace lm
 {
     enum class Key
     {
+#ifdef __APPLE__
         A = 0x00,
         S = 0x01,
         D = 0x02,
@@ -117,6 +131,7 @@ namespace lm
         Right = 0x7C,
         Down = 0x7D,
         Up = 0x7E
+#endif
     };
 }
 

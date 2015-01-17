@@ -1,5 +1,5 @@
 file(GLOB SRC "*.cpp")
-file(GLOB HEADER "../include/Lums/*.h")
+file(GLOB HEADER "../include/Lums/*.hpp")
 set(LINK_LIB ${OPENGL_gl_LIBRARY} ${PNG_LIBRARIES})
 if (APPLE)
     file(GLOB OS_SRC "MacOSX/*.cpp" "MacOSX/*.mm")

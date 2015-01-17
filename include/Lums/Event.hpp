@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    MacOSX/LMApplication.mm                        oooooo       oooooo      */
+/*    Event.hpp                                      oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,21 +11,29 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#import "LMApplication.hpp"
+#ifndef LUMS_EVENT_HPP
+#define LUMS_EVENT_HPP
 
-@implementation LMApplication
+#include <Lums/Key.hpp>
 
-+(void)pumpEvents
+namespace lm
 {
-    NSEvent* event = nil;
-
-    while ((event = [NSApp nextEventMatchingMask:NSAnyEventMask
-                     untilDate:[NSDate distantPast]
-                     inMode:NSDefaultRunLoopMode
-                     dequeue:YES]))
+    struct Event
     {
-        [NSApp sendEvent:event];
-    }
+        enum class Type
+        {
+            None = 0,
+            KeyDown,
+            KeyUp
+        };
+
+        Event::Type type;
+        
+        union
+        {
+            Key     key;
+        };
+    };
 }
 
-@end
+#endif

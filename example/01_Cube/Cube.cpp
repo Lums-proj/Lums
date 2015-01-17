@@ -1,9 +1,23 @@
-#include "Cube.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                                            */
+/*    Cube.cpp                                       oooooo       oooooo      */
+/*                                                 oooooooooo   oooooooooo    */
+/*                                                         o%%%%%o            */
+/*                                                         %:::::%            */
+/*                                                        %:::::::%           */
+/*    This file is part of the                             %:::::%            */
+/*    Lums library.                                         %%%%%             */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Cube.hpp"
 #include <iostream>
 
 using namespace lm;
 
-const GLfloat   vertices[] = {
+const static GLfloat
+vertices[] = {
      1,  1,  1,
      1,  1, -1,
      1, -1,  1,
@@ -14,7 +28,8 @@ const GLfloat   vertices[] = {
     -1, -1, -1
 };
 
-const GLfloat   colors[] = {
+const static GLfloat
+colors[] = {
     1, 0, 0,
     0, 1, 0,
     0, 0, 1,
@@ -25,7 +40,8 @@ const GLfloat   colors[] = {
     1, 1, 1
 };
 
-const GLubyte   indices[] = {
+const static GLubyte
+indices[] = {
     0, 2, 6, 3,
     3, 5, 7, 6,
     5, 1, 4, 7,
@@ -34,12 +50,14 @@ const GLubyte   indices[] = {
     2, 4, 7, 6
 };
 
-Cube::Cube(lm::Core* core) : lm::GameState(core), speed(10, 0)
+Cube::Cube()
+: speed(10, 0)
 {
     
 }
 
-void    Cube::load()
+void
+Cube::load()
 {
     glEnable(GL_DEPTH_TEST);
     glMatrixMode(GL_PROJECTION);
@@ -47,20 +65,22 @@ void    Cube::load()
     glMatrixMode(GL_MODELVIEW);
 }
 
-void    Cube::update()
+void
+Cube::update()
 {
     angle.x += 0.1_deg * speed.x;
     angle.y += 0.1_deg * speed.y;
 }
 
-void    Cube::handleEvent(const Event& event)
+void
+Cube::handleEvent(const Event& event)
 {
     if (event.type == Event::Type::KeyDown)
     {
         switch (event.key)
         {
             case Key::Escape:
-                Core().stop();
+                Core::get().stop();
                 break;
             case Key::Right:
                 speed.x++;
@@ -80,7 +100,8 @@ void    Cube::handleEvent(const Event& event)
     }
 }
 
-void    Cube::render()
+void
+Cube::render() const
 {
     glLookAt(-2, 2, -2, 0, 0, 0, 0, 1, 0);
     glRotatef(angle.x.toDegrees(), 0, 1, 0);
@@ -95,7 +116,8 @@ void    Cube::render()
 
 }
 
-void    Cube::unload()
+void
+Cube::unload()
 {
     glDisable(GL_DEPTH_TEST);
 }

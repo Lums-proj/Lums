@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    MacOSX/LMApplication.mm                        oooooo       oooooo      */
+/*    OperatingSystem.hpp                            oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,21 +11,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#import "LMApplication.hpp"
+#ifndef LUMS_OPERATINGSYSTEM_HPP
+#define LUMS_OPERATINGSYSTEM_HPP
 
-@implementation LMApplication
+#include <string>
 
-+(void)pumpEvents
+namespace lm
 {
-    NSEvent* event = nil;
-
-    while ((event = [NSApp nextEventMatchingMask:NSAnyEventMask
-                     untilDate:[NSDate distantPast]
-                     inMode:NSDefaultRunLoopMode
-                     dequeue:YES]))
-    {
-        [NSApp sendEvent:event];
-    }
+    /**
+    * Get the program resource path.
+    * On Mac OS X, this is the Resource folder if the program is a bundle.
+    * Else, it's the folder containing the executable.
+    * @return A const reference to a resource path string.
+    */
+    const std::string&  resourcePath();
 }
 
-@end
+#endif
