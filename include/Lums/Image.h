@@ -17,8 +17,6 @@
 #include <Lums/GL.h>
 #include <string>
 
-#if 0
-
 namespace lm
 {
     /**
@@ -106,7 +104,7 @@ namespace lm
         Image&
         linear(bool linear = true)
         {
-            Bind();
+            bind();
             glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_MIN_FILTER , linear ? GL_LINEAR : GL_NEAREST);
             glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , linear ? GL_LINEAR : GL_NEAREST);
             return *this;
@@ -142,12 +140,12 @@ namespace lm
         ~Image();
 
     private:
+        void            gen(unsigned char* img);
+
         int             _width;
         int             _height;
         GLuint          _texture;
     };
 }
-
-#endif
 
 #endif
