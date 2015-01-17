@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                  &&&&&&       &&&&&&       */
-/*    MacOSX.mm                                    &------&     &------&      */
-/*                                                  &&-----&   &-----&&       */
-/*                                                    &&&&#######&&&&         */
-/*                                                       #.......#            */
-/*                                                       #.....  #            */
-/*    This file is part of the                           #...    #            */
-/*    Lums library.                                       #######             */
+/*                                                                            */
+/*    MacOSX/MacOSX.mm                               oooooo       oooooo      */
+/*                                                 oooooooooo   oooooooooo    */
+/*                                                         o%%%%%o            */
+/*                                                         %:::::%            */
+/*                                                        %:::::::%           */
+/*    This file is part of the                             %:::::%            */
+/*    Lums library.                                         %%%%%             */
 /*                                                                            */
 /* ************************************************************************** */
 
 #import <Cocoa/Cocoa.h>
-#import <Lums/OperatingSystem.h>
+#import <Lums/OperatingSystem.hpp>
 
 static std::string  res_path;
 
@@ -23,7 +23,8 @@ namespace lm
     {
         if (!res_path.empty())
             return res_path;
-        res_path = [[[NSBundle mainBundle] resourcePath] cStringUsingEncoding:NSASCIIStringEncoding];
+        res_path = [[[NSBundle mainBundle] resourcePath]
+                    cStringUsingEncoding:NSASCIIStringEncoding];
         if (res_path.empty())
             res_path = ".";
         res_path += "/";

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    GameState.cpp                                    oooooo       oooooo    */
-/*                                                   oooooooooo   oooooooooo  */
-/*                                                           o%%%%%o          */
-/*                                                           %:::::%          */
-/*                                                          %:::::::%         */
-/*    This file is part of the                               %:::::%          */
-/*    Lums library.                                           %%%%%           */
+/*    Core.cpp                                       oooooo       oooooo      */
+/*                                                 oooooooooo   oooooooooo    */
+/*                                                         o%%%%%o            */
+/*                                                         %:::::%            */
+/*                                                        %:::::::%           */
+/*    This file is part of the                             %:::::%            */
+/*    Lums library.                                         %%%%%             */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Lums/Core.h>
-#include <Lums/GL.h>
+#include <Lums/Core.hpp>
+#include <Lums/GL.hpp>
 
 using namespace lm;
 
@@ -22,7 +22,7 @@ Core::Core(int w, int h, const char* name, bool fullscreen)
 , _width(w)
 , _height(h)
 {
-
+    _singleton = this;
 }
 
 void
@@ -118,7 +118,7 @@ Core::stop()
 
 Core::~Core()
 {
-    
+    _singleton = nullptr;
 }
 
 
@@ -183,3 +183,6 @@ Core::doRender()
         _stack[min--]->render();
     _win.swap();
 }
+
+Core*
+Core::_singleton = nullptr;

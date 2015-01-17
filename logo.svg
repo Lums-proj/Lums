@@ -6,11 +6,11 @@
   </linearGradient>
   <linearGradient y2="0" x2="1" y1="0" x1="0" id="svg_6">
    <stop offset="0" stop-color="#f7f4ea"/>
-   <stop offset="1" stop-opacity="0.996094" stop-color="#f9f7e0"/>
+   <stop offset="1" stop-color="#f9f7e0"/>
   </linearGradient>
   <linearGradient y2="0" x2="1" y1="0" x1="0" id="svg_7">
    <stop offset="0" stop-color="#f7f4ea"/>
-   <stop offset="1" stop-opacity="0.992188" stop-color="#f7f4cf"/>
+   <stop offset="1" stop-color="#f7f4cf"/>
   </linearGradient>
   <linearGradient id="svg_8">
    <stop offset="0" stop-color="#c4c4c4"/>
@@ -18,7 +18,7 @@
   </linearGradient>
   <linearGradient y2="0" x2="1" y1="0" x1="0" id="svg_9">
    <stop offset="0" stop-color="#c4c4c4"/>
-   <stop offset="1" stop-opacity="0.996094" stop-color="#7f7f7f"/>
+   <stop offset="1" stop-color="#7f7f7f"/>
   </linearGradient>
  </defs>
  <g>

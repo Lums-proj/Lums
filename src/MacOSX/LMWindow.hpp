@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    MacOSX/LMApplication.mm                        oooooo       oooooo      */
+/*    MacOSX/LMWindow.hpp                            oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,21 +11,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#import "LMApplication.hpp"
+#ifndef LUMS_LMWINDOW_H
+#define LUMS_LMWINDOW_H
 
-@implementation LMApplication
+#import <Cocoa/Cocoa.h>
+#import <Lums/Window.hpp>
 
-+(void)pumpEvents
-{
-    NSEvent* event = nil;
+@interface LMWindow : NSWindow
 
-    while ((event = [NSApp nextEventMatchingMask:NSAnyEventMask
-                     untilDate:[NSDate distantPast]
-                     inMode:NSDefaultRunLoopMode
-                     dequeue:YES]))
-    {
-        [NSApp sendEvent:event];
-    }
-}
+@property lm::Window* window;
+
+-(void)keyDown:(NSEvent*)event;
+-(void)keyUp:(NSEvent*)event;
 
 @end
+
+#endif

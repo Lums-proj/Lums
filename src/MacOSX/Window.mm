@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                                            */
+/*    MacOSX/Window.mm                               oooooo       oooooo      */
+/*                                                 oooooooooo   oooooooooo    */
+/*                                                         o%%%%%o            */
+/*                                                         %:::::%            */
+/*                                                        %:::::::%           */
+/*    This file is part of the                             %:::::%            */
+/*    Lums library.                                         %%%%%             */
+/*                                                                            */
+/* ************************************************************************** */
+
 #import <Cocoa/Cocoa.h>
 #import <OpenGL/gl.h>
-#import <Lums/Window.h>
-#import "LMApplication.h"
-#import "LMWindow.h"
+#import <Lums/Window.hpp>
+#import "LMApplication.hpp"
+#import "LMWindow.hpp"
 
 using namespace lm;
 
