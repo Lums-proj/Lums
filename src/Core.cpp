@@ -84,7 +84,7 @@ Core::pop()
 void
 Core::remove(GameState* state)
 {
-    long idx = std::find_if(_stack.begin(), _stack.end(), [&](std::unique_ptr<GameState>& p){ return p.get() == state; }) - _stack.begin();
+    size_t idx = std::find_if(_stack.begin(), _stack.end(), [&](std::unique_ptr<GameState>& p){ return p.get() == state; }) - _stack.begin();
     
     if (idx == _stack.size())
         return;
@@ -170,7 +170,7 @@ Core::doUpdate()
 void
 Core::doRender()
 {
-    int     min;
+    size_t min;
 
     for (min = 0; min < _stack.size() - 1; min++)
     {

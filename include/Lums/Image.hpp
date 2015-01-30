@@ -81,7 +81,7 @@ namespace lm
          * Get the image width.
          * @return The image width.
          */
-        int
+        size_t
         width() const
         {
             return _width;
@@ -91,7 +91,7 @@ namespace lm
          * Get the image height.
          * @return The image height.
          */
-        int
+        size_t
         height() const
         {
             return _height;
@@ -143,8 +143,8 @@ namespace lm
     private:
         void            gen(unsigned char* img);
 
-        int             _width;
-        int             _height;
+        size_t          _width;
+        size_t          _height;
         GLuint          _texture;
     };
 }
