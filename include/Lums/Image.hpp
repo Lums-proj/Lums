@@ -16,6 +16,7 @@
 
 #include <string>
 #include <Lums/GL.hpp>
+#include <Lums/ExportDll.hpp>
 
 namespace lm
 {
@@ -29,7 +30,7 @@ namespace lm
         /**
          * Create an empty Image.
          */
-        Image();
+        LUMS_EXPORTED Image();
 
         Image(const Image&) = delete;
 
@@ -37,7 +38,7 @@ namespace lm
          * Move-copy an Image.
          * @param rhs The image to be moved from.
          */
-        Image(Image&& rhs);
+        LUMS_EXPORTED Image(Image&& rhs);
 
         Image&  operator=(const Image&) = delete;
 
@@ -45,7 +46,7 @@ namespace lm
          * Move-copy an Image.
          * @param rhs The image to be moved from.
          */
-        Image&  operator=(Image&& rhs);
+        LUMS_EXPORTED Image&  operator=(Image&& rhs);
         
         /**
          * Bind the image to the OpenGL context.
@@ -116,7 +117,7 @@ namespace lm
          * @param resource If true, prepend resourcePath() to the path.
          * @return A reference to an image.
          */
-        Image&          loadFile(const std::string path, bool resource = true);
+        LUMS_EXPORTED Image&          loadFile(const std::string path, bool resource = true);
 
         /**
          * Load a png image from a file.
@@ -124,7 +125,7 @@ namespace lm
          * @param resource If true, prepend resourcePath() to the path.
          * @return A reference to an image.
          */
-        Image&          loadFilePNG(const std::string path, bool resource = true);
+        LUMS_EXPORTED Image&          loadFilePNG(const std::string path, bool resource = true);
 
         /**
          * Load an image from a file.
@@ -132,12 +133,12 @@ namespace lm
          * @param resource If true, prepend resourcePath() to the path.
          * @return A reference to an image.
          */
-        static Image    fromFile(const std::string path, bool resource = true);
+        LUMS_EXPORTED static Image    fromFile(const std::string path, bool resource = true);
 
         /**
          * Destructor
          */
-        ~Image();
+        LUMS_EXPORTED ~Image();
 
     private:
         void            gen(unsigned char* img);

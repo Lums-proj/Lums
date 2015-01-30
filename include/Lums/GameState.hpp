@@ -15,6 +15,7 @@
 #define LUMS_GAMESTATE_HPP
 
 #include <Lums/Event.hpp>
+#include <Lums/ExportDll.hpp>
 
 namespace lm
 {
@@ -34,25 +35,25 @@ namespace lm
          * You should not instanciate gamestates yourself.
          * Instead, use the factory methods Core::Push and Core::Transition.
          */
-        GameState();
+        LUMS_EXPORTED GameState();
 
         /**
          * Called when the GameState is loaded.
          * By default, do nothing.
          */
-        virtual void    load();
+        LUMS_EXPORTED virtual void    load();
 
         /**
          * Called when the GameState is unloaded.
          * By default, do nothing.
          */
-        virtual void    unload();
+        LUMS_EXPORTED virtual void    unload();
         
         /**
          * Reload the State.
          * It's equivalent to a call to Unload, then a call to Load.
          */
-        void            reload();
+        LUMS_EXPORTED void            reload();
 
         /**
          * Update the state.
@@ -122,12 +123,12 @@ namespace lm
          * immediately after calling this method, else it's
          * undefined behavior.
          */
-        void        remove();
+        LUMS_EXPORTED void        remove();
 
         /**
          * Destructor.
          */
-        virtual ~GameState();
+        LUMS_EXPORTED virtual ~GameState();
     };
 }
 

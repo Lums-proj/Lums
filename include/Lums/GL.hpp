@@ -14,8 +14,17 @@
 #ifndef LUMS_GL_HPP
 #define LUMS_GL_HPP
 
+#ifdef __APPLE__
 #include <OpenGL/gl.h>
+#endif
+
+#ifdef WIN32
+#include <windows.h>
+#include <gl/gl.h>
+#endif
+
 #include <Lums/Vector3.hpp>
+#include <Lums/ExportDll.hpp>
 
 namespace lm
 {
@@ -23,13 +32,13 @@ namespace lm
      * GLU backport.
      * Emulate the old gluPerspective.
      */
-    void    glPerspective(GLdouble fovY, GLdouble aspect, GLdouble zNear, GLdouble zFar);
+    LUMS_EXPORTED void    glPerspective(GLdouble fovY, GLdouble aspect, GLdouble zNear, GLdouble zFar);
     
     /**
      * GLU backport.
      * Emulate the old gluLookAt.
      */
-    void    glLookAt(Vector3f eye, Vector3f lookAt, Vector3f up);
+    LUMS_EXPORTED void    glLookAt(Vector3f eye, Vector3f lookAt, Vector3f up);
 
     /**
      * GLU backport.
