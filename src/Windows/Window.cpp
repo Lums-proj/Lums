@@ -8,14 +8,20 @@ static Window* currentWin;
 static LRESULT CALLBACK
 LMWindowProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
+    Event event;
+
     switch(msg)
     {
-        case WM_CLOSE:
-            DestroyWindow(hwnd);
-        break;
-        case WM_DESTROY:
-            PostQuitMessage(0);
-        break;
+        case WM_KEYDOWN:
+            event.type = Event::Type::KeyDown;
+            event.key = static_cast<Key>(wParam);
+            currentWin->pushEvent(event);
+            break;
+        case WM_KEYUP:
+            event.type = Event::Type::KeyUp;
+            event.key = static_cast<Key>(wParam);
+            currentWin->pushEvent(event);
+            break;
         default:
             return DefWindowProc(hwnd, msg, wParam, lParam);
     }
@@ -32,7 +38,7 @@ Window::Window(int w, int h, const char* name)
 		WNDCLASSEX wc;
 
     	wc.cbSize        = sizeof(WNDCLASSEX);
-    	wc.style         = 0;
+    	wc.style         = CS_NOCLOSE;
     	wc.lpfnWndProc   = LMWindowProc;
     	wc.cbClsExtra    = 0;
     	wc.cbWndExtra    = 0;
@@ -81,5 +87,5 @@ Window::swap()
 
 Window::~Window()
 {
-
+    DestroyWindow(static_cast<HWND>(_windowHandle));
 }
