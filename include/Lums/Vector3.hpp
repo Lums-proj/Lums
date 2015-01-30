@@ -250,11 +250,11 @@ namespace lm
         void
         normalize()
         {
-            double	l;
+            float l;
             
             if (null())
                 return;
-            l = length();
+            l = static_cast<float>(length());
             x /= l;
             y /= l;
             z /= l;

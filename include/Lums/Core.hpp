@@ -156,7 +156,7 @@ namespace lm
         typedef std::vector<std::unique_ptr<GameState>> Stack;
         
         Stack                       _stack;
-        int                         _it;
+        size_t                      _it;
         int                         _width;
         int                         _height;
         Window                      _win;

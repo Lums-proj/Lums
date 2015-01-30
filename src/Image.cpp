@@ -90,7 +90,7 @@ Image::loadFilePNG(const std::string path, bool resource)
     for (size_t i = 0; i < _height; i++)
         imageBuf[i] = new unsigned char[4 * _width];
     png_read_image(png_ptr, imageBuf);
-    for (int j = 0; j < _height; j++)
+    for (size_t j = 0; j < _height; j++)
     {
         std::memcpy(image + _width * 4 * (_height - j - 1), imageBuf[j], _width * 4);
         delete [] imageBuf[j];
