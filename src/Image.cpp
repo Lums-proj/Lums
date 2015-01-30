@@ -96,6 +96,7 @@ Image::loadFilePNG(const std::string path, bool resource)
         delete [] imageBuf[j];
     }
     delete [] imageBuf;
+    fclose(f);
     gen(image);
     return *this;
 }

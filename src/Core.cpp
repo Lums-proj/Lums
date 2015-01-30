@@ -179,8 +179,13 @@ Core::doRender()
     }
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity();
-    while (min >= 0)
-        _stack[min--]->render();
+    while (1)
+    {
+        _stack[min]->render();
+        if (!min)
+            break;
+        --min;
+    }
     _win.swap();
 }
 
