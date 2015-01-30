@@ -68,8 +68,8 @@ Cube::load()
 void
 Cube::update()
 {
-    angle.x += 0.1_deg * speed.x;
-    angle.y += 0.1_deg * speed.y;
+    angle.x += Angle::degrees(0.1) * speed.x;
+    angle.y += Angle::degrees(0.1) * speed.y;
 }
 
 void

@@ -18,7 +18,7 @@ namespace lm
 {
     enum class Key
     {
-#ifdef __APPLE__
+#if defined(__APPLE__) || 1
         A = 0x00,
         S = 0x01,
         D = 0x02,

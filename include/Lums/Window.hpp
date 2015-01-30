@@ -16,6 +16,7 @@
 
 #include <queue>
 #include <Lums/Event.hpp>
+#include <Lums/ExportDll.hpp>
 
 namespace lm
 {
@@ -28,7 +29,7 @@ namespace lm
         * @param h The height of the window.
         * @param name The name of the window.
         */
-        Window(int w, int h, const char* name = "");
+        LUMS_EXPORTED Window(int w, int h, const char* name = "");
         
         /**
         * Push an event on the internal event stack.
@@ -68,17 +69,17 @@ namespace lm
         /**
         * Pump event from the underlying implementation to the event stack.
         */
-        void    pumpEvent();
+        LUMS_EXPORTED void    pumpEvent();
 
         /**
         * Swap the current buffer with the backbuffer.
         */
-        void    swap();
+        LUMS_EXPORTED void    swap();
         
         /**
         * Destructor
         */
-        ~Window();
+        LUMS_EXPORTED ~Window();
 
     private:
 

@@ -22,6 +22,7 @@
 #include <memory>
 #include <Lums/Window.hpp>
 #include <Lums/GameState.hpp>
+#include <Lums/ExportDll.hpp>
 
 namespace lm
 {
@@ -44,7 +45,7 @@ namespace lm
          * @param name The window title.
          * @param fullscreen Wether to start the core fullscreen.
          */
-        Core(int w, int h, const char* name = "", bool fullscreen = false);
+        LUMS_EXPORTED Core(int w, int h, const char* name = "", bool fullscreen = false);
 
         /**
         * Get the Core singleton.
@@ -82,12 +83,12 @@ namespace lm
          * This method will not return until Core::Stop
          * have been called.
          */
-        void    start();
+        LUMS_EXPORTED void    start();
         
         /**
          * Stop the core.
          */
-        void    stop();
+        LUMS_EXPORTED void    stop();
         
         /**
          * Push a new State.
@@ -109,7 +110,7 @@ namespace lm
          * Pop the topmost State.
          * If there is no state, it's a no-op.
          */
-        void    pop();
+        LUMS_EXPORTED void    pop();
         
         /**
          * Remove a state from the internal stack.
@@ -117,12 +118,12 @@ namespace lm
          * it's a no-op.
          * @param state The state to be removed
          */
-        void    remove(GameState* state);
+        LUMS_EXPORTED void    remove(GameState* state);
         
         /**
          * Clear the internal stack, and delete every element.
          */
-        void    clear();
+        LUMS_EXPORTED void    clear();
         
         /**
          * Do a transition.
@@ -143,9 +144,9 @@ namespace lm
          * Check if the core is stateless.
          * @return True if the core is stateless
          */
-        bool    stateless() const;
+        LUMS_EXPORTED bool    stateless() const;
         
-        ~Core();
+        LUMS_EXPORTED ~Core();
         
     private:
         void    doEvent();
@@ -154,14 +155,14 @@ namespace lm
         
         typedef std::vector<std::unique_ptr<GameState>> Stack;
         
-        Stack           _stack;
-        int             _it;
-        int             _width;
-        int             _height;
-        Window          _win;
-        bool            _jmp;
-        bool            _running;
-        static Core*    _singleton;
+        Stack                       _stack;
+        int                         _it;
+        int                         _width;
+        int                         _height;
+        Window                      _win;
+        bool                        _jmp;
+        bool                        _running;
+        LUMS_EXPORTED static Core*  _singleton;
     };
 }
 

@@ -17,6 +17,12 @@
 #include <cmath>
 #include <limits>
 
+#include <Lums/Common.hpp>
+
+#ifndef M_PI
+# define M_PI 3.14159265358979323846
+#endif
+
 namespace lm
 {
     /**
@@ -24,7 +30,7 @@ namespace lm
      */
     namespace internal
     {
-        constexpr double
+        inline constexpr double
         fabs_helper(double d)
         {
             return d < 0 ? -d : d;
@@ -366,6 +372,8 @@ namespace lm
         double  _angle;
     };
     
+#ifdef MODERN_CPP
+
     inline namespace literals
     {
         /**
@@ -434,6 +442,9 @@ namespace lm
             return Angle::degrees(angle);
         }
     }
+
+#endif
+
 }
 
 #endif
