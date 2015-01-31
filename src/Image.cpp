@@ -80,7 +80,7 @@ Image::loadFilePNG(const std::string path, bool resource)
         glDeleteTextures(1, &_texture);
     png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
     png_infop info_ptr = png_create_info_struct(png_ptr);
-    //setjmp(png_jmpbuf(png_ptr));
+    setjmp(png_jmpbuf(png_ptr));
     png_init_io(png_ptr, f);
     png_read_info(png_ptr, info_ptr);
     _width = png_get_image_width(png_ptr, info_ptr);
