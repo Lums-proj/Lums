@@ -71,37 +71,66 @@ void
 Image::loadFilePNG(const std::string path, bool resource)
 {
     std::string     file = resource ? resourcePath() + path : path;
-    unsigned char*  image;
-    unsigned char** imageBuf;
     FILE*           f = fopen(file.c_str(), "rb");
     png_byte        header[8];
 
     fread(header, 1, 8, f);
     if (png_sig_cmp(header, 0, 8))
         return;
-    if (_texture)
-        glDeleteTextures(1, &_texture);
+
     png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
     png_infop info_ptr = png_create_info_struct(png_ptr);
-    setjmp(png_jmpbuf(png_ptr));
     png_init_io(png_ptr, f);
     png_set_sig_bytes(png_ptr, 8);
     png_read_info(png_ptr, info_ptr);
+
+    int color;
+    int bits;
+    unsigned int w;
+    unsigned int h;
+    GLint format;
+
+    png_get_IHDR(png_ptr, info_ptr, &w, &h, &bits, &color, NULL, NULL, NULL);
+
+    switch (color)
+    {
+        case PNG_COLOR_TYPE_RGB:
+            format = GL_RGB;
+            break;
+
+        case PNG_COLOR_TYPE_RGB_ALPHA:
+            format = GL_RGBA;
+            break;
+
+        case PNG_COLOR_TYPE_PALETTE:
+            format = GL_RGB;
+            png_set_packing(png_ptr);
+            png_set_palette_to_rgb(png_ptr);
+            break;
+
+        default:
+            std::cerr << "PNG: Invalid color : " << color << " (" << bits << " bits)" << std::endl;
+            return;
+    }
+
     _width = png_get_image_width(png_ptr, info_ptr);
     _height = png_get_image_height(png_ptr, info_ptr);
-    image = new unsigned char[4 * _width * _height];
-    imageBuf = new unsigned char*[_height];
+
+    int rows = png_get_rowbytes(png_ptr, info_ptr);
+    rows += 3 - (rows - 1) % 4;
+
+    png_byte* image = new png_byte[rows * _height];
+    png_byte** image_ptr = new png_byte*[_height];
+
     for (size_t i = 0; i < _height; i++)
-        imageBuf[i] = new unsigned char[4 * _width];
-    png_read_image(png_ptr, imageBuf);
-    for (size_t j = 0; j < _height; j++)
-    {
-        std::memcpy(image + _width * 4 * j, imageBuf[j], _width * 4);
-        delete [] imageBuf[j];
-    }
-    delete [] imageBuf;
+        image_ptr[i] = image + i * rows;
+
+    png_read_image(png_ptr, image_ptr);
+
+    delete image_ptr;
+
     fclose(f);
-    gen(image);
+    gen(image, format);
 }
 
 Image
@@ -122,10 +151,12 @@ Image::~Image()
 // private
 
 void
-Image::gen(unsigned char* img)
+Image::gen(unsigned char* img, GLint format)
 {
+    if (_texture)
+        glDeleteTextures(1, &_texture);
     glGenTextures(1, &_texture);
     linear();
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _width, _height, 0, GL_RGBA, GL_UNSIGNED_BYTE, img);
-    delete [] img;
+    glTexImage2D(GL_TEXTURE_2D, 0, format, _width, _height, 0, format, GL_UNSIGNED_BYTE, img);
+    delete img;
 }

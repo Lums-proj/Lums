@@ -154,7 +154,7 @@ Font::~Font()
 void
 Font::loadGlyphes(void* faceHandle, unsigned char* buffer)
 {
-    int x, y, yMax = 0;
+    int x = 0, y = 0, yMax = 0;
     FT_Face face = static_cast<FT_Face>(faceHandle);
     FT_GlyphSlot g = face->glyph;
     for (int i = 0; i < 128; i++)
