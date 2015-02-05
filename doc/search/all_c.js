@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['radians',['Radians',['../classlm_1_1_angle.html#a8c5ce3add3cf39380355b8d115f3ca9d',1,'lm::Angle']]],
-  ['reload',['Reload',['../classlm_1_1_game_state.html#a4fafa028b44d83b7f4e2b78357c35a3e',1,'lm::GameState']]],
-  ['remove',['Remove',['../classlm_1_1_core.html#a27c42fcf7e3b75a9bbadea2e2881fc56',1,'lm::Core::Remove()'],['../classlm_1_1_game_state.html#a15eae2a4365d07a416fd9f029fdaee9a',1,'lm::GameState::Remove()']]],
-  ['render',['Render',['../classlm_1_1_game_state.html#a2e5c9cae71f7e5506ec04b5311c13f67',1,'lm::GameState']]]
+  ['pollevent',['pollEvent',['../classlm_1_1_window.html#aef49fce78acab55e9539be7a0b13e723',1,'lm::Window']]],
+  ['pop',['pop',['../classlm_1_1_core.html#ae9b86dc4997c09060e1a35e8cc3d08a3',1,'lm::Core']]],
+  ['pumpevent',['pumpEvent',['../classlm_1_1_window.html#a0e9ac10ca74f485bd376390c939f605d',1,'lm::Window']]],
+  ['push',['push',['../classlm_1_1_core.html#a2ef644dfc1c05a2103580c874e780120',1,'lm::Core']]],
+  ['pushevent',['pushEvent',['../classlm_1_1_window.html#aa1b8c9e36e889e2d62010abff05f6f7e',1,'lm::Window']]]
 ];

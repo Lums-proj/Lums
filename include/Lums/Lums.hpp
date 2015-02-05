@@ -17,9 +17,9 @@
 #define LUMS_STR2(str)      #str
 #define LUMS_STR(str)       LUMS_STR2(str)
 #define LUMS_VERSION_MAJOR  2
-#define LUMS_VERSION_MINOR  3
-#define LUMS_VERSION_TEENY  1
-#define LUMS_VERSION_PATCH  1
+#define LUMS_VERSION_MINOR  4
+#define LUMS_VERSION_TEENY  0
+#define LUMS_VERSION_PATCH  0
 
 #define LUMS_VERSION_NUMBER LUMS_STR(LUMS_VERSION_MAJOR) "."	\
 							LUMS_STR(LUMS_VERSION_MINOR) "." 	\
