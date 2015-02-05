@@ -34,6 +34,7 @@
 #include <Lums/Angle.hpp>
 #include <Lums/Core.hpp>
 #include <Lums/Event.hpp>
+#include <Lums/Font.hpp>
 #include <Lums/GameState.hpp>
 #include <Lums/GL.hpp>
 #include <Lums/Image.hpp>
