@@ -103,7 +103,7 @@ Image::loadFilePNG(const std::string path, bool resource)
             break;
 
         case PNG_COLOR_TYPE_PALETTE:
-            format = GL_RGB;
+            format = GL_RGBA;
             png_set_packing(png_ptr);
             png_set_palette_to_rgb(png_ptr);
             break;
@@ -115,6 +115,8 @@ Image::loadFilePNG(const std::string path, bool resource)
 
     _width = png_get_image_width(png_ptr, info_ptr);
     _height = png_get_image_height(png_ptr, info_ptr);
+
+    png_read_update_info(png_ptr, info_ptr);
 
     int rows = png_get_rowbytes(png_ptr, info_ptr);
     rows += 3 - (rows - 1) % 4;

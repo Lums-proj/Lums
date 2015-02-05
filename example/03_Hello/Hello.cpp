@@ -19,8 +19,8 @@ public:
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         _anim.loadFile("mario.png", 16, 1);
         _sprite.setAnimation(_anim);
-        _sprite.setState(0, 16);
-        _sprite.setSpeed(8);
+        _sprite.setState(1, 3);
+        _sprite.setSpeed(10);
         _frame = 0;
     }
 
@@ -46,7 +46,7 @@ public:
         glEnd();
         glColor3d(1, 1, 1);
         _font.printf(0, 50, "Hello, World! %d", _frame);
-        _sprite.draw(0, 0);
+        _sprite.draw(92, 92);
     }
 
     void
