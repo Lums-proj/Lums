@@ -48,10 +48,10 @@ Image::operator=(Image&& rhs)
     return *this;
 }
 
-Image&
+void
 Image::loadFile(const std::string path, bool resource)
 {
-    typedef Image& (Image::*imgptr_t)(std::string, bool);
+    typedef void (Image::*imgptr_t)(std::string, bool);
 
     static const std::map<std::string, imgptr_t> extFuncs = {
         {"png", &Image::loadFilePNG}
@@ -60,28 +60,32 @@ Image::loadFile(const std::string path, bool resource)
     std::string ext = path.substr(path.find_last_of('.') + 1);
 
     if (extFuncs.find(ext) != extFuncs.end())
-        return (this->*(extFuncs.at(ext)))(path, resource);
-    return *this;
+        (this->*(extFuncs.at(ext)))(path, resource);
 }
 
 /*
  * This is KLUDGE
  */
 
-Image&
+void
 Image::loadFilePNG(const std::string path, bool resource)
 {
     std::string     file = resource ? resourcePath() + path : path;
     unsigned char*  image;
     unsigned char** imageBuf;
     FILE*           f = fopen(file.c_str(), "rb");
+    png_byte        header[8];
 
+    fread(header, 1, 8, f);
+    if (png_sig_cmp(header, 0, 8))
+        return;
     if (_texture)
         glDeleteTextures(1, &_texture);
     png_structp png_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
     png_infop info_ptr = png_create_info_struct(png_ptr);
     setjmp(png_jmpbuf(png_ptr));
     png_init_io(png_ptr, f);
+    png_set_sig_bytes(png_ptr, 8);
     png_read_info(png_ptr, info_ptr);
     _width = png_get_image_width(png_ptr, info_ptr);
     _height = png_get_image_height(png_ptr, info_ptr);
@@ -92,13 +96,12 @@ Image::loadFilePNG(const std::string path, bool resource)
     png_read_image(png_ptr, imageBuf);
     for (size_t j = 0; j < _height; j++)
     {
-        std::memcpy(image + _width * 4 * (_height - j - 1), imageBuf[j], _width * 4);
+        std::memcpy(image + _width * 4 * j, imageBuf[j], _width * 4);
         delete [] imageBuf[j];
     }
     delete [] imageBuf;
     fclose(f);
     gen(image);
-    return *this;
 }
 
 Image
