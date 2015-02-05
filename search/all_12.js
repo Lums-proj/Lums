@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['x',['x',['../structlm_1_1_vector2.html#afe1c4486d839638dd64f21c7337934d7',1,'lm::Vector2::x()'],['../structlm_1_1_vector3.html#ad156f4b83ec4d81eba6f39136acc6cc6',1,'lm::Vector3::x()']]]
+  ['waitevent',['waitEvent',['../classlm_1_1_window.html#a2303b068ae1bfe86366dba2af1da359a',1,'lm::Window']]],
+  ['width',['width',['../classlm_1_1_core.html#afc7c8eebd261d01a956d07bf13b17789',1,'lm::Core::width()'],['../classlm_1_1_image.html#a3f749694145f58e50b67a7a48fe5d484',1,'lm::Image::width()']]],
+  ['window',['Window',['../classlm_1_1_window.html#a117b8a8b5c3170593b6c0aaa641feabc',1,'lm::Window']]],
+  ['window',['Window',['../classlm_1_1_window.html',1,'lm']]]
 ];

@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['tan',['Tan',['../classlm_1_1_angle.html#ad6053eafebb4adbc15f2924fd68756ce',1,'lm::Angle']]],
-  ['texture',['Texture',['../classlm_1_1_image.html#adaa7f88e3eb38d26848000a87e54e412',1,'lm::Image']]],
+  ['tan',['tan',['../classlm_1_1_angle.html#a61000ae2880282317eefcaa742f6fc3c',1,'lm::Angle']]],
+  ['texture',['texture',['../classlm_1_1_image.html#aedcf06018095580a27544868b868ca8a',1,'lm::Image']]],
   ['todegrees',['toDegrees',['../classlm_1_1_angle.html#a436d279d2f5eed0a1845732ec29dbdc9',1,'lm::Angle']]],
   ['toradians',['toRadians',['../classlm_1_1_angle.html#a6f1215a11cb615f3f4f89062de675b17',1,'lm::Angle']]],
   ['toturns',['toTurns',['../classlm_1_1_angle.html#a3ca7aefdb77bbe0eb7302315fba15b0e',1,'lm::Angle']]],
-  ['transition',['Transition',['../classlm_1_1_core.html#a3dd137242ad886614b75b0cc1051c69a',1,'lm::Core']]],
-  ['turns',['Turns',['../classlm_1_1_angle.html#aa7efbf30b44d07ff509d47ee8cf64eb1',1,'lm::Angle']]]
+  ['transition',['transition',['../classlm_1_1_core.html#a30608d0fbc12fe5886609af368933f41',1,'lm::Core']]],
+  ['turns',['turns',['../classlm_1_1_angle.html#ad33a3f0dd49283ac542af6f8f412afcb',1,'lm::Angle']]]
 ];

@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['unit',['Unit',['../structlm_1_1_vector2.html#a08f6845dca95fccc8e4d6f0d1f5d47a3',1,'lm::Vector2::Unit()'],['../structlm_1_1_vector3.html#aca331ff2524269935ecae34bcc5df6f3',1,'lm::Vector3::Unit()']]],
-  ['unload',['Unload',['../classlm_1_1_game_state.html#a2f33afe8f600ef60f7c1ed4414c78ef3',1,'lm::GameState']]],
-  ['update',['Update',['../classlm_1_1_game_state.html#a235f79f44babe8a85fcb1d8eb93b0bfe',1,'lm::GameState']]]
+  ['tan',['tan',['../classlm_1_1_angle.html#a61000ae2880282317eefcaa742f6fc3c',1,'lm::Angle']]],
+  ['texture',['texture',['../classlm_1_1_image.html#aedcf06018095580a27544868b868ca8a',1,'lm::Image']]],
+  ['todegrees',['toDegrees',['../classlm_1_1_angle.html#a436d279d2f5eed0a1845732ec29dbdc9',1,'lm::Angle']]],
+  ['toradians',['toRadians',['../classlm_1_1_angle.html#a6f1215a11cb615f3f4f89062de675b17',1,'lm::Angle']]],
+  ['toturns',['toTurns',['../classlm_1_1_angle.html#a3ca7aefdb77bbe0eb7302315fba15b0e',1,'lm::Angle']]],
+  ['transition',['transition',['../classlm_1_1_core.html#a30608d0fbc12fe5886609af368933f41',1,'lm::Core']]],
+  ['turns',['turns',['../classlm_1_1_angle.html#ad33a3f0dd49283ac542af6f8f412afcb',1,'lm::Angle']]]
 ];

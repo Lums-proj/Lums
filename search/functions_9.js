@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['normalize',['Normalize',['../structlm_1_1_vector2.html#a1f9190a320cfd9e8e91a9335e8c23bdc',1,'lm::Vector2::Normalize()'],['../structlm_1_1_vector3.html#ab8ac5b504d75f2d9dc5b6ea3dfbc72c0',1,'lm::Vector3::Normalize()']]],
-  ['null',['Null',['../structlm_1_1_vector2.html#a2a33f8d858c46dbf795a02d9b6e893e1',1,'lm::Vector2::Null()'],['../structlm_1_1_vector3.html#a4945e170b17e63ff26d8147cd707648d',1,'lm::Vector3::Null()']]]
+  ['normalize',['normalize',['../structlm_1_1_vector2.html#a9b6fa779ac8e609fd6249e68f4af175a',1,'lm::Vector2::normalize()'],['../structlm_1_1_vector3.html#a2db2f874c8b9df79a1194337dfc2edca',1,'lm::Vector3::normalize()']]],
+  ['null',['null',['../structlm_1_1_vector2.html#ad1cf466c5f8806b3fc4089da1fcb7351',1,'lm::Vector2::null()'],['../structlm_1_1_vector3.html#affe247ed4379ed1bf21293323a98e822',1,'lm::Vector3::null()']]]
 ];
