@@ -39,12 +39,14 @@ lm::glLookAt(Vector3f eye, Vector3f lookAt, Vector3f up)
     up.normalize();
     s = f.cross(up);
     u = s.cross(f);
-    float m[] = {
+
+    static const float m[] = {
         s.x, u.x, -f.x, 0,
         s.y, u.y, -f.y, 0,
         s.z, u.z, -f.z, 0,
         0, 0, 0, 1
     };
+
     glMultMatrixf(m);
     glTranslatef(-eye.x, -eye.y, -eye.z);
 }

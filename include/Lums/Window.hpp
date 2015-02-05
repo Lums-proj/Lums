@@ -20,6 +20,9 @@
 
 namespace lm
 {
+    /**
+    * This class defines a Window.
+    */
     class Window
     {
     public:
