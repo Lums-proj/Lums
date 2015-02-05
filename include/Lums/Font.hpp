@@ -26,11 +26,13 @@ namespace lm
         Font(const Font&) = delete;
         void    loadFile(const std::string& filename, float size, bool resource = true);
         void    load(const std::string& font, float size);
-        void    puts(const std::string& str, int x = 0, int y = 0) const;
-        void    puts(const char* str, int x = 0, int y = 0) const;
+        void    puts(int x, int y, const std::string& str) const;
+        void    puts(int x, int y, const char* str) const;
+        void    printf(int x, int y, const char* format, ...) const;
         ~Font();
 
     private:
+        void    loadGlyphes(void*, unsigned char*);
         GLuint  _texture;
         int     _width[128];
         int     _height[128];
