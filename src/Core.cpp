@@ -64,7 +64,7 @@ Core::start()
             doUpdate();
         }
         doRender();
-        std::this_thread::sleep_for(microseconds(400)); // CPU is happy
+        //std::this_thread::sleep_for(microseconds(400)); // CPU is happy
     }
 }
 

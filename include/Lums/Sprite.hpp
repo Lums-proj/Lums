@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Nyan.cpp                                       oooooo       oooooo      */
+/*    Sprite.hpp                                     oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,58 +11,65 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Lums/Lums.hpp>
+#ifndef LUMS_SPRITE_HPP
+#define LUMS_SPRITE_HPP
 
-class Nyan : public lm::GameState
+namespace lm
 {
-public:
-    Nyan()
-    : _linear(true)
-    {
-        glEnable(GL_TEXTURE_2D);
-        _image.loadFile("Nyan.png");
-        _sprite.setImage(_image);
-        _sprite.setSize(2, 2);
-    }
+    class Image;
 
-    void
-    update()
+    class Sprite
     {
+    public:
 
-    }
-
-    void
-    handleEvent(const lm::Event& event)
-    {
-        if (event.type == lm::Event::Type::KeyDown)
+        Sprite()
+        : _image(nullptr)
+        , _w(0)
+        , _h(0)
         {
-            if (event.key == lm::Key::V)
-            {
-                _linear = !_linear;
-                _image.linear(_linear);
-            }
-            else
-                lm::Core::get().stop();
+
         }
-    }
 
-    void
-    render() const
-    {
-        _sprite.draw(-1, -1);
-    }
+        Sprite(Image& image, int w = 0, int h = 0);
+        
+        Image&
+        image() const
+        {
+            return *_image;
+        }
 
-private:
-    lm::Image   _image;
-    lm::Sprite  _sprite;
-    bool        _linear;
-};
+        void
+        setImage(Image& image)
+        {
+            _image = &image;
+        }
 
-int
-main()
-{
-    lm::Core core(400, 400, "Nyan");
+        int
+        width() const
+        {
+            return _w;
+        }
 
-    core.push<Nyan>();
-    core.start();
+        int
+        height()
+        {
+            return _h;
+        }
+
+        void
+        setSize(int w, int h)
+        {
+            _w = w;
+            _h = h;
+        }
+
+        void    draw(int x, int y) const;
+
+    private:
+        Image*  _image;
+        int     _w;
+        int     _h;
+    };
 }
+
+#endif

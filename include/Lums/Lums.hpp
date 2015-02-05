@@ -19,7 +19,7 @@
 #define LUMS_VERSION_MAJOR  2
 #define LUMS_VERSION_MINOR  3
 #define LUMS_VERSION_TEENY  1
-#define LUMS_VERSION_PATCH  0
+#define LUMS_VERSION_PATCH  1
 
 #define LUMS_VERSION_NUMBER LUMS_STR(LUMS_VERSION_MAJOR) "."	\
 							LUMS_STR(LUMS_VERSION_MINOR) "." 	\
@@ -39,6 +39,7 @@
 #include <Lums/Image.hpp>
 #include <Lums/Key.hpp>
 #include <Lums/OperatingSystem.hpp>
+#include <Lums/Sprite.hpp>
 #include <Lums/Vector2.hpp>
 #include <Lums/Vector3.hpp>
 #include <Lums/Window.hpp>
