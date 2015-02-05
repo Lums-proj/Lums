@@ -1,0 +1,46 @@
+#titlearea
+{
+    display: none;
+}
+
+.tabs, .tabs2, .tabs3
+{
+    background-image: none;
+}
+
+.tabs
+{
+    background-color: #39d;
+}
+
+.tabs2
+{
+    background-color: #28c;
+}
+
+.tabs3
+{
+    background-color: #17b;
+}
+
+.tablist li
+{
+    background-image: none;
+}
+
+.tablist a
+{
+    background-image: none;
+    color: #ffffff;
+    text-shadow:none;
+}
+
+.tablist li.current a
+{
+    background-image: none;
+}
+
+.tablist a:hover
+{
+    background-image: none;
+}

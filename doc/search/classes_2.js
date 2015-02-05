@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gamestate',['GameState',['../classlm_1_1_game_state.html',1,'lm']]]
+  ['event',['Event',['../structlm_1_1_event.html',1,'lm']]]
 ];
