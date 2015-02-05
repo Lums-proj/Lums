@@ -117,7 +117,7 @@ namespace lm
          * @param resource If true, prepend resourcePath() to the path.
          * @return A reference to an image.
          */
-        LUMS_EXPORTED Image&          loadFile(const std::string path, bool resource = true);
+        LUMS_EXPORTED void  loadFile(const std::string path, bool resource = true);
 
         /**
          * Load a png image from a file.
@@ -125,7 +125,7 @@ namespace lm
          * @param resource If true, prepend resourcePath() to the path.
          * @return A reference to an image.
          */
-        LUMS_EXPORTED Image&          loadFilePNG(const std::string path, bool resource = true);
+        LUMS_EXPORTED void  loadFilePNG(const std::string path, bool resource = true);
 
         /**
          * Load an image from a file.

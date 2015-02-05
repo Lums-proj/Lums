@@ -17,12 +17,18 @@ public:
         _font.load("Arial Black.ttf", 16);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        _anim.loadFile("mario.png", 16, 1);
+        _sprite.setAnimation(_anim);
+        _sprite.setState(0, 16);
+        _sprite.setSpeed(8);
+        _frame = 0;
     }
 
     void
     update()
     {
         _frame++;
+        _sprite.update();
     }
 
     void
@@ -40,6 +46,7 @@ public:
         glEnd();
         glColor3d(1, 1, 1);
         _font.printf(0, 50, "Hello, World! %d", _frame);
+        _sprite.draw(0, 0);
     }
 
     void
@@ -51,6 +58,8 @@ public:
 
 private:
     lm::Font _font;
+    lm::Animation _anim;
+    lm::AnimatedSprite _sprite;
     int      _frame;
 };
 

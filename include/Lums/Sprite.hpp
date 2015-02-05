@@ -14,10 +14,10 @@
 #ifndef LUMS_SPRITE_HPP
 #define LUMS_SPRITE_HPP
 
+#include <Lums/Image.hpp>
+
 namespace lm
 {
-    class Image;
-
     class Sprite
     {
     public:
@@ -26,6 +26,12 @@ namespace lm
         : _image(nullptr)
         , _w(0)
         , _h(0)
+        {
+
+        }
+
+        Sprite(Image& image)
+        : Sprite(image, image.width(), image.height())
         {
 
         }

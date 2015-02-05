@@ -19,10 +19,19 @@ public:
     Nyan()
     : _linear(true)
     {
+        
+    }
+
+    void
+    load()
+    {
+        glMatrixMode(GL_PROJECTION);
+        glOrtho(0, 400, 400, 0, -1, 1);
+        glMatrixMode(GL_MODELVIEW);
         glEnable(GL_TEXTURE_2D);
         _image.loadFile("Nyan.png");
         _sprite.setImage(_image);
-        _sprite.setSize(2, 2);
+        _sprite.setSize(400, 400);
     }
 
     void
@@ -49,7 +58,7 @@ public:
     void
     render() const
     {
-        _sprite.draw(-1, -1);
+        _sprite.draw(0, 0);
     }
 
 private:

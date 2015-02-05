@@ -32,6 +32,8 @@
 #endif
 
 #include <Lums/Angle.hpp>
+#include <Lums/AnimatedSprite.hpp>
+#include <Lums/Animation.hpp>
 #include <Lums/Core.hpp>
 #include <Lums/Event.hpp>
 #include <Lums/Font.hpp>
