@@ -27,7 +27,7 @@ find_path(
  	NO_DEFAULT_PATH
 )
 
+message(STATUS "Found libpng: ${PNG_LIBRARIES}")
+
 list(APPEND PNG_LIBRARIES ${ZLIB_LIBRARIES})
 
-message(STATUS "Found libpng: ${PNG_LIBRARIES}")
-message(STATUS "toto ${PNG_INCLUDE_DIRS}")
