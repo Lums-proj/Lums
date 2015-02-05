@@ -14,7 +14,9 @@ public:
         glMatrixMode(GL_PROJECTION);
         glOrtho(0, 200, 200, 0, -1, 1);
         glMatrixMode(GL_MODELVIEW);
-        _font.load("Arial.ttf", 50);
+        _font.load("Arial Black.ttf", 20);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     }
 
     void
@@ -25,7 +27,7 @@ public:
 
     void
     render() const
-    {/*
+    {
         glBegin(GL_QUADS);
         glColor3d(1, 0, 0);
         glVertex2i(0, 0);
@@ -36,9 +38,8 @@ public:
         glColor3d(1, 1, 0);
         glVertex2i(0, 200);
         glEnd();
-        glColor3d(1, 1, 1);*/
-        //_font.puts("HelloHelloHello");
-        _font.debug();
+        glColor3d(1, 1, 1);
+        _font.puts("Hello, World!", 50, 50);
     }
 
     void

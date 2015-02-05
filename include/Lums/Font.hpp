@@ -23,11 +23,11 @@ namespace lm
     {
     public:
         Font();
+        Font(const Font&) = delete;
         void    loadFile(const std::string& filename, float size, bool resource = true);
         void    load(const std::string& font, float size);
         void    puts(const std::string& str, int x = 0, int y = 0) const;
         void    puts(const char* str, int x = 0, int y = 0) const;
-        void    debug() const;
         ~Font();
 
     private:
@@ -36,6 +36,9 @@ namespace lm
         int     _height[128];
         int     _x[128];
         int     _y[128];
+        int     _left[128];
+        int     _top[128];
+        int     _advance[128];
     };
 }
 
