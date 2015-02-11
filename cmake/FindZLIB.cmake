@@ -1,8 +1,6 @@
 #
-# FindPNG.cmake
+# FindZLIB.cmake
 #
-
-find_package(ZLIB)
 
 if (WIN32)
 
@@ -20,38 +18,36 @@ if (WIN32)
 		set (WIN_DEBUG "d")
 	endif()
 
-	set (PNG_LIBRARIES "${WIN_LIB_PATH}/lib/libpng16${WIN_DEBUG}.lib")
-	set (PNG_INCLUDE_DIRS "${WIN_LIB_PATH}/include")
-	set (PNG_RUNTIME "${WIN_LIB_PATH}/bin/libpng16${WIN_DEBUG}.dll")
+	set (ZLIB_LIBRARIES "${WIN_LIB_PATH}/lib/zlib${WIN_DEBUG}.lib")
+	set (ZLIB_INCLUDE_DIRS "${WIN_LIB_PATH}/include")
+	set (ZLIB_RUNTIME "${WIN_LIB_PATH}/bin/zlib${WIN_DEBUG}.dll")
 
 else()
 
-	set(PNG_SEARCH_PATH
+	set(ZLIB_SEARCH_PATH
 		/usr
 		/usr/local
 		~/.brew
 	)
 
 	find_library(
-		PNG_LIBRARIES
-		libpng.a
+		ZLIB_LIBRARIES
+		zlib.a
 		PATHS
-		${PNG_SEARCH_PATH}
+		${ZLIB_SEARCH_PATH}
 		PATH_SUFFIXES lib lib64
 	)
 
 	find_path(
-	 	PNG_INCLUDE_DIRS
-	 	png.h
+	 	ZLIB_INCLUDE_DIRS
+	 	zlib.h
 	 	PATHS
-	 	${PNG_SEARCH_PATH}
+	 	${ZLIB_SEARCH_PATH}
 	 	PATH_SUFFIXES include
 	 	NO_DEFAULT_PATH
 	)
 
 endif()
 
-message(STATUS "Found libpng: ${PNG_LIBRARIES}")
-
-list(APPEND PNG_LIBRARIES ${ZLIB_LIBRARIES})
+message(STATUS "Found zlib: ${ZLIB_LIBRARIES}")
 

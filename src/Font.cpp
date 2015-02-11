@@ -11,6 +11,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <cstdio>
 #include <cstdarg>
 #include <cstring>
@@ -49,7 +51,7 @@ Font::loadFile(const std::string& filename, float size, bool resource)
     if (resource)
         file = resourcePath() + file;
     FT_New_Face(library, file.c_str(), 0, &face);
-    FT_Set_Char_Size(face, 0, size * 64, 0, 0);
+    FT_Set_Char_Size(face, 0, static_cast<FT_F26Dot6>(size * 64), 0, 0);
     unsigned char* buffer = new unsigned char[T_WIDTH * T_WIDTH * 4];
     std::memset(buffer, 0, T_WIDTH * T_WIDTH * 4);
     loadGlyphes(face, buffer);
@@ -138,7 +140,12 @@ Font::printf(int x, int y, const char* format, ...) const
     char* str;
 
     va_start(ap, format);
+#if _MSC_VER
+    str = static_cast<char*>(malloc(_vscprintf(format, ap) + 1));
+    vsprintf(str, format, ap);
+#elif
     vasprintf(&str, format, ap);
+#endif
     Font::puts(x, y, str);
     free(str);
     va_end(ap);
@@ -154,7 +161,7 @@ Font::~Font()
 void
 Font::loadGlyphes(void* faceHandle, unsigned char* buffer)
 {
-    int x = 0, y = 0, yMax = 0;
+    size_t x = 0, y = 0, yMax = 0;
     FT_Face face = static_cast<FT_Face>(faceHandle);
     FT_GlyphSlot g = face->glyph;
     for (int i = 0; i < 128; i++)

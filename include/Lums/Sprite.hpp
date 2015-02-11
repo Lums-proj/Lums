@@ -15,6 +15,7 @@
 #define LUMS_SPRITE_HPP
 
 #include <Lums/Image.hpp>
+#include <Lums/ExportDll.hpp>
 
 namespace lm
 {
@@ -69,7 +70,7 @@ namespace lm
             _h = h;
         }
 
-        void    draw(int x, int y) const;
+        LUMS_EXPORTED void    draw(int x, int y) const;
 
     private:
         Image*  _image;

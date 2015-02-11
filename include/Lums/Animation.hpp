@@ -16,6 +16,7 @@
 
 #include <Lums/Image.hpp>
 #include <Lums/GL.hpp>
+#include <Lums/ExportDll.hpp>
 
 namespace lm
 {
@@ -25,8 +26,8 @@ namespace lm
 	class Animation
 	{
 	public:
-		Animation();
-		void	loadFile(const std::string& filename, size_t wcount, size_t hcount, bool resource = true);
+		LUMS_EXPORTED Animation();
+		LUMS_EXPORTED void	loadFile(const std::string& filename, size_t wcount, size_t hcount, bool resource = true);
 
 		size_t
 		width() const
