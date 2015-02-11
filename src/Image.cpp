@@ -70,9 +70,15 @@ Image::loadFile(const std::string path, bool resource)
 void
 Image::loadFilePNG(const std::string path, bool resource)
 {
-    std::string     file = resource ? resourcePath() + path : path;
+    std::string     file = resource ? resourcePath() + '/' + path : path;
     FILE*           f = fopen(file.c_str(), "rb");
     png_byte        header[8];
+
+    if (!f)
+    {
+        std::cerr << "PNG: Could not open file '" << file << "'" << std::endl;
+        return;
+    }
 
     fread(header, 1, 8, f);
     if (png_sig_cmp(header, 0, 8))

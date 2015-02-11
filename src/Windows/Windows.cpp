@@ -23,18 +23,13 @@ namespace lm
     {
         if (res_path.empty())
         {
-            res_path = ".";
+            char path[MAX_PATH];
+            HMODULE hModule = GetModuleHandle(NULL);
+
+            GetModuleFileName(hModule, path, MAX_PATH);
+            res_path = path;
+            res_path = res_path.substr(0, res_path.find_last_of('\\') + 1);
         }
         return res_path;
     }
-}
-
-extern "C" int main(int, char**);
-
-int WINAPI
-WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR lp, int n)
-{
-    char* argv[] = {"", 0};
-    
-    return 0;//main(1, argv);
 }

@@ -16,14 +16,18 @@ list(APPEND SRC ${OS_SRC})
 
 set(LUMS_ALL lums_shared)
 
+if (WIN32 AND CMAKE_BUILD_TYPE MATCHES "Debug")
+    set (WIN_DEBUG "d")
+endif()
+
 add_library(Lums_shared SHARED ${SRC} ${HEADER})
-set_target_properties(Lums_shared PROPERTIES OUTPUT_NAME Lums DEFINE_SYMBOL "EXPORT_DLL")
+set_target_properties(Lums_shared PROPERTIES OUTPUT_NAME "Lums${WIN_DEBUG}" DEFINE_SYMBOL "EXPORT_DLL")
 target_link_libraries(Lums_shared ${LINK_LIB})
+
 install(TARGETS Lums_shared DESTINATION lib)
 
 if (WIN32)
-    file(GLOB DLL "${CMAKE_SOURCE_DIR}/ext/win32/bin/*.dll")
-    file(COPY ${DLL} DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+    file(COPY ${PNG_RUNTIME} ${ZLIB_RUNTIME} DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 endif()
 
 if (NOT WIN32)

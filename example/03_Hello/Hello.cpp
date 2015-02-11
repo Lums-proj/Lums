@@ -27,7 +27,11 @@ public:
         glMatrixMode(GL_PROJECTION);
         glOrtho(0, 200, 200, 0, -1, 1);
         glMatrixMode(GL_MODELVIEW);
+#if WIN32
+        _font.load("Arial.ttf", 16);
+#else
         _font.load("Arial Black.ttf", 16);
+#endif
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         _anim.loadFile("mario.png", 16, 1);
