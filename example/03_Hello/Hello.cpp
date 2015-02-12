@@ -12,6 +12,7 @@
 /* ************************************************************************** */
 
 #include <Lums/Lums.hpp>
+#include <Lums/Script.hpp>
 
 class Hello : public lm::GameState
 {
@@ -38,6 +39,7 @@ public:
         _sprite.setAnimation(_anim);
         _sprite.setState(1, 3);
         _sprite.setSpeed(10);
+        _script.loadFile("hello.mrb");
         _frame = 0;
     }
 
@@ -46,6 +48,7 @@ public:
     {
         _frame++;
         _sprite.update();
+        _script.run();
     }
 
     void
@@ -77,6 +80,7 @@ private:
     lm::Font _font;
     lm::Animation _anim;
     lm::AnimatedSprite _sprite;
+    lm::Script _script;
     int      _frame;
 };
 
