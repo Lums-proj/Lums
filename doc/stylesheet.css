@@ -1,3 +1,8 @@
+body
+{
+    background-color:   #eee;
+}
+
 #titlearea
 {
     display: none;
@@ -43,4 +48,114 @@
 .tablist a:hover
 {
     background-image: none;
+}
+
+.memitem
+{
+    border-radius:      0px;
+    margin-bottom:      35px;
+    margin-left:        auto;
+    margin-right:       auto;
+    width:              100%;
+}
+
+.memproto
+{
+    border:             none;
+    border-radius:      0px;
+    background-image:   none;
+    background-color:   #39e;
+    box-shadow:         none;
+    color:              white;
+    text-shadow:        none;
+}
+
+.memtemplate
+{
+    color:              #eee;
+}
+
+a.el
+{
+    color:              #555;
+}
+
+.memproto a.el
+{
+    color:              #ddf;
+}
+
+.memdoc
+{
+    /*border:             1px solid #aaa;*/
+    border: none;
+    background-image:   none;
+    border-radius:      0px;
+    box-shadow:         none;
+}
+
+span.mlabel
+{
+    background-image:   none;
+    background-color:   #4bf;
+    border:             none;
+    font-size:          9pt;
+}
+
+em
+{
+    color:              #dff;
+}
+
+#nav-path ul
+{
+    background-image:   none;
+    border:             none;
+    background-color:   #17b;
+    margin:             0;
+}
+
+li.navelem
+{
+    background-image:   none;
+    background-color:   #17b;
+    color:              white;
+}
+
+li.navelem a.el
+{
+    color:              white;
+    text-shadow:        none;
+}
+
+.memproto .paramname
+{
+    color:              #ddd;
+}
+
+tr td .ah
+{
+    background-image:   none;
+    border-radius:      100%;
+    background-color:   #4af;
+    border:             none;
+    box-shadow:         none;
+    margin:             auto;
+}
+
+.ah
+{
+    margin:             auto;
+}
+
+.textblock
+{
+    min-width:          800px;
+    width:              60%;
+    margin:             auto;
+}
+
+.memname tr
+{
+    float: left;
 }

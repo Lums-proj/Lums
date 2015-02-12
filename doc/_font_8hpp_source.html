@@ -105,39 +105,53 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#ifndef LUMS_FONT_HPP</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#define LUMS_FONT_HPP</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;Lums/GL.hpp&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacelm.html">lm</a></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classlm_1_1_font.html">   22</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classlm_1_1_font.html">Font</a></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="classlm_1_1_font.html">Font</a>();</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <a class="code" href="classlm_1_1_font.html">Font</a>(<span class="keyword">const</span> <a class="code" href="classlm_1_1_font.html">Font</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordtype">void</span>    loadFile(<span class="keyword">const</span> std::string&amp; filename, <span class="keywordtype">float</span> size, <span class="keywordtype">bool</span> resource = <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordtype">void</span>    load(<span class="keyword">const</span> std::string&amp; font, <span class="keywordtype">float</span> size);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordtype">void</span>    puts(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keyword">const</span> std::string&amp; str) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">void</span>    puts(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keyword">const</span> <span class="keywordtype">char</span>* str) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">void</span>    printf(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        ~<a class="code" href="classlm_1_1_font.html">Font</a>();</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordtype">void</span>    loadGlyphes(<span class="keywordtype">void</span>*, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        GLuint  _texture;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordtype">int</span>     _width[128];</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordtype">int</span>     _height[128];</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordtype">int</span>     _x[128];</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordtype">int</span>     _y[128];</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordtype">int</span>     _left[128];</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">int</span>     _top[128];</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">int</span>     _advance[128];</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    };</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;Lums/ExportDll.hpp&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;Lums/GL.hpp&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacelm.html">lm</a></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classlm_1_1_font.html">   27</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classlm_1_1_font.html">Font</a></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        LUMS_EXPORTED <a class="code" href="classlm_1_1_font.html#a4e6a119206f505522100221c1fafde45">Font</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        LUMS_EXPORTED <a class="code" href="classlm_1_1_font.html#a4e6a119206f505522100221c1fafde45">Font</a>(<span class="keyword">const</span> Font&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        LUMS_EXPORTED <span class="keywordtype">void</span>    <a class="code" href="classlm_1_1_font.html#a18054223acf45441122b40427a8abc14">loadFile</a>(<span class="keyword">const</span> std::string&amp; filename, <span class="keywordtype">float</span> size, <span class="keywordtype">bool</span> resource = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        LUMS_EXPORTED <span class="keywordtype">void</span>    <a class="code" href="classlm_1_1_font.html#ac8426fc6e340b18fd1f41d64d0e07b89">load</a>(<span class="keyword">const</span> std::string&amp; font, <span class="keywordtype">float</span> size);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        LUMS_EXPORTED <span class="keywordtype">void</span>    <a class="code" href="classlm_1_1_font.html#ab077976804f3a5f74230afa7cde5515b">puts</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keyword">const</span> std::string&amp; str) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        LUMS_EXPORTED <span class="keywordtype">void</span>    <a class="code" href="classlm_1_1_font.html#ab077976804f3a5f74230afa7cde5515b">puts</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keyword">const</span> <span class="keywordtype">char</span>* str) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        LUMS_EXPORTED <span class="keywordtype">void</span>    <a class="code" href="classlm_1_1_font.html#a400854bedfe522f9444ee66695ce40bf">printf</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        LUMS_EXPORTED <a class="code" href="classlm_1_1_font.html#a134aaa2f78af0c12d3ce504957169768">~Font</a>();</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        LUMS_EXPORTED <span class="keywordtype">void</span>    loadGlyphes(<span class="keywordtype">void</span>*, <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        GLuint  _texture;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordtype">int</span>     _width[128];</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordtype">int</span>     _height[128];</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordtype">int</span>     _x[128];</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordtype">int</span>     _y[128];</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="keywordtype">int</span>     _left[128];</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordtype">int</span>     _top[128];</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordtype">int</span>     _advance[128];</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    };</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classlm_1_1_font_html_a18054223acf45441122b40427a8abc14"><div class="ttname"><a href="classlm_1_1_font.html#a18054223acf45441122b40427a8abc14">lm::Font::loadFile</a></div><div class="ttdeci">LUMS_EXPORTED void loadFile(const std::string &amp;filename, float size, bool resource=true)</div><div class="ttdef"><b>Definition:</b> Font.cpp:46</div></div>
+<div class="ttc" id="classlm_1_1_font_html_a4e6a119206f505522100221c1fafde45"><div class="ttname"><a href="classlm_1_1_font.html#a4e6a119206f505522100221c1fafde45">lm::Font::Font</a></div><div class="ttdeci">LUMS_EXPORTED Font()</div><div class="ttdef"><b>Definition:</b> Font.cpp:33</div></div>
 <div class="ttc" id="namespacelm_html"><div class="ttname"><a href="namespacelm.html">lm</a></div><div class="ttdef"><b>Definition:</b> Angle.hpp:26</div></div>
-<div class="ttc" id="classlm_1_1_font_html"><div class="ttname"><a href="classlm_1_1_font.html">lm::Font</a></div><div class="ttdef"><b>Definition:</b> Font.hpp:22</div></div>
+<div class="ttc" id="classlm_1_1_font_html_a400854bedfe522f9444ee66695ce40bf"><div class="ttname"><a href="classlm_1_1_font.html#a400854bedfe522f9444ee66695ce40bf">lm::Font::printf</a></div><div class="ttdeci">LUMS_EXPORTED void printf(int x, int y, const char *format,...) const </div><div class="ttdef"><b>Definition:</b> Font.cpp:137</div></div>
+<div class="ttc" id="classlm_1_1_font_html_ac8426fc6e340b18fd1f41d64d0e07b89"><div class="ttname"><a href="classlm_1_1_font.html#ac8426fc6e340b18fd1f41d64d0e07b89">lm::Font::load</a></div><div class="ttdeci">LUMS_EXPORTED void load(const std::string &amp;font, float size)</div><div class="ttdef"><b>Definition:</b> Font.cpp:70</div></div>
+<div class="ttc" id="classlm_1_1_font_html"><div class="ttname"><a href="classlm_1_1_font.html">lm::Font</a></div><div class="ttdef"><b>Definition:</b> Font.hpp:27</div></div>
+<div class="ttc" id="classlm_1_1_font_html_ab077976804f3a5f74230afa7cde5515b"><div class="ttname"><a href="classlm_1_1_font.html#ab077976804f3a5f74230afa7cde5515b">lm::Font::puts</a></div><div class="ttdeci">LUMS_EXPORTED void puts(int x, int y, const std::string &amp;str) const </div><div class="ttdef"><b>Definition:</b> Font.cpp:82</div></div>
+<div class="ttc" id="classlm_1_1_font_html_a134aaa2f78af0c12d3ce504957169768"><div class="ttname"><a href="classlm_1_1_font.html#a134aaa2f78af0c12d3ce504957169768">lm::Font::~Font</a></div><div class="ttdeci">LUMS_EXPORTED ~Font()</div><div class="ttdef"><b>Definition:</b> Font.cpp:154</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
