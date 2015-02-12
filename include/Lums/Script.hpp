@@ -15,6 +15,9 @@
 #define LUMS_SCRIPT_HPP
 
 #include <string>
+#include <mruby/compile.h>
+#include <mruby/dump.h>
+#include <mruby/proc.h>
 
 namespace lm
 {
@@ -27,12 +30,20 @@ namespace lm
 
         void            loadFile(const std::string& file, bool resource = true);
         void            run();
+
+        template <typename... Args> mrb_value
+        call(const char* str, Args... args)
+        {
+            return mrb_funcall(_mrb, mrb_top_self(_mrb), str, sizeof...(args), args...);
+        }
+
         static Script   load(const std::string& file, bool resource = true);
 
         ~Script();
 
     private:
-        void*           _proc;
+        static mrb_state*   _mrb;
+        RProc*              _proc;
     };
 }
 

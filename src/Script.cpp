@@ -12,22 +12,18 @@
 /* ************************************************************************** */
 
 #include <iostream>
-#include <mruby.h>
-#include <mruby/compile.h>
-#include <mruby/dump.h>
-#include <mruby/proc.h>
 #include <Lums/Script.hpp>
 #include <Lums/OperatingSystem.hpp>
 
 using namespace lm;
 
-static mrb_state* mrb = nullptr;
+mrb_state* Script::_mrb = nullptr;
 
 Script::Script()
 : _proc(nullptr)
 {
-	if (!mrb)
-		mrb = mrb_open();
+	if (!_mrb)
+		_mrb = mrb_open();
 }
 
 Script::Script(Script&& rhs)
@@ -52,15 +48,15 @@ Script::loadFile(const std::string& filename, bool resource)
 		std::cerr << "Error: cannot open script '" << file << "'" << std::endl;
 		return;
 	}
-	mrb_irep* irep = mrb_read_irep_file(mrb, f);
+	mrb_irep* irep = mrb_read_irep_file(_mrb, f);
 	fclose(f);
-	_proc = mrb_proc_new(mrb, irep);
+	_proc = mrb_proc_new(_mrb, irep);
 }
 
 void
 Script::run()
 {
-	mrb_run(mrb, static_cast<RProc*>(_proc), mrb_top_self(mrb));
+	mrb_run(_mrb, _proc, mrb_top_self(_mrb));
 }
 
 Script

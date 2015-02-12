@@ -40,6 +40,8 @@ public:
         _sprite.setState(1, 3);
         _sprite.setSpeed(10);
         _script.loadFile("hello.mrb");
+        _script.run();
+        _script.call("hi");
         _frame = 0;
     }
 
@@ -48,7 +50,6 @@ public:
     {
         _frame++;
         _sprite.update();
-        _script.run();
     }
 
     void
