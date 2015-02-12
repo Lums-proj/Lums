@@ -143,7 +143,7 @@ Font::printf(int x, int y, const char* format, ...) const
 #if _MSC_VER
     str = static_cast<char*>(malloc(_vscprintf(format, ap) + 1));
     vsprintf(str, format, ap);
-#elif
+#else
     vasprintf(&str, format, ap);
 #endif
     Font::puts(x, y, str);

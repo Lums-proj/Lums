@@ -32,7 +32,7 @@ else()
 
 	find_library(
 		ZLIB_LIBRARIES
-		zlib.a
+		z
 		PATHS
 		${ZLIB_SEARCH_PATH}
 		PATH_SUFFIXES lib lib64

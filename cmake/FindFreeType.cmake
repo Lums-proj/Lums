@@ -31,6 +31,7 @@ else()
 		PATHS
 		${FREETYPE_SEARCH_PATH}
 		PATH_SUFFIXES lib lib64
+		NO_DEFAULT_PATH
 	)
 
 	find_path(
@@ -38,7 +39,7 @@ else()
 	 	ft2build.h
 	 	PATHS
 	 	${FREETYPE_SEARCH_PATH}
-	 	PATH_SUFFIXES include
+	 	PATH_SUFFIXES include include/freetype2
 	 	NO_DEFAULT_PATH
 	)
 
