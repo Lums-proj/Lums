@@ -73,7 +73,8 @@ public:
     void
     handleEvent(const lm::Event& event)
     {
-        if (event.type == lm::Event::Type::KeyDown)
+        if (event.type == lm::Event::Type::KeyDown
+            || (event.type == lm::Event::Type::ButtonDown && event.gamepad.button == 1))
             lm::Core::get().stop();
     }
 
