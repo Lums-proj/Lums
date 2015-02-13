@@ -5,7 +5,7 @@ set(LINK_LIB ${OPENGL_gl_LIBRARY} ${PNG_LIBRARIES} ${FREETYPE_LIBRARIES} ${MRUBY
 if(APPLE)
     file(GLOB OS_SRC "MacOSX/*.cpp" "MacOSX/*.mm")
     include_directories(MacOSX)
-    list(APPEND LINK_LIB "-framework Cocoa")
+    list(APPEND LINK_LIB "-framework Cocoa" "-framework IOKit")
 endif()
 
 if(WIN32)
