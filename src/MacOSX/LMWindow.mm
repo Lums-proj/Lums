@@ -57,6 +57,12 @@ gamepadWasRemoved(void* inContext, IOReturn inResult, void* inSender, IOHIDDevic
 void
 gamepadAction(void* inContext, IOReturn inResult, void* inSender, IOHIDValueRef value)
 {
+    static float lx = 0;
+    static float ly = 0;
+    static float rx = 0;
+    static float ry = 0;
+    float v;
+
     IOHIDElementRef element = IOHIDValueGetElement(value);
     IOHIDDeviceRef device = IOHIDElementGetDevice(element);
     int elementValue = IOHIDValueGetIntegerValue(value);
@@ -65,6 +71,8 @@ gamepadAction(void* inContext, IOReturn inResult, void* inSender, IOHIDValueRef 
     lm::Event event;
 
     event.gamepad.id = (uintptr_t)device;
+
+    NSLog(@"Page %i ID %i Value %i", usagepage, usageid, elementValue);
     switch (usagepage)
     {
         case 9:
@@ -73,6 +81,47 @@ gamepadAction(void* inContext, IOReturn inResult, void* inSender, IOHIDValueRef 
             else
                 event.type = lm::Event::Type::ButtonUp;
             event.gamepad.button = usageid;
+            break;
+
+        case 1:
+            switch (usageid)
+            {
+                case 50:
+                case 53:
+                    if (usageid == 50)
+                        event.type = lm::Event::Type::LeftTrigger;
+                    else
+                        event.type = lm::Event::Type::RightTrigger;
+                    event.gamepad.trigger = (float)elementValue / 255.0f;
+                    break;
+
+                case 48: // Left stick x
+                case 49: // Left stick y
+                    event.type = lm::Event::Type::LeftStick;
+                    v = (float)elementValue / 32768.0f;
+                    if (usageid == 48)
+                        lx = v;
+                    else
+                        ly = v;
+                    event.gamepad.stick.x = lx;
+                    event.gamepad.stick.y = ly;
+                    break;
+
+                case 51: // Right stick x
+                case 52: // Right stick y
+                    event.type = lm::Event::Type::RightStick;
+                    v = (float)elementValue / 32768.0f;
+                    if (usageid == 51)
+                        lx = v;
+                    else
+                        ly = v;
+                    event.gamepad.stick.x = lx;
+                    event.gamepad.stick.y = ly;
+                    break;
+
+                default:
+                    return;
+            }
             break;
 
         default:
