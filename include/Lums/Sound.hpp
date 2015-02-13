@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    SoundManager.hpp                               oooooo       oooooo      */
+/*    Sound.hpp                                      oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,35 +11,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_SOUND_MANAGER_HPP
-#define LUMS_SOUND_MANAGER_HPP
+#ifndef LUMS_SOUND_HPP
+#define LUMS_SOUND_HPP
 
-#include <vector>
 #include <string>
 #include <OpenAL/al.h>
 #include <OpenAL/alc.h>
+#include <vorbis/vorbisfile.h>
 
 namespace lm
 {
 
-    class SoundManager
+    class Sound
     {
     public:
 
-        SoundManager();
-        static SoundManager&    get();
-        ~SoundManager();
+        Sound(const std::string& name);
+        void    play(float x, float y, float z = 0.0f);
+        ~Sound();
 
     private:
 
-        void        openContext();
-        void        getDevices();
-        void        setDevice(ALCchar* name);
+        void    loadFile(const std::string name, bool resource = true);
+        void    loadFileOGG(const std::string name, bool resource = true);
+        void    readOGG(ALuint Buffer, ALsizei NbSamples);
 
-        std::vector<const ALCchar*>    _devices;
-        ALCdevice*                     _currentDevice;
-        ALCcontext*                    _currentContext;
-        static SoundManager*           _singleton;
+        FILE*           _file;
+        ALenum          _format;
+        ALsizei         _sampleRate;
+        ALsizei         _read;
+        OggVorbis_File  _stream;
     };
 
 }

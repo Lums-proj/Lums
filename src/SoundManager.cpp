@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Sound.cpp                                      oooooo       oooooo      */
+/*    SoundManager.cpp                               oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -12,16 +12,16 @@
 /* ************************************************************************** */
 
 #include <iostream>
-#include <Lums/Lums.hpp>
+#include <Lums/SoundManager.hpp>
 
 using namespace lm;
 
-SoundManager::SoundManager(const std::string& name)
+SoundManager::SoundManager()
 : _currentDevice(0)
 , _currentContext(0)
 {
     _singleton = this;
-    openContext(name);
+    openContext();
 }
 
 SoundManager&
@@ -31,9 +31,9 @@ SoundManager::get()
 }
 
 void
-SoundManager::openContext(const std::string& name = NULL)
+SoundManager::openContext()
 {
-    setDevice(const_cast<ALCchar*>(name.c_str()));
+    setDevice(NULL);
 }
 
 void
@@ -81,3 +81,5 @@ SoundManager::~SoundManager()
     alcDestroyContext(_currentContext);
     alcCloseDevice(_currentDevice);
 }
+
+SoundManager* SoundManager::_singleton = 0;

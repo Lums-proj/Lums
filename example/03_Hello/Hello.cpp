@@ -11,6 +11,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
 #include <Lums/Lums.hpp>
 #include <Lums/Script.hpp>
 
@@ -19,7 +20,11 @@ class Hello : public lm::GameState
 public:
     Hello()
     {
-
+        lm::SoundManager   manager;
+        lm::Sound           music("FS_Intro.ogg");
+        music.play(0.0f, 0.0f);
+        std::cout << "Music end" << std::endl;
+        music.play(0.0f, 0.0f);
     }
 
     void

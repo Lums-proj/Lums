@@ -47,5 +47,6 @@
 #include <Lums/Vector3.hpp>
 #include <Lums/Window.hpp>
 #include <Lums/SoundManager.hpp>
+#include <Lums/Sound.hpp>
 
 #endif
