@@ -135,7 +135,7 @@ Image::loadFilePNG(const std::string path, bool resource)
 
     png_read_image(png_ptr, image_ptr);
 
-    delete image_ptr;
+    delete [] image_ptr;
 
     fclose(f);
     gen(image, format);

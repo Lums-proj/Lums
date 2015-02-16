@@ -19,6 +19,8 @@
 
 using namespace lm;
 
+static NSAutoreleasePool* pool;
+
 static NSOpenGLPixelFormatAttribute
 glAttributes[] = {
     NSOpenGLPFADepthSize, 32,
@@ -33,7 +35,7 @@ Window::Window(int w, int h, const char* name)
 
     if (!appLaunched)
     {
-        [NSAutoreleasePool new];
+        pool = [NSAutoreleasePool new];
         [LMApplication sharedApplication];
         [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
         [NSApp activateIgnoringOtherApps:YES];
@@ -66,7 +68,7 @@ Window::Window(int w, int h, const char* name)
 void
 Window::pumpEvent()
 {
-    [LMApplication pumpEvents];
+	[LMApplication pumpEvents];
 }
 
 void
