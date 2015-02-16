@@ -60,6 +60,12 @@ namespace lm
                     } stick;
                 };
             } gamepad;
+
+            struct
+            {
+                int x;
+                int y;
+            } mouse;
         };
     };
 }
