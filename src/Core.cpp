@@ -17,10 +17,10 @@
 using namespace lm;
 
 Core::Core(int w, int h, const char* name, bool fullscreen)
-: _win(w, h, name)
-, _it(0)
+: _it(0)
 , _width(w)
 , _height(h)
+, _win(w, h, name)
 {
     _singleton = this;
 }

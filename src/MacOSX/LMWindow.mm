@@ -187,10 +187,11 @@ gamepadAction(void* inContext, IOReturn inResult, void* inSender, IOHIDValueRef 
 -(void)setupHid
 {
     _hidManager = IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDOptionsTypeNone);
-    NSMutableDictionary* criterion = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* criterion = [[[NSMutableDictionary alloc] init] autorelease];
     [criterion setObject: [NSNumber numberWithInt: kHIDPage_GenericDesktop] forKey: (NSString*)CFSTR(kIOHIDDeviceUsagePageKey)];
     [criterion setObject: [NSNumber numberWithInt: kHIDUsage_GD_GamePad] forKey: (NSString*)CFSTR(kIOHIDDeviceUsageKey)];
-    IOHIDManagerSetDeviceMatching(_hidManager, (__bridge CFDictionaryRef)criterion);
+	CFDictionaryRef ccriterion = (__bridge CFDictionaryRef)criterion;
+    IOHIDManagerSetDeviceMatching(_hidManager, ccriterion);
     IOHIDManagerScheduleWithRunLoop(_hidManager, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
     IOHIDManagerRegisterDeviceMatchingCallback(_hidManager, gamepadWasAdded, (void*)self);
     IOHIDManagerRegisterDeviceRemovalCallback(_hidManager, gamepadWasRemoved, (void*)self);

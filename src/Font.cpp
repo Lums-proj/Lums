@@ -89,14 +89,14 @@ Font::puts(int x, int y, const char* str) const
 {
     std::vector<GLdouble> v;
 
-    y += _top['T'];
+    y += _top[static_cast<int>('T')];
     glPushAttrib(GL_ENABLE_BIT);
     glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, _texture);
     v.reserve(std::strlen(str) * 16);
     for (size_t j = 0; str[j]; j++)
     {
-        char i = str[j];
+        int i = str[j];
 
         x += _left[i];
         int ny = y - _top[i];
