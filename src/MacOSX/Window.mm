@@ -57,7 +57,6 @@ Window::Window(int w, int h, const char* name)
     [context makeCurrentContext];
     glClearColor(0, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT);
-    [context flushBuffer];
     _windowHandle = win;
     _openGlHandle = context;
     [win makeKeyAndOrderFront:nil];
