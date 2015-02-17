@@ -13,6 +13,7 @@
 
 #include <Lums/Lums.hpp>
 #include <Lums/Script.hpp>
+#include <iostream>
 
 class Hello : public lm::GameState
 {
@@ -35,10 +36,10 @@ public:
 #endif
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        _anim.loadFile("mario.png", 16, 1);
-        _sprite.setAnimation(_anim);
-        _sprite.setState(1, 3);
-        _sprite.setSpeed(10);
+        _mario.loadFile("mario.png");
+        _mario.atlas(16);
+        _sprite.setImage(_mario);
+        _sprite.setAnimation(1, 3, 10);
         _script.loadFile("hello.mrb");
         _script.run();
         _script.call("hi");
@@ -76,7 +77,18 @@ public:
     handleEvent(const lm::Event& event)
     {
         if (event.type == lm::Event::Type::KeyDown)
-            lm::Core::get().stop();
+        {
+            if (event.key == lm::Key::Escape)
+                lm::Core::get().stop();
+            else if (event.key == lm::Key::Left)
+                _sprite.flipX(true);
+            else if (event.key == lm::Key::Right)
+                _sprite.flipX(false);
+            else if (event.key == lm::Key::Up)
+                _sprite.flipY(true);
+            else if (event.key == lm::Key::Down)
+                _sprite.flipY(false);
+        }
         if (event.type == lm::Event::Type::LeftStick)
         {
             _x = event.gamepad.stick.x;
@@ -85,13 +97,13 @@ public:
     }
 
 private:
-    lm::Font _font;
-    lm::Animation _anim;
-    lm::AnimatedSprite _sprite;
-    lm::Script _script;
-    int      _frame;
-    float    _x;
-    float    _y;
+    lm::Font    _font;
+    lm::Image   _mario;
+    lm::Sprite  _sprite;
+    lm::Script  _script;
+    int         _frame;
+    float       _x;
+    float       _y;
 };
 
 int
