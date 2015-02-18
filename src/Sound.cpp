@@ -189,8 +189,7 @@ Sound::loadFile(const std::string name, bool resource)
 void
 Sound::loadFileOGG(const std::string name, bool resource)
 {
-    //std::string   path = resource ? resourcePath() + '/' + name : name;
-    std::string path(name);
+    std::string path = resource ? resourcePath() + name : name;
     _file = fopen(path.c_str(), "rb");
     if (!_file)
     {
@@ -198,8 +197,9 @@ Sound::loadFileOGG(const std::string name, bool resource)
         return;
     }
     if (ov_open_callbacks(_file, &_stream, 0, 0, OV_CALLBACKS_DEFAULT) < 0)
-    //if (ov_open(_file, &_stream, NULL, 0) < 0)
     {
+        fclose(_file);
+        _file = 0;
         std::cerr << "File not found !" << std::endl;
         return;
     }
@@ -242,6 +242,8 @@ Sound::operator!=(Sound& rhs)
 
 Sound::~Sound()
 {
+    if (!_file)
+        return;
     ov_clear(&_stream);
     fclose(_file);
 }
