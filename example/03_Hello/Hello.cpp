@@ -11,16 +11,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
 #include <Lums/Lums.hpp>
 #include <Lums/Script.hpp>
+#include <Lums/SoundManager.hpp>
+#include <Lums/Sound.hpp>
 #include <iostream>
 
 class Hello : public lm::GameState
 {
 public:
     Hello()
+    : _music("music.ogg", lm::SoundType::Music)
+    , _jump("jump.ogg", lm::SoundType::FX)
     {
-
+        _music.play();
     }
 
     void
@@ -78,6 +83,7 @@ public:
     {
         if (event.type == lm::Event::Type::KeyDown)
         {
+            c_jump.play();
             if (event.key == lm::Key::Escape)
                 lm::Core::get().stop();
             else if (event.key == lm::Key::Left)
@@ -101,6 +107,8 @@ private:
     lm::Image   _mario;
     lm::Sprite  _sprite;
     lm::Script  _script;
+    lm::Sound   _music;
+    lm::Sound   _jump;
     int         _frame;
     float       _x;
     float       _y;
@@ -110,6 +118,7 @@ int
 main()
 {
     lm::Core core(200, 200, "Hello !");
+    lm::SoundManager    SoundManager;
 
     core.push<Hello>();
     core.start();
