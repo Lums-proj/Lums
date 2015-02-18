@@ -60,6 +60,7 @@ Window::Window(int w, int h, const char* name)
     _openGlHandle = context;
     [win makeKeyAndOrderFront:nil];
     [win setWindow:this];
+    [win setupHid];
 }
 
 void

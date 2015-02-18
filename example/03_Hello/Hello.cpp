@@ -68,6 +68,8 @@ public:
         glEnd();
         glColor3d(1, 1, 1);
         _font.printf(0, 50, "Hello, World! %d", _frame);
+        _font.printf(0, 120, "x: %f", _x);
+        _font.printf(0, 140, "y: %f", _y);
         _sprite.draw(92, 92);
     }
 
@@ -76,6 +78,11 @@ public:
     {
         if (event.type == lm::Event::Type::KeyDown)
             lm::Core::get().stop();
+        if (event.type == lm::Event::Type::LeftStick)
+        {
+            _x = event.gamepad.stick.x;
+            _y = event.gamepad.stick.y;
+        }
     }
 
 private:
@@ -84,6 +91,8 @@ private:
     lm::AnimatedSprite _sprite;
     lm::Script _script;
     int      _frame;
+    float    _x;
+    float    _y;
 };
 
 int
