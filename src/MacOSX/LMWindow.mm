@@ -34,6 +34,61 @@
     [self window]->pushEvent(e);
 }
 
+-(void)mouseDown:(NSEvent*)event
+{
+    lm::Event e;
+
+    e.type = lm::Event::Type::LeftMouseDown;
+    NSPoint point = [self mouseLocationOutsideOfEventStream];
+    e.mouse.x = point.x;
+    e.mouse.y = point.y;
+    [self window]->pushEvent(e);
+}
+
+-(void)mouseUp:(NSEvent*)event
+{
+    lm::Event e;
+
+    e.type = lm::Event::Type::LeftMouseUp;
+    NSPoint point = [self mouseLocationOutsideOfEventStream];
+    e.mouse.x = point.x;
+    e.mouse.y = point.y;
+    [self window]->pushEvent(e);
+}
+
+-(void)rightMouseDown:(NSEvent*)event
+{
+    lm::Event e;
+
+    e.type = lm::Event::Type::RightMouseDown;
+    NSPoint point = [self mouseLocationOutsideOfEventStream];
+    e.mouse.x = point.x;
+    e.mouse.y = point.y;
+    [self window]->pushEvent(e);
+}
+
+-(void)rightMouseUp:(NSEvent*)event
+{
+    lm::Event e;
+
+    e.type = lm::Event::Type::RightMouseUp;
+    NSPoint point = [self mouseLocationOutsideOfEventStream];
+    e.mouse.x = point.x;
+    e.mouse.y = point.y;
+    [self window]->pushEvent(e);
+}
+
+-(void)mouseMoved:(NSEvent*)event
+{
+    lm::Event e;
+
+    e.type = lm::Event::Type::MouseMove;
+    NSPoint point = [self mouseLocationOutsideOfEventStream];
+    e.mouse.x = point.x;
+    e.mouse.y = point.y;
+    [self window]->pushEvent(e);
+}
+
 void
 gamepadWasAdded(void* inContext, IOReturn inResult, void* inSender, IOHIDDeviceRef device)
 {
@@ -42,7 +97,6 @@ gamepadWasAdded(void* inContext, IOReturn inResult, void* inSender, IOHIDDeviceR
     e.type = lm::Event::Type::GamepadConnected;
     e.gamepad.id = (uintptr_t)device;
     [(LMWindow*)inContext window]->pushEvent(e);
-    IOHIDDeviceOpen(device, kIOHIDOptionsTypeNone);
 }
 
 void
@@ -66,35 +120,21 @@ gamepadAction(void* inContext, IOReturn inResult, void* inSender, IOHIDValueRef 
 
     IOHIDElementRef element = IOHIDValueGetElement(value);
     IOHIDDeviceRef device = IOHIDElementGetDevice(element);
-    int cookie = IOHIDElementGetCookie(element);
+    int usageid = IOHIDElementGetUsage(element);
+    int usagepage = IOHIDElementGetUsagePage(element);
     int elementValue = IOHIDValueGetIntegerValue(value);
     lm::Event event;
 
     event.gamepad.id = (uintptr_t)device;
 
-    NSLog(@"Hacker %i", cookie);
-/*
-    NSLog(@"%i", cookie);
-    switch (cookie)
+    switch (usagepage)
     {
-        case 10:
-        case 11:
-        case 12:
-        case 13:
-        case 14:
-        case 15:
-        case 18:
-        case 19:
-        case 20:
-        case 21:
-        case 22:
-        case 23:
-        case 24:
+        case 9:
             if (elementValue)
                 event.type = lm::Event::Type::ButtonDown;
             else
                 event.type = lm::Event::Type::ButtonUp;
-            event.gamepad.button = cookie;
+            event.gamepad.button = usageid;
             break;
 
         case 1:
@@ -126,11 +166,11 @@ gamepadAction(void* inContext, IOReturn inResult, void* inSender, IOHIDValueRef 
                     event.type = lm::Event::Type::RightStick;
                     v = (float)elementValue / 32768.0f;
                     if (usageid == 51)
-                        lx = v;
+                        rx = v;
                     else
-                        ly = v;
-                    event.gamepad.stick.x = lx;
-                    event.gamepad.stick.y = ly;
+                        ry = v;
+                    event.gamepad.stick.x = rx;
+                    event.gamepad.stick.y = ry;
                     break;
 
                 default:
@@ -141,16 +181,17 @@ gamepadAction(void* inContext, IOReturn inResult, void* inSender, IOHIDValueRef 
         default:
             return;
     }
-    [(LMWindow*)inContext window]->pushEvent(event);*/
+    [(LMWindow*)inContext window]->pushEvent(event);
 }
 
 -(void)setupHid
 {
     _hidManager = IOHIDManagerCreate(kCFAllocatorDefault, kIOHIDOptionsTypeNone);
-    NSMutableDictionary* criterion = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary* criterion = [[[NSMutableDictionary alloc] init] autorelease];
     [criterion setObject: [NSNumber numberWithInt: kHIDPage_GenericDesktop] forKey: (NSString*)CFSTR(kIOHIDDeviceUsagePageKey)];
     [criterion setObject: [NSNumber numberWithInt: kHIDUsage_GD_GamePad] forKey: (NSString*)CFSTR(kIOHIDDeviceUsageKey)];
-    IOHIDManagerSetDeviceMatching(_hidManager, (__bridge CFDictionaryRef)criterion);
+	CFDictionaryRef ccriterion = (__bridge CFDictionaryRef)criterion;
+    IOHIDManagerSetDeviceMatching(_hidManager, ccriterion);
     IOHIDManagerScheduleWithRunLoop(_hidManager, CFRunLoopGetCurrent(), kCFRunLoopDefaultMode);
     IOHIDManagerRegisterDeviceMatchingCallback(_hidManager, gamepadWasAdded, (void*)self);
     IOHIDManagerRegisterDeviceRemovalCallback(_hidManager, gamepadWasRemoved, (void*)self);

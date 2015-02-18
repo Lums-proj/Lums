@@ -15,7 +15,9 @@
 #define LUMS_IMAGE_HPP
 
 #include <string>
+#include <vector>
 #include <Lums/GL.hpp>
+#include <Lums/Rect2.hpp>
 #include <Lums/ExportDll.hpp>
 
 namespace lm
@@ -97,6 +99,29 @@ namespace lm
             return _height;
         }
 
+        size_t
+        iwidth() const
+        {
+            return _iwidth;
+        }
+
+        size_t
+        iheight() const
+        {
+            return _iheight;
+        }
+
+        /**
+         * Get a rect from the atlas.
+         * @param i The index of the value to get from the atlas.
+         * @return A rect representing an atlas value.
+         */
+        const Rect2d&
+        atlasAt(size_t i) const
+        {
+            return _atlas[i];
+        }
+
         /**
          * Set the image scaling mode.
          * @param linear If true, set the scaling mode to linear, else, set it to nearest.
@@ -110,6 +135,11 @@ namespace lm
             glTexParameteri(GL_TEXTURE_2D , GL_TEXTURE_MAG_FILTER , linear ? GL_LINEAR : GL_NEAREST);
             return *this;
         }
+
+        /**
+         * TODO
+         */
+        LUMS_EXPORTED Image& atlas(size_t w = 1, size_t h = 1);
 
         /**
          * Load an image from a file.
@@ -141,11 +171,14 @@ namespace lm
         LUMS_EXPORTED ~Image();
 
     private:
-        void            gen(unsigned char* img, GLint format);
+        void                gen(unsigned char* img, GLint format);
 
-        size_t          _width;
-        size_t          _height;
-        GLuint          _texture;
+        size_t              _width;
+        size_t              _height;
+        size_t              _iwidth;
+        size_t              _iheight;
+        std::vector<Rect2d> _atlas;
+        GLuint              _texture;
     };
 }
 
