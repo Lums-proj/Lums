@@ -26,6 +26,11 @@
 
 -(void)keyDown:(NSEvent*)event;
 -(void)keyUp:(NSEvent*)event;
+-(void)mouseDown:(NSEvent*)event;
+-(void)mouseUp:(NSEvent*)event;
+-(void)rightMouseDown:(NSEvent*)event;
+-(void)rightMouseUp:(NSEvent*)event;
+-(void)mouseMoved:(NSEvent*)event;
 -(void)setupHid;
 
 @end

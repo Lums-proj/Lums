@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Animation.hpp                                  oooooo       oooooo      */
+/*    Rect.hpp                                       oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,61 +11,66 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_ANIMATION_HPP
-#define LUMS_ANIMATION_HPP
+#ifndef LUMS_RECT2_HPP
+#define LUMS_RECT2_HPP
 
-#include <Lums/Image.hpp>
-#include <Lums/GL.hpp>
-#include <Lums/ExportDll.hpp>
+#include <Lums/Vector2.hpp>
 
 namespace lm
 {
-	/**
-	* This class defines an Animation.
-	*/
-	class Animation
-	{
-	public:
-		LUMS_EXPORTED Animation();
-		LUMS_EXPORTED void	loadFile(const std::string& filename, size_t wcount, size_t hcount, bool resource = true);
+    template <typename T>
+    struct Rect2
+    {
+        Rect2()
+        : x(T())
+        , y(T())
+        , w(T())
+        , h(T())
+        {
 
-		size_t
-		width() const
-		{
-			return _width;
-		}
+        }
 
-		size_t
-		height() const
-		{
-			return _height;
-		}
+        Rect2(T x, T y)
+        : x(x)
+        , y(y)
+        , w(T())
+        , h(T())
+        {
 
-		size_t
-		wcount() const
-		{
-			return _wcount;
-		}
+        }
 
-		size_t
-		hcount() const
-		{
-			return _hcount;
-		}
+        Rect2(T x, T y, T w, T h)
+        : x(x)
+        , y(y)
+        , w(w)
+        , h(h)
+        {
 
-		const Image&
-		image() const
-		{
-			return _image;
-		}
+        }
 
-	private:
-		Image	_image;
-		size_t	_width;
-		size_t	_height;
-		size_t	_wcount;
-		size_t	_hcount;
-	};
+        Vector2<T>
+        pos() const
+        {
+            return {x, y};
+        }
+
+        Vector2<T>
+        length() const
+        {
+            return {w, h};
+        }
+
+        T     x;
+        T     y;
+        T     w;
+        T     h;
+    };
+
+    typedef Rect2<int>      Rect2i;
+
+    typedef Rect2<float>    Rect2f;
+
+    typedef Rect2<double>   Rect2d;
 }
 
 #endif

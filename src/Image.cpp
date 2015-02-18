@@ -36,6 +36,7 @@ Image::Image(Image&& rhs)
 , _texture(rhs._texture)
 {
     rhs._texture = 0;
+    _atlas = std::move(rhs._atlas);
 }
 
 Image&
@@ -45,6 +46,30 @@ Image::operator=(Image&& rhs)
     _height = rhs._height;
     _texture = rhs._texture;
     rhs._texture = 0;
+    _atlas = std::move(rhs._atlas);
+    return *this;
+}
+
+Image&
+Image::atlas(size_t w, size_t h)
+{
+    size_t len = w * h;
+    double img_w = 1.0 / w;
+    double img_h = 1.0 / h;
+
+    _iwidth = _width / w;
+    _iheight = _height / h;
+    _atlas.resize(len);
+    for (size_t i = 0; i < len; i++)
+    {
+        double x = (i % w) * img_w;
+        double y = (i / w) * img_h;
+
+        _atlas[i].x = x;
+        _atlas[i].y = y;
+        _atlas[i].w = img_w;
+        _atlas[i].h = img_h;
+    }
     return *this;
 }
 
@@ -60,7 +85,10 @@ Image::loadFile(const std::string path, bool resource)
     std::string ext = path.substr(path.find_last_of('.') + 1);
 
     if (extFuncs.find(ext) != extFuncs.end())
+    {
         (this->*(extFuncs.at(ext)))(path, resource);
+        atlas();
+    }
 }
 
 /*
@@ -135,7 +163,7 @@ Image::loadFilePNG(const std::string path, bool resource)
 
     png_read_image(png_ptr, image_ptr);
 
-    delete image_ptr;
+    delete [] image_ptr;
 
     fclose(f);
     gen(image, format);
@@ -156,7 +184,9 @@ Image::~Image()
         glDeleteTextures(1, &_texture);
 }
 
-// private
+/*
+ * PRIVATE
+ */
 
 void
 Image::gen(unsigned char* img, GLint format)
