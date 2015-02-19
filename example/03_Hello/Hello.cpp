@@ -22,9 +22,9 @@ class Hello : public lm::GameState
 {
 public:
     Hello()
-    : _music("music.ogg", lm::SoundType::Music)
-    , _jump("jump.ogg", lm::SoundType::FX)
     {
+        _music.loadFile("music.ogg", lm::SoundType::Music);
+        _jump.loadFile("jump.ogg", lm::SoundType::FX);
         _music.play();
     }
 
@@ -83,7 +83,7 @@ public:
     {
         if (event.type == lm::Event::Type::KeyDown)
         {
-            c_jump.play();
+            _jump.play();
             if (event.key == lm::Key::Escape)
                 lm::Core::get().stop();
             else if (event.key == lm::Key::Left)

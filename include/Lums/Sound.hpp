@@ -36,6 +36,7 @@ namespace lm
 
     enum class SoundType
     {
+        Null,
         FX,
         Music
     };
@@ -44,39 +45,39 @@ namespace lm
     {
     public:
 
-        Sound(const std::string& name, SoundType type);
-        void           play(float x = 0.0f, float y = 0.0f, float z = 0.0f);
-        void           pause();
-        void           stop();
-        ALuint         playSound();
-        void           readSound();
-        bool            operator==(Sound& rhs);
-        bool            operator!=(Sound& rhs);
+        Sound();
+        void         loadFile(const std::string name, SoundType type, bool resource = true);
+        void         play(float x = 0.0f, float y = 0.0f, float z = 0.0f);
+        void         pause();
+        void         stop();
+        ALuint       playSound();
+        bool         operator==(const Sound& rhs) const;
+        bool         operator!=(const Sound& rhs) const;
         ~Sound();
 
     private:
         ALuint       playMusic();
         ALuint       playFX();
         void         playStream(ALuint source);
-        void         loadFile(const std::string name, bool resource = true);
-        void         loadFileOGG(const std::string name, bool resource = true);
+        void         loadFileOGG(const std::string name, bool resource);
         void         readOGG(ALuint& Buffer, ALsizei NbSamples);
 
-        FILE*           _file;
-        ALenum          _format;
-        ALsizei         _sampleRate;
-        ALsizei         _read;
-        OggVorbis_File  _stream;
-        SoundType       _type;
-        SoundState      _state;
-        float           _x;
-        float           _y;
-        float           _z;
-        bool            _run;
-        size_t          _id;
-        static size_t   _nbs;
-        std::mutex      _mtx;
+        FILE*                   _file;
+        ALenum                  _format;
+        ALsizei                 _sampleRate;
+        ALsizei                 _read;
+        OggVorbis_File          _stream;
+        SoundType               _type;
+        SoundState              _state;
+        float                   _x;
+        float                   _y;
+        float                   _z;
+        bool                    _run;
+        size_t                  _id;
+        static size_t           _nbs;
+        std::mutex              _mtx;
         std::condition_variable _cv;
+        static SoundManager*    _soundManager;
     };
   
 }

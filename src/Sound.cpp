@@ -20,12 +20,12 @@
 
 using namespace lm;
 
-Sound::Sound(const std::string& name, SoundType type)
+Sound::Sound()
 : _file(0)
 , _format(0)
 , _sampleRate(0)
 , _read(0)
-, _type(type)
+, _type(SoundType::Null)
 , _state(SoundState::Pending)
 , _x(0)
 , _y(0)
@@ -34,7 +34,7 @@ Sound::Sound(const std::string& name, SoundType type)
 , _id(_nbs)
 {
     _nbs++;
-    loadFile(name);
+    Sound::_soundManager = new SoundManager();
 }
 
 void
@@ -43,14 +43,19 @@ Sound::play(float x, float y, float z)
     _x = x;
     _y = y;
     _z = z;
+    if (_type == SoundType::Null)
+    {
+        std::cerr << "No file loaded !" << std::endl;
+        return ;
+    }
     _state = SoundState::Playing;
     if (_type == SoundType::Music)
     {
         _run = true;
-        SoundManager::get().addMusic(this);
+        Sound::_soundManager->addMusic(this);
     }
     else 
-        SoundManager::get().addSound(this);
+        Sound::_soundManager->addSound(this);
 }
 
 void
@@ -59,12 +64,12 @@ Sound::pause()
     _state = SoundState::Paused;
     if (_type == SoundType::Music)
     {
-        SoundManager::get().pauseMusic();
+        Sound::_soundManager->pauseMusic();
         std::unique_lock<std::mutex> lck(_mtx);
         _cv.notify_all();
     }
     else 
-        SoundManager::get().pauseSound(*this);
+        Sound::_soundManager->pauseSound(*this);
 }
 
 void
@@ -73,11 +78,11 @@ Sound::stop()
     _state = SoundState::Finished;
     if (_type == SoundType::Music)
     {
-        SoundManager::get().stopMusic();
+        Sound::_soundManager->stopMusic();
         _run = false;
     }
     else 
-        SoundManager::get().stopSound(*this);
+        Sound::_soundManager->stopSound(*this);
 }
 
 ALuint
@@ -173,8 +178,9 @@ Sound::playFX()
 
 
 void
-Sound::loadFile(const std::string name, bool resource)
+Sound::loadFile(const std::string name, SoundType type, bool resource)
 {
+    _type = type;
     typedef void (Sound::*sndptr_t)(std::string, bool);
     static const std::map<std::string, sndptr_t> extFuncs = {
         {"ogg", &Sound::loadFileOGG}
@@ -229,13 +235,13 @@ Sound::readOGG(ALuint& buffer, ALsizei nbSamples)
 }
 
 bool
-Sound::operator==(Sound& rhs)
+Sound::operator==(const Sound& rhs) const
 {
     return (_id == rhs._id);
 }
 
 bool
-Sound::operator!=(Sound& rhs)
+Sound::operator!=(const Sound& rhs) const
 {
     return (_id != rhs._id);
 }
@@ -250,3 +256,6 @@ Sound::~Sound()
 
 size_t
 Sound::_nbs = 0;
+
+SoundManager*
+Sound::_soundManager = 0;
