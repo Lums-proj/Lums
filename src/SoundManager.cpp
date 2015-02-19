@@ -24,6 +24,7 @@ SoundManager::SoundManager()
 , _currentContext(0)
 , _state(SoundManagerState::Free)
 {
+    _music.sound = 0;
     _singleton = this;
     openContext();
 }
