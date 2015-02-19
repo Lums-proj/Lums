@@ -34,7 +34,8 @@ Sound::Sound()
 , _id(_nbs)
 {
     _nbs++;
-    Sound::_soundManager = new SoundManager();
+    if (!Sound::_soundManager)
+        Sound::_soundManager = new SoundManager();
 }
 
 void
