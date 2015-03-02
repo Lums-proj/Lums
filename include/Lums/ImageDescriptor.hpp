@@ -24,9 +24,9 @@ namespace lm
 
 		public:
 			ImageDescriptor(const char* path);
-			void		atlas(size_t x, size_t y);
-			void		atlas(const lm::Rect2i* rects, size_t n);
-			void		linear(bool b = true);
+			ImageDescriptor&		atlas(size_t x, size_t y);
+			ImageDescriptor&		atlas(const lm::Rect2i* rects, size_t n);
+			ImageDescriptor&		linear(bool b = true);
 
 		private:
 			const char*		_path;
