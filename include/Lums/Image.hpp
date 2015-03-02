@@ -18,6 +18,7 @@
 #include <vector>
 #include <Lums/GL.hpp>
 #include <Lums/Rect2.hpp>
+#include <Lums/ImageDescriptor.hpp>
 #include <Lums/ExportDll.hpp>
 
 namespace lm
@@ -142,6 +143,11 @@ namespace lm
         LUMS_EXPORTED Image& atlas(size_t w = 1, size_t h = 1);
 
         /**
+         * TODO
+         */
+        LUMS_EXPORTED Image& atlas(const lm::Rect2i* rect, size_t n);
+
+        /**
          * Load an image from a file.
          * @param path The file path.
          * @param resource If true, prepend resourcePath() to the path.
@@ -156,6 +162,12 @@ namespace lm
          * @return A reference to an image.
          */
         LUMS_EXPORTED void  loadFilePNG(const std::string path, bool resource = true);
+
+
+        /**
+         * TODO
+         */
+        LUMS_EXPORTED void  loadDescriptor(const ImageDescriptor& descriptor);
 
         /**
          * Load an image from a file.

@@ -31,7 +31,7 @@ public:
         glEnable(GL_TEXTURE_2D);
         _image.loadFile("Nyan.png");
         _sprite.setImage(_image);
-        _sprite.setSize(400, 400);
+        _sprite.setScale(2);
     }
 
     void

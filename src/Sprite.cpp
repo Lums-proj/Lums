@@ -17,10 +17,10 @@
 
 using namespace lm;
 
-Sprite::Sprite(Image& image, int w, int h, size_t state)
+Sprite::Sprite(Image& image, size_t state)
 : _image(&image)
-, _w(w)
-, _h(h)
+, _w(image.iwidth())
+, _h(image.iheight())
 , _baseImage(state)
 , _currentImage(state)
 , _length(1)
@@ -69,9 +69,12 @@ Sprite::draw(int x, int y) const
 void
 Sprite::updateTexCoord()
 {
+    Rect2d tex = _image->atlasAt(_currentImage);
+    _w = tex.w * _image->width() * _scaleX;
+    _h = tex.h * _image->height() * _scaleY;
+
     double dw = _w;
     double dh = _h;
-    Rect2d tex = _image->atlasAt(_currentImage);
 
     if (_flipX)
     {

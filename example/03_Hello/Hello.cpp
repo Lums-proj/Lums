@@ -43,8 +43,10 @@ public:
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         _mario.loadFile("mario.png");
         _mario.atlas(16);
+        _mario.linear(false);
         _sprite.setImage(_mario);
         _sprite.setAnimation(1, 3, 10);
+        _sprite.setScale(3);
         _script.loadFile("hello.mrb");
         _script.run();
         _script.call("hi");
