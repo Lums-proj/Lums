@@ -17,6 +17,10 @@
 #include <Lums/Image.hpp>
 #include <Lums/ExportDll.hpp>
 
+
+
+#include <iostream>
+
 namespace lm
 {
     class Sprite
@@ -38,13 +42,7 @@ namespace lm
 
         }
 
-        Sprite(Image& image, size_t state = 0)
-        : Sprite(image, image.iwidth(), image.iheight())
-        {
-
-        }
-
-        Sprite(Image& image, int w, int h, size_t state = 0);
+        Sprite(Image& image, size_t state = 0);
         
         Image&
         image() const
@@ -89,10 +87,16 @@ namespace lm
         }
 
         void
-        setSize(int w, int h)
+        setScale(double scale)
         {
-            _w = w;
-            _h = h;
+            setScale(scale, scale);
+        }
+
+        void
+        setScale(double scaleX, double scaleY)
+        {
+            _scaleX = scaleX;
+            _scaleY = scaleY;
             updateTexCoord();
         }
 
@@ -133,6 +137,8 @@ namespace lm
         Image*      _image;
         int         _w;
         int         _h;
+        double      _scaleX;
+        double      _scaleY;
         size_t      _baseImage;
         size_t      _currentImage;
         size_t      _length;

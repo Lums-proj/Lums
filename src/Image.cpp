@@ -73,6 +73,25 @@ Image::atlas(size_t w, size_t h)
     return *this;
 }
 
+Image&
+Image::atlas(const lm::Rect2i* rect, size_t n)
+{
+    double w = _width;
+    double h = _height;
+
+    _iwidth = _width / rect[0].w;
+    _iheight = _height / rect[0].h;
+    _atlas.resize(n);
+    for (size_t i = 0; i < n; i++)
+    {
+        _atlas[i].x = rect[i].x / w;
+        _atlas[i].y = rect[i].y / h;
+        _atlas[i].w = rect[i].w / w;
+        _atlas[i].h = rect[i].h / h;
+    }
+    return *this;
+}
+
 void
 Image::loadFile(const std::string path, bool resource)
 {
@@ -167,6 +186,17 @@ Image::loadFilePNG(const std::string path, bool resource)
 
     fclose(f);
     gen(image, format);
+}
+
+void
+Image::loadDescriptor(const ImageDescriptor& descriptor)
+{
+    loadFile(descriptor._path);
+    if (descriptor._customAtlas)
+        atlas(descriptor._atlas.custom.rect, descriptor._atlas.custom.n);
+    else
+        atlas(descriptor._atlas.normal.x, descriptor._atlas.normal.y);
+    linear(descriptor._linear);
 }
 
 Image
