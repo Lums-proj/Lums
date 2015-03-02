@@ -24,25 +24,28 @@ ImageDescriptor::ImageDescriptor(const char* path)
 
 }
 
-void
+ImageDescriptor&
 ImageDescriptor::atlas(size_t x, size_t y)
 {
 	_customAtlas = false;
 	_atlas.normal.x = x;
 	_atlas.normal.y = y;
+	return *this;
 }
 
-void
+ImageDescriptor&
 ImageDescriptor::atlas(const lm::Rect2i* rect, size_t n)
 {
 	_customAtlas = true;
 	_atlas.custom.rect = rect;
 	_atlas.custom.n = n;
+	return *this;
 }
 
-void
+ImageDescriptor&
 ImageDescriptor::linear(bool b)
 {
 	_linear = b;
+	return *this;
 }
 
