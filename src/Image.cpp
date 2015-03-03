@@ -69,12 +69,14 @@ Image::atlas(size_t w, size_t h)
         _atlas[i].y = y;
         _atlas[i].w = img_w;
         _atlas[i].h = img_h;
+        _atlas[i].offX = 0;
+        _atlas[i].offY = 0;
     }
     return *this;
 }
 
 Image&
-Image::atlas(const lm::Rect2i* rect, size_t n)
+Image::atlas(const lm::FrameDescriptori* rect, size_t n)
 {
     double w = _width;
     double h = _height;
@@ -88,6 +90,8 @@ Image::atlas(const lm::Rect2i* rect, size_t n)
         _atlas[i].y = rect[i].y / h;
         _atlas[i].w = rect[i].w / w;
         _atlas[i].h = rect[i].h / h;
+        _atlas[i].offX = rect[i].offX;
+        _atlas[i].offY = rect[i].offY;
     }
     return *this;
 }

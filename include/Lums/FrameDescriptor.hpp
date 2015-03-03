@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    ImageDescriptor.cpp                            oooooo       oooooo      */
+/*    FrameDescriptor.hpp                            oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,41 +11,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Lums/ImageDescriptor.hpp>
+#ifndef FRAME_DESCRIPTOR_HPP
+#define FRAME_DESCRIPTOR_HPP
 
-using namespace lm;
-
-ImageDescriptor::ImageDescriptor(const char* path)
-: _path(path)
-, _customAtlas(false)
-, _linear(true)
-, _atlas({.normal.x = 1, .normal.y = 1})
+namespace lm
 {
+	template <class T>
+	struct FrameDescriptor
+	{
+		T		x;
+		T		y;
+		T		w;
+		T		h;
+		int		offX;
+		int		offY;
+	};
 
+	typedef FrameDescriptor<int>	FrameDescriptori;
+	typedef FrameDescriptor<double>	FrameDescriptord;
 }
 
-ImageDescriptor&
-ImageDescriptor::atlas(size_t x, size_t y)
-{
-	_customAtlas = false;
-	_atlas.normal.x = x;
-	_atlas.normal.y = y;
-	return *this;
-}
-
-ImageDescriptor&
-ImageDescriptor::atlas(const lm::FrameDescriptori* rect, size_t n)
-{
-	_customAtlas = true;
-	_atlas.custom.rect = rect;
-	_atlas.custom.n = n;
-	return *this;
-}
-
-ImageDescriptor&
-ImageDescriptor::linear(bool b)
-{
-	_linear = b;
-	return *this;
-}
-
+#endif
