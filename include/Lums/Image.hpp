@@ -117,7 +117,7 @@ namespace lm
          * @param i The index of the value to get from the atlas.
          * @return A rect representing an atlas value.
          */
-        const Rect2d&
+        const FrameDescriptord&
         atlasAt(size_t i) const
         {
             return _atlas[i];
@@ -145,7 +145,7 @@ namespace lm
         /**
          * TODO
          */
-        LUMS_EXPORTED Image& atlas(const lm::Rect2i* rect, size_t n);
+        LUMS_EXPORTED Image& atlas(const lm::FrameDescriptori* rect, size_t n);
 
         /**
          * Load an image from a file.
@@ -185,12 +185,12 @@ namespace lm
     private:
         void                gen(unsigned char* img, GLint format);
 
-        size_t              _width;
-        size_t              _height;
-        size_t              _iwidth;
-        size_t              _iheight;
-        std::vector<Rect2d> _atlas;
-        GLuint              _texture;
+        size_t                          _width;
+        size_t                          _height;
+        size_t                          _iwidth;
+        size_t                          _iheight;
+        std::vector<FrameDescriptord>   _atlas;
+        GLuint                          _texture;
     };
 }
 

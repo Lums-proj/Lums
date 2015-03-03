@@ -69,12 +69,14 @@ Sprite::draw(int x, int y) const
 void
 Sprite::updateTexCoord()
 {
-    Rect2d tex = _image->atlasAt(_currentImage);
+    FrameDescriptord tex = _image->atlasAt(_currentImage);
     _w = tex.w * _image->width() * _scaleX;
     _h = tex.h * _image->height() * _scaleY;
 
     double dw = _w;
     double dh = _h;
+    double x = tex.offX;
+    double y = tex.offY;
 
     if (_flipX)
     {
@@ -88,20 +90,20 @@ Sprite::updateTexCoord()
         tex.h = -tex.h;
     }
 
-    _vertex[0] = 0;
-    _vertex[1] = 0;
+    _vertex[0] = x;
+    _vertex[1] = y;
     _vertex[2] = tex.x;
     _vertex[3] = tex.y;
-    _vertex[4] = dw;
-    _vertex[5] = 0;
+    _vertex[4] = x + dw;
+    _vertex[5] = y;
     _vertex[6] = tex.x + tex.w;
     _vertex[7] = tex.y;
-    _vertex[8] = dw;
-    _vertex[9] = dh;
+    _vertex[8] = x + dw;
+    _vertex[9] = y + dh;
     _vertex[10] = tex.x + tex.w;
     _vertex[11] = tex.y + tex.h;
-    _vertex[12] = 0;
-    _vertex[13] = dh;
+    _vertex[12] = x;
+    _vertex[13] = y + dh;
     _vertex[14] = tex.x;
     _vertex[15] = tex.y + tex.h;
 }
