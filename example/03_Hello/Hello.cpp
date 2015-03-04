@@ -64,17 +64,13 @@ public:
     void
     render() const
     {
-        glBegin(GL_QUADS);
-        glColor3d(1, 0, 0);
-        glVertex2i(0, 0);
-        glColor3d(0, 1, 0);
-        glVertex2i(200, 0);
-        glColor3d(0, 0, 1);
-        glVertex2i(200, 200);
-        glColor3d(1, 1, 0);
-        glVertex2i(0, 200);
-        glEnd();
-        glColor3d(1, 1, 1);
+        lm::VertexArrayc<4> va;
+
+        va.push(0, 0, 1, 0, 0);
+        va.push(200, 0, 0, 1, 0);
+        va.push(200, 200, 0, 0, 1);
+        va.push(0, 200, 1, 1, 0);
+        va.draw(GL_QUADS);
         _font.printf(0, 50, "Hello, World! %d", _frame);
         _font.printf(0, 120, "x: %f", _x);
         _font.printf(0, 140, "y: %f", _y);
