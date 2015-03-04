@@ -51,6 +51,7 @@ public:
         _script.run();
         _script.call("hi");
         _frame = 0;
+        _arr.push(0, 0, 1, 0.5, 1);
     }
 
     void
@@ -111,6 +112,7 @@ private:
     lm::Script  _script;
     lm::Sound   _music;
     lm::Sound   _jump;
+    lm::VertexArrayc<256>  _arr;
     int         _frame;
     float       _x;
     float       _y;
