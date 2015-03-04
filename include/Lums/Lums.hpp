@@ -32,7 +32,6 @@
 #endif
 
 #include <Lums/Angle.hpp>
-#include <Lums/Batch2.hpp>
 #include <Lums/Core.hpp>
 #include <Lums/Event.hpp>
 #include <Lums/Font.hpp>

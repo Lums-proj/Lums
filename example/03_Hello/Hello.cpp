@@ -16,7 +16,6 @@
 #include <Lums/Script.hpp>
 #include <Lums/SoundManager.hpp>
 #include <Lums/Sound.hpp>
-#include <Lums/Vertex2.hpp>
 #include <iostream>
 
 class Hello : public lm::GameState
@@ -104,15 +103,6 @@ public:
             _x = event.gamepad.stick.x;
             _y = event.gamepad.stick.y;
         }
-
-        lm::Vertex2<lm::Vertex::Color, lm::Vertex::Normal> vert;
-
-        vert.color.r = 0.6;
-        vert.pos.x = 0.8;
-
-        lm::SpriteBatch sb;
-
-        sb.draw();
     }
 
 private:
