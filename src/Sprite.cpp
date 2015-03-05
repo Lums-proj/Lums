@@ -35,13 +35,21 @@ Sprite::Sprite(Image& image, size_t state)
 void
 Sprite::update()
 {
+    if (_finished)
+        return;
     _acc++;
     if (_acc == _speed)
     {
         _acc = 0;
-        _currentImage++;
-        if (_currentImage == _baseImage + _length)
-            _currentImage = _baseImage;
+        if (_currentImage + 1 == _baseImage + _length)
+        {
+            if (!_loop)
+                _finished = true;
+            else
+                _currentImage = _baseImage;
+        }
+        else
+            _currentImage++;
         updateTexCoord();
     }
 }
