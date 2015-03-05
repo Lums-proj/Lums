@@ -38,6 +38,7 @@ namespace lm
         , _speed(0)
         , _flipX(false)
         , _flipY(false)
+        , _finished(false)
         {
 
         }
@@ -72,10 +73,12 @@ namespace lm
         }
 
         void
-        setAnimation(size_t image, size_t length, size_t speed)
+        setAnimation(size_t image, size_t length, size_t speed, bool loop = true)
         {
             setSpeed(speed);
             _length = length;
+            _loop = loop;
+            _finished = false;
             setImageInAtlas(image);
         }
 
@@ -122,6 +125,12 @@ namespace lm
             updateTexCoord();
         }
 
+        bool
+        finished() const
+        {
+            return _finished;
+        }
+
         LUMS_EXPORTED void  update();
         LUMS_EXPORTED void  draw(int x, int y) const;
 
@@ -147,6 +156,8 @@ namespace lm
         GLdouble    _vertex[16];
         bool        _flipX;
         bool        _flipY;
+        bool        _loop;
+        bool        _finished;
 
     };
 }
