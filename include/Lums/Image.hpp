@@ -117,7 +117,7 @@ namespace lm
          * @param i The index of the value to get from the atlas.
          * @return A rect representing an atlas value.
          */
-        const FrameDescriptord&
+        const FrameDescriptorf&
         atlasAt(size_t i) const
         {
             return _atlas[i];
@@ -189,7 +189,7 @@ namespace lm
         size_t                          _height;
         size_t                          _iwidth;
         size_t                          _iheight;
-        std::vector<FrameDescriptord>   _atlas;
+        std::vector<FrameDescriptorf>   _atlas;
         GLuint                          _texture;
     };
 }

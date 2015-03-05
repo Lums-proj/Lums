@@ -217,9 +217,14 @@ SoundManager::run()
 {
     std::thread     t1([this]()
         {
-            std::chrono::milliseconds dura(400);
+            std::chrono::milliseconds dura(20);
             while (1)
             {
+                /**
+                 * KLUDGE
+                 * This should use a condition variable and a mutex.
+                 * The expected gain is in the order of 10~20x.
+                 */
                 _state = SoundManagerState::Used;
                 manageSounds();
                 _state = SoundManagerState::Free;

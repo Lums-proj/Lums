@@ -45,6 +45,7 @@
 #include <Lums/Sound.hpp>
 #include <Lums/SoundManager.hpp>
 #include <Lums/Sprite.hpp>
+#include <Lums/SpriteBatch.hpp>
 #include <Lums/Vector2.hpp>
 #include <Lums/Vector3.hpp>
 #include <Lums/VertexArray.hpp>
