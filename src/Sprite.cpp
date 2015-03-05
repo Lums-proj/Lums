@@ -69,7 +69,7 @@ Sprite::draw(int x, int y) const
 void
 Sprite::updateTexCoord()
 {
-    FrameDescriptord tex = _image->atlasAt(_currentImage);
+    FrameDescriptorf tex = _image->atlasAt(_currentImage);
     _w = tex.w * _image->width() * _scaleX;
     _h = tex.h * _image->height() * _scaleY;
 

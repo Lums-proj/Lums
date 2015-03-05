@@ -28,7 +28,7 @@ namespace lm
 	};
 
 	typedef FrameDescriptor<int>	FrameDescriptori;
-	typedef FrameDescriptor<double>	FrameDescriptord;
+	typedef FrameDescriptor<float>	FrameDescriptorf;
 }
 
 #endif

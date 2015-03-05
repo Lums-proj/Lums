@@ -54,16 +54,16 @@ Image&
 Image::atlas(size_t w, size_t h)
 {
     size_t len = w * h;
-    double img_w = 1.0 / w;
-    double img_h = 1.0 / h;
+    float img_w = 1.0 / w;
+    float img_h = 1.0 / h;
 
     _iwidth = _width / w;
     _iheight = _height / h;
     _atlas.resize(len);
     for (size_t i = 0; i < len; i++)
     {
-        double x = (i % w) * img_w;
-        double y = (i / w) * img_h;
+        float x = (i % w) * img_w;
+        float y = (i / w) * img_h;
 
         _atlas[i].x = x;
         _atlas[i].y = y;
@@ -78,8 +78,8 @@ Image::atlas(size_t w, size_t h)
 Image&
 Image::atlas(const lm::FrameDescriptori* rect, size_t n)
 {
-    double w = _width;
-    double h = _height;
+    float w = _width;
+    float h = _height;
 
     _iwidth = _width / rect[0].w;
     _iheight = _height / rect[0].h;

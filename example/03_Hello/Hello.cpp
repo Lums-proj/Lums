@@ -65,12 +65,20 @@ public:
     render() const
     {
         lm::VertexArrayc<4> va;
+        lm::SpriteBatch sb;
 
         va.push(0, 0, 1, 0, 0);
         va.push(200, 0, 0, 1, 0);
         va.push(200, 200, 0, 0, 1);
         va.push(0, 200, 1, 1, 0);
         va.draw(GL_QUADS);
+        sb.begin();
+        for (int i = 0; i < 20; i++)
+        {
+            for (int j = 0; j < 20; j++)
+            sb.draw(_mario, i * 20 - 4, j * 20, 0, 2);
+        }
+        sb.end();
         _font.printf(0, 50, "Hello, World! %d", _frame);
         _font.printf(0, 120, "x: %f", _x);
         _font.printf(0, 140, "y: %f", _y);

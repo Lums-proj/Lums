@@ -72,7 +72,7 @@ namespace lm
 		template <size_t N, Vertex Base, Vertex Head, Vertex... Queue>
 		struct _VertexOffsetHelper<N, Base, Head, Queue...>
 		{
-			enum { value = (Base == Head) ? N : _VertexOffsetHelper<N + _VertexLen<Head>::value, Base, Queue...>::value };
+			enum { value = (Base == Head) ? N : _VertexOffsetHelper<N + (_VertexLen<Head>::value - 2), Base, Queue...>::value };
 		};
 
 		template <Vertex Base, Vertex Head, Vertex... Queue>
@@ -86,7 +86,7 @@ namespace lm
 		{
 			template <Vertex V = Head, typename... T>
 			static typename std::enable_if<V == Vertex::Color>::type
-			apply(double* buffer, double r, double g, double b, T... Args)
+			apply(float* buffer, float r, float g, float b, T... Args)
 			{
 				buffer[0] = r;
 				buffer[1] = g;
@@ -96,7 +96,7 @@ namespace lm
 
 			template <Vertex V = Head, typename... T>
 			static typename std::enable_if<V == Vertex::Texture>::type
-			apply(double* buffer, double x, double y, T... Args)
+			apply(float* buffer, float x, float y, T... Args)
 			{
 				buffer[0] = x;
 				buffer[1] = y;
@@ -105,14 +105,14 @@ namespace lm
 
 			template <int N, typename... T>
 			static typename std::enable_if<N != 0>::type
-			forward(double *buffer, T... Args)
+			forward(float *buffer, T... Args)
 			{
 				_VertexPush<Opt...>::apply(buffer, Args...);
 			}
 
 			template <int N, typename... T>
 			static typename std::enable_if<N == 0>::type
-			forward(double* buffer)
+			forward(float* buffer)
 			{
 
 			}
@@ -127,7 +127,7 @@ namespace lm
 		: _count(0)
         , _vertices(0)
 		{
-
+            
 		}
 
 		void
@@ -139,7 +139,7 @@ namespace lm
 
 		template <typename ...T>
 		void
-		push(double x, double y, T ...Args)
+		push(float x, float y, T ...Args)
 		{
 			_buffer[_count] = x;
 			_buffer[_count + 1] = y;
@@ -150,14 +150,14 @@ namespace lm
 
 		template <int Len, typename ...T>
 		typename std::enable_if<Len != 0>::type
-		forward(double* buffer, T... Args)
+		forward(float* buffer, T... Args)
 		{
 			internal::_VertexPush<Options...>::apply(buffer, Args...);
 		}
 
 		template <int Len, typename ...T>
 		typename std::enable_if<Len == 0>::type
-		forward(double* buffer)
+		forward(float* buffer)
 		{
 
 		}
@@ -166,7 +166,7 @@ namespace lm
 		draw(GLenum mode) const
 		{
 			glEnableClientState(GL_VERTEX_ARRAY);
-            glVertexPointer(2, GL_DOUBLE, internal::_VertexLen<Options...>::value * sizeof(double), _buffer);
+            glVertexPointer(2, GL_FLOAT, internal::_VertexLen<Options...>::value * sizeof(float), _buffer);
 			enableColor<Options...>();
 			enableTexture<Options...>();
             glDrawArrays(mode, 0, _vertices);
@@ -176,7 +176,7 @@ namespace lm
 		}
 
 	protected:
-		double 	_buffer[N * internal::_VertexLen<Options...>::value];
+		float 	_buffer[N * internal::_VertexLen<Options...>::value];
 		size_t	_count;
         size_t  _vertices;
 
@@ -188,8 +188,8 @@ namespace lm
 			glEnableClientState(GL_COLOR_ARRAY);
             glColorPointer(
                 3,
-                GL_DOUBLE,
-                internal::_VertexLen<Options...>::value * sizeof(double),
+                GL_FLOAT,
+                internal::_VertexLen<Options...>::value * sizeof(float),
                 _buffer + internal::_VertexOffset<Vertex::Color, Options...>::value
             );
 		}
@@ -209,8 +209,8 @@ namespace lm
 			glEnable(GL_TEXTURE_2D);
             glTexCoordPointer(
                 2,
-                GL_DOUBLE,
-                internal::_VertexLen<Options...>::value * sizeof(double),
+                GL_FLOAT,
+                internal::_VertexLen<Options...>::value * sizeof(float),
                 _buffer + internal::_VertexOffset<Vertex::Texture, Options...>::value
             );
 		}
