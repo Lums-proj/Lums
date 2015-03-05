@@ -23,9 +23,11 @@ static NSAutoreleasePool* pool;
 
 static NSOpenGLPixelFormatAttribute
 glAttributes[] = {
-    NSOpenGLPFADepthSize, 32,
+    NSOpenGLPFADepthSize, 24,
+    NSOpenGLPFAStencilSize, 8,
     NSOpenGLPFAAccelerated,
     NSOpenGLPFADoubleBuffer,
+    NSOpenGLPFAClosestPolicy,
     0
 };
 
