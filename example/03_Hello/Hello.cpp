@@ -22,11 +22,9 @@ class Hello : public lm::GameState
 {
 public:
     Hello()
-    : _x(0)
-    , _y(0)
     {
-        _music.loadFile("music.ogg", lm::Sound::Type::Music);
-        _jump.loadFile("jump.ogg", lm::Sound::Type::FX);
+        _music.loadFile("music.ogg", lm::SoundType::Music);
+        _jump.loadFile("jump.ogg", lm::SoundType::FX);
         _music.play();
     }
 
