@@ -83,8 +83,8 @@ Sprite::updateTexCoord()
 
     double dw = _w;
     double dh = _h;
-    double x = tex.offX;
-    double y = tex.offY;
+    double x = _flipX ? 0 : tex.offX;
+    double y = _flipY ? 0 : tex.offY;
 
     if (_flipX)
     {

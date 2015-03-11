@@ -58,7 +58,7 @@ SoundManager::pauseSound(Sound& sound)
     for (it = _sounds.begin(); it != _sounds.end(); ++it)
     {
         Sound*  s = (*it).sound;
-        if (sound == *s && (*it).state == SoundState::Playing)
+        if (&sound == s && (*it).state == SoundState::Playing)
         {
             alSourcePause((*it).source);
             (*it).state = SoundState::Paused;
@@ -74,7 +74,7 @@ SoundManager::stopSound(Sound& sound)
     for (it = _sounds.begin(); it != _sounds.end(); ++it)
     {
         Sound*  s = (*it).sound;
-        if (sound == *s)
+        if (&sound == s)
         {
             alSourceStop((*it).source);
             (*it).state = SoundState::Finished;
@@ -141,7 +141,7 @@ SoundManager::addMusic(Sound* sound)
     std::chrono::milliseconds dura(400);
     while (_state != SoundManagerState::Free)
         std::this_thread::sleep_for(dura);
-    if (_music.sound && *(_music.sound) != *sound)
+    if (_music.sound && _music.sound != sound)
         _music.sound->stop();
     _state = SoundManagerState::Used;
     _music = s;

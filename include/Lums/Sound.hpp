@@ -34,25 +34,23 @@ namespace lm
         Finished
     };
 
-    enum class SoundType
-    {
-        Null,
-        FX,
-        Music
-    };
-
     class Sound
     {
     public:
 
+        enum class Type
+        {
+            None,
+            FX,
+            Music
+        };
+
         Sound();
-        void         loadFile(const std::string name, SoundType type, bool resource = true);
+        void         loadFile(const std::string& name, Type type, bool resource = true);
         void         play(float x = 0.0f, float y = 0.0f, float z = 0.0f);
         void         pause();
         void         stop();
         ALuint       playSound();
-        bool         operator==(const Sound& rhs) const;
-        bool         operator!=(const Sound& rhs) const;
         ~Sound();
 
     private:
@@ -62,22 +60,21 @@ namespace lm
         void         loadFileOGG(const std::string name, bool resource);
         void         readOGG(ALuint& Buffer, ALsizei NbSamples);
 
+        float                   _x;
+        float                   _y;
+        float                   _z;
         FILE*                   _file;
         ALenum                  _format;
         ALsizei                 _sampleRate;
         ALsizei                 _read;
         OggVorbis_File          _stream;
-        SoundType               _type;
+        Type                    _type;
         SoundState              _state;
-        float                   _x;
-        float                   _y;
-        float                   _z;
         bool                    _run;
         size_t                  _id;
         static size_t           _nbs;
         std::mutex              _mtx;
         std::condition_variable _cv;
-        static SoundManager*    _soundManager;
     };
   
 }
