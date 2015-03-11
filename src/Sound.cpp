@@ -20,76 +20,81 @@
 
 using namespace lm;
 
+static char soundManager[sizeof(SoundManager)];
+static SoundManager* soundManagerPtr = nullptr;
+
+static ALuint   sourceMusic;
+static ALuint   sourcesFx[64];
+static int      nextSound = 0;
+
 Sound::Sound()
 : _file(0)
 , _format(0)
 , _sampleRate(0)
 , _read(0)
-, _type(SoundType::Null)
+, _type(Type::None)
 , _state(SoundState::Pending)
-, _x(0)
-, _y(0)
-, _z(0)
 , _run(true)
 , _id(_nbs)
 {
     _nbs++;
-    if (!Sound::_soundManager)
-        Sound::_soundManager = new SoundManager();
+    if (!soundManagerPtr)
+    {
+        soundManagerPtr = new(soundManager) SoundManager();
+        alGenSources(1, &sourceMusic);
+        alGenSources(64, sourcesFx);
+    }
 }
 
 void
 Sound::play(float x, float y, float z)
 {
-    _x = x;
-    _y = y;
-    _z = z;
-    if (_type == SoundType::Null)
+    if (_type == Type::None)
     {
         std::cerr << "No file loaded !" << std::endl;
-        return ;
+        return;
     }
     _state = SoundState::Playing;
-    if (_type == SoundType::Music)
+    if (_type == Type::Music)
     {
         _run = true;
-        Sound::_soundManager->addMusic(this);
+        soundManagerPtr->addMusic(this);
     }
-    else 
-        Sound::_soundManager->addSound(this);
+    else
+        soundManagerPtr->addSound(this);
 }
 
 void
 Sound::pause()
 {
     _state = SoundState::Paused;
-    if (_type == SoundType::Music)
+    if (_type == Type::Music)
     {
-        Sound::_soundManager->pauseMusic();
+        soundManagerPtr->pauseMusic();
         std::unique_lock<std::mutex> lck(_mtx);
         _cv.notify_all();
     }
     else 
-        Sound::_soundManager->pauseSound(*this);
+        soundManagerPtr->pauseSound(*this);
 }
 
 void
 Sound::stop()
 {
     _state = SoundState::Finished;
-    if (_type == SoundType::Music)
+    if (_type == Type::Music)
     {
-        Sound::_soundManager->stopMusic();
+        soundManagerPtr->stopMusic();
         _run = false;
     }
     else 
-        Sound::_soundManager->stopSound(*this);
+        soundManagerPtr->stopSound(*this);
 }
 
 ALuint
 Sound::playSound()
 {
-    if (_type == SoundType::FX)
+    if (_type == Type::FX)
         return (playFX());
     else
         return (playMusic());
@@ -179,7 +184,7 @@ Sound::playFX()
 
 
 void
-Sound::loadFile(const std::string name, SoundType type, bool resource)
+Sound::loadFile(const std::string& name, Type type, bool resource)
 {
     _type = type;
     typedef void (Sound::*sndptr_t)(std::string, bool);
@@ -235,18 +240,6 @@ Sound::readOGG(ALuint& buffer, ALsizei nbSamples)
         alBufferData(buffer, _format, &samples[0], totalRead, _sampleRate);
 }
 
-bool
-Sound::operator==(const Sound& rhs) const
-{
-    return (_id == rhs._id);
-}
-
-bool
-Sound::operator!=(const Sound& rhs) const
-{
-    return (_id != rhs._id);
-}
-
 Sound::~Sound()
 {
     if (!_file)
@@ -257,6 +250,3 @@ Sound::~Sound()
 
 size_t
 Sound::_nbs = 0;
-
-SoundManager*
-Sound::_soundManager = 0;
