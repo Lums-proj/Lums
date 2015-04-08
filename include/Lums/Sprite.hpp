@@ -16,10 +16,7 @@
 
 #include <Lums/Image.hpp>
 #include <Lums/ExportDll.hpp>
-
-
-
-#include <iostream>
+#include <Lums/Vector2.hpp>
 
 namespace lm
 {
@@ -27,22 +24,7 @@ namespace lm
     {
     public:
 
-        Sprite()
-        : _image(nullptr)
-        , _w(0)
-        , _h(0)
-        , _baseImage(0)
-        , _currentImage(0)
-        , _length(1)
-        , _acc(0)
-        , _speed(0)
-        , _flipX(false)
-        , _flipY(false)
-        , _finished(false)
-        {
-
-        }
-
+        Sprite();
         Sprite(Image& image, size_t state = 0);
         
         Image&
@@ -61,6 +43,12 @@ namespace lm
         height() const
         {
             return _h;
+        }
+
+        size_t
+        atlas() const
+        {
+            return _currentImage;
         }
 
         void
@@ -90,39 +78,10 @@ namespace lm
         }
 
         void
-        setScale(double scale)
-        {
-            setScale(scale, scale);
-        }
-
-        void
-        setScale(double scaleX, double scaleY)
-        {
-            _scaleX = scaleX;
-            _scaleY = scaleY;
-            updateTexCoord();
-        }
-
-        void
         setImageInAtlas(size_t i)
         {
             _baseImage = _currentImage = i;
             _acc = 0;
-            updateTexCoord();
-        }
-
-        void
-        flipX(bool b)
-        {
-            _flipX = b;
-            updateTexCoord();
-        }
-
-        void
-        flipY(bool b)
-        {
-            _flipY = b;
-            updateTexCoord();
         }
 
         bool
@@ -132,30 +91,20 @@ namespace lm
         }
 
         LUMS_EXPORTED void  update();
-        LUMS_EXPORTED void  draw(int x, int y) const;
 
-        void
-        draw() const
-        {
-            draw(0, 0);
-        }
+        lm::Vector2f    pos;
+        lm::Vector2f    scale;
+        lm::Vector2b    flip;
 
     private:
-        void    updateTexCoord();
-
         Image*      _image;
         int         _w;
         int         _h;
-        double      _scaleX;
-        double      _scaleY;
         size_t      _baseImage;
         size_t      _currentImage;
         size_t      _length;
         size_t      _acc;
         size_t      _speed;
-        GLdouble    _vertex[16];
-        bool        _flipX;
-        bool        _flipY;
         bool        _loop;
         bool        _finished;
 
