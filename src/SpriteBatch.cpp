@@ -12,7 +12,6 @@
 /* ************************************************************************** */
 
 #include <Lums/SpriteBatch.hpp>
-#include <iostream>
 
 using namespace lm;
 
@@ -30,7 +29,7 @@ SpriteBatch::begin()
 }
 
 void
-SpriteBatch::draw(const Image& image, float x, float y, int atlas, float scaleX, float scaleY)
+SpriteBatch::draw(const Image& image, int atlas, lm::Vector2f pos, lm::Vector2f scale, lm::Vector2b flip)
 {
     if (!_texture)
     {
@@ -47,15 +46,29 @@ SpriteBatch::draw(const Image& image, float x, float y, int atlas, float scaleX,
     }
 
     FrameDescriptorf frame = image.atlasAt(atlas);
-    float w = frame.w * image.width() * scaleX;
-    float h = frame.h * image.height() * scaleY;
+    float w = frame.w * image.width() * scale.x;
+    float h = frame.h * image.height() * scale.y;
 
-    x += frame.offX;
-    y += frame.offY;
-    _va.push(x, y, 1.0f, 1.0f, 1.0f, frame.x, frame.y);
-    _va.push(x + w, y, 1.0f, 1.0f, 1.0f, frame.x + frame.w, frame.y);
-    _va.push(x + w, y + h, 1.0f, 1.0f, 1.0f, frame.x + frame.w, frame.y + frame.h);
-    _va.push(x, y + h, 1.0f, 1.0f, 1.0f, frame.x, frame.y + frame.h);
+    if (flip.x)
+    {
+        pos.x += w;
+        w = -w;
+    }
+    else
+        pos.x += frame.offX;
+
+    if (flip.y)
+    {
+        pos.y += h;
+        h = -h;
+    }
+    else
+        pos.y += frame.offY;
+
+    _va.push(pos.x, pos.y, 1.0f, 1.0f, 1.0f, frame.x, frame.y);
+    _va.push(pos.x + w, pos.y, 1.0f, 1.0f, 1.0f, frame.x + frame.w, frame.y);
+    _va.push(pos.x + w, pos.y + h, 1.0f, 1.0f, 1.0f, frame.x + frame.w, frame.y + frame.h);
+    _va.push(pos.x, pos.y + h, 1.0f, 1.0f, 1.0f, frame.x, frame.y + frame.h);
     _count++;
 }
 
@@ -77,8 +90,6 @@ SpriteBatch::~SpriteBatch()
 void
 SpriteBatch::flush()
 {
-    //std::cout << "Hi" << std::endl;
-    //glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, _texture);
     _va.draw(GL_QUADS);
     _va.clear();

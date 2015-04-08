@@ -325,6 +325,37 @@ namespace lm
          */
         T	y;
     };
+
+    template <>
+    struct Vector2<bool>
+    {
+        constexpr
+        Vector2()
+        : x(false)
+        , y(false)
+        {
+
+        }
+
+        constexpr
+        Vector2(bool x, bool y)
+        : x(x)
+        , y(y)
+        {
+
+        }
+
+        constexpr
+        Vector2(const Vector2<bool>& rhs)
+        : x(rhs.x)
+        , y(rhs.y)
+        {
+
+        }
+
+        bool    x:1;
+        bool    y:1;
+    };
     
     /**
      * An alias for Vector2<int>
@@ -345,6 +376,11 @@ namespace lm
      * An alias for Vector2<Angle>
      */
     typedef Vector2<Angle>	Vector2a;
+
+    /**
+     * An anias for Vector2<bool>
+     */
+    typedef Vector2<bool>   Vector2b;
 }
 
 #endif

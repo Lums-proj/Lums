@@ -31,7 +31,7 @@ public:
         glEnable(GL_TEXTURE_2D);
         _image.loadFile("Nyan.png");
         _sprite.setImage(_image);
-        _sprite.setScale(2);
+        _sprite.scale = {2, 2};
     }
 
     void
@@ -58,7 +58,11 @@ public:
     void
     render() const
     {
-        _sprite.draw(0, 0);
+        lm::SpriteBatch sb;
+        
+        sb.begin();
+        sb.draw(_sprite);
+        sb.end();
     }
 
 private:

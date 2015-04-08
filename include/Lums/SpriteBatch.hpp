@@ -28,20 +28,14 @@ namespace lm
     public:
         SpriteBatch();
         void    begin();
-        
-        void
-        draw(const Image& image)
-        {
-            draw(image, 0, 0);
-        }
+        void    draw(const Image& image, int atlas = 0, lm::Vector2f pos = {0, 0}, lm::Vector2f scale = {1, 1}, lm::Vector2b flip = {false, false});
 
         void
-        draw(const Image& image, float x, float y, int atlas = 0, float scale = 1)
+        draw(const Sprite& sprite)
         {
-            draw(image, x, y, atlas, scale, scale);
+            draw(sprite.image(), sprite.atlas(), sprite.pos, sprite.scale, sprite.flip);
         }
 
-        void    draw(const Image& image, float x, float y, int atlas, float scaleX, float scaleY);
         void    end();
         ~SpriteBatch();
 
