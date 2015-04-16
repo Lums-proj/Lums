@@ -36,13 +36,13 @@ namespace lm
         int
         width() const
         {
-            return _w;
+            return _image->atlasAt(_currentImage).w * _image->width() * _scale.x;
         }
 
         int
         height() const
         {
-            return _h;
+            return _image->atlasAt(_currentImage).h * _image->height() * _scale.y;
         }
 
         size_t
@@ -51,12 +51,16 @@ namespace lm
             return _currentImage;
         }
 
+        const lm::Vector2f&
+        scale() const
+        {
+            return _scale;
+        }
+
         void
         setImage(Image& image)
         {
             _image = &image;
-            _w = _image->iwidth();
-            _h = _image->iheight();
             setImageInAtlas(0);
         }
 
@@ -84,6 +88,18 @@ namespace lm
             _acc = 0;
         }
 
+        void
+        setScale(float scale)
+        {
+            setScale(scale, scale);
+        }
+
+        void
+        setScale(float sx, float sy)
+        {
+            _scale = {sx, sy};
+        }
+
         bool
         finished() const
         {
@@ -93,20 +109,18 @@ namespace lm
         LUMS_EXPORTED void  update();
 
         lm::Vector2f    pos;
-        lm::Vector2f    scale;
         lm::Vector2b    flip;
 
     private:
-        Image*      _image;
-        int         _w;
-        int         _h;
-        size_t      _baseImage;
-        size_t      _currentImage;
-        size_t      _length;
-        size_t      _acc;
-        size_t      _speed;
-        bool        _loop;
-        bool        _finished;
+        Image*          _image;
+        lm::Vector2f    _scale;
+        size_t          _baseImage;
+        size_t          _currentImage;
+        size_t          _length;
+        size_t          _acc;
+        size_t          _speed;
+        bool            _loop;
+        bool            _finished;
 
     };
 }

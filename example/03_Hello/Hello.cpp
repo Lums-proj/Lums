@@ -43,7 +43,7 @@ public:
         _mario.linear(false);
         _sprite.setImage(_mario);
         _sprite.setAnimation(1, 3, 10);
-        _sprite.scale = {3, 3};
+        _sprite.setScale(3);
         _sprite.pos = {50, 50};
         _script.loadFile("hello.mrb");
         _script.run();

@@ -19,8 +19,6 @@ using namespace lm;
 
 Sprite::Sprite()
 : _image(nullptr)
-, _w(0)
-, _h(0)
 , _baseImage(0)
 , _currentImage(0)
 , _length(1)
@@ -33,8 +31,6 @@ Sprite::Sprite()
 
 Sprite::Sprite(Image& image, size_t state)
 : _image(&image)
-, _w(image.iwidth())
-, _h(image.iheight())
 , _baseImage(state)
 , _currentImage(state)
 , _length(1)
