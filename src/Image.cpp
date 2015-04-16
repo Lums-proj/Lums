@@ -54,8 +54,8 @@ Image&
 Image::atlas(size_t w, size_t h)
 {
     size_t len = w * h;
-    float img_w = 1.0 / w;
-    float img_h = 1.0 / h;
+    float img_w = 1.0f / w;
+    float img_h = 1.0f / h;
 
     _iwidth = _width / w;
     _iheight = _height / h;
