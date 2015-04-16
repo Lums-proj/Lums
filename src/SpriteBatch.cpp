@@ -65,8 +65,8 @@ SpriteBatch::draw(const Image& image, int atlas, lm::Vector2f pos, lm::Vector2f 
     else
         pos.y += frame.offY;
 
-    const float fcorx = frame.w * 0.00001f;
-    const float fcory = frame.h * 0.00001f;
+    const float fcorx = frame.w * 0.0001f;
+    const float fcory = frame.h * 0.0001f;
 
     frame.x += fcorx;
     frame.y += fcory;
@@ -101,6 +101,5 @@ SpriteBatch::flush()
     glBindTexture(GL_TEXTURE_2D, _texture);
     _va.draw(GL_QUADS);
     _va.clear();
-    _texture = 0;
     _count = 0;
 }
