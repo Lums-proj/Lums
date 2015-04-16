@@ -33,7 +33,7 @@ namespace lm
         void
         draw(const Sprite& sprite)
         {
-            draw(sprite.image(), sprite.atlas(), sprite.pos, sprite.scale, sprite.flip);
+            draw(sprite.image(), sprite.atlas(), sprite.pos, sprite.scale(), sprite.flip);
         }
 
         void    end();
