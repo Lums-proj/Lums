@@ -17,9 +17,9 @@
 #define LUMS_STR2(str)      #str
 #define LUMS_STR(str)       LUMS_STR2(str)
 #define LUMS_VERSION_MAJOR  2
-#define LUMS_VERSION_MINOR  8
-#define LUMS_VERSION_TEENY  4
-#define LUMS_VERSION_PATCH  0
+#define LUMS_VERSION_MINOR  9
+#define LUMS_VERSION_TEENY  0
+#define LUMS_VERSION_PATCH  1
 
 #define LUMS_VERSION_NUMBER LUMS_STR(LUMS_VERSION_MAJOR) "."	\
 							LUMS_STR(LUMS_VERSION_MINOR) "." 	\
@@ -42,6 +42,8 @@
 #include <Lums/OperatingSystem.hpp>
 #include <Lums/Rect2.hpp>
 #include <Lums/Script.hpp>
+#include <Lums/Shader.hpp>
+#include <Lums/ShaderProgram.hpp>
 #include <Lums/Sound.hpp>
 #include <Lums/SoundManager.hpp>
 #include <Lums/Sprite.hpp>

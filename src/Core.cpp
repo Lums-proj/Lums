@@ -13,6 +13,7 @@
 
 #include <Lums/Core.hpp>
 #include <Lums/GL.hpp>
+#include <Lums/ShaderProgram.hpp>
 
 using namespace lm;
 
@@ -23,6 +24,7 @@ Core::Core(int w, int h, const char* name, bool fullscreen)
 , _win(w, h, name)
 {
     _singleton = this;
+    ShaderProgram::defaultProgram().use();
 }
 
 void
