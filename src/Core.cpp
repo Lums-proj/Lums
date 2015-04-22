@@ -63,8 +63,10 @@ Core::start()
             doEvent();
             doUpdate();
         }
-        doRender();
-        //std::this_thread::sleep_for(microseconds(400)); // CPU is happy
+        if (_win.visible())
+            doRender();
+        else
+            std::this_thread::sleep_for(microseconds(400));
     }
 }
 

@@ -67,6 +67,36 @@ Window::Window(int w, int h, const char* name)
 }
 
 void
+Window::resize(int w, int h, bool fullscreen)
+{
+    LMWindow* win = (LMWindow*)_windowHandle;
+    NSOpenGLContext* context = (NSOpenGLContext*)_openGlHandle;
+
+    [win setFrame:NSMakeRect(0, 0, w, h) display:YES animate:NO];
+    if (fullscreen != _fullscreen)
+    {
+        _fullscreen = fullscreen;
+        [win setCollectionBehavior:NSWindowCollectionBehaviorFullScreenPrimary];
+        [win toggleFullScreen:win];
+        [win setCollectionBehavior:0];
+        if (fullscreen)
+            [win setStyleMask:NSBorderlessWindowMask];
+        else
+            [win setStyleMask:0];
+    }
+    [context update];
+    glViewport(0, 0, w, h);
+}
+
+bool
+Window::visible() const
+{
+    LMWindow* win = (LMWindow*)_windowHandle;
+
+    return true; // TODO
+}
+
+void
 Window::pumpEvent()
 {
 	[LMApplication pumpEvents];

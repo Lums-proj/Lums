@@ -69,6 +69,10 @@ namespace lm
         	extractEvent(event, true);
         }
 
+        void    resize(int w, int h, bool fullscreen = false);
+
+        bool    visible() const;
+
         /**
         * Pump event from the underlying implementation to the event stack.
         */
@@ -109,6 +113,7 @@ namespace lm
         void*               _windowHandle;
         void*               _openGlHandle;
         std::queue<Event>   _events;
+        bool                _fullscreen;
     };
 }
 
