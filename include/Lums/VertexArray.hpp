@@ -16,6 +16,7 @@
 
 #include <type_traits>
 #include <Lums/GL.hpp>
+#include <Lums/Image.hpp>
 
 namespace lm
 {
@@ -206,7 +207,6 @@ namespace lm
 		enableTexture() const
 		{
 			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-			glEnable(GL_TEXTURE_2D);
             glTexCoordPointer(
                 2,
                 GL_FLOAT,
@@ -219,7 +219,7 @@ namespace lm
 		typename std::enable_if<internal::_VertexOfType<Vertex::Texture, V...>::value == false>::type
 		enableTexture() const
 		{
-			glDisable(GL_TEXTURE_2D);
+			lm::Image::none().bind();
 		}
 
 		template <Vertex... V>
