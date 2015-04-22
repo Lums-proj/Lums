@@ -65,11 +65,11 @@ SpriteBatch::draw(const Image& image, int atlas, lm::Vector2f pos, lm::Vector2f 
     else
         pos.y += frame.offY;
 
-    const float fcorx = frame.w * 0.0001f;
-    const float fcory = frame.h * 0.0001f;
+    const float fcorx = 1.0f / image.width();
+    const float fcory = 1.0f / image.height();
 
-    frame.x += fcorx;
-    frame.y += fcory;
+    frame.x += fcorx * 0.5f;
+    frame.y += fcory * 0.5f;
     frame.w -= fcorx;
     frame.h -= fcory;
 
