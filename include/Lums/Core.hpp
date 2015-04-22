@@ -77,6 +77,12 @@ namespace lm
         {
             return _height;
         }
+
+        Window&
+        window()
+        {
+            return _win;
+        }
         
         /**
          * Start the core.
