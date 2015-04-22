@@ -175,7 +175,9 @@ namespace lm
          * @param resource If true, prepend resourcePath() to the path.
          * @return A reference to an image.
          */
-        LUMS_EXPORTED static Image    fromFile(const std::string path, bool resource = true);
+        LUMS_EXPORTED static Image      fromFile(const std::string path, bool resource = true);
+
+        LUMS_EXPORTED static Image&     none();
 
         /**
          * Destructor

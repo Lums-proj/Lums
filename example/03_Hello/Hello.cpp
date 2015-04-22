@@ -64,6 +64,8 @@ public:
         lm::VertexArrayc<4> va;
         lm::SpriteBatch sb;
 
+        lm::Image::none().bind();
+
         va.push(0, 0, 1, 0, 0);
         va.push(200, 0, 0, 1, 0);
         va.push(200, 200, 0, 0, 1);

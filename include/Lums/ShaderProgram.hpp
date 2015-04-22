@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Shader.hpp                                     oooooo       oooooo      */
+/*    ShaderProgram.hpp                              oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,34 +11,30 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_SHADER_HPP
-#define LUMS_SHADER_HPP
+#ifndef LUMS_SHADER_PROGRAM_HPP
+#define LUMS_SHADER_PROGRAM_HPP
 
+#include <vector>
 #include <Lums/GL.hpp>
 
 namespace lm
 {
-	class Shader
-	{
-	friend class ShaderProgram;
-	
-	public:
-		enum Type
-		{
-			Vertex,
-			Fragment
-		};
+	class Shader;
 
-		Shader(const char* path, Type type, bool resource = true);
-		GLuint	get() const	{ return _shader; }
-		static const Shader&	fragment();
-		static const Shader&	vertex();
-		~Shader();
+	class ShaderProgram
+	{
+	public:
+		ShaderProgram();
+		void	attach(const Shader& shader);
+		void	link();
+		void	use() const;
+		static const ShaderProgram& defaultProgram();
+		~ShaderProgram();
 
 	private:
-		Shader();
-		void	load(const char* data, GLenum type);
-		GLuint	_shader;
+		GLuint				_program;
+		std::vector<GLuint>	_shaders;
+
 	};
 }
 

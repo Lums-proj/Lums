@@ -32,6 +32,10 @@ public:
         _image.loadFile("Nyan.png");
         _sprite.setImage(_image);
         _sprite.setScale(2);
+        _prog.attach(lm::Shader("fragment_ex02.glsl", lm::Shader::Type::Fragment));
+        _prog.attach(lm::Shader("vertex_ex02.glsl", lm::Shader::Type::Vertex));
+        _prog.link();
+        _prog.use();
     }
 
     void
@@ -68,6 +72,7 @@ public:
 private:
     lm::Image   _image;
     lm::Sprite  _sprite;
+    lm::ShaderProgram _prog;
     bool        _linear;
 };
 

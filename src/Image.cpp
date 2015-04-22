@@ -212,6 +212,25 @@ Image::fromFile(const std::string path, bool resource)
     return a;
 }
 
+Image&
+Image::none()
+{
+    static Image white;
+
+    if (!white._texture)
+    {
+        unsigned char* color = new unsigned char[3];
+        color[0] = 0xff;
+        color[1] = 0xff;
+        color[2] = 0xff;
+
+        white._width = 1;
+        white._height = 1;
+        white.gen(color, GL_RGB);
+    }
+    return white;
+}
+
 Image::~Image()
 {
     if (_texture)
@@ -230,5 +249,6 @@ Image::gen(unsigned char* img, GLint format)
     glGenTextures(1, &_texture);
     linear();
     glTexImage2D(GL_TEXTURE_2D, 0, format, _width, _height, 0, format, GL_UNSIGNED_BYTE, img);
+    glGenerateMipmap(GL_TEXTURE_2D);
     delete img;
 }
