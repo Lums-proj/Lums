@@ -16,6 +16,7 @@
 
 #ifdef __APPLE__
 #include <OpenGL/gl.h>
+#include <OpenGL/glext.h>
 #endif
 
 #ifdef WIN32
