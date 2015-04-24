@@ -52,11 +52,12 @@ Window::Window(int w, int h, const char* name)
     [win setTitle:[NSString stringWithCString:name encoding:NSASCIIStringEncoding]];
     NSOpenGLPixelFormat *pixelFormat = [[NSOpenGLPixelFormat alloc]
                                         initWithAttributes:glAttributes];
+    NSOpenGLView* view = [[NSOpenGLView alloc] initWithFrame:frame pixelFormat:pixelFormat];
     NSOpenGLContext* context = [[[NSOpenGLContext alloc]
                                 initWithFormat:pixelFormat
                                 shareContext:nil] autorelease];
-    [context setView:[win contentView]];
-    [context makeCurrentContext];
+    [view setOpenGLContext:context];
+    [win setContentView:view];
     glClearColor(0, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT);
     _windowHandle = win;
@@ -64,6 +65,7 @@ Window::Window(int w, int h, const char* name)
     [win makeKeyAndOrderFront:nil];
     [win setWindow:this];
     [win setupHid];
+    [view setWantsBestResolutionOpenGLSurface:YES];
 }
 
 void
@@ -84,8 +86,11 @@ Window::resize(int w, int h, bool fullscreen)
         else
             [win setStyleMask:0];
     }
+    NSView* view = [win contentView];
+    NSRect viewport = [view bounds];
+    viewport = [view convertRectToBacking:[view bounds]];
     [context update];
-    glViewport(0, 0, w, h);
+    glViewport(0, 0, viewport.size.width, viewport.size.height);
 }
 
 bool
