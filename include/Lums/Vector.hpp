@@ -125,7 +125,6 @@ namespace lm
          * The value is assigned to each member.
          * @param value The value to be assigned.
          */
-        constexpr
         Vector(T value = T())
         {
             for (std::size_t i = 0; i < N; ++i)
@@ -241,6 +240,26 @@ namespace lm
 
         vec /= rhs;
         return vec;
+    }
+
+    template <std::size_t N, typename T>
+    Vector<N, T>
+    operator+(const Vector<N, T>& vect)
+    {
+        Vector<N, T> v(vect);
+
+        return v;
+    }
+
+    template <std::size_t N, typename T>
+    Vector<N, T>
+    operator-(const Vector<N, T>& vect)
+    {
+        Vector<N, T> v(vect);
+
+        for (std::size_t i = 0; i < N; ++i)
+            v[i] = -v[i];
+        return v;
     }
 
     template <typename T> using Vector2 = Vector<2, T>;
