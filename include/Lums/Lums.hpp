@@ -39,6 +39,7 @@
 #include <Lums/GL.hpp>
 #include <Lums/Image.hpp>
 #include <Lums/Key.hpp>
+#include <Lums/Math.hpp>
 #include <Lums/OperatingSystem.hpp>
 #include <Lums/Rect.hpp>
 #include <Lums/Script.hpp>

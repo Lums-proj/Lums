@@ -20,6 +20,28 @@ namespace lm
 {
     template <std::size_t N, typename T>
     float
+    squareDist(const Vector<N, T>& v1, const Vector<N, T>& v2)
+    {
+        float d = 0;
+        float buf;
+
+        for (std::size_t i = 0; i < N; ++i)
+        {
+            buf = v1[i] - v2[i];
+            d += buf * buf;
+        }
+        return d;
+    }
+
+    template <std::size_t N, typename T>
+    float
+    dist(const Vector<N, T>& v1, const Vector<N, T>& v2)
+    {
+        return std::sqrt(squareDist(v1, v2));
+    }
+
+    template <std::size_t N, typename T>
+    float
     squareLength(const Vector<N, T>& vect)
     {
         float l = 0;
