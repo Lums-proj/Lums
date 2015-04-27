@@ -14,7 +14,6 @@
 #include <cmath>
 #include <Lums/GL.hpp>
 
-
 void
 lm::glPerspective(GLdouble fovY, GLdouble aspect, GLdouble zNear, GLdouble zFar)
 {
@@ -35,10 +34,10 @@ lm::glLookAt(Vector3f eye, Vector3f lookAt, Vector3f up)
     Vector3f    u;
 
     f = lookAt - eye;
-    f.normalize();
-    up.normalize();
-    s = f.cross(up);
-    u = s.cross(f);
+    f = normal(f);
+    up = normal(f);
+    s = cross(f, up);
+    u = cross(s, f);
 
     static const float m[] = {
         s.x, u.x, -f.x, 0,

@@ -11,66 +11,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_RECT2_HPP
-#define LUMS_RECT2_HPP
+#ifndef LUMS_RECT_HPP
+#define LUMS_RECT_HPP
 
-#include <Lums/Vector2.hpp>
+#include <Lums/Vector.hpp>
 
 namespace lm
 {
-    template <typename T>
-    struct Rect2
+    template <std::size_t N, typename T>
+    struct Rect
     {
-        Rect2()
-        : x(T())
-        , y(T())
-        , w(T())
-        , h(T())
-        {
+        using Vect = Vector<N, T>;
 
-        }
-
-        Rect2(T x, T y)
-        : x(x)
-        , y(y)
-        , w(T())
-        , h(T())
-        {
-
-        }
-
-        Rect2(T x, T y, T w, T h)
-        : x(x)
-        , y(y)
-        , w(w)
-        , h(h)
-        {
-
-        }
-
-        Vector2<T>
-        pos() const
-        {
-            return {x, y};
-        }
-
-        Vector2<T>
-        length() const
-        {
-            return {w, h};
-        }
-
-        T     x;
-        T     y;
-        T     w;
-        T     h;
+        Vect    pos;
+        Vect    size;
     };
 
-    typedef Rect2<int>      Rect2i;
-
-    typedef Rect2<float>    Rect2f;
-
-    typedef Rect2<double>   Rect2d;
+    template <typename T> using Rect2 = Rect<2, T>;
+    template <typename T> using Rect3 = Rect<3, T>;
+    
+    using Rect2f = Rect2<float>;
 }
 
 #endif

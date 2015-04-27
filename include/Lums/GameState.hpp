@@ -67,7 +67,7 @@ namespace lm
          * This method is called when the state has to be redrawn.
          * You must overwrite this method.
          */
-        virtual void    render() const = 0;
+        virtual void    render() = 0;
 
         /**
          * Process Events.
