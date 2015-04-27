@@ -6,7 +6,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 
 if(NOT MSVC)
-	list(APPEND CMAKE_CXX_FLAGS "-std=c++11")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -fno-rtti -fno-exceptions")
 endif()
 
 find_package(OpenGL REQUIRED)

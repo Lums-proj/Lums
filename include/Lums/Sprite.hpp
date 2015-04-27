@@ -16,7 +16,7 @@
 
 #include <Lums/Image.hpp>
 #include <Lums/ExportDll.hpp>
-#include <Lums/Vector2.hpp>
+#include <Lums/Vector.hpp>
 
 namespace lm
 {

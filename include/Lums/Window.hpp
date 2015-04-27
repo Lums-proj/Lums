@@ -32,7 +32,7 @@ namespace lm
         * @param h The height of the window.
         * @param name The name of the window.
         */
-        LUMS_EXPORTED Window(int w, int h, const char* name = "");
+        LUMS_EXPORTED Window(int w, int h, const char* name = "", bool fullscreen = false);
         
         /**
         * Push an event on the internal event stack.

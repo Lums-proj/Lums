@@ -59,7 +59,7 @@ public:
     }
 
     void
-    render() const
+    render()
     {
         lm::VertexArrayc<4> va;
         lm::SpriteBatch sb;

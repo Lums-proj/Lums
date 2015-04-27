@@ -24,7 +24,7 @@
 #include <gl/gl.h>
 #endif
 
-#include <Lums/Vector3.hpp>
+#include <Lums/Math.hpp>
 #include <Lums/ExportDll.hpp>
 
 namespace lm

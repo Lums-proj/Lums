@@ -53,7 +53,7 @@ indices[] = {
 Cube::Cube()
 : speed(10, 0)
 {
-    
+
 }
 
 void
@@ -63,6 +63,7 @@ Cube::load()
     glMatrixMode(GL_PROJECTION);
     glPerspective(70, 1.333f, 0.001f, 100.0f);
     glMatrixMode(GL_MODELVIEW);
+    Image::none().bind();
 }
 
 void
@@ -101,11 +102,15 @@ Cube::handleEvent(const Event& event)
 }
 
 void
-Cube::render() const
+Cube::render()
 {
-    glLookAt(-2, 2, -2, 0, 0, 0, 0, 1, 0);
-    glRotated(angle.x.toDegrees(), 0, 1, 0);
-    glRotated(angle.y.toDegrees(), 0, 0, 1);
+    // glMatrixMode(GL_PROJECTION);
+    // glPerspective(70, 1.333f, 0.001f, 100.0f);
+    // glMatrixMode(GL_MODELVIEW);
+    //glLookAt(-0.01f, 0.01f, -0.01f, 0, 0, 0, 0, 1, 0);
+    //glLookAt(2, 2, 2, 0, 0, 0, 0, 1, 0);
+    glRotatef(angle.x.toDegrees(), 0, 1, 0);
+    glRotatef(angle.y.toDegrees(), 0, 0, 1);
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
     glVertexPointer(3, GL_FLOAT, 0, vertices);

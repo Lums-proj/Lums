@@ -23,7 +23,7 @@ public:
     void    load();
     void    update();
     void    handleEvent(const lm::Event& event);
-    void    render() const;
+    void    render();
     void    unload();
     
 private:

@@ -31,7 +31,8 @@ glAttributes[] = {
     0
 };
 
-Window::Window(int w, int h, const char* name)
+Window::Window(int w, int h, const char* name, bool fullscreen)
+: _fullscreen(false)
 {
     static bool appLaunched = false;
 
@@ -57,15 +58,17 @@ Window::Window(int w, int h, const char* name)
                                 initWithFormat:pixelFormat
                                 shareContext:nil] autorelease];
     [view setOpenGLContext:context];
+    [view setWantsBestResolutionOpenGLSurface:YES];
     [win setContentView:view];
     glClearColor(0, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT);
     _windowHandle = win;
     _openGlHandle = context;
+    [context makeCurrentContext];
+    resize(w, h, fullscreen);
     [win makeKeyAndOrderFront:nil];
     [win setWindow:this];
     [win setupHid];
-    [view setWantsBestResolutionOpenGLSurface:YES];
 }
 
 void
