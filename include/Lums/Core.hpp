@@ -106,6 +106,7 @@ namespace lm
         template<typename T, typename ...Args> T&
         push(Args ...args)
         {
+            ++_it;
             T* state = new T(std::forward<Args>(args)...);
             _stack.insert(_stack.begin(), std::unique_ptr<GameState>(state));
             state->load();

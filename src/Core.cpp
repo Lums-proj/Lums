@@ -144,8 +144,9 @@ Core::doEvent()
         redo:
             _jmp = false;
             st = _stack[_it].get();
-            c = st->forwardEvent(event);
             st->handleEvent(event);
+            if (!st->forwardEvent(event))
+                break;
             if (_jmp)
                 goto redo;
         }
@@ -164,8 +165,9 @@ Core::doUpdate()
     redo:
         _jmp = false;
         st = _stack[_it].get();
-        c = st->forwardUpdate();
         st->update();
+        if (!st->forwardUpdate())
+            break;
         if (_jmp)
             goto redo;
     }
