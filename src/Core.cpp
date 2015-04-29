@@ -77,8 +77,6 @@ Core::pop()
 {
     if (_stack.empty())
         return;
-    if (_it)
-        _it--;
     else
         _jmp = true;
     _stack.front()->unload();
@@ -134,21 +132,19 @@ Core::doEvent()
 {
     GameState*  st;
     Event       event;
-    bool        c;
     
     do
     {
         _win.pollEvent(event);
-        for (_it = 0; _it < _stack.size(); _it++)
+        for (_it = 0; _it < _stack.size(); ++_it)
         {
-        redo:
             _jmp = false;
             st = _stack[_it].get();
             st->handleEvent(event);
+            if (_jmp)
+                return;
             if (!st->forwardEvent(event))
                 break;
-            if (_jmp)
-                goto redo;
         }
     }
     while (event.type != Event::Type::None);
@@ -158,18 +154,17 @@ void
 Core::doUpdate()
 {
     GameState*  st;
-    bool        c;
     
-    for (_it = 0; _it < _stack.size(); _it++)
+    for (_it = 0; _it < _stack.size(); ++_it)
     {
     redo:
         _jmp = false;
         st = _stack[_it].get();
         st->update();
-        if (!st->forwardUpdate())
-            break;
         if (_jmp)
             goto redo;
+        if (!st->forwardUpdate())
+            break;
     }
 }
 
