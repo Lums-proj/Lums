@@ -17,6 +17,7 @@
 #include <Lums/Image.hpp>
 #include <Lums/ExportDll.hpp>
 #include <Lums/Vector.hpp>
+#include <iostream>
 
 namespace lm
 {
@@ -55,6 +56,12 @@ namespace lm
         scale() const
         {
             return _scale;
+        }
+
+        int
+        frame() const
+        {
+            return _currentImage - _baseImage;
         }
 
         void
