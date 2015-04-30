@@ -25,6 +25,13 @@ namespace lm
 	{
 	public:
 		ShaderProgram();
+
+		GLuint
+		program() const
+		{
+			return _program;
+		}
+
 		void	attach(const Shader& shader);
 		void	link();
 		void	use() const;
