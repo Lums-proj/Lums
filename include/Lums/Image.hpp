@@ -185,7 +185,8 @@ namespace lm
         LUMS_EXPORTED ~Image();
 
     private:
-        void                gen(unsigned char* img, GLint format);
+        void                            gen(unsigned char* img, GLint format);
+        void                            genImpl(unsigned char** img, GLint format, GLuint w, GLuint h);
 
         size_t                          _width;
         size_t                          _height;

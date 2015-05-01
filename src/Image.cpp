@@ -244,11 +244,31 @@ Image::~Image()
 void
 Image::gen(unsigned char* img, GLint format)
 {
+    GLint maxSize;
+    GLuint w = _width;
+    GLuint h = _height;
+
     if (_texture)
         glDeleteTextures(1, &_texture);
     glGenTextures(1, &_texture);
     linear();
-    glTexImage2D(GL_TEXTURE_2D, 0, format, _width, _height, 0, format, GL_UNSIGNED_BYTE, img);
+    glGetIntegerv(GL_MAX_TEXTURE_SIZE, &maxSize);
+    std::cout << maxSize << std::endl;
+    if (maxSize < _width || maxSize < _height)
+    {
+        if (_width > _height)
+        {
+            w = maxSize;
+            h = maxSize * float(_height) / float(_width);
+        }
+        else
+        {
+            w = maxSize * float(_width) / float(_height);
+            h = maxSize;
+        }
+        genImpl(&img, format, w, h);
+    }
+    glTexImage2D(GL_TEXTURE_2D, 0, format, w, h, 0, format, GL_UNSIGNED_BYTE, img);
     // glGenerateMipmap(GL_TEXTURE_2D);
     // glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
     // GLfloat aniso;
@@ -256,3 +276,24 @@ Image::gen(unsigned char* img, GLint format)
     // glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, aniso);
     delete img;
 }
+
+void
+Image::genImpl(unsigned char** img, GLint format, GLuint w, GLuint h)
+{
+    const int size = format == GL_RGB ? 3 : 4;
+    const float rx = float(_width) / float(w);
+    const float ry = float(_height) / float(h);
+
+    std::cout << "w: " << w << "h: " << h << std::endl;
+    unsigned char* newImg = new unsigned char[size * w * h];
+    for (int j = 0; j < h; ++j)
+    {
+        for (int i = 0; i < w; ++i)
+        {
+            std::memcpy(newImg + (j * w + i) * size, (*img) + (int(j * ry) * _width + int(i * rx)) * size, size);
+        }
+    }
+    delete [] *img;
+    *img = newImg;
+}
+
