@@ -13,6 +13,7 @@
 
 #include <Lums/ShaderProgram.hpp>
 #include <Lums/Shader.hpp>
+#include <iostream>
 
 using namespace lm;
 
@@ -33,10 +34,18 @@ ShaderProgram::attach(const Shader& shader)
 void
 ShaderProgram::link()
 {
+    GLint linked = 0;
+
 	glLinkProgram(_program);
-	for (auto s : _shaders)
-		glDetachShader(_program, s);
-	_shaders.clear();
+    glGetProgramiv(_program, GL_LINK_STATUS, &linked);
+    if (linked)
+    {
+	   for (auto s : _shaders)
+		  glDetachShader(_program, s);
+	   _shaders.clear();
+    }
+    else
+        std::cout << "Link failed!" << std::endl;
 }
 
 void
@@ -53,10 +62,12 @@ ShaderProgram::defaultProgram()
 
 	if (!init)
 	{
+        /*
 		Shader fragLink;
 		Shader vertLink;
 
 		const char* fragStr = ""
+            "#version 150\n"
 			"vec4 lm_fragColor();\n"
 			"void main() {\n"
 			"gl_FragColor = lm_fragColor();\n"
@@ -64,6 +75,7 @@ ShaderProgram::defaultProgram()
 		"";
 
 		const char* vertStr = ""
+            "#version 150\n"
 			"vec4 lm_position();\n"
 			"vec4 lm_texCoord();\n"
 			"vec4 lm_frontColor();\n"
@@ -76,10 +88,11 @@ ShaderProgram::defaultProgram()
 
 		fragLink.load(fragStr, GL_FRAGMENT_SHADER);
 		vertLink.load(vertStr, GL_VERTEX_SHADER);
+        */
 		def.attach(Shader::fragment());
 		def.attach(Shader::vertex());
-		def.attach(fragLink);
-		def.attach(vertLink);
+		//def.attach(fragLink);
+		//def.attach(vertLink);
 		def.link();
 		init = true;
 	}
