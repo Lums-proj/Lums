@@ -12,8 +12,9 @@
 /* ************************************************************************** */
 
 #import <Cocoa/Cocoa.h>
-#import <OpenGL/gl.h>
+#import <OpenGL/gl3.h>
 #import <Lums/Window.hpp>
+#include <iostream>
 #import "LMApplication.hpp"
 #import "LMWindow.hpp"
 
@@ -28,6 +29,9 @@ glAttributes[] = {
     NSOpenGLPFAAccelerated,
     NSOpenGLPFADoubleBuffer,
     NSOpenGLPFAClosestPolicy,
+    kCGLPFAOpenGLProfile,
+    kCGLOGLPVersion_3_2_Core,
+   // kCGLOGLPVersion_Legacy,
     0
 };
 
@@ -69,6 +73,7 @@ Window::Window(int w, int h, const char* name, bool fullscreen)
     [win makeKeyAndOrderFront:nil];
     [win setWindow:this];
     [win setupHid];
+    std::cout << glGetString(GL_VERSION) << std::endl;
 }
 
 void

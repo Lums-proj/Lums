@@ -52,9 +52,15 @@ Shader::fragment()
 	if (!s._shader)
 	{
 		static const char* str = ""
-			"uniform sampler2D lm_sampler;\n"
-			"vec4 lm_fragColor() {\n"
-			"return texture2D(lm_sampler, gl_TexCoord[0].xy) * gl_Color;\n"
+            "#version 150\n"
+            "\n"
+            "in vec2 lmTexCoord;\n"
+			"uniform sampler2D lmSampler;\n"
+            "out vec4 lmFragColor;\n"
+            "\n"
+			"void main() {\n"
+			"  //lmFragColor = texture(lmSampler, lmTexCoord.xy);\n"
+            "  lmFragColor = vec4(1.0, 0.0, 0.0, 1.0);\n"
 			"}\n"
 		"";
 		s.load(str, GL_FRAGMENT_SHADER);
@@ -70,14 +76,12 @@ Shader::vertex()
 	if (!s._shader)
 	{
 		static const char* str = ""
-			"vec4 lm_position() {\n"
-			"return ftransform();\n"
-			"}\n"
-			"vec4 lm_texCoord() {\n"
-			"return gl_MultiTexCoord0;\n"
-			"}\n"
-			"vec4 lm_frontColor() {\n"
-			"return gl_Color;\n"
+            "#version 150\n"
+            "\n"
+            "in vec3 vert;\n"
+            "\n"
+            "void main() {\n"
+            "  gl_Position = vec4(vert, 1.0);\n"
 			"}\n"
 		"";
 		s.load(str, GL_VERTEX_SHADER);
