@@ -137,6 +137,8 @@ namespace lm
         return m;
     }
 
+    using Matrix4f = Matrix<4, float>;
+
 }
 
 #endif
