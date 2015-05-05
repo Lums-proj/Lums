@@ -11,6 +11,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#if 0
+
 #ifndef LUMS_FONT_HPP
 #define LUMS_FONT_HPP
 
@@ -98,4 +100,5 @@ namespace lm
     };
 }
 
+#endif
 #endif

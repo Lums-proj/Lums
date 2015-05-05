@@ -11,6 +11,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#if 0
+
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <cstdio>
@@ -194,3 +196,5 @@ Font::loadGlyphes(void* faceHandle, unsigned char* buffer)
         x += g->bitmap.width;
     }
 }
+
+#endif

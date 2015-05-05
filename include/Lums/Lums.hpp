@@ -36,11 +36,11 @@
 #include <Lums/Event.hpp>
 #include <Lums/Font.hpp>
 #include <Lums/GameState.hpp>
-#include <Lums/GL.hpp>
 #include <Lums/Image.hpp>
 #include <Lums/Key.hpp>
 #include <Lums/Math.hpp>
 #include <Lums/Matrix.hpp>
+#include <Lums/OpenGL.hpp>
 #include <Lums/OperatingSystem.hpp>
 #include <Lums/Rect.hpp>
 #include <Lums/Script.hpp>
@@ -51,7 +51,7 @@
 #include <Lums/Sprite.hpp>
 #include <Lums/SpriteBatch.hpp>
 #include <Lums/Vector.hpp>
-#include <Lums/VertexArray.hpp>
+#include <Lums/VertexBuffer.hpp>
 #include <Lums/Window.hpp>
 
 #endif
