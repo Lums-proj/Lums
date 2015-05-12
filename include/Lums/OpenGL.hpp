@@ -61,8 +61,6 @@ namespace lm
     {
         translate(matrix, vec.x, vec.y, vec.z);
     }
-
-
 }
 
 #endif

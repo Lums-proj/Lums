@@ -16,6 +16,7 @@
 
 #include <vector>
 #include <Lums/OpenGL.hpp>
+#include <Lums/Matrix.hpp>
 
 namespace lm
 {
@@ -32,6 +33,12 @@ namespace lm
 			return _program;
 		}
 
+		void
+		bindAttribLocation(GLint index, const char* name) const
+		{
+			glBindAttribLocation(_program, index, name);
+		}
+
 		void	attach(const Shader& shader);
 		void	link();
 		void	use() const;
@@ -43,6 +50,20 @@ namespace lm
 		std::vector<GLuint>	_shaders;
 
 	};
+
+	template <typename T>
+    inline void
+    uniform(ShaderProgram& program, const char* name, T& value)
+    {
+    	GLint loc = glGetUniformLocation(program.program(), name);
+    	uniform(loc, value);
+    }
+
+    inline void
+    uniform(GLint loc, Matrix4f& mat)
+    {
+    	glUniformMatrix4fv(loc, 16, GL_FALSE, mat.data());
+    }
 }
 
 #endif
