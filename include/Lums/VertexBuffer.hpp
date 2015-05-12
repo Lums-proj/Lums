@@ -16,6 +16,7 @@
 
 #include <type_traits>
 #include <vector>
+#include <iostream>
 #include <Lums/OpenGL.hpp>
 #include <Lums/Image.hpp>
 
@@ -31,6 +32,7 @@ namespace lm
 			push(std::vector<float>& vect, float v, Pack... values)
 			{
 				vect.push_back(v);
+				std::cout << "(" << Size << ")" << "Pushed: " << v << std::endl;
 				VertexBufferPush<Size - 1>::push(vect, values...);
 			}
 		};
@@ -70,7 +72,7 @@ namespace lm
 			func()
 			{
 				glEnableVertexAttribArray(Attr);
-				glVertexAttribPointer(Attr, Size, GL_FLOAT, GL_FALSE, TotalSize, (void*)(SizeCount * sizeof(float)));
+				glVertexAttribPointer(Attr, Size, GL_FLOAT, GL_FALSE, TotalSize * sizeof(float), (void*)(SizeCount * sizeof(float)));
 				VertexBufferEnable<SizeCount + Size, TotalSize, Tail...>::func();
 			}
 		};
@@ -130,7 +132,7 @@ namespace lm
 		send()
 		{
 			glBindBuffer(GL_ARRAY_BUFFER, _vbo);
-			glBufferData(GL_ARRAY_BUFFER, size * sizeof(float), _values.data(), GL_DYNAMIC_DRAW);
+			glBufferData(GL_ARRAY_BUFFER, size * sizeof(float) * _count, _values.data(), GL_DYNAMIC_DRAW);
 			_values.clear();
 		}
 

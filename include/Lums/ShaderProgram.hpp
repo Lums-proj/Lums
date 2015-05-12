@@ -62,7 +62,7 @@ namespace lm
     inline void
     uniform(GLint loc, Matrix4f& mat)
     {
-    	glUniformMatrix4fv(loc, 16, GL_FALSE, mat.data());
+    	glUniformMatrix4fv(loc, 1, GL_FALSE, mat.data());
     }
 }
 
