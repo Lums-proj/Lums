@@ -23,9 +23,7 @@ SpriteBatch::SpriteBatch()
 void
 SpriteBatch::begin()
 {
-    _count = 0;
     _texture = 0;
-    _va.clear();
 }
 
 void
@@ -39,10 +37,6 @@ SpriteBatch::draw(const Image& image, int atlas, lm::Vector2f pos, lm::Vector2f 
     {
         flush();
         _texture = image.texture();
-    }
-    if (_count >= LUMS_SB_VERT)
-    {
-        flush();
     }
 
     FrameDescriptorf frame = image.atlasAt(atlas);
@@ -73,11 +67,14 @@ SpriteBatch::draw(const Image& image, int atlas, lm::Vector2f pos, lm::Vector2f 
     frame.w -= fcorx;
     frame.h -= fcory;
 
-    _va.push(pos.x, pos.y, 1.0f, 1.0f, 1.0f, frame.x, frame.y);
-    _va.push(pos.x + w, pos.y, 1.0f, 1.0f, 1.0f, frame.x + frame.w, frame.y);
-    _va.push(pos.x + w, pos.y + h, 1.0f, 1.0f, 1.0f, frame.x + frame.w, frame.y + frame.h);
-    _va.push(pos.x, pos.y + h, 1.0f, 1.0f, 1.0f, frame.x, frame.y + frame.h);
-    _count++;
+    // We create two triangles from a single quad
+
+    _vbo.push(pos.x, pos.y, frame.x, frame.y, 1.f, 1.f, 1.f, 1.f);
+    _vbo.push(pos.x + w, pos.y, frame.x + frame.w, frame.y, 1.f, 1.f, 1.f, 1.f);
+    _vbo.push(pos.x + w, pos.y + h, frame.x + frame.w, frame.y + frame.h, 1.f, 1.f, 1.f, 1.f);
+    _vbo.push(pos.x, pos.y, frame.x, frame.y, 1.f, 1.f, 1.f, 1.f);
+    _vbo.push(pos.x + w, pos.y + h, frame.x + frame.w, frame.y + frame.h, 1.f, 1.f, 1.f, 1.f);
+    _vbo.push(pos.x, pos.y + h, frame.x, frame.y + frame.h, 1.f, 1.f, 1.f, 1.f);
 }
 
 void
@@ -99,7 +96,6 @@ void
 SpriteBatch::flush()
 {
     glBindTexture(GL_TEXTURE_2D, _texture);
-    _va.draw(GL_QUADS);
-    _va.clear();
-    _count = 0;
+    _vbo.send();
+    _vbo.draw(GL_TRIANGLES);
 }

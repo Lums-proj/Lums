@@ -12,7 +12,7 @@
 /* ************************************************************************** */
 
 #include <Lums/Sprite.hpp>
-#include <Lums/GL.hpp>
+#include <Lums/OpenGL.hpp>
 #include <Lums/Image.hpp>
 
 using namespace lm;
