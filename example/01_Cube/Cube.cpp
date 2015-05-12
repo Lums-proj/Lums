@@ -96,17 +96,10 @@ vbo_push(lm::VertexBufferP3C4& vbo, GLubyte i1, GLubyte i2, GLubyte i3)
 void
 Cube::load()
 {
-    std::cout << __LINE__ << " : " << glGetError() << std::endl;
-    GLuint vao;
-
-    glGenVertexArrays(1, &vao);
-    glBindVertexArray(vao);
     glEnable(GL_DEPTH_TEST);
     for (int i = 0; i < ARR_SIZE(indices); i += 4)
     {
         const GLubyte* ptr = indices + i;
-
-        std::cout << "toto" << std::endl;
 
         vbo_push(_vbo, ptr[0], ptr[1], ptr[2]);
         vbo_push(_vbo, ptr[0], ptr[2], ptr[3]);
@@ -119,7 +112,6 @@ Cube::load()
     _shader.link();
     _shader.use();
     _proj.projection = lm::perspective(70.f, 800.f / 600.f, 0.01f, 1000.f);
-    std::cout << __LINE__ << " : " << glGetError() << std::endl;
 }
 
 void
@@ -179,8 +171,6 @@ int
 main()
 {
     lm::Core gl(800, 600, "Cube");
-
-    std::cout << __LINE__ << " : " << glGetError() << std::endl;
 
     gl.push<Cube>();
     gl.start();

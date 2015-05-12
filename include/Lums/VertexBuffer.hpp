@@ -32,7 +32,6 @@ namespace lm
 			push(std::vector<float>& vect, float v, Pack... values)
 			{
 				vect.push_back(v);
-				std::cout << "(" << Size << ")" << "Pushed: " << v << std::endl;
 				VertexBufferPush<Size - 1>::push(vect, values...);
 			}
 		};
@@ -76,23 +75,6 @@ namespace lm
 				VertexBufferEnable<SizeCount + Size, TotalSize, Tail...>::func();
 			}
 		};
-
-		template <GLint...>
-		struct VertexBufferDisable
-		{
-			static void func() {};
-		};
-
-		template <GLint Attr, GLint Size, GLint... Tail>
-		struct VertexBufferDisable <Attr, Size, Tail...>
-		{
-			static void
-			func()
-			{
-				glDisableVertexAttribArray(Attr);
-				VertexBufferDisable<Tail...>::func();
-			}
-		};
 	}
 
 	namespace Vertex
@@ -114,10 +96,16 @@ namespace lm
 		enum { size = internal::VertexBufferSize<Attr...>::size };
 
 		VertexBuffer()
-		: _vbo(0)
+		: _vao(0)
+		, _vbo(0)
 		, _count(0)
 		{
+			std::cout << glGetError() << std::endl;
+			glGenVertexArrays(1, &_vao);
 			glGenBuffers(1, &_vbo);
+			glBindVertexArray(_vao);
+			internal::VertexBufferEnable<0, size, Attr...>::func();
+			std::cout << glGetError() << std::endl;
 		}
 
 		template <typename... Pack>
@@ -139,10 +127,11 @@ namespace lm
 		void
 		draw(GLenum mode)
 		{
+			glGetError();
+			glBindVertexArray(_vao);
 			glBindBuffer(GL_ARRAY_BUFFER, _vbo);
-			internal::VertexBufferEnable<0, size, Attr...>::func();
 			glDrawArrays(mode, 0, _count);
-			internal::VertexBufferDisable<Attr...>::func();
+			std::cout << glGetError() << std::endl;
 		}
 
 		void
@@ -154,6 +143,7 @@ namespace lm
 
 	private:
 		std::vector<float>	_values;
+		GLuint				_vao;
 		GLuint				_vbo;
 		GLuint				_count;
 	};
