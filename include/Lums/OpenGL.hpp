@@ -25,6 +25,7 @@
 #endif
 
 #include <Lums/Math.hpp>
+#include <Lums/Matrix.hpp>
 
 namespace lm
 {
@@ -33,13 +34,13 @@ namespace lm
     {
         static const float pi = 3.14159265358979323846f;
         Matrix4f matrix;
-        GLfloat = range = std::tanf(fov * pi *  1.0f / 360.0f) * near;
+        GLfloat range = std::tanf(fov * pi *  1.0f / 360.0f) * near;
 
         matrix[0][0] = (2 * near) / ((range * aspect) - (-range * aspect));
         matrix[1][1] = (2 * near) / (2 * range);
-        matrix[2][2] = -(farz + near) / (farz - near);
+        matrix[2][2] = -(far + near) / (far - near);
         matrix[2][3] = -1;
-        matrix[3][2] = -(2 * farz * near) / (farz - near);
+        matrix[3][2] = -(2 * far * near) / (far - near);
         return matrix;
     }
 

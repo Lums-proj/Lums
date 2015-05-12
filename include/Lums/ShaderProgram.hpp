@@ -15,7 +15,7 @@
 #define LUMS_SHADER_PROGRAM_HPP
 
 #include <vector>
-#include <Lums/GL.hpp>
+#include <Lums/OpenGL.hpp>
 
 namespace lm
 {

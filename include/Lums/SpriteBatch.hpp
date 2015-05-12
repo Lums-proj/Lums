@@ -14,12 +14,9 @@
 #ifndef LUMS_SPRITE_BATCH_HPP
 #define LUMS_SPRITE_BATCH_HPP
 
-#include <Lums/VertexArray.hpp>
+#include <Lums/VertexBuffer.hpp>
 #include <Lums/Image.hpp>
 #include <Lums/Sprite.hpp>
-
-#define LUMS_SB_SIZE (8192)
-#define LUMS_SB_VERT ((LUMS_SB_SIZE) / 4)
 
 namespace lm
 {
@@ -42,8 +39,7 @@ namespace lm
     private:
         void    flush();
 
-        VertexArrayct<LUMS_SB_SIZE> _va;
-        size_t                      _count;
+        VertexBufferP2T2C4          _vbo;
         GLuint                      _texture;
     };
 };

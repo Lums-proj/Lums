@@ -12,7 +12,7 @@
 /* ************************************************************************** */
 
 #include <Lums/Core.hpp>
-#include <Lums/GL.hpp>
+#include <Lums/OpenGL.hpp>
 #include <Lums/ShaderProgram.hpp>
 
 using namespace lm;

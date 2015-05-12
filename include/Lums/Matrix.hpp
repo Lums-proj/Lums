@@ -22,7 +22,7 @@ namespace lm
         class MatrixHelper
         {
         public:
-            MatrixHelper(T& data)
+            MatrixHelper(T* data)
             : _helper(data)
             {
 
@@ -41,7 +41,7 @@ namespace lm
             }
 
         private:
-            T&  _helper;
+            T*  _helper;
         };
     }
 
@@ -55,16 +55,23 @@ namespace lm
 
         }
 
+        Matrix<N, T>&
+        operator*=(const Matrix<N, T>& rhs)
+        {
+            *this = *this * rhs;
+            return *this;
+        }
+
         internal::MatrixHelper<N, T>
         operator[](std::size_t i)
         {
             return internal::MatrixHelper<N, T>(_data + i * N);
         }
 
-        const internal::MatrixHelper<N, T>
+        const internal::MatrixHelper<N, const T>
         operator[](std::size_t i) const
         {
-            return internal::MatrixHelper<N, T>(_data + i * N);
+            return internal::MatrixHelper<N, const T>(_data + i * N);
         }
 
         T*
@@ -86,6 +93,7 @@ namespace lm
 
             for (std::size_t i = 0; i < N; ++i)
                 m[i][i] = 1;
+            return m;
         }
 
     private:
@@ -138,7 +146,6 @@ namespace lm
     }
 
     using Matrix4f = Matrix<4, float>;
-
 }
 
 #endif

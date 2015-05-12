@@ -16,7 +16,7 @@
 
 #include <string>
 #include <vector>
-#include <Lums/GL.hpp>
+#include <Lums/OpenGL.hpp>
 #include <Lums/Rect.hpp>
 #include <Lums/ImageDescriptor.hpp>
 #include <Lums/ExportDll.hpp>

@@ -14,7 +14,7 @@
 #ifndef LUMS_SHADER_HPP
 #define LUMS_SHADER_HPP
 
-#include <Lums/GL.hpp>
+#include <Lums/OpenGL.hpp>
 
 namespace lm
 {
