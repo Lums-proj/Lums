@@ -11,8 +11,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cube.hpp"
 #include <iostream>
+#include <Lums/Lums.hpp>
+
+class Cube : public lm::GameState
+{
+public:
+    Cube();
+    void    load();
+    void    update();
+    void    handleEvent(const lm::Event& event);
+    void    render();
+    void    unload();
+    
+private:
+    lm::Vector2a            _angle;
+    lm::Vector2f            _speed;
+    lm::Projection          _proj;
+    lm::VertexBufferP3C4    _vbo;
+    lm::ShaderProgram       _shader;
+};
 
 using namespace lm;
 
@@ -64,7 +82,7 @@ idx_push(lm::VertexBufferP3C4& vbo, GLubyte idx)
     const GLfloat* vptr = vertices + 3 * idx;
     const GLfloat* cptr = colors + 3 * idx;
 
-    vbo.push(vertices[0], vertices[1], vertices[2], colors[0], colors[1], colors[2], 1.f);
+    vbo.push(vptr[0], vptr[1], vptr[2], cptr[0], cptr[1], cptr[2], 1.f);
 }
 
 static void
@@ -78,6 +96,7 @@ vbo_push(lm::VertexBufferP3C4& vbo, GLubyte i1, GLubyte i2, GLubyte i3)
 void
 Cube::load()
 {
+    std::cout << __LINE__ << " : " << glGetError() << std::endl;
     GLuint vao;
 
     glGenVertexArrays(1, &vao);
@@ -86,6 +105,8 @@ Cube::load()
     for (int i = 0; i < ARR_SIZE(indices); i += 4)
     {
         const GLubyte* ptr = indices + i;
+
+        std::cout << "toto" << std::endl;
 
         vbo_push(_vbo, ptr[0], ptr[1], ptr[2]);
         vbo_push(_vbo, ptr[0], ptr[2], ptr[3]);
@@ -98,6 +119,7 @@ Cube::load()
     _shader.link();
     _shader.use();
     _proj.projection = lm::perspective(70.f, 800.f / 600.f, 0.01f, 1000.f);
+    std::cout << __LINE__ << " : " << glGetError() << std::endl;
 }
 
 void
@@ -151,3 +173,15 @@ Cube::unload()
     _vbo.reset();
 }
 
+/* main */
+
+int
+main()
+{
+    lm::Core gl(800, 600, "Cube");
+
+    std::cout << __LINE__ << " : " << glGetError() << std::endl;
+
+    gl.push<Cube>();
+    gl.start();
+}
