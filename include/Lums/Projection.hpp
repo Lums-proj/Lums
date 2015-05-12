@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Cube.hpp                                       oooooo       oooooo      */
+/*    Projection.hpp                                 oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,27 +11,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE_HPP
-#define CUBE_HPP
+#ifndef LUMS_PROJECTION_HPP
+#define LUMS_PROJECTION_HPP
 
-#include <Lums/Lums.hpp>
+#include <Lums/Matrix.hpp>
 
-class Cube : public lm::GameState
+namespace lm
 {
-public:
-    Cube();
-    void    load();
-    void    update();
-    void    handleEvent(const lm::Event& event);
-    void    render();
-    void    unload();
-    
-private:
-    lm::Vector2a    		_angle;
-    lm::Vector2f    		_speed;
-    lm::Projection			_proj;
-    lm::VertexBufferP3C4	_vbo;
-    lm::ShaderProgram		_shader;
-};
+	struct Projection
+	{
+		Projection()
+		{
+			model = view = projection = Matrix4f::identity();
+		}
+
+		Matrix4f model;
+		Matrix4f view;
+		Matrix4f projection;
+	};
+}
 
 #endif

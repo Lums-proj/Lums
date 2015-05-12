@@ -157,6 +157,7 @@ namespace lm
 	};
 
 	using VertexBufferP2T2C4 = VertexBuffer<Vertex::Position, 2, Vertex::Texture, 2, Vertex::Color, 4>;
+	using VertexBufferP3C4 = VertexBuffer<Vertex::Position, 3, Vertex::Color, 4>;
 }
 
 #endif

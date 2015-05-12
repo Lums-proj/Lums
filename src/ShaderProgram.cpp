@@ -45,7 +45,17 @@ ShaderProgram::link()
 	   _shaders.clear();
     }
     else
-        std::cout << "Link failed!" << std::endl;
+    {
+    	char* msg;
+		GLint logSize;
+
+		std::cout << "Link failed!" << std::endl;
+		glGetProgramiv(_program, GL_INFO_LOG_LENGTH, &logSize);
+		msg = new char[logSize];
+		glGetProgramInfoLog(_program, logSize, nullptr, msg);
+		puts(msg);
+		delete [] msg;
+    }
 }
 
 void
