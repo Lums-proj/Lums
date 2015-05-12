@@ -100,12 +100,14 @@ namespace lm
 		, _vbo(0)
 		, _count(0)
 		{
-			std::cout << glGetError() << std::endl;
+			glGetError();
 			glGenVertexArrays(1, &_vao);
 			glGenBuffers(1, &_vbo);
 			glBindVertexArray(_vao);
+            glBindBuffer(GL_ARRAY_BUFFER, _vbo);
 			internal::VertexBufferEnable<0, size, Attr...>::func();
-			std::cout << glGetError() << std::endl;
+            glBindVertexArray(0);
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
 		}
 
 		template <typename... Pack>
@@ -121,17 +123,16 @@ namespace lm
 		{
 			glBindBuffer(GL_ARRAY_BUFFER, _vbo);
 			glBufferData(GL_ARRAY_BUFFER, size * sizeof(float) * _count, _values.data(), GL_DYNAMIC_DRAW);
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
 			_values.clear();
 		}
 
 		void
 		draw(GLenum mode)
 		{
-			glGetError();
 			glBindVertexArray(_vao);
-			glBindBuffer(GL_ARRAY_BUFFER, _vbo);
 			glDrawArrays(mode, 0, _count);
-			std::cout << glGetError() << std::endl;
+            glBindVertexArray(0);
 		}
 
 		void
