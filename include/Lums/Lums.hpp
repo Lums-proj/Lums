@@ -44,7 +44,6 @@
 #include <Lums/OperatingSystem.hpp>
 #include <Lums/Projection.hpp>
 #include <Lums/Rect.hpp>
-#include <Lums/Script.hpp>
 #include <Lums/Shader.hpp>
 #include <Lums/ShaderProgram.hpp>
 #include <Lums/Sound.hpp>
