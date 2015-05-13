@@ -42,7 +42,6 @@ namespace lm
 		void	attach(const Shader& shader);
 		void	link();
 		void	use() const;
-		static const ShaderProgram& defaultProgram();
 		~ShaderProgram();
 
 	private:

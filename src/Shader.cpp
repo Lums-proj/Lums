@@ -44,51 +44,6 @@ Shader::Shader(const char* path, Type type, bool resource)
 	delete [] f;
 }
 
-const Shader&
-Shader::fragment()
-{
-	static Shader s;
-
-	if (!s._shader)
-	{
-		static const char* str = ""
-            "#version 150\n"
-            "\n"
-            "in vec2 lmTexCoord;\n"
-			"uniform sampler2D lmSampler;\n"
-            "out vec4 lmFragColor;\n"
-            "\n"
-			"void main() {\n"
-			"  //lmFragColor = texture(lmSampler, lmTexCoord.xy);\n"
-            "  lmFragColor = vec4(1.0, 0.0, 0.0, 1.0);\n"
-			"}\n"
-		"";
-		s.load(str, GL_FRAGMENT_SHADER);
-	}
-	return s;
-}
-
-const Shader&
-Shader::vertex()
-{
-	static Shader s;
-
-	if (!s._shader)
-	{
-		static const char* str = ""
-            "#version 150\n"
-            "\n"
-            "in vec3 vert;\n"
-            "\n"
-            "void main() {\n"
-            "  gl_Position = vec4(vert, 1.0);\n"
-			"}\n"
-		"";
-		s.load(str, GL_VERTEX_SHADER);
-	}
-	return s;
-}
-
 Shader::~Shader()
 {
 	glDeleteShader(_shader);

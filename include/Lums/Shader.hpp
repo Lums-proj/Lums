@@ -30,9 +30,13 @@ namespace lm
 		};
 
 		Shader(const char* path, Type type, bool resource = true);
-		GLuint	get() const	{ return _shader; }
-		static const Shader&	fragment();
-		static const Shader&	vertex();
+		
+		GLuint
+		get() const
+		{
+			return _shader;
+		}
+		
 		~Shader();
 
 	private:

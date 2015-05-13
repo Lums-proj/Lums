@@ -27,6 +27,10 @@
 #include <Lums/Math.hpp>
 #include <Lums/Matrix.hpp>
 
+#ifndef LUMS_PI
+# define LUMS_PI 3.14159265358979323846f
+#endif
+
 namespace lm
 {
     inline Matrix4f
@@ -34,27 +38,20 @@ namespace lm
     {
         Matrix4f matrix;
 
-        const float temp = 2.f * znear;
-        const float temp2 = right - left;
-        const float temp3 = top - bottom;
-        const float temp4 = zfar - znear;
-
-        matrix[0][0] = temp / temp2;
-        matrix[1][1] = temp / temp3;
-        matrix[2][0] = (right + left) / temp2;
-        matrix[2][1] = (top + bottom) / temp3;
-        matrix[2][2] = (-zfar - znear) / temp4;
+        matrix[0][0] = 2.f * znear / (right - left);
+        matrix[1][1] = 2.f * znear / (top - bottom);
+        matrix[2][0] = (right + left) / (right - left);
+        matrix[2][1] = (top + bottom) / (top - bottom);
+        matrix[2][2] = -(zfar + znear) / (zfar - znear);
         matrix[2][3] = -1.f;
-        matrix[3][2] = (-temp * zfar) / temp4;
+        matrix[3][2] = -(2.f * zfar * znear) / (zfar - znear);
         return matrix;
     }
 
     inline Matrix4f
     perspective(GLfloat fov, GLfloat aspect, GLfloat znear, GLfloat zfar)
     {
-        static const float pi = 3.14159265358979323846f;
-
-        const float ymax = znear * std::tanf(fov * pi / 360.f);
+        const float ymax = znear * std::tanf(fov * LUMS_PI / 360.f);
         const float xmax = ymax * aspect;
         return frustum(-xmax, xmax, -ymax, ymax, znear, zfar);
     }
@@ -77,38 +74,56 @@ namespace lm
         translate(matrix, vec.x, vec.y, vec.z);
     }
 
-    inline Matrix4f
-    lookAt(float eyex, float eyey, float eyez, float pointx, float pointy, float pointz, float upx, float upy, float upz)
+    inline void
+    rotate(Matrix4f& matrix, float angle, Vector3f v)
     {
-        Matrix4f result;
-        Vector3f forward(pointx - eyex, pointy - eyey, pointz - eyez);
-        Vector3f up(upx, upy, upz);
-        Vector3f side;
+        angle = angle * LUMS_PI / 180.f;
+        const float c = std::cos(angle);
+        const float s = std::sin(angle);
 
-        forward = normal(forward);
-        side = normal(cross(forward, up));
-        up = cross(side, forward);
+        Vector3f axis(normal(v));
+        Vector3f temp(axis * (1.f - c));
 
-        result[0][0] = side[0];
-        result[0][1] = up[0];
-        result[0][2] = -forward[0];
-        result[1][0] = side[1];
-        result[1][1] = up[1];
-        result[1][2] = -forward[1];
-        result[2][0] = side[2];
-        result[2][1] = up[2];
-        result[2][2] = -forward[2];
-        result[3][0] = -eyex;
-        result[3][1] = -eyey;
-        result[3][2] = -eyez;
-        result[3][3] = 1.f;
+        Matrix4f rot;
 
-        static bool b = 0;
-        if (!b)
-        {
-            b = 1;
-            result.debug();
-        }
+        rot[0][0] = c + temp[0] * axis[0];
+        rot[0][1] = 0 + temp[0] * axis[1] + s * axis[2];
+        rot[0][2] = 0 + temp[0] * axis[2] - s * axis[1];
+
+        rot[1][0] = 0 + temp[1] * axis[0] - s * axis[2];
+        rot[1][1] = c + temp[1] * axis[1];
+        rot[1][2] = 0 + temp[1] * axis[2] + s * axis[0];
+
+        rot[2][0] = 0 + temp[2] * axis[0] + s * axis[1];
+        rot[2][1] = 0 + temp[2] * axis[1] - s * axis[0];
+        rot[2][2] = c + temp[2] * axis[2];
+
+        rot[3][3] = 1.f;
+
+        matrix *= rot;
+    }
+
+    inline Matrix4f
+    lookAt(Vector3f eye, Vector3f center, Vector3f up)
+    {
+        const Vector3f f(normal(center - eye));
+        const Vector3f s(normal(cross(f, up)));
+        const Vector3f u(cross(s, f));
+
+        Matrix4f result = Matrix4f::identity();
+
+        result[0][0] = s.x;
+        result[1][0] = s.y;
+        result[2][0] = s.z;
+        result[0][1] = u.x;
+        result[1][1] = u.y;
+        result[2][1] = u.z;
+        result[0][2] =-f.x;
+        result[1][2] =-f.y;
+        result[2][2] =-f.z;
+        result[3][0] =-dot(s, eye);
+        result[3][1] =-dot(u, eye);
+        result[3][2] = dot(f, eye);
 
         return result;
     }

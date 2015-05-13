@@ -24,7 +24,6 @@ Core::Core(int w, int h, const char* name, bool fullscreen)
 , _win(w, h, name)
 {
     _singleton = this;
-    ShaderProgram::defaultProgram().use();
 }
 
 void
