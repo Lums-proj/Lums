@@ -31,7 +31,6 @@ glAttributes[] = {
     NSOpenGLPFAClosestPolicy,
     kCGLPFAOpenGLProfile,
     kCGLOGLPVersion_3_2_Core,
-   // kCGLOGLPVersion_Legacy,
     0
 };
 
@@ -61,19 +60,20 @@ Window::Window(int w, int h, const char* name, bool fullscreen)
     NSOpenGLContext* context = [[[NSOpenGLContext alloc]
                                 initWithFormat:pixelFormat
                                 shareContext:nil] autorelease];
-    [view setOpenGLContext:context];
     [view setWantsBestResolutionOpenGLSurface:YES];
     [win setContentView:view];
+    [view setOpenGLContext:context];
+    [context makeCurrentContext];
     glClearColor(0, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT);
     _windowHandle = win;
     _openGlHandle = context;
-    [context makeCurrentContext];
+    [win setWindow:this];
     resize(w, h, fullscreen);
     [win makeKeyAndOrderFront:nil];
-    [win setWindow:this];
     [win setupHid];
     std::cout << glGetString(GL_VERSION) << std::endl;
+    std::cout << glGetError() << std::endl;
 }
 
 void
@@ -98,7 +98,7 @@ Window::resize(int w, int h, bool fullscreen)
     NSRect viewport = [view bounds];
     viewport = [view convertRectToBacking:[view bounds]];
     [context update];
-    glViewport(0, 0, viewport.size.width, viewport.size.height);
+    //glViewport(0, 0, viewport.size.width, viewport.size.height);
 }
 
 bool
