@@ -98,6 +98,7 @@ Cube::load()
 {
     //glFrontFace(GL_CW);
     glEnable(GL_DEPTH_TEST);
+   // glEnable(GL_CULL_FACE);
     for (int i = 0; i < ARR_SIZE(indices); i += 4)
     {
         const GLubyte* ptr = indices + i;
@@ -154,7 +155,7 @@ Cube::handleEvent(const Event& event)
 void
 Cube::render()
 {
-    _proj.view = lm::lookAt(2, 2, 2 * _speed.y, 0, 0, 0, 0, 1, 0);
+    _proj.view = lm::lookAt(0.f, 2.f, 3.0f + _speed.y * 0.1f, 0, 0, 0, 0, 1.f, 0);
     lm::uniform(_shader, "model", _proj.model);
     lm::uniform(_shader, "view", _proj.view);
     lm::uniform(_shader, "projection", _proj.projection);

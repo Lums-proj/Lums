@@ -30,20 +30,33 @@
 namespace lm
 {
     inline Matrix4f
+    frustum(float left, float right, float bottom, float top, float znear, float zfar)
+    {
+        Matrix4f matrix;
+
+        const float temp = 2.f * znear;
+        const float temp2 = right - left;
+        const float temp3 = top - bottom;
+        const float temp4 = zfar - znear;
+
+        matrix[0][0] = temp / temp2;
+        matrix[1][1] = temp / temp3;
+        matrix[2][0] = (right + left) / temp2;
+        matrix[2][1] = (top + bottom) / temp3;
+        matrix[2][2] = (-zfar - znear) / temp4;
+        matrix[2][3] = -1.f;
+        matrix[3][2] = (-temp * zfar) / temp4;
+        return matrix;
+    }
+
+    inline Matrix4f
     perspective(GLfloat fov, GLfloat aspect, GLfloat znear, GLfloat zfar)
     {
         static const float pi = 3.14159265358979323846f;
-        Matrix4f matrix;
-        
-        const float radfov = fov * pi / 180.f;
-        const float half = std::tanf(radfov / 2.f);
 
-        matrix[0][0] = 1.f / (aspect * half);
-        matrix[1][1] = 1.f / (half);
-        matrix[2][2] = -(zfar + znear) / (zfar - znear);
-        matrix[3][2] = -1.f;
-        matrix[2][3] = -(2.f * zfar * znear) / (zfar - znear);
-        return matrix;
+        const float ymax = znear * std::tanf(fov * pi / 360.f);
+        const float xmax = ymax * aspect;
+        return frustum(-xmax, xmax, -ymax, ymax, znear, zfar);
     }
 
     inline void
@@ -75,6 +88,7 @@ namespace lm
         forward = normal(forward);
         side = normal(cross(forward, up));
         up = cross(side, forward);
+
         result[0][0] = side[0];
         result[0][1] = up[0];
         result[0][2] = -forward[0];
@@ -88,6 +102,14 @@ namespace lm
         result[3][1] = -eyey;
         result[3][2] = -eyez;
         result[3][3] = 1.f;
+
+        static bool b = 0;
+        if (!b)
+        {
+            b = 1;
+            result.debug();
+        }
+
         return result;
     }
 }
