@@ -96,6 +96,7 @@ vbo_push(lm::VertexBufferP3C4& vbo, GLubyte i1, GLubyte i2, GLubyte i3)
 void
 Cube::load()
 {
+    //glFrontFace(GL_CW);
     glEnable(GL_DEPTH_TEST);
     for (int i = 0; i < ARR_SIZE(indices); i += 4)
     {
@@ -112,6 +113,7 @@ Cube::load()
     _shader.link();
     _shader.use();
     _proj.projection = lm::perspective(70.f, 800.f / 600.f, 0.01f, 1000.f);
+    _proj.projection.debug();
 }
 
 void
@@ -138,10 +140,10 @@ Cube::handleEvent(const Event& event)
                 _speed.x--;
                 break;
             case Key::Up:
-                _speed.y++;
+                _speed.y += 1.f;
                 break;
             case Key::Down:
-                _speed.y--;
+                _speed.y -= 1.f;
                 break;
             default:
                 break;
@@ -152,6 +154,7 @@ Cube::handleEvent(const Event& event)
 void
 Cube::render()
 {
+    _proj.view = lm::lookAt(2, 2, 2 * _speed.y, 0, 0, 0, 0, 1, 0);
     lm::uniform(_shader, "model", _proj.model);
     lm::uniform(_shader, "view", _proj.view);
     lm::uniform(_shader, "projection", _proj.projection);

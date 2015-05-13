@@ -14,6 +14,8 @@
 #ifndef LUMS_MATRIX_HPP
 #define LUMS_MATRIX_HPP
 
+#include <iostream>
+
 namespace lm
 {
     namespace internal
@@ -94,6 +96,19 @@ namespace lm
             for (std::size_t i = 0; i < N; ++i)
                 m[i][i] = 1;
             return m;
+        }
+
+        void
+        debug() const
+        {
+            std::cout << "--- MAT ---" << std::endl;
+            for (std::size_t j = 0; j < N; ++j)
+            {
+                for (std::size_t i = 0; i < N; ++i)
+                    printf("%10f ", _data[i + N * j]);
+                std::cout << std::endl;
+            }
+            std::cout << "-----------" << std::endl;
         }
 
     private:
