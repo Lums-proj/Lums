@@ -25,13 +25,17 @@ public:
     void
     load()
     {
-        glMatrixMode(GL_PROJECTION);
-        glOrtho(0, 400, 400, 0, -1, 1);
-        glMatrixMode(GL_MODELVIEW);
-        glEnable(GL_TEXTURE_2D);
         _image.loadFile("Nyan.png");
-        _sprite.setImage(_image);
-        _sprite.setScale(2);
+        _proj = lm::ortho(0, 400, 400, 0);
+        _prog.attach(lm::Shader("nyan.vert.glsl", lm::Shader::Vertex));
+        _prog.attach(lm::Shader("nyan.frag.glsl", lm::Shader::Fragment));
+        _prog.bindAttribLocation(lm::Vertex::Position, "pos");
+        _prog.bindAttribLocation(lm::Vertex::Texture, "texcoord");
+        _prog.bindAttribLocation(lm::Vertex::Color, "color");
+        _prog.link();
+        _prog.use();
+
+        lm::uniform(_prog, "proj", _proj);
     }
 
     void
@@ -58,18 +62,17 @@ public:
     void
     render()
     {
-        lm::SpriteBatch sb;
-        
-        sb.begin();
-        sb.draw(_sprite);
-        sb.end();
+        _batch.begin();
+        _batch.draw(_image, 0, {0.f, 0.f}, {2.f, 2.f});
+        _batch.end();
     }
 
 private:
-    lm::Image   _image;
-    lm::Sprite  _sprite;
-    lm::ShaderProgram _prog;
-    bool        _linear;
+    lm::Image           _image;
+    lm::ShaderProgram   _prog;
+    lm::SpriteBatch     _batch;
+    lm::Matrix4f        _proj;
+    bool                _linear;
 };
 
 int
