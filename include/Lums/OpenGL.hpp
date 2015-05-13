@@ -34,7 +34,7 @@
 namespace lm
 {
     inline Matrix4f
-    frustum(float left, float right, float bottom, float top, float znear, float zfar)
+    frustum(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat znear, GLfloat zfar)
     {
         Matrix4f matrix;
 
@@ -54,6 +54,19 @@ namespace lm
         const float ymax = znear * std::tanf(fov * LUMS_PI / 360.f);
         const float xmax = ymax * aspect;
         return frustum(-xmax, xmax, -ymax, ymax, znear, zfar);
+    }
+
+    inline Matrix4f
+    ortho(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top)
+    {
+        Matrix4f result = Matrix4f::identity();
+
+        result[0][0] = 2.f / (right - left);
+        result[1][1] = 2.f / (top - bottom);
+        result[2][2] = -1.f;
+        result[3][0] = -(right + left) / (right - left);
+        result[3][1] = -(top + bottom) / (top - bottom);
+        return result;
     }
 
     inline void

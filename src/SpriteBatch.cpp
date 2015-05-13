@@ -98,4 +98,5 @@ SpriteBatch::flush()
     glBindTexture(GL_TEXTURE_2D, _texture);
     _vbo.send();
     _vbo.draw(GL_TRIANGLES);
+    _vbo.reset();
 }
