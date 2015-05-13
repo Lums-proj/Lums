@@ -114,7 +114,6 @@ Cube::load()
     _shader.link();
     _shader.use();
     _proj.projection = lm::perspective(70.f, 800.f / 600.f, 0.01f, 1000.f);
-    _proj.projection.debug();
 }
 
 void
@@ -141,10 +140,10 @@ Cube::handleEvent(const Event& event)
                 _speed.x--;
                 break;
             case Key::Up:
-                _speed.y += 1.f;
+                _speed.y++;
                 break;
             case Key::Down:
-                _speed.y -= 1.f;
+                _speed.y--;
                 break;
             default:
                 break;
@@ -155,7 +154,10 @@ Cube::handleEvent(const Event& event)
 void
 Cube::render()
 {
-    _proj.view = lm::lookAt(0.f, 2.f, 3.0f + _speed.y * 0.1f, 0, 0, 0, 0, 1.f, 0);
+    _proj.view = lm::lookAt({2.f, 2.f, 2.f}, {0, 0, 0}, {0, 1.f, 0});
+    _proj.model = Matrix4f::identity();
+    rotate(_proj.model, _angle.x.toDegrees(), {0, 1, 0});
+    rotate(_proj.model, _angle.y.toDegrees(), {0, 0, 1});
     lm::uniform(_shader, "model", _proj.model);
     lm::uniform(_shader, "view", _proj.view);
     lm::uniform(_shader, "projection", _proj.projection);

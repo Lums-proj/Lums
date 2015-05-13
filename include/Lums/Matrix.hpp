@@ -98,19 +98,6 @@ namespace lm
             return m;
         }
 
-        void
-        debug() const
-        {
-            std::cout << "--- MAT ---" << std::endl;
-            for (std::size_t j = 0; j < N; ++j)
-            {
-                for (std::size_t i = 0; i < N; ++i)
-                    printf("%10f ", _data[i + N * j]);
-                std::cout << std::endl;
-            }
-            std::cout << "-----------" << std::endl;
-        }
-
     private:
         T   _data[N * N];
     };

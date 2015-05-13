@@ -64,51 +64,6 @@ ShaderProgram::use() const
 	glUseProgram(_program);
 }
 
-const ShaderProgram&
-ShaderProgram::defaultProgram()
-{
-	static ShaderProgram def;
-	static bool init;
-
-	if (!init)
-	{
-        /*
-		Shader fragLink;
-		Shader vertLink;
-
-		const char* fragStr = ""
-            "#version 150\n"
-			"vec4 lm_fragColor();\n"
-			"void main() {\n"
-			"gl_FragColor = lm_fragColor();\n"
-			"}\n"
-		"";
-
-		const char* vertStr = ""
-            "#version 150\n"
-			"vec4 lm_position();\n"
-			"vec4 lm_texCoord();\n"
-			"vec4 lm_frontColor();\n"
-			"void main() {\n"
-			"gl_Position = lm_position();\n"
-			"gl_TexCoord[0] = lm_texCoord();\n"
-			"gl_FrontColor = lm_frontColor();\n"
-			"}\n"
-		"";
-
-		fragLink.load(fragStr, GL_FRAGMENT_SHADER);
-		vertLink.load(vertStr, GL_VERTEX_SHADER);
-        */
-		def.attach(Shader::fragment());
-		def.attach(Shader::vertex());
-		//def.attach(fragLink);
-		//def.attach(vertLink);
-		def.link();
-		init = true;
-	}
-	return def;
-}
-
 ShaderProgram::~ShaderProgram()
 {
 	glDeleteProgram(_program);

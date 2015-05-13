@@ -87,6 +87,17 @@ namespace lm
     }
 
     template <std::size_t N, typename T>
+    T
+    dot(const Vector<N, T>& lhs, const Vector<N, T>& rhs)
+    {
+        T val = T();
+
+        for (std::size_t i = 0; i < N; ++i)
+            val += lhs[i] * rhs[i];
+        return val;
+    }
+
+    template <std::size_t N, typename T>
     bool
     null(const Vector<N, T>& vect)
     {
