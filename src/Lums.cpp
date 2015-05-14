@@ -13,7 +13,7 @@
 
 #include <OpenAL/al.h>
 #include <OpenAL/alc.h>
-#include <Lums/Lums.hpp>
+#include <LumsInclude/Lums.hpp>
 
 using namespace lm;
 

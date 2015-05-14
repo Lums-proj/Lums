@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Test.cpp                                       oooooo       oooooo      */
+/*    Shader.hpp                                     oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,12 +11,39 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "NanoTest.hpp"
-#include <Lums>
+#ifndef LUMS_SHADER_HPP
+#define LUMS_SHADER_HPP
 
-int main(int argc, char**argv)
+#include <LumsInclude/Graphics/OpenGL.hpp>
+
+namespace lm
 {
-    std::cout << "Lums version " << LUMS_VERSION << std::endl;
-    return nanotest_main(argc, argv);
+	class Shader
+	{
+	friend class ShaderProgram;
+	
+	public:
+		enum Type
+		{
+			Vertex,
+			Fragment
+		};
+
+		Shader(const char* path, Type type, bool resource = true);
+		
+		GLuint
+		get() const
+		{
+			return _shader;
+		}
+		
+		~Shader();
+
+	private:
+		Shader();
+		void	load(const char* data, GLenum type);
+		GLuint	_shader;
+	};
 }
+
+#endif

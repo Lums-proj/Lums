@@ -1,15 +1,15 @@
-file(GLOB SRC "*.cpp")
-file(GLOB HEADER "../include/Lums/*.hpp")
-set(LINK_LIB ${OPENGL_gl_LIBRARY} ${OPENAL_LIBRARY} ${PNG_LIBRARIES} ${FREETYPE_LIBRARIES} ${MRUBY_LIBRARY} ${VORBIS_LIBRARIES})
+file(GLOB SRC "*.cpp" "Graphics/*.cpp" "Audio/*.cpp" "Core/*.cpp")
+file(GLOB_RECURSE HEADER "../include/LumsInclude/**.hpp" "../include/Lums")
+set(LINK_LIB ${OPENGL_gl_LIBRARY} ${OPENAL_LIBRARY} ${PNG_LIBRARIES} ${FREETYPE_LIBRARIES} ${VORBIS_LIBRARIES})
 
 if(APPLE)
-    file(GLOB OS_SRC "MacOSX/*.cpp" "MacOSX/*.mm")
-    include_directories(MacOSX)
+    file(GLOB OS_SRC "OS/MacOSX/*.cpp" "OS/MacOSX/*.mm")
+    include_directories("OS/MacOSX")
     list(APPEND LINK_LIB "-framework Cocoa" "-framework IOKit")
 endif()
 
 if(WIN32)
-	file(GLOB OS_SRC "Windows/*.cpp")
+	file(GLOB OS_SRC "OS/Windows/*.cpp")
 endif()
 
 list(APPEND SRC ${OS_SRC})
@@ -45,5 +45,5 @@ if (APPLE)
     list(APPEND LUMS_ALL lums_framework)
 endif ()
 
-install(DIRECTORY ../include/Lums DESTINATION include)
+#install(FILES $ DESTINATION include)
 add_custom_target(Lums DEPENDS ${LUMS_ALL})

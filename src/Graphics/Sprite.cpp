@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Test.cpp                                       oooooo       oooooo      */
+/*    Sprite.cpp                                     oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,12 +11,41 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "NanoTest.hpp"
-#include <Lums>
+#include <LumsInclude/Graphics/Sprite.hpp>
+#include <LumsInclude/Graphics/OpenGL.hpp>
+#include <LumsInclude/Graphics/Image.hpp>
 
-int main(int argc, char**argv)
+using namespace lm;
+
+Sprite::Sprite()
+: _texture(nullptr)
+, _baseFrame(0)
+, _currentFrame(0)
+, _length(1)
+, _acc(0)
+, _speed(0)
+, _finished(false)
 {
-    std::cout << "Lums version " << LUMS_VERSION << std::endl;
-    return nanotest_main(argc, argv);
+
+}
+
+void
+Sprite::update()
+{
+    if (_finished)
+        return;
+    _acc++;
+    if (_acc == _speed)
+    {
+        _acc = 0;
+        if (_currentFrame + 1 == _baseFrame + _length)
+        {
+            if (!_loop)
+                _finished = true;
+            else
+                _currentFrame = _baseFrame;
+        }
+        else
+            _currentFrame++;
+    }
 }

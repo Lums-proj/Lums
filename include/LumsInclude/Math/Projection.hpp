@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Test.cpp                                       oooooo       oooooo      */
+/*    Projection.hpp                                 oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,12 +11,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "NanoTest.hpp"
-#include <Lums>
+#ifndef LUMS_PROJECTION_HPP
+#define LUMS_PROJECTION_HPP
 
-int main(int argc, char**argv)
+#include <LumsInclude/Math/Matrix.hpp>
+
+namespace lm
 {
-    std::cout << "Lums version " << LUMS_VERSION << std::endl;
-    return nanotest_main(argc, argv);
+	struct Projection
+	{
+		Projection()
+		{
+			model = view = projection = Matrix4f::identity();
+		}
+
+		Matrix4f model;
+		Matrix4f view;
+		Matrix4f projection;
+	};
 }
+
+#endif

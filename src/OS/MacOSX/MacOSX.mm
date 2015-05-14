@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Test.cpp                                       oooooo       oooooo      */
+/*    MacOSX/MacOSX.mm                               oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,12 +11,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "NanoTest.hpp"
-#include <Lums>
+#import <Cocoa/Cocoa.h>
+#import <LumsInclude/OperatingSystem.hpp>
 
-int main(int argc, char**argv)
+static std::string  res_path;
+
+namespace lm
 {
-    std::cout << "Lums version " << LUMS_VERSION << std::endl;
-    return nanotest_main(argc, argv);
+    const std::string&
+    resourcePath()
+    {
+        if (!res_path.empty())
+            return res_path;
+        res_path = [[[NSBundle mainBundle] resourcePath]
+                    cStringUsingEncoding:NSASCIIStringEncoding];
+        if (res_path.empty())
+            res_path = ".";
+        res_path += "/";
+        return res_path;
+    }
 }
