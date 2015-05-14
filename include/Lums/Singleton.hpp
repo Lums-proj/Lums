@@ -20,11 +20,12 @@ namespace lm
 	struct Singleton
 	{
 		static T&
-		get()
+		instance()
 		{
 			static T t;
 			return t;
 		}
+		
 	protected:
 		Singleton() = default;
 		Singleton(const Singleton<T>&) = delete;

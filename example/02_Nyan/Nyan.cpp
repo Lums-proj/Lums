@@ -55,7 +55,7 @@ public:
                 _image.linear(_linear);
             }
             else
-                lm::Core::get().stop();
+                lm::Core::instance().stop();
         }
     }
 
@@ -79,7 +79,7 @@ int
 main()
 {
     lm::enableModule(lm::Module::All);
-    lm::Core& core = lm::Core::get();
+    lm::Core& core = lm::Core::instance();
     core.setWindow(new lm::Window(400, 400, "Nyan"));
     core.push<Nyan>();
     core.start();

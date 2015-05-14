@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    GameState.cpp                                  oooooo       oooooo      */
+/*    Provider.hpp                                   oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,42 +11,44 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Lums/GameState.hpp>
-#include <Lums/Core.hpp>
+#ifndef PROVIDER_HPP
+#define PROVIDER_HPP
 
-using namespace lm;
+#include <iostream>
+#include <cstdint>
+#include <Lums/ShaderProgram.hpp>
+#include <Lums/Singleton.hpp>
 
-GameState::GameState()
+namespace lm
 {
-    
+
+    template <std::size_t N, typename T>
+    class Provider
+    {
+    public:
+        T&
+        get(int i)
+        {
+            return *(reinterpret_cast<T*>(_buffer + i * sizeof(T)));
+        }
+
+        T&
+        set(int i)
+        {
+            std::cout << "toto " << (void*)(_buffer + i * sizeof(T)) << std::endl;
+            return *(new(_buffer + i * sizeof(T)) T);
+        }
+
+    protected:
+        unsigned char   _buffer[N * sizeof(T)];
+    };
+
+    template <std::size_t N>
+    class ShaderProvider : public Provider<N, ShaderProgram>, public Singleton<ShaderProvider<N>>
+    {
+
+    };
+
 }
 
-void
-GameState::load()
-{
-    
-}
-
-void
-GameState::unload()
-{
-    
-}
-
-void
-GameState::reload()
-{
-    unload();
-    load();
-}
-
-void
-GameState::remove()
-{
-    Core::instance().remove(this);
-}
-
-GameState::~GameState()
-{
-    
-}
+#endif

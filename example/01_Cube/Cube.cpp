@@ -14,6 +14,8 @@
 #include <iostream>
 #include <Lums/Lums.hpp>
 
+using ShaderProvider = lm::ShaderProvider<16>;
+
 class Cube : public lm::GameState
 {
 public:
@@ -29,10 +31,7 @@ private:
     lm::Vector2f            _speed;
     lm::Projection          _proj;
     lm::VertexBufferP3C4    _vbo;
-    lm::ShaderProgram       _shader;
 };
-
-using namespace lm;
 
 #define ARR_SIZE(arr)   (sizeof(arr) / sizeof(*arr))
 
@@ -96,9 +95,7 @@ vbo_push(lm::VertexBufferP3C4& vbo, GLubyte i1, GLubyte i2, GLubyte i3)
 void
 Cube::load()
 {
-    //glFrontFace(GL_CW);
     glEnable(GL_DEPTH_TEST);
-   // glEnable(GL_CULL_FACE);
     for (int i = 0; i < ARR_SIZE(indices); i += 4)
     {
         const GLubyte* ptr = indices + i;
@@ -107,42 +104,36 @@ Cube::load()
         vbo_push(_vbo, ptr[0], ptr[2], ptr[3]);
     }
     _vbo.send();
-    _shader.attach(lm::Shader("cube.frag.glsl", lm::Shader::Fragment));
-    _shader.attach(lm::Shader("cube.vert.glsl", lm::Shader::Vertex));
-    _shader.bindAttribLocation(lm::Vertex::Position, "pos");
-    _shader.bindAttribLocation(lm::Vertex::Color, "color");
-    _shader.link();
-    _shader.use();
     _proj.projection = lm::perspective(70.f, 800.f / 600.f, 0.01f, 1000.f);
 }
 
 void
 Cube::update()
 {
-    _angle.x += Angle::degrees(0.1) * _speed.x;
-    _angle.y += Angle::degrees(0.1) * _speed.y;
+    _angle.x += lm::Angle::degrees(0.1) * _speed.x;
+    _angle.y += lm::Angle::degrees(0.1) * _speed.y;
 }
 
 void
-Cube::handleEvent(const Event& event)
+Cube::handleEvent(const lm::Event& event)
 {
-    if (event.type == Event::Type::KeyDown)
+    if (event.type == lm::Event::Type::KeyDown)
     {
         switch (event.key)
         {
-            case Key::Escape:
-                Core::get().stop();
+            case lm::Key::Escape:
+                lm::Core::instance().stop();
                 break;
-            case Key::Right:
+            case lm::Key::Right:
                 _speed.x++;
                 break;
-            case Key::Left:
+            case lm::Key::Left:
                 _speed.x--;
                 break;
-            case Key::Up:
+            case lm::Key::Up:
                 _speed.y++;
                 break;
-            case Key::Down:
+            case lm::Key::Down:
                 _speed.y--;
                 break;
             default:
@@ -154,13 +145,15 @@ Cube::handleEvent(const Event& event)
 void
 Cube::render()
 {
+    auto shader = ShaderProvider::instance().get(0);
+
     _proj.view = lm::lookAt({2.f, 2.f, 2.f}, {0, 0, 0}, {0, 1.f, 0});
-    _proj.model = Matrix4f::identity();
-    rotate(_proj.model, _angle.x.toDegrees(), {0, 1, 0});
-    rotate(_proj.model, _angle.y.toDegrees(), {0, 0, 1});
-    lm::uniform(_shader, "model", _proj.model);
-    lm::uniform(_shader, "view", _proj.view);
-    lm::uniform(_shader, "projection", _proj.projection);
+    _proj.model = lm::Matrix4f::identity();
+    lm::rotate(_proj.model, _angle.x.toDegrees(), {0, 1, 0});
+    lm::rotate(_proj.model, _angle.y.toDegrees(), {0, 0, 1});
+    lm::uniform(shader, "model", _proj.model);
+    lm::uniform(shader, "view", _proj.view);
+    lm::uniform(shader, "projection", _proj.projection);
     _vbo.draw(GL_TRIANGLES);
 }
 
@@ -177,8 +170,17 @@ int
 main()
 {
     lm::enableModule(lm::Module::All);
-    lm::Core& gl = Core::get();
-    gl.setWindow(new Window(800, 600, "Cube"));
+    lm::Core& gl = lm::Core::instance();
+    gl.setWindow(new lm::Window(800, 600, "Cube"));
+
+    auto& sp = ShaderProvider::instance().set(0);
+    sp.attach(lm::Shader("cube.frag.glsl", lm::Shader::Fragment));
+    sp.attach(lm::Shader("cube.vert.glsl", lm::Shader::Vertex));
+    sp.bindAttribLocation(lm::Vertex::Position, "pos");
+    sp.bindAttribLocation(lm::Vertex::Color, "color");
+    sp.link();
+    sp.use();
+
     gl.push<Cube>();
     gl.start();
 }
