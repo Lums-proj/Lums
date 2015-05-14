@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Test.cpp                                       oooooo       oooooo      */
+/*    GameState.cpp                                  oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,12 +11,42 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "NanoTest.hpp"
-#include <Lums>
+#include <LumsInclude/Core/GameState.hpp>
+#include <LumsInclude/Core/Core.hpp>
 
-int main(int argc, char**argv)
+using namespace lm;
+
+GameState::GameState()
 {
-    std::cout << "Lums version " << LUMS_VERSION << std::endl;
-    return nanotest_main(argc, argv);
+    
+}
+
+void
+GameState::load()
+{
+    
+}
+
+void
+GameState::unload()
+{
+    
+}
+
+void
+GameState::reload()
+{
+    unload();
+    load();
+}
+
+void
+GameState::remove()
+{
+    Core::instance().remove(this);
+}
+
+GameState::~GameState()
+{
+    
 }

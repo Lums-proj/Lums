@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Test.cpp                                       oooooo       oooooo      */
+/*    Rect.hpp                                       oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,12 +11,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "NanoTest.hpp"
-#include <Lums>
+#ifndef LUMS_RECT_HPP
+#define LUMS_RECT_HPP
 
-int main(int argc, char**argv)
+#include <LumsInclude/Math/Vector.hpp>
+
+namespace lm
 {
-    std::cout << "Lums version " << LUMS_VERSION << std::endl;
-    return nanotest_main(argc, argv);
+    template <std::size_t N, typename T>
+    struct Rect
+    {
+        using Vect = Vector<N, T>;
+
+        Vect    pos;
+        Vect    size;
+    };
+
+    template <typename T> using Rect2 = Rect<2, T>;
+    template <typename T> using Rect3 = Rect<3, T>;
+    
+    using Rect2f = Rect2<float>;
 }
+
+#endif

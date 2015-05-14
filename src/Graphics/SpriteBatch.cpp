@@ -1,0 +1,98 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                                            */
+/*    SpriteBatch.cpp                                oooooo       oooooo      */
+/*                                                 oooooooooo   oooooooooo    */
+/*                                                         o%%%%%o            */
+/*                                                         %:::::%            */
+/*                                                        %:::::::%           */
+/*    This file is part of the                             %:::::%            */
+/*    Lums library.                                         %%%%%             */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <LumsInclude/Graphics/SpriteBatch.hpp>
+
+using namespace lm;
+
+SpriteBatch::SpriteBatch()
+{
+
+}
+
+void
+SpriteBatch::begin()
+{
+    _texture = 0;
+}
+
+void
+SpriteBatch::draw(const Texture& texture, int atlas, lm::Vector2f pos, lm::Vector2f scale, lm::Vector2b flip)
+{
+    if (!_texture)
+    {
+        _texture = &texture;
+    }
+    else if (_texture != &texture)
+    {
+        flush();
+        _texture = &texture;
+    }
+
+    Rect2f frame = texture.atlas(atlas);
+    float w = frame.size.x * texture.width() * scale.x;
+    float h = frame.size.y * texture.height() * scale.y;
+
+    if (flip.x)
+    {
+        pos.x += w;
+        w = -w;
+    }
+
+    if (flip.y)
+    {
+        pos.y += h;
+        h = -h;
+    }
+
+    const float fcorx = 1.0f / texture.width();
+    const float fcory = 1.0f / texture.height();
+
+    frame.pos.x += fcorx * 0.5f;
+    frame.pos.y += fcory * 0.5f;
+    frame.size.x -= fcorx;
+    frame.size.y -= fcory;
+
+    // We create two triangles from a single quad
+
+    _vbo.push(pos.x, pos.y, frame.pos.x, frame.pos.y, 1.f, 1.f, 1.f, 1.f);
+    _vbo.push(pos.x + w, pos.y, frame.pos.x + frame.size.x, frame.pos.y, 1.f, 1.f, 1.f, 1.f);
+    _vbo.push(pos.x + w, pos.y + h, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, 1.f, 1.f, 1.f, 1.f);
+    _vbo.push(pos.x, pos.y, frame.pos.x, frame.pos.y, 1.f, 1.f, 1.f, 1.f);
+    _vbo.push(pos.x + w, pos.y + h, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, 1.f, 1.f, 1.f, 1.f);
+    _vbo.push(pos.x, pos.y + h, frame.pos.x, frame.pos.y + frame.size.y, 1.f, 1.f, 1.f, 1.f);
+}
+
+void
+SpriteBatch::end()
+{
+    flush();
+}
+
+SpriteBatch::~SpriteBatch()
+{
+
+}
+
+/*
+** PRIVATE
+*/
+
+void
+SpriteBatch::flush()
+{
+    _texture->bind();
+    _vbo.send();
+    _vbo.draw(GL_TRIANGLES);
+    _vbo.reset();
+}

@@ -13,13 +13,11 @@ find_package(OpenGL REQUIRED)
 find_package(OpenAL REQUIRED)
 find_package(FreeType REQUIRED)
 find_package(PNG REQUIRED)
-find_package(Mruby REQUIRED)
 find_package(Vorbis REQUIRED)
 
 include_directories("${CMAKE_SOURCE_DIR}/include")
 include_directories(${PNG_INCLUDE_DIRS} SYSTEM)
 include_directories(${FREETYPE_INCLUDE_DIRS} SYSTEM)
-include_directories(${MRUBY_INCLUDE_DIRS} SYSTEM)
 include_directories(${VORBIS_INCLUDE_DIRS} SYSTEM)
 
 add_subdirectory(src)

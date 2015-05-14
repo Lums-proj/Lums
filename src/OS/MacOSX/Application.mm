@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Test.cpp                                       oooooo       oooooo      */
+/*    MacOSX/Application.hpp                         oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,12 +11,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "NanoTest.hpp"
-#include <Lums>
+#import <Cocoa/Cocoa.h>
+#import <LumsInclude/Application.hpp>
+#import "LMApplication.hpp"
 
-int main(int argc, char**argv)
+using namespace lm;
+
+static NSAutoreleasePool* pool;
+
+void
+Application::init()
 {
-    std::cout << "Lums version " << LUMS_VERSION << std::endl;
-    return nanotest_main(argc, argv);
+    pool = [NSAutoreleasePool new];
+    [LMApplication sharedApplication];
+    [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+    [NSApp activateIgnoringOtherApps:YES];
+    [[LMApplication sharedApplication] finishLaunching];
 }

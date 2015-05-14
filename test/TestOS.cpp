@@ -12,7 +12,7 @@
 /* ************************************************************************** */
 
 #include "NanoTest.hpp"
-#include <Lums/Lums.hpp>
+#include <Lums>
 
 using namespace		lm;
 

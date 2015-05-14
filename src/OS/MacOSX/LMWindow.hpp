@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Test.cpp                                       oooooo       oooooo      */
+/*    MacOSX/LMWindow.hpp                            oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,12 +11,28 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "NanoTest.hpp"
-#include <Lums>
+#ifndef LUMS_LMWINDOW_HPP
+#define LUMS_LMWINDOW_HPP
 
-int main(int argc, char**argv)
-{
-    std::cout << "Lums version " << LUMS_VERSION << std::endl;
-    return nanotest_main(argc, argv);
-}
+#import <Cocoa/Cocoa.h>
+#import <IOKit/hid/IOHIDLib.h>
+#import <LumsInclude/Graphics/Window.hpp>
+
+@interface LMWindow : NSWindow
+
+@property lm::Window* window;
+
+@property IOHIDManagerRef hidManager;
+
+-(void)keyDown:(NSEvent*)event;
+-(void)keyUp:(NSEvent*)event;
+-(void)mouseDown:(NSEvent*)event;
+-(void)mouseUp:(NSEvent*)event;
+-(void)rightMouseDown:(NSEvent*)event;
+-(void)rightMouseUp:(NSEvent*)event;
+-(void)mouseMoved:(NSEvent*)event;
+-(void)setupHid;
+
+@end
+
+#endif

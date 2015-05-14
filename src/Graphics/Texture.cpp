@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Test.cpp                                       oooooo       oooooo      */
+/*    Texture.cpp                                    oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,12 +11,60 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "NanoTest.hpp"
-#include <Lums>
+#include <LumsInclude/Graphics/Texture.hpp>
+#include <LumsInclude/Graphics/Image.hpp>
 
-int main(int argc, char**argv)
+using namespace lm;
+
+Texture::Texture()
 {
-    std::cout << "Lums version " << LUMS_VERSION << std::endl;
-    return nanotest_main(argc, argv);
+    glGenTextures(1, &_texture);
+}
+
+void
+Texture::setImage(Image& image)
+{
+    _image = &image;
+}
+
+void
+Texture::load()
+{
+
+}
+
+void
+Texture::bind() const
+{
+    glBindTexture(GL_TEXTURE_2D, _texture);
+}
+
+void         
+Texture::pushAtlas(const Rect2f& rect)
+{
+    _atlas.push_back(rect);
+}
+
+void         
+Texture::pushAtlas(int w, int h)
+{
+    const float fw = w / _width;
+    const float fh = h / _height;
+    for (int j = 0; j < h; ++j)
+    {
+        for (int i = 0; i < w; i++)
+            pushAtlas({{i * fw, j * fw}, {fw, fh}});
+    }
+}
+
+const Rect2f&
+Texture::atlas(std::size_t i) const
+{
+    return _atlas[i];
+}
+
+
+Texture::~Texture()
+{
+    glDeleteTextures(1, &_texture);
 }

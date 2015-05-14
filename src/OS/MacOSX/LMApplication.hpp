@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Test.cpp                                       oooooo       oooooo      */
+/*    MacOSX/LMApplication.hpp                       oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,12 +11,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "NanoTest.hpp"
-#include <Lums>
+#ifndef LUMS_LMAPPLICATION_HPP
+#define LUMS_LMAPPLICATION_HPP
 
-int main(int argc, char**argv)
-{
-    std::cout << "Lums version " << LUMS_VERSION << std::endl;
-    return nanotest_main(argc, argv);
-}
+#import <Cocoa/Cocoa.h>
+
+@interface LMApplication : NSApplication
++(void)pumpEvents;
+@end
+
+#endif

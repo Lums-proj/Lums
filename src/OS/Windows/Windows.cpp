@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Test.cpp                                       oooooo       oooooo      */
+/*    Windows/Windows.cpp                            oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,12 +11,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "NanoTest.hpp"
-#include <Lums>
+#include <windows.h>
+#include <LumsInclude/OperatingSystem.hpp>
 
-int main(int argc, char**argv)
+static std::string  res_path;
+
+namespace lm
 {
-    std::cout << "Lums version " << LUMS_VERSION << std::endl;
-    return nanotest_main(argc, argv);
+    const std::string&
+    resourcePath()
+    {
+        if (res_path.empty())
+        {
+            char path[MAX_PATH];
+            HMODULE hModule = GetModuleHandle(NULL);
+
+            GetModuleFileName(hModule, path, MAX_PATH);
+            res_path = path;
+            res_path = res_path.substr(0, res_path.find_last_of('\\') + 1);
+        }
+        return res_path;
+    }
 }
