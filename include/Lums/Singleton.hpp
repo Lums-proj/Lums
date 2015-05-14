@@ -25,6 +25,10 @@ namespace lm
 			static T t;
 			return t;
 		}
+	protected:
+		Singleton() = default;
+		Singleton(const Singleton<T>&) = delete;
+		Singleton<T>& operator=(const Singleton<T>&) = delete;
 	};
 }
 

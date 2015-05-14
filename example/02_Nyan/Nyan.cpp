@@ -78,8 +78,9 @@ private:
 int
 main()
 {
-    lm::Core core(400, 400, "Nyan");
-
+    lm::enableModule(lm::Module::All);
+    lm::Core& core = lm::Core::get();
+    core.setWindow(new lm::Window(400, 400, "Nyan"));
     core.push<Nyan>();
     core.start();
 }

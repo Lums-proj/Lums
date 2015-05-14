@@ -100,7 +100,6 @@ namespace lm
 		, _vbo(0)
 		, _count(0)
 		{
-			glGetError();
 			glGenVertexArrays(1, &_vao);
 			glGenBuffers(1, &_vbo);
 			glBindVertexArray(_vao);

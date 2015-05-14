@@ -33,9 +33,11 @@ namespace lm
      * The goal of this class is to provide a simple, yet efficient way to
      * handle the context of your game.
      */
-    class Core
+    class Core : public Singleton<Core>
     {
     public:
+
+        friend class Singleton<Core>;
         /**
          * Create a new Core.
          * If a Core was already created, and has not been destructed, it's
@@ -45,45 +47,19 @@ namespace lm
          * @param name The window title.
          * @param fullscreen Wether to start the core fullscreen.
          */
-        LUMS_EXPORTED Core(int w, int h, const char* name = "", bool fullscreen = false);
-
-        /**
-        * Get the Core singleton.
-        * If there is no singleton Core, this is undefined behavior.
-        * @return A reference to the singleton Core
-        */        
-        static Core&
-        get()
-        {
-            return *_singleton;
-        }
-
-        /**
-         * Return the window width.
-         * @return The window width.
-         */
-        int
-        width() const
-        {
-            return _width;
-        }
-        
-        /**
-         * Return the window height.
-         * @return The window height.
-         */
-        int
-        height() const
-        {
-            return _height;
-        }
-
         Window&
         window()
         {
-            return _win;
+            return *_win;
         }
         
+        void
+        setWindow(Window* win)
+        {
+            delete _win;
+            _win = win;
+        }
+
         /**
          * Start the core.
          * This method will not return until Core::Stop
@@ -103,7 +79,8 @@ namespace lm
          * @param args Argument instances.
          * @return A reference to the constructed object.
          */
-        template<typename T, typename ...Args> T&
+        template<typename T, typename ...Args>
+        T&
         push(Args ...args)
         {
             T* state = new T(std::forward<Args>(args)...);
@@ -155,6 +132,8 @@ namespace lm
         LUMS_EXPORTED ~Core();
         
     private:
+        LUMS_EXPORTED Core();
+        
         void    doEvent();
         void    doUpdate();
         void    doRender();
@@ -163,12 +142,9 @@ namespace lm
         
         Stack                       _stack;
         size_t                      _it;
-        int                         _width;
-        int                         _height;
-        Window                      _win;
+        Window*                     _win;
         bool                        _jmp;
         bool                        _running;
-        LUMS_EXPORTED static Core*  _singleton;
     };
 }
 

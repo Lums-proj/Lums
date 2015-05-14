@@ -32,6 +32,7 @@
 #endif
 
 #include <Lums/Angle.hpp>
+#include <Lums/Application.hpp>
 #include <Lums/Core.hpp>
 #include <Lums/Event.hpp>
 #include <Lums/Font.hpp>
@@ -53,5 +54,42 @@
 #include <Lums/Vector.hpp>
 #include <Lums/VertexBuffer.hpp>
 #include <Lums/Window.hpp>
+
+namespace lm
+{
+    enum class Module
+    {
+        Core,
+        Graphics,
+        Audio,
+        All
+    };
+
+    namespace internal
+    {
+        void    _enableSingleModule(Module module);
+
+        inline void
+        _enableModule()
+        {
+
+        }
+
+        template <typename... Modules>
+        inline void
+        _enableModule(Module module, Modules... modules)
+        {
+            _enableSingleModule(module);
+            _enableModule(modules...);
+        }
+    }
+
+    template <typename... Modules>
+    inline void
+    enableModule(Module module, Modules... modules)
+    {
+        internal::_enableModule(module, modules...);
+    }
+}
 
 #endif

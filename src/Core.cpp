@@ -17,15 +17,6 @@
 
 using namespace lm;
 
-Core::Core(int w, int h, const char* name, bool fullscreen)
-: _it(0)
-, _width(w)
-, _height(h)
-, _win(w, h, name)
-{
-    _singleton = this;
-}
-
 void
 Core::start()
 {
@@ -64,7 +55,7 @@ Core::start()
             doEvent();
             doUpdate();
         }
-        if (_win.visible())
+        if (_win->visible())
             doRender();
         else
             std::this_thread::sleep_for(microseconds(400));
@@ -119,9 +110,17 @@ Core::stop()
 
 Core::~Core()
 {
-    _singleton = nullptr;
+
 }
 
+// PROTECTED
+
+Core::Core()
+: _it(0)
+, _win(nullptr)
+{
+
+}
 
 // PRIVATE
 
@@ -134,7 +133,7 @@ Core::doEvent()
     
     do
     {
-        _win.pollEvent(event);
+        _win->pollEvent(event);
         for (_it = 0; _it < _stack.size(); ++_it)
         {
             _jmp = false;
@@ -185,8 +184,5 @@ Core::doRender()
             break;
         --min;
     }
-    _win.swap();
+    _win->swap();
 }
-
-Core*
-Core::_singleton = nullptr;
