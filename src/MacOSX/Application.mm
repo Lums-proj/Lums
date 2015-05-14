@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Application.hpp                                oooooo       oooooo      */
+/*    MacOSX/Application.hpp                         oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,15 +11,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_APPLICATION_HPP
-#define LUMS_APPLICATION_HPP
+#import <Cocoa/Cocoa.h>
+#import <Lums/Application.hpp>
+#import <LMApplication.hpp>
 
-namespace lm
+using namespace lm;
+
+static NSAutoreleasePool* pool;
+
+void
+Application::init()
 {
-    namespace Application
-    {
-        void    init();
-    }
+    pool = [NSAutoreleasePool new];
+    [LMApplication sharedApplication];
+    [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+    [NSApp activateIgnoringOtherApps:YES];
+    [[LMApplication sharedApplication] finishLaunching];
 }
-
-#endif

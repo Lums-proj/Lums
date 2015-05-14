@@ -176,8 +176,9 @@ Cube::unload()
 int
 main()
 {
-    lm::Core gl(800, 600, "Cube");
-
+    lm::enableModule(lm::Module::All);
+    lm::Core& gl = Core::get();
+    gl.setWindow(new Window(800, 600, "Cube"));
     gl.push<Cube>();
     gl.start();
 }

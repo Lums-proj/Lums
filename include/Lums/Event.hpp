@@ -16,6 +16,7 @@
 
 #include <cstdint>
 #include <Lums/Key.hpp>
+#include <Lums/Singleton.hpp>
 
 namespace lm
 {

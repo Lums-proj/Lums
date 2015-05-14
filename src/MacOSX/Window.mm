@@ -20,8 +20,6 @@
 
 using namespace lm;
 
-static NSAutoreleasePool* pool;
-
 static NSOpenGLPixelFormatAttribute
 glAttributes[] = {
     NSOpenGLPFADepthSize, 24,
@@ -37,17 +35,6 @@ glAttributes[] = {
 Window::Window(int w, int h, const char* name, bool fullscreen)
 : _fullscreen(false)
 {
-    static bool appLaunched = false;
-
-    if (!appLaunched)
-    {
-        pool = [NSAutoreleasePool new];
-        [LMApplication sharedApplication];
-        [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
-        [NSApp activateIgnoringOtherApps:YES];
-        [[LMApplication sharedApplication] finishLaunching];
-        appLaunched = true;
-    }
     NSRect frame = NSMakeRect(0, 0, w, h);
     LMWindow* win = [[[LMWindow alloc] initWithContentRect:frame
                     styleMask:NSTitledWindowMask
@@ -72,8 +59,6 @@ Window::Window(int w, int h, const char* name, bool fullscreen)
     resize(w, h, fullscreen);
     [win makeKeyAndOrderFront:nil];
     [win setupHid];
-    std::cout << glGetString(GL_VERSION) << std::endl;
-    std::cout << glGetError() << std::endl;
 }
 
 void
@@ -98,7 +83,6 @@ Window::resize(int w, int h, bool fullscreen)
     NSRect viewport = [view bounds];
     viewport = [view convertRectToBacking:[view bounds]];
     [context update];
-    //glViewport(0, 0, viewport.size.width, viewport.size.height);
 }
 
 bool
@@ -106,7 +90,7 @@ Window::visible() const
 {
     LMWindow* win = (LMWindow*)_windowHandle;
 
-    return true; // TODO
+    return true;
 }
 
 void
