@@ -11,190 +11,122 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#if 0
-
-#define _CRT_SECURE_NO_WARNINGS
-
-#include <cstdio>
-#include <cstdarg>
 #include <cstring>
-#include <cstdlib>
-#include <vector>
+#include <cstdio>
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include FT_GLYPH_H
-#include <Lums/Font.hpp>
-#include <Lums/OperatingSystem.hpp>
-
-#define T_WIDTH 1024
+#include <LumsInclude/OperatingSystem.hpp>
+#include <LumsInclude/Graphics/Font.hpp>
+#include <LumsInclude/Graphics/Image.hpp>
 
 using namespace lm;
 
-static FT_Library library;
+static FT_Library ftLibrary;
+
+void
+Freetype::init()
+{
+    FT_Init_FreeType(&ftLibrary);
+}
 
 Font::Font()
-: _texture(0)
+: _size(0.f)
 {
-    static bool loaded = false;
 
-    if (!loaded)
-    {
-        FT_Init_FreeType(&library);
-        loaded = true;
-    }
 }
 
 void
-Font::loadFile(const std::string& filename, float size, bool resource)
+Font::setPath(const std::string& path, bool resource)
 {
-    std::string file = filename;
+    _path = resource ? resourcePath() + '/' + path : path;
+}
+
+void
+Font::setSize(float size)
+{
+    _size = size;
+}
+
+void
+Font::load()
+{
+    Image img;
     FT_Face face;
+    FT_GlyphSlot glyph;
+    unsigned char* bitmap[glyphCount];
+    int bitmapSize = 256;
+    unsigned char* buffer;
+    int left[glyphCount];
+    int top[glyphCount];
 
-    if (resource)
-        file = resourcePath() + file;
-    FT_New_Face(library, file.c_str(), 0, &face);
-    FT_Set_Char_Size(face, 0, static_cast<FT_F26Dot6>(size * 64), 0, 0);
-    unsigned char* buffer = new unsigned char[T_WIDTH * T_WIDTH * 4];
-    std::memset(buffer, 0, T_WIDTH * T_WIDTH * 4);
-    loadGlyphes(face, buffer);
-    glPushAttrib(GL_ENABLE_BIT);
-    glEnable(GL_TEXTURE_2D);
-    glGenTextures(1, &_texture);
-    glBindTexture(GL_TEXTURE_2D, _texture);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, T_WIDTH, T_WIDTH, 0, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-    glPopAttrib();
-    delete [] buffer;
-}
-
-void
-Font::load(const std::string& font, float size)
-{
-    std::string filename;
-#if defined(__APPLE__)
-    filename = std::string("/Library/Fonts/") + font;
-#elif defined(WIN32) || defined(WIN64)
-    filename = std::string("/Windows/Fonts/") + font;
-#endif
-    loadFile(filename, size, false);
-}
-
-void
-Font::puts(int x, int y, const std::string& str) const
-{
-    Font::puts(x, y, str.c_str());
-}
-
-void
-Font::puts(int x, int y, const char* str) const
-{
-    std::vector<GLdouble> v;
-
-    y += _top[static_cast<int>('T')];
-    glPushAttrib(GL_ENABLE_BIT);
-    glEnable(GL_TEXTURE_2D);
-    glBindTexture(GL_TEXTURE_2D, _texture);
-    v.reserve(std::strlen(str) * 16);
-    for (size_t j = 0; str[j]; j++)
+    FT_New_Face(ftLibrary, _path.c_str(), 0, &face);    
+    FT_Set_Char_Size(face, 0, static_cast<FT_F26Dot6>(_size * 64), 0, 0);
+    glyph = face->glyph;
+    
+    for (int i = 0; i < glyphCount; ++i)
     {
-        int i = str[j];
-
-        x += _left[i];
-        int ny = y - _top[i];
-
-        v.push_back(_x[i] / 1024.0);
-        v.push_back(_y[i] / 1024.0);
-        v.push_back(x);
-        v.push_back(ny);
-
-        v.push_back((_x[i] + _width[i]) / 1024.0);
-        v.push_back(_y[i] / 1024.0);
-        v.push_back(x + _width[i]);
-        v.push_back(ny);
-
-        v.push_back((_x[i] + _width[i]) / 1024.0);
-        v.push_back((_y[i] + _height[i]) / 1024.0);
-        v.push_back(x + _width[i]);
-        v.push_back(ny + _height[i]);
-
-        v.push_back(_x[i] / 1024.0);
-        v.push_back((_y[i] + _height[i]) / 1024.0);
-        v.push_back(x);
-        v.push_back(ny + _height[i]);
-
-        x += (_advance[i] >> 6);
+        FT_Load_Char(face, i, FT_LOAD_RENDER);
+        bitmap[i] = new unsigned char[glyph->bitmap.width * glyph->bitmap.rows];
+        _glyphs[i].width = glyph->bitmap.width;
+        _glyphs[i].height = glyph->bitmap.rows;
+        _glyphs[i].left = glyph->bitmap_left;
+        _glyphs[i].top = glyph->bitmap_top;
+        _glyphs[i].advance = glyph->advance.x;
+        std::memcpy(bitmap[i], glyph->bitmap.buffer, glyph->bitmap.width * glyph->bitmap.rows);
     }
-    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-    glTexCoordPointer(2, GL_DOUBLE, sizeof(GLdouble) * 4, &(v[0]));
-    glEnableClientState(GL_VERTEX_ARRAY);
-    glVertexPointer(2, GL_DOUBLE, sizeof(GLdouble) * 4, &(v[2]));
-    glDrawArrays(GL_QUADS, 0, std::strlen(str) * 4);
-    glDisableClientState(GL_VERTEX_ARRAY);
-    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-    glPopAttrib();
+
+    layoutGlyphs:
+    int actualX = 0;
+    int actualY = 0;
+    int maxY = 0;
+    for (int i = 0; i < glyphCount; ++i)
+    {
+        if (actualX + _glyphs[i].width >= bitmapSize)
+        {
+            actualX = 0;
+            actualY += maxY;
+            maxY = 0;
+        }
+        if (actualY + _glyphs[i].height >= bitmapSize)
+        {
+            bitmapSize += 128;
+            goto layoutGlyphs;
+        }
+        if (_glyphs[i].height > maxY)
+            maxY = _glyphs[i].height;
+        left[i] = actualX;
+        top[i] = actualY;
+        actualX += _glyphs[i].width;
+    }
+
+    buffer = new unsigned char[bitmapSize * bitmapSize * 4];
+    std::memset(buffer, 0, bitmapSize * bitmapSize * 4);
+    for (int idx = 0; idx < glyphCount; ++idx)
+    {
+        for (int j = 0; j < _glyphs[idx].height; ++j)
+        {
+            for (int i = 0; i < _glyphs[idx].width; ++i)
+            {
+                std::memset(buffer + (left[idx] + i) * 4 + (top[idx] + j) * 4 * bitmapSize, bitmap[idx][i + _glyphs[idx].width * j], 4);
+            }
+        }
+        _texture.pushAtlas({{float(left[idx]) / bitmapSize, float(top[idx]) / bitmapSize}, {float(_glyphs[idx].width) / bitmapSize, float(_glyphs[idx].height / bitmapSize)}});
+        delete [] bitmap[idx];
+    }
+    std::printf("%d\n", bitmapSize);
+    img.setBuffer(buffer, bitmapSize, bitmapSize, GL_RGBA);
+    _texture.setImage(img);
+    _texture.load();
 }
 
 void
-Font::printf(int x, int y, const char* format, ...) const
+Font::unload()
 {
-    va_list ap;
-    char* str;
-
-    va_start(ap, format);
-#if _MSC_VER
-    str = static_cast<char*>(malloc(_vscprintf(format, ap) + 1));
-    vsprintf(str, format, ap);
-#else
-    vasprintf(&str, format, ap);
-#endif
-    Font::puts(x, y, str);
-    free(str);
-    va_end(ap);
+    _texture.unload();
 }
 
 Font::~Font()
 {
-
+    unload();
 }
-
-// private
-
-void
-Font::loadGlyphes(void* faceHandle, unsigned char* buffer)
-{
-    size_t x = 0, y = 0, yMax = 0;
-    FT_Face face = static_cast<FT_Face>(faceHandle);
-    FT_GlyphSlot g = face->glyph;
-    for (int i = 0; i < 128; i++)
-    {
-        FT_Load_Char(face, i, FT_LOAD_RENDER);
-        if (x + g->bitmap.width > T_WIDTH)
-        {
-            x = 0;
-            y += yMax;
-            yMax = 0;
-        }
-        for (size_t j = 0; j < g->bitmap.rows; j++)
-        {
-            for (size_t k = 0; k < g->bitmap.width; k++)
-            {
-                size_t index = j * g->bitmap.pitch + k;
-                unsigned char byte = *(static_cast<unsigned char*>(g->bitmap.buffer) + index);
-                std::memset(buffer + (y + j) * 4 * T_WIDTH + (x + k) * 4, byte, 4);
-            }
-        }
-        _width[i] = g->bitmap.width;
-        _height[i] = g->bitmap.rows;
-        _x[i] = x;
-        _y[i] = y;
-        _left[i] = g->bitmap_left;
-        _top[i] = g->bitmap_top;
-        _advance[i] = g->advance.x;
-        if (g->bitmap.rows > yMax)
-            yMax = g->bitmap.rows;
-        x += g->bitmap.width;
-    }
-}
-
-#endif

@@ -91,6 +91,9 @@ namespace lm
         }
 
         LUMS_EXPORTED void  setPath(const std::string path, bool resource = true);
+
+        LUMS_EXPORTED void  setBuffer(unsigned char* buffer, unsigned int w, unsigned int h, GLenum format);
+
         /**
          * Load a png image from a file.
          * @param path The file path.
