@@ -10,95 +10,82 @@
 /*    Lums library.                                         %%%%%             */
 /*                                                                            */
 /* ************************************************************************** */
-#if 0
 
 #ifndef PROVIDER_HPP
 #define PROVIDER_HPP
 
-#include <bitset>
+#include <vector>
 #include <cstdint>
 #include <LumsInclude/Graphics/ShaderProgram.hpp>
+#include <LumsInclude/Graphics/Image.hpp>
+#include <LumsInclude/Graphics/Texture.hpp>
 #include <LumsInclude/Singleton.hpp>
 
 namespace lm
 {
 
-    template <std::size_t N, typename T>
-    class Provider
+    namespace internal
     {
-    public:
-        T&
-        get(int i)
+        template <typename T>
+        class ProviderImpl
         {
-            return *(reinterpret_cast<T*>(_buffer + i * sizeof(T)));
-        }
+        public:
+            T&
+            get(int i)
+            {
+                return _buffer[i];
+            }
 
-        T&
-        set(int i)
-        {
-            return *(new(_buffer + i * sizeof(T)) T);
-        }
+            T&
+            set(int i)
+            {
+                if (i >= _buffer.size())
+                    _buffer.resize(i + 1);
+                return _buffer[i];
+            }
 
-    protected:
-        unsigned char   _buffer[N * sizeof(T)];
-    };
-
-    template <std::size_t N, typename T>
-    class StreamProvider : public Provider<N, ShaderProgram>
-    {
-    public:
-        T&
-        get(int i)
-        {
-            if (!_allocTable[i])
-                return load(i);
-            return Provider::get(i);
-        }
-
-        T&
-        load(int i)
-        {
-            _allocTable[i] = 1;
-            return Provider::set(i);
-        }
-
-    private:
-        std::bitset<N>  _allocTable;
-    };
-
-    template<std::size_t N>
-    class ImageProvider : public StreamProvider<N, Image>, public Singleton<Image<N>>
-    {
-    public:
-        Image&
-        set(int i, const& std::string path)
-        {
-
-        }
-
-        Image&
-        load(int i)
-        {
-            Image& img = StreamProvider::load(i);
-
-        }
-
-    private:
-        struct data
-        {
-            std::string     path;
-            
+        protected:
+            std::vector<T>  _buffer;
         };
-    };
+    }
 
-    template <std::size_t N>
-    class ShaderProvider : public Provider<N, ShaderProgram>, public Singleton<ShaderProvider<N>>
+    template <typename T>
+    class Provider : public internal::ProviderImpl<T>, public Singleton<Provider<T>>
     {
 
     };
 
-}
+    template <typename T>
+    class StreamProvider : public internal::ProviderImpl<T>, public Singleton<StreamProvider<T>>
+    {
+    public:
+        T&
+        get(int i)
+        {
+            if (!internal::ProviderImpl<T>::_buffer[i].loaded())
+                return load(i);
+            return internal::ProviderImpl<T>::get(i);
+        }
 
-#endif
+        T&
+        load(int i)
+        {
+            internal::ProviderImpl<T>::_buffer[i].load();
+            return internal::ProviderImpl<T>::get(i);
+        }
+
+        T&
+        unload(int i)
+        {
+            internal::ProviderImpl<T>::_buffer[i].unload();
+            return internal::ProviderImpl<T>::get(i);
+        }
+
+    };
+
+    using ShaderProvider = Provider<ShaderProgram>;
+    using ImageProvider = StreamProvider<Image>;
+    using TextureProvider = StreamProvider<Texture>;
+}
 
 #endif
