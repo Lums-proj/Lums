@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Music.hpp                                      oooooo       oooooo      */
+/*    Sfx.hpp                                        oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,26 +11,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_MUSIC_HPP
-#define LUMS_MUSIC_HPP
+#ifndef LUMS_SFX_HPP
+#define LUMS_SFX_HPP
 
+#include <vector>
 #include <LumsInclude/Audio/Sound.hpp>
-
-#define NB_BUFFERS  3
 
 namespace lm
 {
-    class Music : public Sound
+    class Sfx : public Sound
     {
     public:
-        Music();
+        Sfx();
         void    play(Vector3f pos = {0.f, 0.f, 0.f});
         void    pause();
         void    stop();
-        ~Music();
+        ~Sfx();
     private:
-        void    streamOGG(Vector3f pos);
-        void    bufferizeOGG(ALuint& buffer);
+
+        std::vector<ALuint> _sources;
     };
 }
 
