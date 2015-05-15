@@ -19,6 +19,7 @@
 #include <LumsInclude/Graphics/ShaderProgram.hpp>
 #include <LumsInclude/Graphics/Image.hpp>
 #include <LumsInclude/Graphics/Texture.hpp>
+#include <LumsInclude/Graphics/Font.hpp>
 #include <LumsInclude/Singleton.hpp>
 
 namespace lm
@@ -86,6 +87,7 @@ namespace lm
     using ShaderProvider = Provider<ShaderProgram>;
     using ImageProvider = StreamProvider<Image>;
     using TextureProvider = StreamProvider<Texture>;
+    using FontProvider = StreamProvider<Font>;
 }
 
 #endif

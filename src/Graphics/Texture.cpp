@@ -20,7 +20,7 @@ using namespace lm;
 Texture::Texture()
 : _texture(0)
 {
-    pushAtlas({{0.f, 0.f}, {1.f, 1.f}});
+
 }
 
 void
@@ -72,8 +72,9 @@ Texture::pushAtlas(const Rect2f& rect)
 void         
 Texture::pushAtlas(int w, int h)
 {
-    const float fw = w / _width;
-    const float fh = h / _height;
+    const float fw = 1.f / w;
+    const float fh = 1.f / h;
+
     for (int j = 0; j < h; ++j)
     {
         for (int i = 0; i < w; i++)

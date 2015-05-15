@@ -29,7 +29,8 @@ namespace lm
         int height;
         int top;
         int left;
-        int advance;
+        float advance;
+        float kerning[128];
     };
 
     class Font
@@ -38,11 +39,23 @@ namespace lm
         enum { glyphCount = 128 };
 
         Font();
+
+        const Texture&
+        texture() const
+        {
+            return _texture;
+        }
+
+        const Glyph&
+        glyph(int i) const
+        {
+            return _glyphs[i];
+        }
+
         void    setPath(const std::string& path, bool resource = true);
         void    setSize(float size);
         void    load();
         void    unload();
-        const Texture&    texture() const { return _texture; }
         ~Font();
 
     private:

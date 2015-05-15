@@ -27,7 +27,7 @@ public:
         auto& shader = lm::ShaderProvider::instance().get(0);
 
         _font.setPath("/System/Library/Fonts/HelveticaNeueDeskInterface.ttc", false);
-        _font.setSize(200.f);
+        _font.setSize(50.f);
         _font.load();
         _proj = lm::ortho(0, 400, 400, 0);
         lm::uniform(shader, "proj", _proj);
@@ -50,7 +50,7 @@ public:
     render()
     {
         _batch.begin();
-        _batch.draw(_font.texture(), 0, {0.f, 0.f}, {0.25f, 0.25f});
+        _batch.draw(_font, "Hello voisin");
         _batch.end();
     }
 
@@ -76,6 +76,10 @@ main()
     shader.bindAttribLocation(lm::Vertex::Color, "color");
     shader.link();
     shader.use();
+
+    GLint max;
+    glGetIntegerv(GL_MAX_ARRAY_TEXTURE_LAYERS, &max);
+    std::cout << max << std::endl;
 
     core.push<Font>();
     core.start();
