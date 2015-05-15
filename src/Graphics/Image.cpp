@@ -75,6 +75,16 @@ Image::setPath(const std::string path, bool resource)
     _path = resource ? resourcePath() + '/' + path : path;
 }
 
+void
+Image::setBuffer(unsigned char* buffer, unsigned int w, unsigned int h, GLenum format)
+{
+    unload();
+    _data = buffer;
+    _width = w;
+    _height = h;
+    _format = format;
+}
+
 Image::~Image()
 {
     unload();

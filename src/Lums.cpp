@@ -27,6 +27,7 @@ static void
 enableGraphics()
 {
     Application::init();
+    Freetype::init();
 }
 
 static void
