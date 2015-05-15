@@ -20,6 +20,11 @@
 
 namespace lm
 {
+    namespace ImageFormat
+    {
+        unsigned char*  png(FILE* file, unsigned int& width, unsigned int& height, GLenum& format);
+    }
+
     /**
      * This class represents an Image, stored in the most efficient way speed-wise.
      */
@@ -51,7 +56,7 @@ namespace lm
          * Get the image width.
          * @return The image width.
          */
-        size_t
+        unsigned int
         width() const
         {
             return _width;
@@ -61,12 +66,29 @@ namespace lm
          * Get the image height.
          * @return The image height.
          */
-        size_t
+        unsigned int
         height() const
         {
             return _height;
         }
 
+        GLenum
+        format() const
+        {
+            return _format;
+        }
+
+        const unsigned char*
+        data() const
+        {
+            return _data;
+        }
+
+        bool
+        loaded() const
+        {
+            return _data != nullptr;
+        }
 
         LUMS_EXPORTED void  setPath(const std::string path, bool resource = true);
         /**
@@ -78,7 +100,7 @@ namespace lm
 
         LUMS_EXPORTED void  load();
 
-        LUMS_EXPORTED void  loadFilePNG();
+        LUMS_EXPORTED void  unload();
 
         /**
          * Destructor
@@ -86,10 +108,11 @@ namespace lm
         LUMS_EXPORTED ~Image();
 
     private:
-        size_t                          _width;
-        size_t                          _height;
-        std::string                     _path;
-        GLint                           _format;
+        unsigned int    _width;
+        unsigned int    _height;
+        std::string     _path;
+        GLenum          _format;
+        unsigned char*  _data;
     };
 }
 

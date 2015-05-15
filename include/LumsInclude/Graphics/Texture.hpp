@@ -33,10 +33,12 @@ namespace lm
 
         void            setImage(Image& image);
         void            load();
+        void            unload();
         void            bind() const;
         void            pushAtlas(const Rect2f& rect);
         void            pushAtlas(int w, int h);
         const Rect2f&   atlas(std::size_t i) const;
+        bool            loaded() const;
         ~Texture();
 
     private:

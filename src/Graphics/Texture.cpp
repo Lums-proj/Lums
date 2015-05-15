@@ -13,12 +13,14 @@
 
 #include <LumsInclude/Graphics/Texture.hpp>
 #include <LumsInclude/Graphics/Image.hpp>
+#include <iostream>
 
 using namespace lm;
 
 Texture::Texture()
+: _texture(0)
 {
-    glGenTextures(1, &_texture);
+    pushAtlas({{0.f, 0.f}, {1.f, 1.f}});
 }
 
 void
@@ -30,7 +32,29 @@ Texture::setImage(Image& image)
 void
 Texture::load()
 {
+    const bool loaded = _image->loaded();
 
+    unload();
+    if (!loaded)
+        _image->load();
+    glGenTextures(1, &_texture);
+    bind();
+    glTexImage2D(GL_TEXTURE_2D, 0, _image->format(), _image->width(), _image->height(), 0, _image->format(), GL_UNSIGNED_BYTE, _image->data());
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    _width = _image->width();
+    _height = _image->height();
+    if (!loaded)
+        _image->unload();
+}
+
+void
+Texture::unload()
+{
+    if (!_texture)
+        return;
+    glDeleteTextures(1, &_texture);
+    _texture = 0;
 }
 
 void
@@ -63,8 +87,13 @@ Texture::atlas(std::size_t i) const
     return _atlas[i];
 }
 
+bool
+Texture::loaded() const
+{
+    return _texture != 0;
+}
 
 Texture::~Texture()
 {
-    glDeleteTextures(1, &_texture);
+    unload();
 }

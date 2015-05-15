@@ -12,9 +12,7 @@
 /* ************************************************************************** */
 
 #include <iostream>
-#include <Lums/Lums.hpp>
-
-using ShaderProvider = lm::ShaderProvider<16>;
+#include <Lums>
 
 class Cube : public lm::GameState
 {
@@ -145,7 +143,7 @@ Cube::handleEvent(const lm::Event& event)
 void
 Cube::render()
 {
-    auto shader = ShaderProvider::instance().get(0);
+    auto shader = lm::ShaderProvider::instance().get(0);
 
     _proj.view = lm::lookAt({2.f, 2.f, 2.f}, {0, 0, 0}, {0, 1.f, 0});
     _proj.model = lm::Matrix4f::identity();
@@ -173,7 +171,8 @@ main()
     lm::Core& gl = lm::Core::instance();
     gl.setWindow(new lm::Window(800, 600, "Cube"));
 
-    auto& sp = ShaderProvider::instance().set(0);
+    auto& sp = lm::ShaderProvider::instance().set(0);
+
     sp.attach(lm::Shader("cube.frag.glsl", lm::Shader::Fragment));
     sp.attach(lm::Shader("cube.vert.glsl", lm::Shader::Vertex));
     sp.bindAttribLocation(lm::Vertex::Position, "pos");
