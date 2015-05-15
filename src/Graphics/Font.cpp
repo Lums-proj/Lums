@@ -66,14 +66,20 @@ Font::load()
     
     for (int i = 0; i < glyphCount; ++i)
     {
+        FT_Vector kern;
         FT_Load_Char(face, i, FT_LOAD_RENDER);
         bitmap[i] = new unsigned char[glyph->bitmap.width * glyph->bitmap.rows];
         _glyphs[i].width = glyph->bitmap.width;
         _glyphs[i].height = glyph->bitmap.rows;
         _glyphs[i].left = glyph->bitmap_left;
         _glyphs[i].top = glyph->bitmap_top;
-        _glyphs[i].advance = glyph->advance.x;
+        _glyphs[i].advance = float(glyph->advance.x) / 64.f;
         std::memcpy(bitmap[i], glyph->bitmap.buffer, glyph->bitmap.width * glyph->bitmap.rows);
+        for (int j = 0; j < glyphCount; ++j)
+        {
+            FT_Get_Kerning(face, i, j, 0, &kern);
+            _glyphs[i].kerning[j] = kern.x / 64.f;
+        }
     }
 
     layoutGlyphs:
@@ -111,7 +117,7 @@ Font::load()
                 std::memset(buffer + (left[idx] + i) * 4 + (top[idx] + j) * 4 * bitmapSize, bitmap[idx][i + _glyphs[idx].width * j], 4);
             }
         }
-        _texture.pushAtlas({{float(left[idx]) / bitmapSize, float(top[idx]) / bitmapSize}, {float(_glyphs[idx].width) / bitmapSize, float(_glyphs[idx].height / bitmapSize)}});
+        _texture.pushAtlas({{float(left[idx]) / bitmapSize, float(top[idx]) / bitmapSize}, {float(_glyphs[idx].width) / bitmapSize, float(_glyphs[idx].height) / bitmapSize}});
         delete [] bitmap[idx];
     }
     std::printf("%d\n", bitmapSize);

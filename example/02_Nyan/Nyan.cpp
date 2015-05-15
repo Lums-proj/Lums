@@ -70,6 +70,7 @@ main()
     img.setPath("Nyan.png");
 
     auto& tex = lm::TextureProvider::instance().set(0);
+    tex.pushAtlas(1, 1);
     tex.setImage(img);
 
     auto& shader = lm::ShaderProvider::instance().set(0);

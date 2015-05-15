@@ -74,6 +74,23 @@ SpriteBatch::draw(const Texture& texture, int atlas, lm::Vector2f pos, lm::Vecto
 }
 
 void
+SpriteBatch::draw(const Font& font, const char* text, lm::Vector2f pos)
+{
+    int i = 0;
+    int c;
+    const float height = font.glyph('|').height;
+
+    while ((c = text[i++]))
+    {
+        const Glyph& g = font.glyph(c);
+        const float baseline = pos.y - g.top + height;
+
+        draw(font.texture(), c, {pos.x, baseline});
+        pos.x += g.advance - g.kerning[i];
+    }
+}
+
+void
 SpriteBatch::end()
 {
     flush();

@@ -17,6 +17,7 @@
 #include <LumsInclude/Graphics/VertexBuffer.hpp>
 #include <LumsInclude/Graphics/Texture.hpp>
 #include <LumsInclude/Graphics/Sprite.hpp>
+#include <LumsInclude/Graphics/Font.hpp>
 
 namespace lm
 {
@@ -33,6 +34,7 @@ namespace lm
             draw(sprite.texture(), sprite.atlas(), sprite.pos, sprite.scale(), sprite.flip);
         }
 
+        void    draw(const Font& font, const char* text, lm::Vector2f pos = {0, 0});
         void    end();
         ~SpriteBatch();
 
