@@ -11,8 +11,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <OpenAL/al.h>
-#include <OpenAL/alc.h>
 #include <LumsInclude/Lums.hpp>
 
 using namespace lm;
@@ -33,23 +31,7 @@ enableGraphics()
 static void
 enableAudio()
 {    
-    ALCdevice*  device = alcOpenDevice(nullptr);
-     if (!device)
-    {
-         std::cerr << "Unable to open device" << std::endl;
-        return;
-    }
-    ALCcontext* context = alcCreateContext(device, nullptr);
-    if (!context)
-    {
-        std::cerr << "Unable to create context." << std::endl;
-        return;
-    }
-    if (!alcMakeContextCurrent(context))
-    {
-        std::cerr << "Unable to enable context." << std::endl;
-        return;
-    }
+    Audio::init();
 }
 
 void

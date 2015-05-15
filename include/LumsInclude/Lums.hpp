@@ -32,9 +32,6 @@
 #endif
 
 #include <LumsInclude/Application.hpp>
-#include <LumsInclude/Audio/Music.hpp>
-#include <LumsInclude/Audio/Sound.hpp>
-#include <LumsInclude/Audio/SoundManager.hpp>
 #include <LumsInclude/Common.hpp>
 #include <LumsInclude/Core/Core.hpp>
 #include <LumsInclude/Core/GameState.hpp>
@@ -44,8 +41,10 @@
 #include <LumsInclude/Graphics/Image.hpp>
 #include <LumsInclude/Graphics/Key.hpp>
 #include <LumsInclude/Graphics/OpenGL.hpp>
+#include <LumsInclude/Audio/Sfx.hpp>
 #include <LumsInclude/Graphics/Shader.hpp>
 #include <LumsInclude/Graphics/ShaderProgram.hpp>
+#include <LumsInclude/Audio/Sound.hpp>
 #include <LumsInclude/Graphics/Sprite.hpp>
 #include <LumsInclude/Graphics/SpriteBatch.hpp>
 #include <LumsInclude/Graphics/VertexBuffer.hpp>
@@ -53,6 +52,7 @@
 #include <LumsInclude/Math/Angle.hpp>
 #include <LumsInclude/Math/Math.hpp>
 #include <LumsInclude/Math/Matrix.hpp>
+#include <LumsInclude/Audio/Music.hpp>
 #include <LumsInclude/Math/Projection.hpp>
 #include <LumsInclude/Math/Rect.hpp>
 #include <LumsInclude/Math/Vector.hpp>

@@ -1,81 +1,57 @@
-#include <iostream>
-#include <vector>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                                            */
+/*    Music.cpp                                      oooooo       oooooo      */
+/*                                                 oooooooooo   oooooooooo    */
+/*                                                         o%%%%%o            */
+/*                                                         %:::::%            */
+/*                                                        %:::::::%           */
+/*    This file is part of the                             %:::::%            */
+/*    Lums library.                                         %%%%%             */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <thread>
-#include <chrono>
-#include <LumsInclude/OperatingSystem.hpp>
+#include <vector>
 #include <LumsInclude/Audio/Music.hpp>
-#include <LumsInclude/Audio/SoundManager.hpp>
 
 using namespace lm;
 
-static SoundManager* soundManager = nullptr;
-
 Music::Music()
-: _format(0)
-, _sampleRate(0)
-, _read(0)
-, _file(0)
-, _run(false)
-, _ended(true)
 {
-    if (!soundManager)  
-        soundManager = new SoundManager;
+    _file = 0;
 }
 
 void
-Music::load(const std::string& name, bool resource)
+Music::play(Vector3f pos)
 {
-    std::string path = resource ? resourcePath() + name : name;
-    _file = fopen(path.c_str(), "rb");
-    if (!_file)
+    std::thread    t1([this](Vector3f pos)
     {
-        std::cerr << "File not found !" << std::endl;
-        return;
-    }
-    loadOGG(name, resource);
+        streamOGG(pos);
+    }, pos);
+    t1.detach();
 }
 
 void
-Music::loadOGG(const std::string& name, bool resource)
+Music::pause()
 {
-    if (ov_open_callbacks(_file, &_stream, 0, 0, OV_CALLBACKS_DEFAULT) < 0)
-    {
-        fclose(_file);
-        _file = 0;
-        std::cerr << "File not found !" << std::endl;
-        return;
-    }
-    vorbis_info* infos = ov_info(&_stream, -1);
-    _format = infos->channels == 1 ? AL_FORMAT_MONO16 : AL_FORMAT_STEREO16;
-    _sampleRate = infos->rate;
+
 }
 
 void
-Music::bufferizeOGG(ALuint& buffer)
+Music::stop()
 {
-    std::vector<ALshort> samples(_sampleRate);
-    ALsizei totalRead  = 0;
-    ALsizei totalSize  = _sampleRate * sizeof(ALshort);
-    char*   samplesPtr = reinterpret_cast<char*>(&samples[0]);
 
-    while (totalRead < totalSize)
-    {
-        _read = ov_read(&_stream, samplesPtr + totalRead, totalSize - totalRead, 0, 2, 1, nullptr);
-        if (_read > 0)
-            totalRead += _read;
-        else    
-            break;
-    }
-    if (totalRead > 0)
-        alBufferData(buffer, _format, &samples[0], totalRead, _sampleRate);
 }
 
 void
-Music::readOGG(Vector3f pos)
+Music::streamOGG(Vector3f pos)
 {
-    ALuint  source;
+    std::chrono::milliseconds dura(400);
     ALuint  buffers[NB_BUFFERS];
     ALint   nbProcessed;
+    ALint   status;
+    ALuint  source;
     int     index = 0;
 
     alGenSources(1, &source);
@@ -85,70 +61,48 @@ Music::readOGG(Vector3f pos)
         bufferizeOGG(buffers[i]);
     alSourceQueueBuffers(source, NB_BUFFERS, buffers);
     alSourcePlay(source);
-    std::chrono::milliseconds dur(400);
-    _run_mutex.lock();
-    _run = true;
-    _ended = false;
-    while (_run)
+    while (1)
     {
-        _run_mutex.unlock();
         alGetSourcei(source, AL_BUFFERS_PROCESSED, &nbProcessed);
-        if (!nbProcessed)
+        if (nbProcessed)
         {
-            std::this_thread::sleep_for(dur);
-            continue;
-        }
-        alSourceUnqueueBuffers(source, 1, &buffers[index]);
-        bufferizeOGG(buffers[index]);
-        if (!_read)
-        {
-            ov_pcm_seek(&_stream, 0);
+            alSourceUnqueueBuffers(source, 1, &buffers[index]);
             bufferizeOGG(buffers[index]);
+            alSourceQueueBuffers(source, 1, &buffers[index]);
+            index = (index == 2) ? 0 : index++;
         }
-        alSourceQueueBuffers(source, 1, &buffers[index]);
-        index = (index == 2) ? 0 : index++;
-        _run_mutex.lock();
+        std::this_thread::sleep_for(dura); // Will be removed
     }
-    for (int i = 0; i < NB_BUFFERS; ++i)
-       alSourceUnqueueBuffers(source, 1, &buffers[i]);
+    alSourceUnqueueBuffers(source, NB_BUFFERS, buffers);
     alDeleteBuffers(NB_BUFFERS, buffers);
     alDeleteSources(1, &source);
     ov_pcm_seek(&_stream, 0);
-    _ended = true;
-    _run_mutex.unlock();
 }
 
 void
-Music::play(lm::Vector3f pos)
+Music::bufferizeOGG(ALuint& buffer)
 {
-    _run_mutex.lock();
-    bool ended = _ended;
-    _run_mutex.unlock();    
-    if (!ended)
-        return;
-    std::thread    t1([this](Vector3f pos) { readOGG(pos); }, pos);
-    t1.detach();
-}
+    std::vector<ALshort> samples(_sampleRate);
+    ALsizei read;
+    ALsizei totalRead  = 0;
+    ALsizei totalSize  = _sampleRate * sizeof(ALshort);
+    char*   samplesPtr = reinterpret_cast<char*>(&samples[0]);
 
-void
-Music::pause()
-{
-     std::lock_guard<std::mutex> guard(_run_mutex);
-}
-
-void
-Music::stop()
-{
-    std::lock_guard<std::mutex> guard(_run_mutex);
-    _run = false;
+    while (totalRead < totalSize)
+    {
+        read = ov_read(&_stream, samplesPtr + totalRead, totalSize - totalRead, 0, 2, 1, nullptr);
+        if (read > 0)
+            totalRead += read;
+        else if (read == 0)
+            ov_pcm_seek(&_stream, 0);
+         else    
+            break;
+    }
+    if (totalRead > 0)
+        alBufferData(buffer, _format, &samples[0], totalRead, _sampleRate);
 }
 
 Music::~Music()
 {
-    if (!_file)
-        return;
-    std::lock_guard<std::mutex> guard(_run_mutex);
-    _run = false;
-    ov_clear(&_stream);
-    fclose(_file);
+
 }

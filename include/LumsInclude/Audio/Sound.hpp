@@ -14,69 +14,46 @@
 #ifndef LUMS_SOUND_HPP
 #define LUMS_SOUND_HPP
 
-#include <thread>
-#include <mutex>
 #include <string>
-#include <condition_variable>
+#include <OpenAL/al.h>
+#include <OpenAL/alc.h>
 #include <vorbis/vorbisfile.h>
-#include <LumsInclude/Audio/SoundManager.hpp>
+#include <LumsInclude/Math/vector.hpp>
 
-#define BUFFER_SIZE   32768
+#define BUFFER_SIZE 40960
 
 namespace lm
 {
 
-    enum class SoundState
+    namespace Audio
     {
-        Pending,
-        Playing,
-        Paused,
-        Finished
-    };
+        void    init();
+    }
 
     class Sound
     {
     public:
 
-        enum class Type
+        void                 loadFile(const std::string& name, bool resource = true);
+        virtual void         play(Vector3f pos = {0.f, 0.f, 0.f}) = 0;
+        virtual void         pause() = 0;
+        virtual void         stop() = 0;
+        virtual              ~Sound()
         {
-            None,
-            FX,
-            Music
-        };
+            if (!_file)
+                return;
+            ov_clear(&_stream);
+            fclose(_file);
+        }
 
-        Sound();
-        void         loadFile(const std::string& name, Type type, bool resource = true);
-        void         play(float x = 0.0f, float y = 0.0f, float z = 0.0f);
-        void         pause();
-        void         stop();
-        ALuint       playSound();
-        ~Sound();
+    protected:
+        void                 loadFileOGG(const std::string name, bool resource);
 
-    private:
-        ALuint       playMusic();
-        ALuint       playFX();
-        void         playStream(ALuint source);
-        void         loadFileOGG(const std::string name, bool resource);
-        void         readOGG(ALuint& Buffer, ALsizei NbSamples);
-
-        float                   _x;
-        float                   _y;
-        float                   _z;
-        FILE*                   _file;
-        ALenum                  _format;
-        ALsizei                 _sampleRate;
-        ALsizei                 _read;
-        OggVorbis_File          _stream;
-        Type                    _type;
-        SoundState              _state;
-        bool                    _run;
-        size_t                  _id;
-        static size_t           _nbs;
-        std::mutex              _mtx;
-        std::condition_variable _cv;
+        FILE*               _file;
+        OggVorbis_File      _stream;
+        ALenum              _format;
+        ALsizei             _sampleRate;
     };
-  
 }
 
 #endif
