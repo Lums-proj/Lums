@@ -48,6 +48,15 @@ public:
                 case lm::Key::Q:
                     _sfx.stop();
                     break;
+                case lm::Key::P:
+                    _music.pause();
+                    break;
+                case lm::Key::S:
+                    _music.stop();
+                    break;
+                case lm::Key::L:
+                    _music.play();
+                    break;
                 default:
                     lm::Core::instance().stop();
                     break;

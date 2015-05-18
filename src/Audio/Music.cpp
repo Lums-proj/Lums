@@ -11,6 +11,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <functional>
 #include <thread>
 #include <vector>
 #include <LumsInclude/Audio/Music.hpp>
@@ -18,6 +19,7 @@
 using namespace lm;
 
 Music::Music()
+: _state(Music::Stopped)
 {
     _file = 0;
 }
@@ -25,23 +27,50 @@ Music::Music()
 void
 Music::play(Vector3f pos)
 {
-    std::thread    t1([this](Vector3f pos)
+    std::function<void (void)> func;
+
+    switch (_state)
     {
-        streamOGG(pos);
-    }, pos);
-    t1.detach();
+        case Music::Paused:
+            func = [this]() { alSourcePlay(_source); };
+            state(Music::Playing, func);
+            break;
+        case Music::Stopped:
+        {
+            _state = Music::Playing;
+            std::thread    t1([this](Vector3f pos)
+            {
+                streamOGG(pos);
+            }, pos);
+            t1.detach();
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 void
 Music::pause()
 {
-
+    if (_state == Music::Playing)
+        state(Music::Paused, [this]() { alSourcePause(_source); });
 }
 
 void
 Music::stop()
 {
+    if (_state == Music::Stopped)
+        return;
+    state(Music::Stopped, [this]() { alSourceStop(_source); });
+}
 
+void
+Music::state(Music::State state, std::function<void (void)> func)
+{
+    std::lock_guard<std::mutex> lock(_mtx);
+    _state = state;
+    func();
 }
 
 void
@@ -51,32 +80,39 @@ Music::streamOGG(Vector3f pos)
     ALuint  buffers[NB_BUFFERS];
     ALint   nbProcessed;
     ALint   status;
-    ALuint  source;
+    ALint   sourceState;
     int     index = 0;
 
-    alGenSources(1, &source);
+    _mtx.lock();
+    alGenSources(1, &_source);
     alGenBuffers(NB_BUFFERS, buffers);
-    alSource3f(source, AL_POSITION, pos.x, pos.y, pos.z);
+    alSource3f(_source, AL_POSITION, pos.x, pos.y, pos.z);
     for (int i = 0; i < NB_BUFFERS; ++i)
         bufferizeOGG(buffers[i]);
-    alSourceQueueBuffers(source, NB_BUFFERS, buffers);
-    alSourcePlay(source);
+    alSourceQueueBuffers(_source, NB_BUFFERS, buffers);
+    alSourcePlay(_source);
     while (1)
     {
-        alGetSourcei(source, AL_BUFFERS_PROCESSED, &nbProcessed);
+        alGetSourcei(_source, AL_BUFFERS_PROCESSED, &nbProcessed);
         if (nbProcessed)
         {
-            alSourceUnqueueBuffers(source, 1, &buffers[index]);
+            alSourceUnqueueBuffers(_source, 1, &buffers[index]);
             bufferizeOGG(buffers[index]);
-            alSourceQueueBuffers(source, 1, &buffers[index]);
+            alSourceQueueBuffers(_source, 1, &buffers[index]);
             index = (index == 2) ? 0 : index++;
         }
+        alGetSourcei(_source, AL_SOURCE_STATE, &sourceState);
+        if (sourceState == AL_STOPPED)
+            break;
+        _mtx.unlock();
         std::this_thread::sleep_for(dura); // Will be removed
+        _mtx.lock();
     }
-    alSourceUnqueueBuffers(source, NB_BUFFERS, buffers);
+    alSourceUnqueueBuffers(_source, NB_BUFFERS, buffers);
     alDeleteBuffers(NB_BUFFERS, buffers);
-    alDeleteSources(1, &source);
+    alDeleteSources(1, &_source);
     ov_pcm_seek(&_stream, 0);
+    _mtx.unlock();
 }
 
 void
