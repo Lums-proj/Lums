@@ -36,6 +36,7 @@ namespace lm
         void    play(Vector3f pos = {0.f, 0.f, 0.f});
         void    pause();
         void    stop();
+        void    setVolume(float volume);
         ~Music();
     private:
         void    state(Music::State state, std::function<void (void)> func);
