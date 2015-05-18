@@ -49,6 +49,7 @@ namespace lm
     protected:
         void                 loadFileOGG(const std::string name, bool resource);
 
+        float               _volume;
         FILE*               _file;
         OggVorbis_File      _stream;
         ALenum              _format;

@@ -11,6 +11,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
+
 #include <functional>
 #include <thread>
 #include <vector>
@@ -22,6 +24,7 @@ Music::Music()
 : _state(Music::Stopped)
 {
     _file = 0;
+    _volume = 1.0f;
 }
 
 void
@@ -74,6 +77,15 @@ Music::state(Music::State state, std::function<void (void)> func)
 }
 
 void
+Music::setVolume(float volume)
+{
+    std::lock_guard<std::mutex> lock(_mtx);
+    if (volume >= 0.f && volume <= 1.0f)
+        _volume = volume;
+    alSourcef(_source, AL_GAIN, volume);
+}
+
+void
 Music::streamOGG(Vector3f pos)
 {
     std::chrono::milliseconds dura(400);
@@ -87,6 +99,7 @@ Music::streamOGG(Vector3f pos)
     alGenSources(1, &_source);
     alGenBuffers(NB_BUFFERS, buffers);
     alSource3f(_source, AL_POSITION, pos.x, pos.y, pos.z);
+    alSourcef(_source, AL_GAIN, _volume);
     for (int i = 0; i < NB_BUFFERS; ++i)
         bufferizeOGG(buffers[i]);
     alSourceQueueBuffers(_source, NB_BUFFERS, buffers);

@@ -17,6 +17,8 @@ class Audio : public lm::GameState
 {
 public:
     Audio()
+    : _volumeMusic(1.0f)
+    , _volumeSfx(1.0f)
     {
 
     }
@@ -57,6 +59,22 @@ public:
                 case lm::Key::L:
                     _music.play();
                     break;
+                case lm::Key::Up:
+                    _volumeMusic += 0.1f;
+                    _music.setVolume(_volumeMusic);
+                    break;
+                case lm::Key::Down:
+                    _volumeMusic -= 0.1f;
+                    _music.setVolume(_volumeMusic);
+                    break;
+                case lm::Key::Right:
+                    _volumeSfx += 0.1f;
+                    _sfx.setVolume(_volumeSfx);
+                    break;
+                case lm::Key::Left:
+                    _volumeSfx -= 0.1f;
+                    _sfx.setVolume(_volumeSfx);
+                    break;
                 default:
                     lm::Core::instance().stop();
                     break;
@@ -73,6 +91,8 @@ public:
 private:
     lm::Music   _music;
     lm::Sfx     _sfx;
+    float       _volumeMusic;
+    float       _volumeSfx;
 };
 
 int     main()

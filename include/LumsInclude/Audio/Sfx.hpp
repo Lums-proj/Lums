@@ -26,6 +26,7 @@ namespace lm
         void    play(Vector3f pos = {0.f, 0.f, 0.f});
         void    pause();
         void    stop();
+        void    setVolume(float volume);
         ~Sfx();
     private:
 
