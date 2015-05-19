@@ -77,7 +77,7 @@ Window::resize(int w, int h, bool fullscreen)
         [win setCollectionBehavior:0];
         [win setStyleMask:styleMask];
     }
-    NSRect oldFrame = [win frame];
+    NSRect oldFrame = [[win contentView] convertRectToBacking:[win frame]];
     NSRect frame = NSMakeRect(oldFrame.origin.x, oldFrame.origin.y, w, h);
     frame = [[win contentView] convertRectFromBacking:frame];
     frame = [win frameRectForContentRect:frame];
