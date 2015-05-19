@@ -45,6 +45,12 @@ namespace lm
                 return _buffer[i];
             }
 
+            std::size_t
+            size() const
+            {
+                return _buffer.size();
+            }
+
         protected:
             std::vector<T>  _buffer;
         };
@@ -80,6 +86,30 @@ namespace lm
         {
             internal::ProviderImpl<T>::_buffer[i].unload();
             return internal::ProviderImpl<T>::get(i);
+        }
+
+        void
+        reload(int i)
+        {
+            unload(i);
+            load(i);
+        }
+
+        void
+        reloadAll()
+        {
+            for (std::size_t i = 0; i < internal::ProviderImpl<T>::size(); ++i)
+            {
+                if (internal::ProviderImpl<T>::_buffer[i].loaded())
+                    reload(i);
+            }
+        }
+
+        void
+        unloadAll()
+        {
+            for (std::size_t i = 0; i < internal::ProviderImpl<T>::size(); ++i)
+                unload(i);
         }
 
     };

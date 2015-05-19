@@ -13,10 +13,23 @@
 
 #include <Lums>
 
+static void
+resizeApp(float scale)
+{
+    auto& window = lm::Core::instance().window();
+    auto& tp = lm::TextureProvider::instance();
+    auto& ip = lm::ImageProvider::instance();
+
+    ip.set(0).setScale(scale);
+    window.resize(400 * scale, 400 * scale);
+    tp.reloadAll();
+}
+
 class Nyan : public lm::GameState
 {
 public:
     Nyan()
+    : _scale(1.f)
     {
         
     }
@@ -40,7 +53,23 @@ public:
     handleEvent(const lm::Event& event)
     {
         if (event.type == lm::Event::Type::KeyDown)
-            lm::Core::instance().stop();
+        {
+            if (event.key == lm::Key::Left)
+            {
+                _scale *= 0.9f;
+                resizeApp(_scale);
+            }
+            else if (event.key == lm::Key::Right)
+            {
+                _scale *= 1.1f;
+                if (_scale > 2.f)
+                    _scale = 2.f;
+                else
+                    resizeApp(_scale);
+            }
+            else
+                lm::Core::instance().stop();
+        }
     }
 
     void
@@ -56,6 +85,7 @@ public:
 private:
     lm::SpriteBatch     _batch;
     lm::Matrix4f        _proj;
+    float               _scale;
 };
 
 int

@@ -67,22 +67,21 @@ Window::resize(int w, int h, bool fullscreen)
 {
     LMWindow* win = (LMWindow*)_windowHandle;
     NSOpenGLContext* context = (NSOpenGLContext*)_openGlHandle;
+    int styleMask = fullscreen ? NSBorderlessWindowMask : 0;
 
-    NSRect frame = NSMakeRect(0, 0, w, h);
-    frame = [[win contentView] convertRectFromBacking:frame];
-
-    [win setFrame:frame display:YES animate:NO];
     if (fullscreen != _fullscreen)
     {
         _fullscreen = fullscreen;
         [win setCollectionBehavior:NSWindowCollectionBehaviorFullScreenPrimary];
         [win toggleFullScreen:win];
         [win setCollectionBehavior:0];
-        if (fullscreen)
-            [win setStyleMask:NSBorderlessWindowMask];
-        else
-            [win setStyleMask:0];
+        [win setStyleMask:styleMask];
     }
+    NSRect oldFrame = [win frame];
+    NSRect frame = NSMakeRect(oldFrame.origin.x, oldFrame.origin.y, w, h);
+    frame = [win frameRectForContentRect:frame];
+    frame = [[win contentView] convertRectFromBacking:frame];
+    [win setFrame:frame display:YES animate:YES];
     [context update];
 }
 

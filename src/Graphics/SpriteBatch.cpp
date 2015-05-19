@@ -55,8 +55,8 @@ SpriteBatch::draw(const Texture& texture, int atlas, lm::Vector2f pos, lm::Vecto
         h = -h;
     }
 
-    const float fcorx = 1.0f / texture.width();
-    const float fcory = 1.0f / texture.height();
+    const float fcorx = 1.0f / texture.bufferWidth();
+    const float fcory = 1.0f / texture.bufferHeight();
 
     frame.pos.x += fcorx * 0.5f;
     frame.pos.y += fcory * 0.5f;
