@@ -11,8 +11,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-
 #include <functional>
 #include <thread>
 #include <vector>
@@ -79,8 +77,13 @@ Music::state(Music::State state, std::function<void (void)> func)
 void
 Music::setVolume(float volume)
 {
+
     std::lock_guard<std::mutex> lock(_mtx);
-    if (volume >= 0.f && volume <= 1.0f)
+    ALfloat maxGain;
+    ALfloat minGain;
+
+    setVolumeLimits(&_source, &maxGain, &minGain);
+    if (volume >= minGain && volume <= maxGain)
         _volume = volume;
     alSourcef(_source, AL_GAIN, volume);
 }
