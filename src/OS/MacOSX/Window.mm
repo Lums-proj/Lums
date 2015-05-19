@@ -50,6 +50,8 @@ Window::Window(int w, int h, const char* name, bool fullscreen)
     [win setContentView:view];
     [view setOpenGLContext:context];
     [context makeCurrentContext];
+    int vsync = 1;
+    [context setValues:&vsync forParameter:NSOpenGLCPSwapInterval];
     glClearColor(0, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT);
     _windowHandle = win;
@@ -89,7 +91,7 @@ Window::visible() const
 {
     LMWindow* win = (LMWindow*)_windowHandle;
 
-    return true;
+    return [win occlusionState] & NSWindowOcclusionStateVisible;
 }
 
 void
