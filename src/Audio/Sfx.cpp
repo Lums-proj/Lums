@@ -72,7 +72,14 @@ Sfx::stop()
 void
 Sfx::setVolume(float volume)
 {
-    if (volume >= 0.f && volume <= 1.0f)
+    ALfloat maxGain;
+    ALfloat minGain;
+
+    if (_sources.size())
+        setVolumeLimits(&(_sources.back()), &maxGain, &minGain);
+    else
+        setVolumeLimits(nullptr, &maxGain, &minGain);
+    if (volume >= minGain && volume <= maxGain)
         _volume = volume;
     for(auto it = _sources.begin(); it != _sources.end(); ++it)
         alSourcef(*it, AL_GAIN, volume);

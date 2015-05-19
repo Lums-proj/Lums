@@ -48,6 +48,7 @@ namespace lm
 
     protected:
         void                 loadFileOGG(const std::string name, bool resource);
+        void                 setVolumeLimits(ALuint* source, ALfloat* maxGain, ALfloat* minGain);
 
         float               _volume;
         FILE*               _file;

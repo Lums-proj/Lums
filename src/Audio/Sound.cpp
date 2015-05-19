@@ -77,3 +77,15 @@ Sound::loadFileOGG(const std::string name, bool resource)
     _format = (infos->channels == 1) ? AL_FORMAT_MONO16 : AL_FORMAT_STEREO16;
     _sampleRate = infos->rate;
 }
+
+void
+Sound::setVolumeLimits(ALuint* source, ALfloat* maxGain, ALfloat* minGain)
+{
+    if (source && alIsSource(*source))
+    {
+        alGetSourcef(*source, AL_MAX_GAIN, maxGain);
+        alGetSourcef(*source, AL_MIN_GAIN, minGain);
+        return;    }
+    *maxGain = 1.f;
+    *minGain = 0.f;
+}
