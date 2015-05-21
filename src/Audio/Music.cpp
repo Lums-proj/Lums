@@ -21,8 +21,23 @@ using namespace lm;
 Music::Music()
 : _state(Music::Stopped)
 {
-    _file = 0;
+    _file = nullptr;
     _volume = 1.0f;
+}
+
+Music::Music(Music&& rhs)
+{
+    _source = rhs._source;
+    _state = rhs._state;
+}
+
+
+Music&
+Music::operator=(Music&& rhs)
+{
+    _source = rhs._source;
+    _state = rhs._state;
+    return *this;
 }
 
 void

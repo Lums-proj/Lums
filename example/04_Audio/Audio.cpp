@@ -17,18 +17,18 @@ class Audio : public lm::GameState
 {
 public:
     Audio()
-    : _volumeMusic(1.0f)
-    , _volumeSfx(1.0f)
     {
-
+        _volumeMusic = 1.f;
+        _volumeSfx = 1.f;
+        lm::MusicProvider::instance().set(0).setPath("music.ogg");
+        lm::SfxProvider::instance().set(0).setPath("jump.ogg");
     }
 
     void
     load()
     {
-        _music.loadFile("music.ogg");
-        _sfx.loadFile("jump.ogg");
-        _music.play();
+        auto& music = lm::MusicProvider::instance().get(0);
+        music.play();
     }
 
     void
@@ -40,40 +40,43 @@ public:
     void
     handleEvent(const lm::Event& event)
     {
+        auto& music = lm::MusicProvider::instance().get(0);
+        auto& sfx = lm::SfxProvider::instance().get(0);
+
         if (event.type == lm::Event::Type::KeyDown)
         {
             switch (event.key)
             {
                 case lm::Key::Space:
-                    _sfx.play();
+                    sfx.play();
                     break;
                 case lm::Key::Q:
-                    _sfx.stop();
+                    sfx.stop();
                     break;
                 case lm::Key::P:
-                    _music.pause();
+                    music.pause();
                     break;
                 case lm::Key::S:
-                    _music.stop();
+                    music.stop();
                     break;
                 case lm::Key::L:
-                    _music.play();
+                    music.play();
                     break;
                 case lm::Key::Up:
                     _volumeMusic += 0.1f;
-                    _music.setVolume(_volumeMusic);
+                    music.setVolume(_volumeMusic);
                     break;
                 case lm::Key::Down:
                     _volumeMusic -= 0.1f;
-                    _music.setVolume(_volumeMusic);
+                    music.setVolume(_volumeMusic);
                     break;
                 case lm::Key::Right:
                     _volumeSfx += 0.1f;
-                    _sfx.setVolume(_volumeSfx);
+                    sfx.setVolume(_volumeSfx);
                     break;
                 case lm::Key::Left:
                     _volumeSfx -= 0.1f;
-                    _sfx.setVolume(_volumeSfx);
+                    sfx.setVolume(_volumeSfx);
                     break;
                 default:
                     lm::Core::instance().stop();
@@ -89,8 +92,6 @@ public:
     }
 
 private:
-    lm::Music   _music;
-    lm::Sfx     _sfx;
     float       _volumeMusic;
     float       _volumeSfx;
 };

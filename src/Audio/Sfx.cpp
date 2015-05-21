@@ -11,8 +11,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-
 #include <vector>
 #include <LumsInclude/Audio/Sfx.hpp>
 
@@ -21,8 +19,20 @@ using namespace lm;
 Sfx::Sfx()
 : _sources(0)
 {
-    _file = 0;
+    _file = nullptr;
     _volume = 1.0f;
+}
+
+Sfx::Sfx(Sfx&& rhs)
+{
+    _sources = rhs._sources;
+}
+
+Sfx&
+Sfx::operator=(Sfx&& rhs)
+{
+    _sources = rhs._sources;
+    return *this;
 }
 
 void
@@ -36,7 +46,6 @@ Sfx::play(Vector3f pos)
     alGenSources(1, &(_sources.back()));
     alSource3f(_sources.back(), AL_POSITION, pos.x, pos.y, pos.z);
     alSourcef(_sources.back(), AL_GAIN, _volume);
-    std::cout << _volume << std::endl;
     std::vector<char>   bufferData;
     char array[BUFFER_SIZE];
     ALsizei bytes;
