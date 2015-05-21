@@ -34,7 +34,8 @@ namespace lm
     {
     public:
 
-        void                 loadFile(const std::string& name, bool resource = true);
+        void                 setPath(const std::string name, bool resource = true);
+        void                 load();
         virtual void         play(Vector3f pos = {0.f, 0.f, 0.f}) = 0;
         virtual void         pause() = 0;
         virtual void         stop() = 0;
@@ -47,13 +48,13 @@ namespace lm
         }
 
     protected:
-        void                 loadFileOGG(const std::string name, bool resource);
-
+        void                loadFileOGG(    );
         float               _volume;
         FILE*               _file;
         OggVorbis_File      _stream;
         ALenum              _format;
         ALsizei             _sampleRate;
+        std::string         _path;
     };
 }
 
