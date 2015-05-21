@@ -24,7 +24,10 @@ using namespace lm;
 Image::Image()
 : _width(0u)
 , _height(0u)
+, _bufferWidth(0u)
+, _bufferHeight(0u)
 , _data(nullptr)
+, _scale(1.f)
 {
 
 }
@@ -59,7 +62,10 @@ Image::load()
         return;
     }
     _data = ImageFormat::png(file, _width, _height, _format);
+    _bufferWidth = _width;
+    _bufferHeight = _height;
     fclose(file);
+    resize();
 }
 
 void
@@ -82,10 +88,48 @@ Image::setBuffer(unsigned char* buffer, unsigned int w, unsigned int h, GLenum f
     _data = buffer;
     _width = w;
     _height = h;
+    _bufferWidth = w;
+    _bufferHeight = h;
     _format = format;
+    resize();
+}
+
+void
+Image::setScale(float scale)
+{
+    _scale = scale;
 }
 
 Image::~Image()
 {
     unload();
 }
+
+/* Private */
+
+void
+Image::resize()
+{
+    if (_scale == 1.f)
+        return;
+
+    const unsigned int newWidth = _bufferWidth * _scale;
+    const unsigned int newHeight = _bufferHeight * _scale;
+    const int pixelSize = (_format == GL_RGB) ? 3 : 4;
+
+    unsigned char* buffer = new unsigned char[newWidth * newHeight * pixelSize];
+    for (unsigned int i = 0; i < newWidth * newHeight; ++i)
+    {
+        const unsigned int x = i % newWidth;
+        const unsigned int y = i / newWidth;
+        unsigned char* dst = buffer + x * pixelSize + y * newWidth * pixelSize;
+        const unsigned char* src = _data + int(x / _scale) * pixelSize + int(y / _scale) * _bufferWidth * pixelSize;
+
+        std::memcpy(dst, src, pixelSize);
+    }
+    delete [] _data;
+    _data = buffer;
+    _bufferWidth = newWidth;
+    _bufferHeight = newHeight;
+}
+

@@ -36,17 +36,8 @@ namespace lm
     class Core : public Singleton<Core>
     {
     public:
-
         friend class Singleton<Core>;
-        /**
-         * Create a new Core.
-         * If a Core was already created, and has not been destructed, it's
-         * undefined behavior.
-         * @param w The width of the core window.
-         * @param h The height of the core window.
-         * @param name The window title.
-         * @param fullscreen Wether to start the core fullscreen.
-         */
+
         Window&
         window()
         {

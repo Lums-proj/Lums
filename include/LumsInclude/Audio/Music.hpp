@@ -33,6 +33,10 @@ namespace lm
         };
 
         Music();
+        Music(const Music&) = delete;
+        Music(Music&& rhs);
+        Music&  operator=(const Music&) = delete;
+        Music&  operator=(Music&& rhs);
         void    play(Vector3f pos = {0.f, 0.f, 0.f});
         void    pause();
         void    stop();

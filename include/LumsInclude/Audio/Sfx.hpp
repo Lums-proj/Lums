@@ -23,6 +23,10 @@ namespace lm
     {
     public:
         Sfx();
+        Sfx(const Sfx&) = delete;
+        Sfx(Sfx&& rhs);
+        Sfx&  operator=(const Sfx&) = delete;
+        Sfx&  operator=(Sfx&& rhs);
         void    play(Vector3f pos = {0.f, 0.f, 0.f});
         void    pause();
         void    stop();

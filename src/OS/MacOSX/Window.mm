@@ -50,6 +50,8 @@ Window::Window(int w, int h, const char* name, bool fullscreen)
     [win setContentView:view];
     [view setOpenGLContext:context];
     [context makeCurrentContext];
+    int vsync = 1;
+    [context setValues:&vsync forParameter:NSOpenGLCPSwapInterval];
     glClearColor(0, 0, 0, 1);
     glClear(GL_COLOR_BUFFER_BIT);
     _windowHandle = win;
@@ -65,22 +67,21 @@ Window::resize(int w, int h, bool fullscreen)
 {
     LMWindow* win = (LMWindow*)_windowHandle;
     NSOpenGLContext* context = (NSOpenGLContext*)_openGlHandle;
+    int styleMask = fullscreen ? NSBorderlessWindowMask : 0;
 
-    [win setFrame:NSMakeRect(0, 0, w, h) display:YES animate:NO];
     if (fullscreen != _fullscreen)
     {
         _fullscreen = fullscreen;
         [win setCollectionBehavior:NSWindowCollectionBehaviorFullScreenPrimary];
         [win toggleFullScreen:win];
         [win setCollectionBehavior:0];
-        if (fullscreen)
-            [win setStyleMask:NSBorderlessWindowMask];
-        else
-            [win setStyleMask:0];
+        [win setStyleMask:styleMask];
     }
-    NSView* view = [win contentView];
-    NSRect viewport = [view bounds];
-    viewport = [view convertRectToBacking:[view bounds]];
+    NSRect oldFrame = [[win contentView] convertRectToBacking:[win frame]];
+    NSRect frame = NSMakeRect(oldFrame.origin.x, oldFrame.origin.y, w, h);
+    frame = [[win contentView] convertRectFromBacking:frame];
+    frame = [win frameRectForContentRect:frame];
+    [win setFrame:frame display:YES animate:YES];
     [context update];
 }
 
@@ -89,7 +90,16 @@ Window::visible() const
 {
     LMWindow* win = (LMWindow*)_windowHandle;
 
-    return true;
+    return [win occlusionState] & NSWindowOcclusionStateVisible;
+}
+
+Vector2i
+Window::maxSize() const
+{
+    NSRect screen = [[NSScreen mainScreen] visibleFrame];
+
+    screen = [(NSWindow*)_windowHandle convertRectToBacking:screen];
+    return {screen.size.width, screen.size.height};
 }
 
 void
