@@ -118,6 +118,8 @@ namespace lm
     using ImageProvider = StreamProvider<Image>;
     using TextureProvider = StreamProvider<Texture>;
     using FontProvider = StreamProvider<Font>;
+    using SfxProvider = StreamProvider<Sfx>;
+    using MusicProvider = StreamProvider<Music>;
 }
 
 #endif

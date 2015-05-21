@@ -42,35 +42,55 @@ Audio::init()
 }
 
 void
-Sound::loadFile(const std::string& name, bool resource)
+Sound::setPath(const std::string name, bool resource)
 {
-    typedef void (Sound::*sndptr_t)(std::string, bool);
+    _path = resource ? resourcePath() + name : name;
+}
+
+void
+Sound::load()
+{
+    typedef void (Sound::*sndptr_t)();
     static const std::map<std::string, sndptr_t> extFuncs = {
         {"ogg", &Sound::loadFileOGG}
     };
 
-    std::string ext = name.substr(name.find_last_of('.') + 1);
+    std::string ext = _path.substr(_path.find_last_of('.') + 1);
 
     if (extFuncs.find(ext) != extFuncs.end())
-        (this->*(extFuncs.at(ext)))(name, resource);
+        (this->*(extFuncs.at(ext)))();
+}
+
+bool
+Sound::loaded()
+{   
+    return (_file != nullptr);
 }
 
 void
-Sound::loadFileOGG(const std::string name, bool resource)
+Sound::unload()
 {
-    std::string path = resource ? resourcePath() + name : name;
+    if (!_file)
+        return;
+    ov_clear(&_stream);
+    fclose(_file);
+    _file = nullptr;
+}
 
-    _file = fopen(path.c_str(), "rb");
+void
+Sound::loadFileOGG()
+{
+    _file = fopen(_path.c_str(), "rb");
     if (!_file)
     {
-        std::cerr << "File not found: " << name << std::endl;
+        std::cerr << "File not found: " << _path << std::endl;
         return;
     }
     if (ov_open_callbacks(_file, &_stream, 0, 0, OV_CALLBACKS_DEFAULT) < 0)
     {
         fclose(_file);
         _file = 0;
-        std::cerr << "Stream error: " << name << std::endl;
+        std::cerr << "Stream error: " << _path << std::endl;
         return;
     }
     vorbis_info* infos = ov_info(&_stream, -1);
