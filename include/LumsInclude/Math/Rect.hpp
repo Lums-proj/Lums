@@ -31,6 +31,7 @@ namespace lm
     template <typename T> using Rect3 = Rect<3, T>;
     
     using Rect2f = Rect2<float>;
+    using Rect2i = Rect2<int>;
 }
 
 #endif
