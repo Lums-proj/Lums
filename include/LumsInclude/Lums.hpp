@@ -47,6 +47,7 @@
 #include <LumsInclude/Audio/Sound.hpp>
 #include <LumsInclude/Graphics/Sprite.hpp>
 #include <LumsInclude/Graphics/SpriteBatch.hpp>
+#include <LumsInclude/Graphics/StaticSpriteBatch.hpp>
 #include <LumsInclude/Graphics/VertexBuffer.hpp>
 #include <LumsInclude/Graphics/Window.hpp>
 #include <LumsInclude/Math/Angle.hpp>

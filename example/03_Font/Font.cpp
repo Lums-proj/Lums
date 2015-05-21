@@ -29,6 +29,8 @@ public:
         _font.setPath("/Library/Fonts/AppleGothic.ttf", false);
         _font.setSize(50.f);
         _font.load();
+        _ssb.draw(_font, "Hello voisin AVA");
+        _ssb.send();
         _proj = lm::ortho(0, 400, 400, 0);
         lm::uniform(shader, "proj", _proj);
     }
@@ -49,15 +51,13 @@ public:
     void
     render()
     {
-        _batch.begin();
-        _batch.draw(_font, "Hello voisin AVA");
-        _batch.end();
+        _ssb.render();
     }
 
 private:
-    lm::SpriteBatch     _batch;
-    lm::Matrix4f        _proj;
-    lm::Font            _font;
+    lm::StaticSpriteBatch _ssb;
+    lm::Matrix4f          _proj;
+    lm::Font              _font;
 };
 
 int
