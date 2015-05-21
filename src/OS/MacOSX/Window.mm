@@ -93,6 +93,15 @@ Window::visible() const
     return [win occlusionState] & NSWindowOcclusionStateVisible;
 }
 
+Vector2i
+Window::maxSize() const
+{
+    NSRect screen = [[NSScreen mainScreen] visibleFrame];
+
+    screen = [(NSWindow*)_windowHandle convertRectToBacking:screen];
+    return {screen.size.width, screen.size.height};
+}
+
 void
 Window::pumpEvent()
 {
