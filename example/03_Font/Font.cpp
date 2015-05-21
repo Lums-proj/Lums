@@ -26,7 +26,7 @@ public:
     {
         auto& shader = lm::ShaderProvider::instance().get(0);
 
-        _font.setPath("/System/Library/Fonts/HelveticaNeueDeskInterface.ttc", false);
+        _font.setPath("/Library/Fonts/AppleGothic.ttf", false);
         _font.setSize(50.f);
         _font.load();
         _proj = lm::ortho(0, 400, 400, 0);
@@ -50,7 +50,7 @@ public:
     render()
     {
         _batch.begin();
-        _batch.draw(_font, "Hello voisin");
+        _batch.draw(_font, "Hello voisin AVA");
         _batch.end();
     }
 

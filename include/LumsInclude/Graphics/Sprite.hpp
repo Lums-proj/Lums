@@ -35,25 +35,19 @@ namespace lm
         int
         width() const
         {
-            return _texture->atlas(_currentFrame).size.x * _texture->width() * _scale.x;
+            return _texture->atlas(_currentFrame).size.x * _texture->width() * scale.x;
         }
 
         int
         height() const
         {
-            return _texture->atlas(_currentFrame).size.y * _texture->height() * _scale.y;
+            return _texture->atlas(_currentFrame).size.y * _texture->height() * scale.y;
         }
 
         std::size_t
         atlas() const
         {
             return _currentFrame;
-        }
-
-        const lm::Vector2f&
-        scale() const
-        {
-            return _scale;
         }
 
         int
@@ -93,18 +87,6 @@ namespace lm
             _acc = 0;
         }
 
-        void
-        setScale(float scale)
-        {
-            setScale(scale, scale);
-        }
-
-        void
-        setScale(float sx, float sy)
-        {
-            _scale = {sx, sy};
-        }
-
         bool
         finished() const
         {
@@ -113,12 +95,13 @@ namespace lm
 
         LUMS_EXPORTED void  update();
 
-        lm::Vector2f    pos;
-        lm::Vector2b    flip;
+        Vector2f    pos;
+        Vector2f    scale;
+        Vector4f    color;
+        Vector2b    flip;
 
     private:
         Texture*        _texture;
-        lm::Vector2f    _scale;
         std::size_t     _baseFrame;
         std::size_t     _currentFrame;
         std::size_t     _length;
