@@ -61,7 +61,7 @@ Font::load()
     int top[glyphCount];
 
     FT_New_Face(ftLibrary, _path.c_str(), 0, &face);    
-    FT_Set_Char_Size(face, 0, static_cast<FT_F26Dot6>(_size * 64), 0, 0);
+    FT_Set_Char_Size(face, 0, _size * 64, 0, 0);
     glyph = face->glyph;
     
     for (int i = 0; i < glyphCount; ++i)
