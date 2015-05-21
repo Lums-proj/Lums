@@ -26,8 +26,10 @@ public:
     void
     load()
     {
-        _music.loadFile("music.ogg");
-        _sfx.loadFile("jump.ogg");
+        _music.setPath("music.ogg");
+        _sfx.setPath("jump.ogg");
+        _music.load();
+        _sfx.load();
         _music.play();
     }
 
