@@ -30,6 +30,8 @@ namespace lm
 
         float           width() const { return _width; }
         float           height() const { return _height; }
+        float           bufferWidth() const { return _bufferWidth; }
+        float           bufferHeight() const { return _bufferHeight; }
 
         void            setImage(Image& image);
         void            load();
@@ -46,6 +48,8 @@ namespace lm
         Image*              _image;
         float               _width;
         float               _height;
+        float               _bufferWidth;
+        float               _bufferHeight;
         std::vector<Rect2f> _atlas;
     };
 }

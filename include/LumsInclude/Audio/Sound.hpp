@@ -36,19 +36,17 @@ namespace lm
 
         void                 setPath(const std::string name, bool resource = true);
         void                 load();
+        bool                 loaded();
+        void                 unload();
         virtual void         play(Vector3f pos = {0.f, 0.f, 0.f}) = 0;
         virtual void         pause() = 0;
         virtual void         stop() = 0;
-        virtual              ~Sound()
-        {
-            if (!_file)
-                return;
-            ov_clear(&_stream);
-            fclose(_file);
-        }
+        virtual              ~Sound() { unload(); }
 
     protected:
-        void                loadFileOGG(    );
+
+        void                loadFileOGG();
+        void                 setVolumeLimits(ALuint* source, ALfloat* maxGain, ALfloat* minGain);
         float               _volume;
         FILE*               _file;
         OggVorbis_File      _stream;

@@ -19,8 +19,20 @@ using namespace lm;
 Sfx::Sfx()
 : _sources(0)
 {
-    _file = 0;
+    _file = nullptr;
     _volume = 1.0f;
+}
+
+Sfx::Sfx(Sfx&& rhs)
+{
+    _sources = rhs._sources;
+}
+
+Sfx&
+Sfx::operator=(Sfx&& rhs)
+{
+    _sources = rhs._sources;
+    return *this;
 }
 
 void
@@ -69,7 +81,14 @@ Sfx::stop()
 void
 Sfx::setVolume(float volume)
 {
-    if (volume >= 0.f && volume <= 1.0f)
+    ALfloat maxGain;
+    ALfloat minGain;
+
+    if (_sources.size())
+        setVolumeLimits(&(_sources.back()), &maxGain, &minGain);
+    else
+        setVolumeLimits(nullptr, &maxGain, &minGain);
+    if (volume >= minGain && volume <= maxGain)
         _volume = volume;
     for(auto it = _sources.begin(); it != _sources.end(); ++it)
         alSourcef(*it, AL_GAIN, volume);

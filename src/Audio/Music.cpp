@@ -11,8 +11,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-
 #include <functional>
 #include <thread>
 #include <vector>
@@ -23,8 +21,23 @@ using namespace lm;
 Music::Music()
 : _state(Music::Stopped)
 {
-    _file = 0;
+    _file = nullptr;
     _volume = 1.0f;
+}
+
+Music::Music(Music&& rhs)
+{
+    _source = rhs._source;
+    _state = rhs._state;
+}
+
+
+Music&
+Music::operator=(Music&& rhs)
+{
+    _source = rhs._source;
+    _state = rhs._state;
+    return *this;
 }
 
 void
@@ -79,8 +92,13 @@ Music::state(Music::State state, std::function<void (void)> func)
 void
 Music::setVolume(float volume)
 {
+
     std::lock_guard<std::mutex> lock(_mtx);
-    if (volume >= 0.f && volume <= 1.0f)
+    ALfloat maxGain;
+    ALfloat minGain;
+
+    setVolumeLimits(&_source, &maxGain, &minGain);
+    if (volume >= minGain && volume <= maxGain)
         _volume = volume;
     alSourcef(_source, AL_GAIN, volume);
 }

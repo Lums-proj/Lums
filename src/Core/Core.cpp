@@ -55,10 +55,7 @@ Core::start()
             doEvent();
             doUpdate();
         }
-        if (_win->visible())
-            doRender();
-        else
-            std::this_thread::sleep_for(microseconds(400));
+        doRender();
     }
 }
 
@@ -170,6 +167,12 @@ void
 Core::doRender()
 {
     size_t min;
+
+    if (!_win || !_win->visible())
+    {
+        std::this_thread::sleep_for(std::chrono::microseconds(1000));
+        return;
+    }
 
     for (min = 0; min < _stack.size() - 1; min++)
     {

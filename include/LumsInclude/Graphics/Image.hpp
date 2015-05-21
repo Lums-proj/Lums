@@ -72,6 +72,18 @@ namespace lm
             return _height;
         }
 
+        unsigned int
+        bufferWidth() const
+        {
+            return _bufferWidth;
+        }
+
+        unsigned int
+        bufferHeight() const
+        {
+            return _bufferHeight;
+        }
+
         GLenum
         format() const
         {
@@ -94,6 +106,8 @@ namespace lm
 
         LUMS_EXPORTED void  setBuffer(unsigned char* buffer, unsigned int w, unsigned int h, GLenum format);
 
+        LUMS_EXPORTED void  setScale(float scale);
+
         /**
          * Load a png image from a file.
          * @param path The file path.
@@ -111,11 +125,17 @@ namespace lm
         LUMS_EXPORTED ~Image();
 
     private:
+
+        LUMS_EXPORTED void  resize();
+        
         unsigned int    _width;
         unsigned int    _height;
+        unsigned int    _bufferWidth;
+        unsigned int    _bufferHeight;
         std::string     _path;
         GLenum          _format;
         unsigned char*  _data;
+        float           _scale;
     };
 }
 

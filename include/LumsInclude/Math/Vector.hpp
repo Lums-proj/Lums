@@ -267,14 +267,17 @@ namespace lm
     template <typename T> using Vector4 = Vector<4, T>;
 
     using Vector2f = Vector2<float>;
+    using Vector2i = Vector2<int>;
     using Vector2b = Vector2<bool>;
     using Vector2a = Vector2<Angle>;
 
     using Vector3f = Vector3<float>;
+    using Vector3i = Vector3<int>;
     using Vector3b = Vector3<bool>;
     using Vector3a = Vector3<Angle>;
 
     using Vector4f = Vector4<float>;
+    using Vector4i = Vector4<int>;
     using Vector4b = Vector4<bool>;
     using Vector4a = Vector4<Angle>;
 }

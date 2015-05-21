@@ -17,6 +17,7 @@
 #include <queue>
 #include <LumsInclude/Graphics/Event.hpp>
 #include <LumsInclude/ExportDll.hpp>
+#include <LumsInclude/Math/Vector.hpp>
 
 namespace lm
 {
@@ -69,19 +70,21 @@ namespace lm
         	extractEvent(event, true);
         }
 
-        void    resize(int w, int h, bool fullscreen = false);
+        LUMS_EXPORTED void      resize(int w, int h, bool fullscreen = false);
 
-        bool    visible() const;
+        LUMS_EXPORTED bool      visible() const;
+
+        LUMS_EXPORTED Vector2i  maxSize() const;
 
         /**
         * Pump event from the underlying implementation to the event stack.
         */
-        LUMS_EXPORTED void    pumpEvent();
+        LUMS_EXPORTED void      pumpEvent();
 
         /**
         * Swap the current buffer with the backbuffer.
         */
-        LUMS_EXPORTED void    swap();
+        LUMS_EXPORTED void      swap();
         
         /**
         * Destructor
