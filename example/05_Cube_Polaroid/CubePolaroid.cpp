@@ -126,7 +126,10 @@ CubePolaroid::update()
         if (_negFx)
             _pipeline.append(lm::ShaderProvider::instance().get(1));
         if (_blurFx)
+        {
             _pipeline.append(lm::ShaderProvider::instance().get(2));
+            _pipeline.append(lm::ShaderProvider::instance().get(3));
+        }
     }
 }
 
@@ -220,6 +223,16 @@ main()
         auto& shader = s.set(2);
 
         shader.attach(lm::Shader("gfx_blur_x.frag.glsl", lm::Shader::Fragment));
+        shader.attach(lm::Shader("gfx.vert.glsl", lm::Shader::Vertex));
+        shader.bindAttribLocation(lm::Vertex::Position, "vPos");
+        shader.bindAttribLocation(lm::Vertex::Texture, "tPos");
+        shader.link();
+    }
+
+    {
+        auto& shader = s.set(3);
+
+        shader.attach(lm::Shader("gfx_blur_y.frag.glsl", lm::Shader::Fragment));
         shader.attach(lm::Shader("gfx.vert.glsl", lm::Shader::Vertex));
         shader.bindAttribLocation(lm::Vertex::Position, "vPos");
         shader.bindAttribLocation(lm::Vertex::Texture, "tPos");
