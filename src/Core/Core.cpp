@@ -173,7 +173,6 @@ Core::doRender()
         std::this_thread::sleep_for(std::chrono::microseconds(1000));
         return;
     }
-
     for (min = 0; min < _stack.size() - 1; min++)
     {
         if (!_stack[min]->forwardRender())
