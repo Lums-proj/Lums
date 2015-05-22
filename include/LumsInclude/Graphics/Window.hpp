@@ -18,6 +18,7 @@
 #include <LumsInclude/Graphics/Event.hpp>
 #include <LumsInclude/ExportDll.hpp>
 #include <LumsInclude/Math/Vector.hpp>
+#include <LumsInclude/Graphics/OpenGL.hpp>
 
 namespace lm
 {
@@ -85,6 +86,10 @@ namespace lm
         * Swap the current buffer with the backbuffer.
         */
         LUMS_EXPORTED void      swap();
+
+        GLuint                  fbo(int i) const { return _fbo[i]; }
+
+        GLuint                  tex(int i) const { return _texBuffer[i]; }
         
         /**
         * Destructor
@@ -116,6 +121,9 @@ namespace lm
         void*               _windowHandle;
         void*               _openGlHandle;
         std::queue<Event>   _events;
+        GLuint              _fbo[2];
+        GLuint              _texBuffer[2];
+        GLuint              _depthBuffer[2];
         bool                _fullscreen;
     };
 }

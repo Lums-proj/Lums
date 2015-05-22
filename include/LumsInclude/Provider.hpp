@@ -34,7 +34,7 @@ namespace lm
             T&
             get(int i)
             {
-                return _buffer[i];
+                return *_buffer[i];
             }
 
             T&
@@ -42,7 +42,9 @@ namespace lm
             {
                 if (i >= _buffer.size())
                     _buffer.resize(i + 1);
-                return _buffer[i];
+                if (_buffer[i] == nullptr)
+                    _buffer[i] = new T();
+                return *_buffer[i];
             }
 
             std::size_t
@@ -52,7 +54,7 @@ namespace lm
             }
 
         protected:
-            std::vector<T>  _buffer;
+            std::vector<T*> _buffer;
         };
     }
 
@@ -69,7 +71,7 @@ namespace lm
         T&
         get(int i)
         {
-            if (!internal::ProviderImpl<T>::_buffer[i].loaded())
+            if (!internal::ProviderImpl<T>::_buffer[i]->loaded())
                 return load(i);
             return internal::ProviderImpl<T>::get(i);
         }
@@ -77,14 +79,14 @@ namespace lm
         T&
         load(int i)
         {
-            internal::ProviderImpl<T>::_buffer[i].load();
+            internal::ProviderImpl<T>::_buffer[i]->load();
             return internal::ProviderImpl<T>::get(i);
         }
 
         T&
         unload(int i)
         {
-            internal::ProviderImpl<T>::_buffer[i].unload();
+            internal::ProviderImpl<T>::_buffer[i]->unload();
             return internal::ProviderImpl<T>::get(i);
         }
 
@@ -100,7 +102,7 @@ namespace lm
         {
             for (std::size_t i = 0; i < internal::ProviderImpl<T>::size(); ++i)
             {
-                if (internal::ProviderImpl<T>::_buffer[i].loaded())
+                if (internal::ProviderImpl<T>::_buffer[i]->loaded())
                     reload(i);
             }
         }

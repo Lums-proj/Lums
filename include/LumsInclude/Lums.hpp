@@ -43,6 +43,7 @@
 #include <LumsInclude/Graphics/OpenGL.hpp>
 #include <LumsInclude/Audio/Sfx.hpp>
 #include <LumsInclude/Graphics/Shader.hpp>
+#include <LumsInclude/Graphics/ShaderPipeline.hpp>
 #include <LumsInclude/Graphics/ShaderProgram.hpp>
 #include <LumsInclude/Audio/Sound.hpp>
 #include <LumsInclude/Graphics/Sprite.hpp>
