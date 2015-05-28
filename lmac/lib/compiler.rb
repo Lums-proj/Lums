@@ -1,3 +1,5 @@
+require File.dirname(__FILE__) + '/module'
+
 module Lmac
   class Compiler
     def initialize
@@ -5,15 +7,15 @@ module Lmac
     end
 
     def run!
-      p self
+      
     end
 
     def modules path
-      @modules = path
+      @module_path = path
     end
 
     def use mod, options = {}
-      @use << [mod, options]
+      @modules << ::Lmac::Module.new(self, options)
     end
 
     def source path
