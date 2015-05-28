@@ -15,6 +15,7 @@
 #define LUMS_GAME_OBJECT_HPP
 
 #include <vector>
+#include <functional>
 #include <LumsInclude/GameObject/Component.hpp>
 
 namespace lm
@@ -24,22 +25,31 @@ namespace lm
 	public:
 		GameObject();
 
+		void	addComponent(Component*);
+
 		template <typename... Ts>
-		void
+		bool
 		send(int slot, Ts... params)
 		{
-			std::function<void (Ts...)> = func;
+			bool b = false;
 			for (auto& c : _components)
 			{
-				void* h = c->handle(slot);
-
+				auto h = c->handle(slot);
+				if (h)
+				{
+					b = true;
+					auto func = reinterpret_cast<void (Component::*)(Ts...)>(h);
+					auto cp = c.get();
+					(cp->*func)(params...);
+				}
 			}
+			return b;
 		}
 		
 		~GameObject();
 
 	private:
-		std::vector<Component*>	_components;
+		std::vector<std::unique_ptr<Component>>	_components;
 	};
 }
 
