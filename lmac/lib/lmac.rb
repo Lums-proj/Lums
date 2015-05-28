@@ -1,11 +1,13 @@
 require File.dirname(__FILE__) + '/lmac-init'
 require File.dirname(__FILE__) + '/lmac-help'
+require File.dirname(__FILE__) + '/lmac-run'
 
 module Lmac
   class Main
     ACTIONS = {
       'help' => ::Lmac::HelpCmd,
-      'init' => ::Lmac::InitCmd
+      'init' => ::Lmac::InitCmd,
+      'run' => ::Lmac::RunCmd
     }
 
     def run! arg
