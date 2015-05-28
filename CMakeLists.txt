@@ -21,6 +21,7 @@ include_directories(${FREETYPE_INCLUDE_DIRS} SYSTEM)
 include_directories(${VORBIS_INCLUDE_DIRS} SYSTEM)
 
 add_subdirectory(src)
+add_subdirectory(lmac)
 if (NOT WIN32)
 	add_subdirectory(test)
 endif()
