@@ -35,6 +35,8 @@
 #include <LumsInclude/Common.hpp>
 #include <LumsInclude/Core/Core.hpp>
 #include <LumsInclude/Core/GameState.hpp>
+#include <LumsInclude/GameObject/Component.hpp>
+#include <LumsInclude/GameObject/GameObject.hpp>
 #include <LumsInclude/ExportDll.hpp>
 #include <LumsInclude/Graphics/Event.hpp>
 #include <LumsInclude/Graphics/Font.hpp>

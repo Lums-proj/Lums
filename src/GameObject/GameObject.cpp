@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Component.cpp                                  oooooo       oooooo      */
+/*    GameObject.cpp                                 oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,37 +11,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <LumsInclude/GameObject/Component.hpp>
-#include <unordered_map>
+#include <LumsInclude/GameObject/GameObject.hpp>
 
 using namespace lm;
 
-static std::unordered_map<size_t, std::unordered_map<int, Component::method>> bindings;
-
-Component::Component()
+GameObject::GameObject()
 {
 
 }
 
 void
-Component::bind(int slot, Component::method function) const
+GameObject::addComponent(Component* component)
 {
-	bindings[classId()][slot] = function;
+	_components.push_back(std::unique_ptr<Component>(component));
 }
 
-Component::method
-Component::handle(int slot) const
-{
-	return bindings[classId()][slot];
-}
-
-bool
-Component::respondTo(int slot) const
-{
-	return handle(slot);
-}
-
-Component::~Component()
+GameObject::~GameObject()
 {
 
 }

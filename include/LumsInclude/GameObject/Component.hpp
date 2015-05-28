@@ -14,6 +14,8 @@
 #ifndef LUMS_COMPONENT_HPP
 #define LUMS_COMPONENT_HPP
 
+#include <cstring>
+
 #define LUMS_COMPONENT public: virtual size_t classId() const \
 					   { static int dummy;                    \
 					   	return reinterpret_cast<size_t>(&dummy);}
@@ -25,18 +27,20 @@ namespace lm
 	public:
 		LUMS_COMPONENT
 
+		using method = void(Component::*)();
+
 		Component();
 		
 		template <typename T>
 		void
-		bind(int slot, T* function) const
+		bind(int slot, T function) const
 		{
-			bind(slot, reinterpret_cast<void*>(function));
+			bind(slot, reinterpret_cast<Component::method>(function));
 		}
 
-		void	bind(int slot, void* function) const;
-		void*	handle(int slot) const;
-		bool	respondTo(int slot) const;
+		void				bind(int slot, Component::method function) const;
+		Component::method	handle(int slot) const;
+		bool				respondTo(int slot) const;
 		virtual ~Component() = 0;
 	};
 }
