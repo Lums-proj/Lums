@@ -17,8 +17,9 @@
 namespace lm
 {
 	template <typename T>
-	struct Singleton
+	class Singleton
 	{
+	public:
 		static T&
 		instance()
 		{

@@ -42,6 +42,27 @@ namespace lm
 			bind(slot, reinterpret_cast<Component::method>(function));
 		}
 
+		template <typename... Ts>
+		void
+		update(Ts... params)
+		{
+
+		}
+
+		template <typename... Ts>
+		void
+		render(Ts... params)
+		{
+			
+		}
+
+		template <typename... Ts>
+		void
+		handleEvent(Ts... params)
+		{
+		
+		}
+
 		void				bind(int slot, Component::method function) const;
 		Component::method	handle(int slot) const;
 		bool				respondTo(int slot) const;

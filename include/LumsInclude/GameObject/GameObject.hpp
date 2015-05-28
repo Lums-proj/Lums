@@ -21,11 +21,10 @@
 
 namespace lm
 {
+	template <typename Derived, typename ComponentType>
 	class GameObject
 	{
 	public:
-		void	addComponent(Component*);
-
 		template <typename... Ts>
 		bool
 		send(int slot, Ts... params)
@@ -37,7 +36,7 @@ namespace lm
 				if (h)
 				{
 					b = true;
-					auto func = reinterpret_cast<void (Component::*)(Ts...)>(h);
+					auto func = reinterpret_cast<void (ComponentType::*)(Ts...)>(h);
 					auto cp = c.get();
 					(cp->*func)(params...);
 				}
@@ -49,7 +48,7 @@ namespace lm
 		void
 		attach(Ts... params)
 		{
-			_components.push_back(std::unique_ptr<Component>(new T(std::forward<Ts>(params)...)));
+			_components.push_back(std::unique_ptr<ComponentType>(new T(std::forward<Ts>(params)...)));
 		}
 
 		template <typename T>
@@ -85,8 +84,32 @@ namespace lm
 			return nullptr;
 		}
 
+		template <typename... Ts>
+		void
+		update(Ts... params)
+		{
+			for (auto& c : _components)
+				c->update(*static_cast<Derived*>(this), std::forward<Ts>(params)...);
+		}
+
+		template <typename... Ts>
+		void
+		render(Ts... params)
+		{
+			for (auto& c : _components)
+				c->render(*static_cast<Derived*>(this), std::forward<Ts>(params)...);
+		}
+
+		template <typename... Ts>
+		void
+		handleEvent(Ts... params)
+		{
+			for (auto& c : _components)
+				c->handleEvent(*static_cast<Derived*>(this), std::forward<Ts>(params)...);
+		}
+
 	private:
-		std::vector<std::unique_ptr<Component>>	_components;
+		std::vector<std::unique_ptr<ComponentType>>	_components;
 	};
 }
 
