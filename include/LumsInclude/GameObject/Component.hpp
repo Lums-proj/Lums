@@ -16,9 +16,13 @@
 
 #include <cstring>
 
-#define LUMS_COMPONENT public: virtual size_t classId() const \
-					   { static int dummy;                    \
-					   	return reinterpret_cast<size_t>(&dummy);}
+#define LUMS_COMPONENT public: size_t static Id()                  \
+					   { static int dummy   ;                      \
+					   	return reinterpret_cast<size_t>(&dummy); } \
+					   virtual size_t classId() const			   \
+					   { return Id(); }
+
+
 
 namespace lm
 {

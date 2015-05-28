@@ -16,6 +16,7 @@
 
 #include <vector>
 #include <functional>
+#include <type_traits>
 #include <LumsInclude/GameObject/Component.hpp>
 
 namespace lm
@@ -23,8 +24,6 @@ namespace lm
 	class GameObject
 	{
 	public:
-		GameObject();
-
 		void	addComponent(Component*);
 
 		template <typename... Ts>
@@ -45,8 +44,46 @@ namespace lm
 			}
 			return b;
 		}
-		
-		~GameObject();
+
+		template <typename T, typename... Ts>
+		void
+		attach(Ts... params)
+		{
+			_components.push_back(std::unique_ptr<Component>(new T(std::forward<Ts>(params)...)));
+		}
+
+		template <typename T>
+		bool
+		composed() const
+		{
+			return get<T>() != nullptr;
+		}
+
+		template <typename T>
+		void
+		detach()
+		{
+			for (size_t i = 0; i < _components.size(); ++i)
+			{
+				if (_components[i]->classId() == T::Id())
+				{
+					_components.erase(_components.begin() + i);
+					return;
+				}
+			}
+		}
+
+		template <typename T>
+		T*
+		get() const
+		{
+			for (auto& c : _components)
+			{
+				if (c->classId() == T::Id())
+					return static_cast<T*>(c.get());
+			}
+			return nullptr;
+		}
 
 	private:
 		std::vector<std::unique_ptr<Component>>	_components;

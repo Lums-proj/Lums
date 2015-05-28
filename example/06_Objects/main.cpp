@@ -46,9 +46,17 @@ int
 main()
 {
 	lm::GameObject go;
-	go.addComponent(new HelloComponent);
-	go.addComponent(new TotoComponent);
+	go.attach<HelloComponent>();
+	go.attach<TotoComponent>();
 	go.send(0, "Hi there");
 	go.send(0, "This is a test");
 	go.send(1);
+	std::cout << go.composed<HelloComponent>() << std::endl;
+	std::cout << go.composed<TotoComponent>() << std::endl;
+	go.detach<TotoComponent>();
+	go.send(0, "Hi there");
+	go.send(0, "This is a test");
+	go.send(1);
+	std::cout << go.composed<HelloComponent>() << std::endl;
+	std::cout << go.composed<TotoComponent>() << std::endl;
 }
