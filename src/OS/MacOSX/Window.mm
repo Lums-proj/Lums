@@ -24,7 +24,7 @@ glAttributes[] = {
     NSOpenGLPFAStencilSize, 8,
     NSOpenGLPFAAccelerated,
     NSOpenGLPFADoubleBuffer,
-    NSOpenGLPFAClosestPolicy,
+    NSOpenGLPFAMinimumPolicy,
     kCGLPFAOpenGLProfile,
     kCGLOGLPVersion_3_2_Core,
     0
