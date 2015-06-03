@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['image',['Image',['../classlm_1_1_image.html#a58edd1c45b4faeb5f789b0d036d02313',1,'lm::Image::Image()'],['../classlm_1_1_image.html#a697b22b60ab730056a15a7ddb7d0f385',1,'lm::Image::Image(Image &amp;&amp;rhs)']]]
+  ['image',['Image',['../classlm_1_1_image.html#a89e063da28fd4e0ea46c76d222ffa67d',1,'lm::Image::Image()'],['../classlm_1_1_image.html#a34762e9ad95c0f472f06cc4187358173',1,'lm::Image::Image(Image &amp;&amp;rhs)']]]
 ];

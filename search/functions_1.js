@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['bind',['bind',['../classlm_1_1_image.html#adcb6a7195e1ba1dd99f2cf9d0f583b5b',1,'lm::Image']]]
+  ['clear',['clear',['../classlm_1_1_core.html#a583b672e206ba92941fccf98ba8cfcaf',1,'lm::Core']]],
+  ['cos',['cos',['../classlm_1_1_angle.html#a1f2180bbb22497cc832133dc6cc948b6',1,'lm::Angle']]]
 ];
