@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -64,6 +65,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -83,12 +85,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>lm</b></li><li class="navelem"><a class="el" href="classlm_1_1_window.html">Window</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacelm.html">lm</a></li><li class="navelem"><a class="el" href="classlm_1_1_window.html">Window</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classlm_1_1_window-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">lm::Window Class Reference</div>  </div>
@@ -99,25 +103,70 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a117b8a8b5c3170593b6c0aaa641feabc"><td class="memItemLeft" align="right" valign="top">LUMS_EXPORTED&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_window.html#a117b8a8b5c3170593b6c0aaa641feabc">Window</a> (int w, int h, const char *name=&quot;&quot;)</td></tr>
-<tr class="separator:a117b8a8b5c3170593b6c0aaa641feabc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99f8ab7cb8b4b35699a022a8d10e0e0a"><td class="memItemLeft" align="right" valign="top">LUMS_EXPORTED&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_window.html#a99f8ab7cb8b4b35699a022a8d10e0e0a">Window</a> (int w, int h, const char *name=&quot;&quot;, bool fullscreen=false)</td></tr>
+<tr class="separator:a99f8ab7cb8b4b35699a022a8d10e0e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1b8c9e36e889e2d62010abff05f6f7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_window.html#aa1b8c9e36e889e2d62010abff05f6f7e">pushEvent</a> (<a class="el" href="structlm_1_1_event.html">Event</a> &amp;event)</td></tr>
 <tr class="separator:aa1b8c9e36e889e2d62010abff05f6f7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef49fce78acab55e9539be7a0b13e723"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_window.html#aef49fce78acab55e9539be7a0b13e723">pollEvent</a> (<a class="el" href="structlm_1_1_event.html">Event</a> &amp;event)</td></tr>
 <tr class="separator:aef49fce78acab55e9539be7a0b13e723"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2303b068ae1bfe86366dba2af1da359a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_window.html#a2303b068ae1bfe86366dba2af1da359a">waitEvent</a> (<a class="el" href="structlm_1_1_event.html">Event</a> &amp;event)</td></tr>
 <tr class="separator:a2303b068ae1bfe86366dba2af1da359a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dc9e3a37f71f014acd0248668138841"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4dc9e3a37f71f014acd0248668138841"></a>
+LUMS_EXPORTED void&#160;</td><td class="memItemRight" valign="bottom"><b>resize</b> (int w, int h, bool fullscreen=false)</td></tr>
+<tr class="separator:a4dc9e3a37f71f014acd0248668138841"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf43c2838644e21155c871eb9fdd6531"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf43c2838644e21155c871eb9fdd6531"></a>
+LUMS_EXPORTED bool&#160;</td><td class="memItemRight" valign="bottom"><b>visible</b> () const </td></tr>
+<tr class="separator:acf43c2838644e21155c871eb9fdd6531"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01590ec56881d046a4fe36a2805609ea"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a01590ec56881d046a4fe36a2805609ea"></a>
+LUMS_EXPORTED <a class="el" href="classlm_1_1_vector.html">Vector2i</a>&#160;</td><td class="memItemRight" valign="bottom"><b>maxSize</b> () const </td></tr>
+<tr class="separator:a01590ec56881d046a4fe36a2805609ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e9ac10ca74f485bd376390c939f605d"><td class="memItemLeft" align="right" valign="top">LUMS_EXPORTED void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_window.html#a0e9ac10ca74f485bd376390c939f605d">pumpEvent</a> ()</td></tr>
 <tr class="separator:a0e9ac10ca74f485bd376390c939f605d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f62d4f783d76f25bb23083d8c2f1ffd"><td class="memItemLeft" align="right" valign="top">LUMS_EXPORTED void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_window.html#a9f62d4f783d76f25bb23083d8c2f1ffd">swap</a> ()</td></tr>
 <tr class="separator:a9f62d4f783d76f25bb23083d8c2f1ffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9533f447c8b9f1d1cc62f7288aa0287"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9533f447c8b9f1d1cc62f7288aa0287"></a>
+GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>fbo</b> (int i) const </td></tr>
+<tr class="separator:ac9533f447c8b9f1d1cc62f7288aa0287"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a384cf0450fdc3bbc227ec2ffaeb8a881"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a384cf0450fdc3bbc227ec2ffaeb8a881"></a>
+GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>tex</b> (int i) const </td></tr>
+<tr class="separator:a384cf0450fdc3bbc227ec2ffaeb8a881"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85946945aab810cbd6bfa5b46b2adee5"><td class="memItemLeft" align="right" valign="top">LUMS_EXPORTED&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_window.html#a85946945aab810cbd6bfa5b46b2adee5">~Window</a> ()</td></tr>
 <tr class="separator:a85946945aab810cbd6bfa5b46b2adee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a8e00bcb3593f5c6ef47ac717917fb8dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e00bcb3593f5c6ef47ac717917fb8dc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>extractEvent</b> (<a class="el" href="structlm_1_1_event.html">Event</a> &amp;event, bool block)</td></tr>
+<tr class="separator:a8e00bcb3593f5c6ef47ac717917fb8dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a454d6cb627799642c0db05ed59c8060e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a454d6cb627799642c0db05ed59c8060e"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><b>_windowHandle</b></td></tr>
+<tr class="separator:a454d6cb627799642c0db05ed59c8060e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a402441304294284e7813e4504a3694ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a402441304294284e7813e4504a3694ef"></a>
+void *&#160;</td><td class="memItemRight" valign="bottom"><b>_openGlHandle</b></td></tr>
+<tr class="separator:a402441304294284e7813e4504a3694ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab02ae66b97f3e8d06709f6ea71f4405a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab02ae66b97f3e8d06709f6ea71f4405a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>_fullscreen</b></td></tr>
+<tr class="separator:ab02ae66b97f3e8d06709f6ea71f4405a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1efdd58ebbdaafe01ca5aec6f4674cca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1efdd58ebbdaafe01ca5aec6f4674cca"></a>
+std::queue&lt; <a class="el" href="structlm_1_1_event.html">Event</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_events</b></td></tr>
+<tr class="separator:a1efdd58ebbdaafe01ca5aec6f4674cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af55fa280e3c925ab561729a8835c4d28"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af55fa280e3c925ab561729a8835c4d28"></a>
+GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>_fbo</b> [2]</td></tr>
+<tr class="separator:af55fa280e3c925ab561729a8835c4d28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a812ad9206c4e128a2faad87e3906aea3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a812ad9206c4e128a2faad87e3906aea3"></a>
+GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>_texBuffer</b> [2]</td></tr>
+<tr class="separator:a812ad9206c4e128a2faad87e3906aea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a399ef358ec55d93e228495b21bf839bc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a399ef358ec55d93e228495b21bf839bc"></a>
+GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>_depthBuffer</b> [2]</td></tr>
+<tr class="separator:a399ef358ec55d93e228495b21bf839bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class defines a <a class="el" href="classlm_1_1_window.html">Window</a>. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a117b8a8b5c3170593b6c0aaa641feabc"></a>
+<a class="anchor" id="a99f8ab7cb8b4b35699a022a8d10e0e0a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -137,7 +186,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>name</em> = <code>&quot;&quot;</code>&#160;</td>
+          <td class="paramname"><em>name</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>fullscreen</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -292,7 +347,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/Lums/<a class="el" href="_window_8hpp_source.html">Window.hpp</a></li>
+<li>include/LumsInclude/Graphics/<a class="el" href="_window_8hpp_source.html">Window.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->

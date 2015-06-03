@@ -22,7 +22,9 @@ namespace lm
 {
     template <std::size_t N, typename T>
     class Vector;
-
+    /**
+     * @cond
+     */
     namespace internal
     {
         template <typename T>
@@ -112,7 +114,9 @@ namespace lm
             };
         };
     }
-
+    /**
+     * @endcond
+     */
     /**
      * This class represents a Vector.
      */

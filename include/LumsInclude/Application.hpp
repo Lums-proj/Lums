@@ -16,10 +16,16 @@
 
 namespace lm
 {
+	/**
+	 * @cond
+	 */
     namespace Application
     {
         void    init();
     }
+    /**
+     * @endcond
+     */
 }
 
 #endif

@@ -22,6 +22,9 @@
 
 namespace lm
 {
+	/**
+     * @cond
+     */
 	namespace internal
 	{
 		template <GLint Size>
@@ -76,7 +79,9 @@ namespace lm
 			}
 		};
 	}
-
+    /**
+     * @endcond
+     */
 	namespace Vertex
 	{
 		enum : GLint

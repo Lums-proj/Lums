@@ -18,6 +18,9 @@
 
 namespace lm
 {
+    /**
+     * @cond
+     */
     namespace internal
     {
         template <std::size_t N, typename T>
@@ -46,7 +49,9 @@ namespace lm
             T*  _helper;
         };
     }
-
+    /**
+     * @endcond
+     */
     template <std::size_t N, typename T>
     class Matrix
     {

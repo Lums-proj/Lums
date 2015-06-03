@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['window',['Window',['../classlm_1_1_window.html',1,'lm']]]
+  ['rect',['Rect',['../structlm_1_1_rect.html',1,'lm']]]
 ];
