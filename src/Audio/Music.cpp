@@ -109,7 +109,6 @@ Music::streamOGG(Vector3f pos)
     std::chrono::milliseconds dura(400);
     ALuint  buffers[NB_BUFFERS];
     ALint   nbProcessed;
-    ALint   status;
     ALint   sourceState;
     int     index = 0;
 

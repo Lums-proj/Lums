@@ -63,17 +63,40 @@ public:
 	}
 };
 
+class MovableComponent : public EntityComponent
+{
+	LUMS_COMPONENT
+
+public:
+	MovableComponent(int pos)
+	: _pos(pos)
+	{
+		bind('pos', &MovableComponent::pos);
+	}
+
+	int*
+	pos()
+	{
+		return &_pos;
+	}
+
+private:
+	int	_pos;
+};
+
 int
 main()
 {
 	Entity go;
 	go.attach<HelloComponent>();
 	go.attach<TotoComponent>();
+	go.attach<MovableComponent>(4242);
 	go.send(0, "Hi there");
 	go.send(0, "This is a test");
 	go.send(1);
 	std::cout << go.composed<HelloComponent>() << std::endl;
 	std::cout << go.composed<TotoComponent>() << std::endl;
+	std::cout << *(go.recv<int>('pos')) << std::endl;
 	go.update("This is an Update");
 	go.detach<TotoComponent>();
 	go.send(0, "Hi there");

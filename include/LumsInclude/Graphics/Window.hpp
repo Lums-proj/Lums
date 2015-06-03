@@ -120,11 +120,11 @@ namespace lm
 
         void*               _windowHandle;
         void*               _openGlHandle;
+        bool                _fullscreen;
         std::queue<Event>   _events;
         GLuint              _fbo[2];
         GLuint              _texBuffer[2];
         GLuint              _depthBuffer[2];
-        bool                _fullscreen;
     };
 }
 
