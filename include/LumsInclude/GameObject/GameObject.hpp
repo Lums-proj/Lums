@@ -44,6 +44,23 @@ namespace lm
 			return b;
 		}
 
+		template <typename T>
+		T*
+		recv(int slot)
+		{
+			for (auto& c : _components)
+			{
+				auto h = c->handle(slot);
+				if (h)
+				{
+					auto func = reinterpret_cast<T* (ComponentType::*)()>(h);
+					auto cp = c.get();
+					return (cp->*func)();
+				}
+			}
+			return nullptr;
+		}
+
 		template <typename T, typename... Ts>
 		void
 		attach(Ts... params)

@@ -49,7 +49,6 @@ Sfx::play(Vector3f pos)
     std::vector<char>   bufferData;
     char array[BUFFER_SIZE];
     ALsizei bytes;
-    ALint state;
     do
     {
         bytes = ov_read(&_stream, array, BUFFER_SIZE, 0, 2, 1, nullptr);
