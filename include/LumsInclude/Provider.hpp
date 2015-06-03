@@ -24,7 +24,9 @@
 
 namespace lm
 {
-
+    /**
+     * @cond
+     */
     namespace internal
     {
         template <typename T>
@@ -57,13 +59,27 @@ namespace lm
             std::vector<T*> _buffer;
         };
     }
+    /**
+     * @endcond
+     */
 
+    /**
+     * @brief A provider for assets that are loaded once
+     *
+     * This is a template used to create custom providers for assets.
+     */
     template <typename T>
     class Provider : public internal::ProviderImpl<T>, public Singleton<Provider<T>>
     {
 
     };
 
+    /**
+     * @brief A provider for assets that are loaded and unloaded at runtime
+     *
+     * This is a template used to create custom providers for dynamic assets.
+     * Assets should implement load(), unload() and loaded().
+     */
     template <typename T>
     class StreamProvider : public internal::ProviderImpl<T>, public Singleton<StreamProvider<T>>
     {

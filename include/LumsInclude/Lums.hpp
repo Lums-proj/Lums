@@ -64,8 +64,15 @@
 #include <LumsInclude/Provider.hpp>
 #include <LumsInclude/Singleton.hpp>
 
+/**
+ * @brief The Lums namespace
+ */
 namespace lm
 {
+    /**
+     * This enum defines a Module.
+     * A module can be loaded using enableModule().
+     */
     enum class Module
     {
         Core,
@@ -74,6 +81,9 @@ namespace lm
         All
     };
 
+    /**
+     * @cond
+     */
     namespace internal
     {
         void    _enableSingleModule(Module module);
@@ -92,7 +102,15 @@ namespace lm
             _enableModule(modules...);
         }
     }
+    /**
+     * @endcond
+     */
 
+    /**
+     * Enable one or more modules.
+     * You can use the special enum member Module::All to
+     * enable every module.
+     */
     template <typename... Modules>
     inline void
     enableModule(Module module, Modules... modules)
