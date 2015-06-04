@@ -116,108 +116,122 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacelm.html">lm</a></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">namespace </span>internal</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    {</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keyword">class </span>ProviderImpl</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            T&amp;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keyword">get</span>(<span class="keywordtype">int</span> i)</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="keywordflow">return</span> *_buffer[i];</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            }</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            T&amp;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            set(<span class="keywordtype">int</span> i)</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                <span class="keywordflow">if</span> (i &gt;= _buffer.size())</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                    _buffer.resize(i + 1);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                <span class="keywordflow">if</span> (_buffer[i] == <span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                    _buffer[i] = <span class="keyword">new</span> T();</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="keywordflow">return</span> *_buffer[i];</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            std::size_t</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            size()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">            </span>{</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                <span class="keywordflow">return</span> _buffer.size();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            std::vector&lt;T*&gt; _buffer;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        };</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    }</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classlm_1_1_provider.html">   72</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classlm_1_1_provider.html">Provider</a> : <span class="keyword">public</span> internal::ProviderImpl&lt;T&gt;, <span class="keyword">public</span> <a class="code" href="classlm_1_1_singleton.html">Singleton</a>&lt;Provider&lt;T&gt;&gt;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    {</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classlm_1_1_base_provider.html">   31</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classlm_1_1_base_provider.html">BaseProvider</a></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        T&amp;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classlm_1_1_base_provider.html#ae35cb84d40842152f1a6718f12ed2d03">   40</a></span>&#160;        <span class="keyword">get</span>(<span class="keywordtype">int</span> i)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            <span class="keywordflow">return</span> *<a class="code" href="classlm_1_1_base_provider.html#a27273140f520299e5673a2fe612a61ff">buffer</a>[i];</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        T&amp;</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classlm_1_1_base_provider.html#a283b11ca050bc9f52069e50a4473258d">   51</a></span>&#160;        <a class="code" href="classlm_1_1_base_provider.html#a283b11ca050bc9f52069e50a4473258d">set</a>(<span class="keywordtype">int</span> i)</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keywordflow">if</span> (i &gt;= <a class="code" href="classlm_1_1_base_provider.html#a27273140f520299e5673a2fe612a61ff">buffer</a>.size())</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                <a class="code" href="classlm_1_1_base_provider.html#a27273140f520299e5673a2fe612a61ff">buffer</a>.resize(i + 1);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="classlm_1_1_base_provider.html#a27273140f520299e5673a2fe612a61ff">buffer</a>[i] == <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                <a class="code" href="classlm_1_1_base_provider.html#a27273140f520299e5673a2fe612a61ff">buffer</a>[i] = <span class="keyword">new</span> T();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">return</span> *<a class="code" href="classlm_1_1_base_provider.html#a27273140f520299e5673a2fe612a61ff">buffer</a>[i];</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        std::size_t</div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classlm_1_1_base_provider.html#a5f77b39fdc4c1a0daf1d73c91565d343">   65</a></span>&#160;        <a class="code" href="classlm_1_1_base_provider.html#a5f77b39fdc4c1a0daf1d73c91565d343">size</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="classlm_1_1_base_provider.html#a27273140f520299e5673a2fe612a61ff">buffer</a>.size();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        }</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="classlm_1_1_base_provider.html#a27273140f520299e5673a2fe612a61ff">   74</a></span>&#160;        std::vector&lt;T*&gt; <a class="code" href="classlm_1_1_base_provider.html#a27273140f520299e5673a2fe612a61ff">buffer</a>;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    };</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="classlm_1_1_stream_provider.html">   84</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classlm_1_1_stream_provider.html">StreamProvider</a> : <span class="keyword">public</span> internal::ProviderImpl&lt;T&gt;, <span class="keyword">public</span> <a class="code" href="classlm_1_1_singleton.html">Singleton</a>&lt;StreamProvider&lt;T&gt;&gt;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    {</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        T&amp;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keyword">get</span>(<span class="keywordtype">int</span> i)</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        {</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            <span class="keywordflow">if</span> (!internal::ProviderImpl&lt;T&gt;::_buffer[i]-&gt;loaded())</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;                <span class="keywordflow">return</span> load(i);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keywordflow">return</span> internal::ProviderImpl&lt;T&gt;::get(i);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        }</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        T&amp;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        load(<span class="keywordtype">int</span> i)</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        {</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            internal::ProviderImpl&lt;T&gt;::_buffer[i]-&gt;load();</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            <span class="keywordflow">return</span> internal::ProviderImpl&lt;T&gt;::get(i);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        }</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        T&amp;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        unload(<span class="keywordtype">int</span> i)</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        {</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;            internal::ProviderImpl&lt;T&gt;::_buffer[i]-&gt;unload();</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <span class="keywordflow">return</span> internal::ProviderImpl&lt;T&gt;::get(i);</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        }</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        reload(<span class="keywordtype">int</span> i)</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        {</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            unload(i);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            load(i);</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        }</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        reloadAll()</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        {</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;            <span class="keywordflow">for</span> (std::size_t i = 0; i &lt; internal::ProviderImpl&lt;T&gt;::size(); ++i)</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            {</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                <span class="keywordflow">if</span> (internal::ProviderImpl&lt;T&gt;::_buffer[i]-&gt;loaded())</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                    reload(i);</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            }</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        }</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <span class="keywordtype">void</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        unloadAll()</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        {</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            <span class="keywordflow">for</span> (std::size_t i = 0; i &lt; internal::ProviderImpl&lt;T&gt;::size(); ++i)</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                unload(i);</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        }</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    };</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keyword">using</span> <a class="code" href="classlm_1_1_provider.html">ShaderProvider</a> = <a class="code" href="classlm_1_1_provider.html">Provider&lt;ShaderProgram&gt;</a>;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keyword">using</span> <a class="code" href="classlm_1_1_stream_provider.html">ImageProvider</a> = <a class="code" href="classlm_1_1_stream_provider.html">StreamProvider&lt;Image&gt;</a>;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="keyword">using</span> <a class="code" href="classlm_1_1_stream_provider.html">TextureProvider</a> = <a class="code" href="classlm_1_1_stream_provider.html">StreamProvider&lt;Texture&gt;</a>;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keyword">using</span> <a class="code" href="classlm_1_1_stream_provider.html">FontProvider</a> = <a class="code" href="classlm_1_1_stream_provider.html">StreamProvider&lt;Font&gt;</a>;</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <span class="keyword">using</span> <a class="code" href="classlm_1_1_stream_provider.html">SfxProvider</a> = <a class="code" href="classlm_1_1_stream_provider.html">StreamProvider&lt;Sfx&gt;</a>;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keyword">using</span> <a class="code" href="classlm_1_1_stream_provider.html">MusicProvider</a> = <a class="code" href="classlm_1_1_stream_provider.html">StreamProvider&lt;Music&gt;</a>;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;}</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="classlm_1_1_singleton_html"><div class="ttname"><a href="classlm_1_1_singleton.html">lm::Singleton</a></div><div class="ttdef"><b>Definition:</b> Singleton.hpp:20</div></div>
-<div class="ttc" id="classlm_1_1_provider_html"><div class="ttname"><a href="classlm_1_1_provider.html">lm::Provider</a></div><div class="ttdoc">A provider for assets that are loaded once. </div><div class="ttdef"><b>Definition:</b> Provider.hpp:72</div></div>
-<div class="ttc" id="classlm_1_1_stream_provider_html"><div class="ttname"><a href="classlm_1_1_stream_provider.html">lm::StreamProvider</a></div><div class="ttdoc">A provider for assets that are loaded and unloaded at runtime. </div><div class="ttdef"><b>Definition:</b> Provider.hpp:84</div></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="classlm_1_1_provider.html">   83</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classlm_1_1_provider.html">Provider</a> : <span class="keyword">public</span> <a class="code" href="classlm_1_1_base_provider.html">BaseProvider</a>&lt;T&gt;, <span class="keyword">public</span> <a class="code" href="classlm_1_1_singleton.html">Singleton</a>&lt;Provider&lt;T&gt;&gt;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    };</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="classlm_1_1_stream_provider.html">   95</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classlm_1_1_stream_provider.html">StreamProvider</a> : <span class="keyword">public</span> <a class="code" href="classlm_1_1_base_provider.html">BaseProvider</a>&lt;T&gt;, <span class="keyword">public</span> <a class="code" href="classlm_1_1_singleton.html">Singleton</a>&lt;StreamProvider&lt;T&gt;&gt;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        T&amp;</div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="classlm_1_1_stream_provider.html#a79fe41ca479c8f506034e96dd497c0f4">  108</a></span>&#160;        <span class="keyword">get</span>(<span class="keywordtype">int</span> i)</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="keywordflow">if</span> (!<a class="code" href="classlm_1_1_base_provider.html">BaseProvider&lt;T&gt;::buffer</a>[i]-&gt;loaded())</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;                <span class="keywordflow">return</span> <a class="code" href="classlm_1_1_stream_provider.html#a8def2b567c854fdae11b07960586f099">load</a>(i);</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="classlm_1_1_base_provider.html#ae35cb84d40842152f1a6718f12ed2d03">BaseProvider&lt;T&gt;::get</a>(i);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        }</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        T&amp;</div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="classlm_1_1_stream_provider.html#a8def2b567c854fdae11b07960586f099">  122</a></span>&#160;        <a class="code" href="classlm_1_1_stream_provider.html#a8def2b567c854fdae11b07960586f099">load</a>(<span class="keywordtype">int</span> i)</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        {</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;            <a class="code" href="classlm_1_1_base_provider.html">BaseProvider&lt;T&gt;::buffer</a>[i]-&gt;load();</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="classlm_1_1_base_provider.html#ae35cb84d40842152f1a6718f12ed2d03">BaseProvider&lt;T&gt;::get</a>(i);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        }</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        T&amp;</div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="classlm_1_1_stream_provider.html#a5dba5ca5dabfd2c4c67e146105616c86">  135</a></span>&#160;        <a class="code" href="classlm_1_1_stream_provider.html#a5dba5ca5dabfd2c4c67e146105616c86">unload</a>(<span class="keywordtype">int</span> i)</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        {</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;            <a class="code" href="classlm_1_1_base_provider.html">BaseProvider&lt;T&gt;::buffer</a>[i]-&gt;unload();</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="classlm_1_1_base_provider.html#ae35cb84d40842152f1a6718f12ed2d03">BaseProvider&lt;T&gt;::get</a>(i);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        }</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        T&amp;</div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="line" href="classlm_1_1_stream_provider.html#ad327b0b5bc1792ecf8a80266ade5bfa8">  148</a></span>&#160;        <a class="code" href="classlm_1_1_stream_provider.html#ad327b0b5bc1792ecf8a80266ade5bfa8">reload</a>(<span class="keywordtype">int</span> i)</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        {</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            <a class="code" href="classlm_1_1_stream_provider.html#a5dba5ca5dabfd2c4c67e146105616c86">unload</a>(i);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="classlm_1_1_stream_provider.html#a8def2b567c854fdae11b07960586f099">load</a>(i);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        }</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="line" href="classlm_1_1_stream_provider.html#ae52af71957373302497c1fade3f15efa">  158</a></span>&#160;        <a class="code" href="classlm_1_1_stream_provider.html#ae52af71957373302497c1fade3f15efa">reloadAll</a>()</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        {</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;            <span class="keywordflow">for</span> (std::size_t i = 0; i &lt; BaseProvider&lt;T&gt;::size(); ++i)</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            {</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="classlm_1_1_base_provider.html">BaseProvider&lt;T&gt;::buffer</a>[i]-&gt;loaded())</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                    <a class="code" href="classlm_1_1_stream_provider.html#ad327b0b5bc1792ecf8a80266ade5bfa8">reload</a>(i);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            }</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        }</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        <span class="keywordtype">void</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="classlm_1_1_stream_provider.html#a814849a8277e4ec57d52413bffd44e27">  171</a></span>&#160;        <a class="code" href="classlm_1_1_stream_provider.html#a814849a8277e4ec57d52413bffd44e27">unloadAll</a>()</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        {</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            <span class="keywordflow">for</span> (std::size_t i = 0; i &lt; BaseProvider&lt;T&gt;::size(); ++i)</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;                <a class="code" href="classlm_1_1_stream_provider.html#a5dba5ca5dabfd2c4c67e146105616c86">unload</a>(i);</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        }</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;    };</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
+<div class="line"><a name="l00182"></a><span class="lineno"><a class="line" href="namespacelm.html#a2dbb5f189c0dcb4a6a6cb1551b1f34ef">  182</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classlm_1_1_provider.html">ShaderProvider</a> = <a class="code" href="classlm_1_1_provider.html">Provider&lt;ShaderProgram&gt;</a>;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
+<div class="line"><a name="l00187"></a><span class="lineno"><a class="line" href="namespacelm.html#ad75e5e8e449023a23f042c66285823fa">  187</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classlm_1_1_stream_provider.html">ImageProvider</a> = <a class="code" href="classlm_1_1_stream_provider.html">StreamProvider&lt;Image&gt;</a>;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
+<div class="line"><a name="l00192"></a><span class="lineno"><a class="line" href="namespacelm.html#ac447f58254187481b80acdcc19193f91">  192</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classlm_1_1_stream_provider.html">TextureProvider</a> = <a class="code" href="classlm_1_1_stream_provider.html">StreamProvider&lt;Texture&gt;</a>;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
+<div class="line"><a name="l00197"></a><span class="lineno"><a class="line" href="namespacelm.html#a69e9caf6a96c951d74f6fde9c150c2ec">  197</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classlm_1_1_stream_provider.html">FontProvider</a> = <a class="code" href="classlm_1_1_stream_provider.html">StreamProvider&lt;Font&gt;</a>;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
+<div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="namespacelm.html#a2c87195bd65bc16088e315fa44a34186">  202</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classlm_1_1_stream_provider.html">SfxProvider</a> = <a class="code" href="classlm_1_1_stream_provider.html">StreamProvider&lt;Sfx&gt;</a>;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;</div>
+<div class="line"><a name="l00207"></a><span class="lineno"><a class="line" href="namespacelm.html#aebb5bd37578d308d78d8719cba636cad">  207</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classlm_1_1_stream_provider.html">MusicProvider</a> = <a class="code" href="classlm_1_1_stream_provider.html">StreamProvider&lt;Music&gt;</a>;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;}</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classlm_1_1_base_provider_html_a5f77b39fdc4c1a0daf1d73c91565d343"><div class="ttname"><a href="classlm_1_1_base_provider.html#a5f77b39fdc4c1a0daf1d73c91565d343">lm::BaseProvider::size</a></div><div class="ttdeci">std::size_t size() const </div><div class="ttdef"><b>Definition:</b> Provider.hpp:65</div></div>
+<div class="ttc" id="classlm_1_1_base_provider_html_ae35cb84d40842152f1a6718f12ed2d03"><div class="ttname"><a href="classlm_1_1_base_provider.html#ae35cb84d40842152f1a6718f12ed2d03">lm::BaseProvider::get</a></div><div class="ttdeci">T &amp; get(int i)</div><div class="ttdef"><b>Definition:</b> Provider.hpp:40</div></div>
+<div class="ttc" id="classlm_1_1_singleton_html"><div class="ttname"><a href="classlm_1_1_singleton.html">lm::Singleton</a></div><div class="ttdoc">An helper template for creating singletons. </div><div class="ttdef"><b>Definition:</b> Singleton.hpp:25</div></div>
+<div class="ttc" id="classlm_1_1_provider_html"><div class="ttname"><a href="classlm_1_1_provider.html">lm::Provider</a></div><div class="ttdoc">A provider for assets that are loaded once. </div><div class="ttdef"><b>Definition:</b> Provider.hpp:83</div></div>
+<div class="ttc" id="classlm_1_1_stream_provider_html_a8def2b567c854fdae11b07960586f099"><div class="ttname"><a href="classlm_1_1_stream_provider.html#a8def2b567c854fdae11b07960586f099">lm::StreamProvider::load</a></div><div class="ttdeci">T &amp; load(int i)</div><div class="ttdef"><b>Definition:</b> Provider.hpp:122</div></div>
+<div class="ttc" id="classlm_1_1_stream_provider_html_ae52af71957373302497c1fade3f15efa"><div class="ttname"><a href="classlm_1_1_stream_provider.html#ae52af71957373302497c1fade3f15efa">lm::StreamProvider::reloadAll</a></div><div class="ttdeci">void reloadAll()</div><div class="ttdef"><b>Definition:</b> Provider.hpp:158</div></div>
+<div class="ttc" id="classlm_1_1_base_provider_html"><div class="ttname"><a href="classlm_1_1_base_provider.html">lm::BaseProvider</a></div><div class="ttdoc">A basic abstract class for providers. </div><div class="ttdef"><b>Definition:</b> Provider.hpp:31</div></div>
+<div class="ttc" id="classlm_1_1_stream_provider_html_a5dba5ca5dabfd2c4c67e146105616c86"><div class="ttname"><a href="classlm_1_1_stream_provider.html#a5dba5ca5dabfd2c4c67e146105616c86">lm::StreamProvider::unload</a></div><div class="ttdeci">T &amp; unload(int i)</div><div class="ttdef"><b>Definition:</b> Provider.hpp:135</div></div>
+<div class="ttc" id="classlm_1_1_stream_provider_html"><div class="ttname"><a href="classlm_1_1_stream_provider.html">lm::StreamProvider</a></div><div class="ttdoc">A provider for assets that are loaded and unloaded at runtime. </div><div class="ttdef"><b>Definition:</b> Provider.hpp:95</div></div>
+<div class="ttc" id="classlm_1_1_base_provider_html_a283b11ca050bc9f52069e50a4473258d"><div class="ttname"><a href="classlm_1_1_base_provider.html#a283b11ca050bc9f52069e50a4473258d">lm::BaseProvider::set</a></div><div class="ttdeci">T &amp; set(int i)</div><div class="ttdef"><b>Definition:</b> Provider.hpp:51</div></div>
+<div class="ttc" id="classlm_1_1_base_provider_html_a27273140f520299e5673a2fe612a61ff"><div class="ttname"><a href="classlm_1_1_base_provider.html#a27273140f520299e5673a2fe612a61ff">lm::BaseProvider::buffer</a></div><div class="ttdeci">std::vector&lt; T * &gt; buffer</div><div class="ttdef"><b>Definition:</b> Provider.hpp:74</div></div>
+<div class="ttc" id="classlm_1_1_stream_provider_html_ad327b0b5bc1792ecf8a80266ade5bfa8"><div class="ttname"><a href="classlm_1_1_stream_provider.html#ad327b0b5bc1792ecf8a80266ade5bfa8">lm::StreamProvider::reload</a></div><div class="ttdeci">T &amp; reload(int i)</div><div class="ttdef"><b>Definition:</b> Provider.hpp:148</div></div>
+<div class="ttc" id="classlm_1_1_stream_provider_html_a814849a8277e4ec57d52413bffd44e27"><div class="ttname"><a href="classlm_1_1_stream_provider.html#a814849a8277e4ec57d52413bffd44e27">lm::StreamProvider::unloadAll</a></div><div class="ttdeci">void unloadAll()</div><div class="ttdef"><b>Definition:</b> Provider.hpp:171</div></div>
 <div class="ttc" id="namespacelm_html"><div class="ttname"><a href="namespacelm.html">lm</a></div><div class="ttdoc">The Lums namespace. </div><div class="ttdef"><b>Definition:</b> Application.hpp:17</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->

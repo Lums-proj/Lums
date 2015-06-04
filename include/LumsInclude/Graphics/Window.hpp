@@ -38,7 +38,7 @@ namespace lm
         
         /**
         * Push an event on the internal event stack.
-        * @event The event to be pushed.
+        * @param event The event to be pushed.
         */
         void
         pushEvent(Event& event)

@@ -27,7 +27,8 @@
 namespace lm
 {
     /**
-     * This class defines a core.
+     * @brief This class defines a core
+     *
      * A core is composed of a window, a renderer, a state machine and
      * a main loop.
      * The goal of this class is to provide a simple, yet efficient way to
@@ -38,12 +39,22 @@ namespace lm
     public:
         friend class Singleton<Core>;
 
+        /**
+         * Get the window linked to the core.
+         * It's undefined behavior to call this method when
+         * no window is attached.
+         * @return A reference to the linked window
+         */
         Window&
         window()
         {
             return *_win;
         }
-        
+
+        /**
+         * Set the linked window
+         * @param win A pointer to a window
+         */
         void
         setWindow(Window* win)
         {
@@ -120,6 +131,9 @@ namespace lm
          */
         LUMS_EXPORTED bool    stateless() const;
         
+        /**
+         * Core dtor
+         */
         LUMS_EXPORTED ~Core();
         
     private:
@@ -131,11 +145,11 @@ namespace lm
         
         typedef std::vector<std::unique_ptr<GameState>> Stack;
         
-        Stack                       _stack;
-        size_t                      _it;
-        Window*                     _win;
-        bool                        _jmp;
-        bool                        _running;
+        Stack       _stack;
+        size_t      _it;
+        Window*     _win;
+        bool        _jmp;
+        bool        _running;
     };
 }
 

@@ -91,8 +91,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classlm_1_1_window-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">lm::Window Class Reference</div>  </div>
@@ -132,36 +130,6 @@ GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>tex</b> (int i) con
 <tr class="separator:a384cf0450fdc3bbc227ec2ffaeb8a881"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a85946945aab810cbd6bfa5b46b2adee5"><td class="memItemLeft" align="right" valign="top">LUMS_EXPORTED&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_window.html#a85946945aab810cbd6bfa5b46b2adee5">~Window</a> ()</td></tr>
 <tr class="separator:a85946945aab810cbd6bfa5b46b2adee5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
-Private Member Functions</h2></td></tr>
-<tr class="memitem:a8e00bcb3593f5c6ef47ac717917fb8dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e00bcb3593f5c6ef47ac717917fb8dc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>extractEvent</b> (<a class="el" href="structlm_1_1_event.html">Event</a> &amp;event, bool block)</td></tr>
-<tr class="separator:a8e00bcb3593f5c6ef47ac717917fb8dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:a454d6cb627799642c0db05ed59c8060e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a454d6cb627799642c0db05ed59c8060e"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>_windowHandle</b></td></tr>
-<tr class="separator:a454d6cb627799642c0db05ed59c8060e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a402441304294284e7813e4504a3694ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a402441304294284e7813e4504a3694ef"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>_openGlHandle</b></td></tr>
-<tr class="separator:a402441304294284e7813e4504a3694ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab02ae66b97f3e8d06709f6ea71f4405a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab02ae66b97f3e8d06709f6ea71f4405a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>_fullscreen</b></td></tr>
-<tr class="separator:ab02ae66b97f3e8d06709f6ea71f4405a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1efdd58ebbdaafe01ca5aec6f4674cca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1efdd58ebbdaafe01ca5aec6f4674cca"></a>
-std::queue&lt; <a class="el" href="structlm_1_1_event.html">Event</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_events</b></td></tr>
-<tr class="separator:a1efdd58ebbdaafe01ca5aec6f4674cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af55fa280e3c925ab561729a8835c4d28"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af55fa280e3c925ab561729a8835c4d28"></a>
-GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>_fbo</b> [2]</td></tr>
-<tr class="separator:af55fa280e3c925ab561729a8835c4d28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a812ad9206c4e128a2faad87e3906aea3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a812ad9206c4e128a2faad87e3906aea3"></a>
-GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>_texBuffer</b> [2]</td></tr>
-<tr class="separator:a812ad9206c4e128a2faad87e3906aea3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a399ef358ec55d93e228495b21bf839bc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a399ef358ec55d93e228495b21bf839bc"></a>
-GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>_depthBuffer</b> [2]</td></tr>
-<tr class="separator:a399ef358ec55d93e228495b21bf839bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class defines a <a class="el" href="classlm_1_1_window.html">Window</a>. </p>
@@ -296,7 +264,12 @@ GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>_depthBuffer</b> [2
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Push an event on the internal event stack.  The event to be pushed. </p>
+<p>Push an event on the internal event stack. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">event</td><td>The event to be pushed. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
