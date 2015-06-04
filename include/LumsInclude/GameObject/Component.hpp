@@ -14,7 +14,7 @@
 #ifndef LUMS_COMPONENT_HPP
 #define LUMS_COMPONENT_HPP
 
-#include <cstring>
+#include <LumsInclude/Common.hpp>
 
 #define LUMS_COMPONENT public: size_t static Id()                  \
 					   { static int dummy   ;                      \
@@ -31,7 +31,7 @@ namespace lm
 	public:
 		LUMS_COMPONENT
 
-		using method = void(Component::*)();
+		using method = void (Component::*)();
 
 		Component();
 		
@@ -40,6 +40,13 @@ namespace lm
 		bind(int slot, T function) const
 		{
 			bind(slot, reinterpret_cast<Component::method>(function));
+		}
+
+		template <typename T>
+		void
+		bind(const char* slot, T function) const
+		{
+			bind(sym(slot), function);
 		}
 
 		template <typename... Ts>

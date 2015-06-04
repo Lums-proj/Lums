@@ -22,7 +22,7 @@ class HelloComponent : public EntityComponent
 public:
 	HelloComponent()
 	{
-		bind(0, &HelloComponent::hello);
+		bind("hello", &HelloComponent::hello);
 	}
 
 	void
@@ -35,7 +35,7 @@ public:
 	update(Entity& e, const char* str)
 	{
 		std::cout << "UPDATE: " << str << std::endl;
-		e.send(0, "Hello, World!");
+		e.send("hello", "Hello, World!");
 	}
 };
 
@@ -46,8 +46,8 @@ class TotoComponent : public EntityComponent
 public:
 	TotoComponent()
 	{
-		bind(0, &TotoComponent::hello);
-		bind(1, &TotoComponent::cat);
+		bind("hello", &TotoComponent::hello);
+		bind("cat", &TotoComponent::cat);
 	}
 
 	void
@@ -71,7 +71,7 @@ public:
 	MovableComponent(int pos)
 	: _pos(pos)
 	{
-		bind('pos', &MovableComponent::pos);
+		bind("position", &MovableComponent::pos);
 	}
 
 	int*
@@ -91,17 +91,17 @@ main()
 	go.attach<HelloComponent>();
 	go.attach<TotoComponent>();
 	go.attach<MovableComponent>(4242);
-	go.send(0, "Hi there");
-	go.send(0, "This is a test");
-	go.send(1);
+	go.send("hello", "Hi there");
+	go.send("hello", "This is a test");
+	go.send("cat");
 	std::cout << go.composed<HelloComponent>() << std::endl;
 	std::cout << go.composed<TotoComponent>() << std::endl;
-	std::cout << *(go.recv<int>('pos')) << std::endl;
+	std::cout << *(go.recv<int>("position")) << std::endl;
 	go.update("This is an Update");
 	go.detach<TotoComponent>();
-	go.send(0, "Hi there");
-	go.send(0, "This is a test");
-	go.send(1);
+	go.send("hello", "Hi there");
+	go.send("hello", "This is a test");
+	go.send("cat");
 	std::cout << go.composed<HelloComponent>() << std::endl;
 	std::cout << go.composed<TotoComponent>() << std::endl;
 	go.update("This is an update");
