@@ -82,8 +82,15 @@ namespace lm
     /**
      * @endcond
      */
+
+    /**
+     * @brief Describe a vertex type
+     */
 	namespace Vertex
 	{
+		/**
+		 * An enum describing a vertex type
+		 */
 		enum : GLint
 		{
 			Position = 0,
@@ -92,14 +99,27 @@ namespace lm
 		};
 	}
 
+	/**
+     * @brief A class representing a buffer of vertices
+     * @tparam Attr The attributes
+     */
 	template <GLint... Attr>
 	class VertexBuffer
 	{
 	public:
 		static_assert(sizeof...(Attr) % 2 == 0, "Must provide key/value pairs");
 
+		/**
+		 * @cond
+		 */
 		enum { size = internal::VertexBufferSize<Attr...>::size };
+		/**
+		 * @endcond
+		 */
 
+		/**
+         * Create a vertex buffer
+         */
 		VertexBuffer()
 		: _vao(0)
 		, _vbo(0)
@@ -114,6 +134,11 @@ namespace lm
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 		}
 
+		/**
+         * Push values onto the vertex buffer, according to the attributes
+         * @tparam Pack Types for values
+         * @param values Values
+         */
 		template <typename... Pack>
 		void
 		push(Pack... values)
@@ -122,6 +147,9 @@ namespace lm
 			_count++;
 		}
 
+		/**
+         * Send the vertex buffer into the GPU
+         */
 		void
 		send()
 		{
@@ -131,6 +159,10 @@ namespace lm
 			_values.clear();
 		}
 
+		/**
+         * Draw the vertex buffer
+         * @param mode The OpenGL draw mode, can be GL_TRIANGLES, GL_LINES or GL_POINTS
+         */
 		void
 		draw(GLenum mode)
 		{
@@ -139,6 +171,9 @@ namespace lm
             glBindVertexArray(0);
 		}
 
+		/**
+         * Reset the vertex buffer
+         */
 		void
 		reset()
 		{
@@ -153,7 +188,14 @@ namespace lm
 		GLuint				_count;
 	};
 
+	/**
+     * A vertex buffer with 2 values for position, 2 for texture, and 4 for color
+     */
 	using VertexBufferP2T2C4 = VertexBuffer<Vertex::Position, 2, Vertex::Texture, 2, Vertex::Color, 4>;
+
+	/**
+     * A vertex buffer with 3 values for position, and 4 for color
+     */
 	using VertexBufferP3C4 = VertexBuffer<Vertex::Position, 3, Vertex::Color, 4>;
 }
 

@@ -21,16 +21,56 @@
 
 namespace lm
 {
+	/**
+	 * @brief A class describing a chain of shaders
+	 *
+	 * This class implements something known as ping-pong rendering.
+	 */
 	class ShaderPipeline
 	{
 	public:
+		/**
+		 * Create a shader pipeline
+		 */
 		ShaderPipeline();
+
+		/**
+		 * Set the shader pipeline active window
+		 * @param win A reference to a window
+		 */
 		void	setWindow(const Window& win);
+
+		/**
+		 * Bind the pipeline.
+		 * You should call this function before rendering
+		 */
 		void	bind();
+
+		/**
+		 * Append a shader to the pipeline
+		 * @param shader The shader to append
+		 */
 		void	append(const ShaderProgram& shader);
+
+		/**
+		 * Prepend a shader to the pipeline
+		 * @param shader The shader to prepend
+		 */
 		void	prepend(const ShaderProgram& shader);
+
+		/**
+		 * Remove every shader from the pipeline
+		 */
 		void	clear();
+
+		/**
+		 * Render the pipeline to screen
+		 */
 		void	render();
+
+		/**
+		 * Shader pipeline dtor
+		 */
 		~ShaderPipeline();
 
 	private:

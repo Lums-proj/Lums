@@ -1,6 +1,11 @@
 var searchData=
 [
-  ['unload',['unload',['../classlm_1_1_sound.html#a575656357fdb9c5d3ec2dc3513e8f5fd',1,'lm::Sound::unload()'],['../classlm_1_1_game_state.html#a825588aa915e488d64226d26e5aa9614',1,'lm::GameState::unload()'],['../classlm_1_1_stream_provider.html#a5dba5ca5dabfd2c4c67e146105616c86',1,'lm::StreamProvider::unload()']]],
-  ['unloadall',['unloadAll',['../classlm_1_1_stream_provider.html#a814849a8277e4ec57d52413bffd44e27',1,'lm::StreamProvider']]],
-  ['update',['update',['../classlm_1_1_game_state.html#adefcdcd0424857af7edcae6bfa0629cd',1,'lm::GameState::update()'],['../classlm_1_1_component.html#addd9284d6c267a3913c70aff4d6ccad1',1,'lm::Component::update()'],['../classlm_1_1_game_object.html#ae7b89143c352f8194508b890b8d86e1a',1,'lm::GameObject::update()']]]
+  ['tan',['tan',['../classlm_1_1_angle.html#a61000ae2880282317eefcaa742f6fc3c',1,'lm::Angle']]],
+  ['texture',['texture',['../classlm_1_1_font.html#a50c6771f1b07ff06b045e0a4fb0e4b24',1,'lm::Font::texture()'],['../classlm_1_1_sprite.html#a431e9bfe33a44d105c176311f7627643',1,'lm::Sprite::texture()'],['../classlm_1_1_texture.html#a46c6224a46893edea14b44c8b91aaae2',1,'lm::Texture::Texture()']]],
+  ['todegrees',['toDegrees',['../classlm_1_1_angle.html#a436d279d2f5eed0a1845732ec29dbdc9',1,'lm::Angle']]],
+  ['toradians',['toRadians',['../classlm_1_1_angle.html#a6f1215a11cb615f3f4f89062de675b17',1,'lm::Angle']]],
+  ['toturns',['toTurns',['../classlm_1_1_angle.html#a3ca7aefdb77bbe0eb7302315fba15b0e',1,'lm::Angle']]],
+  ['transition',['transition',['../classlm_1_1_core.html#a30608d0fbc12fe5886609af368933f41',1,'lm::Core']]],
+  ['translate',['translate',['../namespacelm.html#a8860990d6a92e4e6b51c0372f79b0b6b',1,'lm::translate(Matrix4f &amp;matrix, GLfloat x, GLfloat y, GLfloat z)'],['../namespacelm.html#ae489667fe4942966f94759637849d099',1,'lm::translate(Matrix4f &amp;matrix, Vector3f vec)']]],
+  ['turns',['turns',['../classlm_1_1_angle.html#ad33a3f0dd49283ac542af6f8f412afcb',1,'lm::Angle']]]
 ];

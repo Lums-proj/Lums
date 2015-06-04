@@ -52,16 +52,30 @@ namespace lm
     /**
      * @endcond
      */
+
+    /**
+     * @brief A class representing a square matrix
+     * @tparam N The matrix dimension
+     * @tparam T The matrix type
+     */
     template <std::size_t N, typename T>
     class Matrix
     {
     public:
+        /**
+         * Create a null matrix
+         */
         Matrix()
         : _data()
         {
 
         }
 
+        /**
+         * Multiply a matrix
+         * @param rhs The other matrix
+         * @return Self
+         */
         Matrix<N, T>&
         operator*=(const Matrix<N, T>& rhs)
         {
@@ -69,30 +83,52 @@ namespace lm
             return *this;
         }
 
+        /**
+         * Get a proxy line
+         * @param i The line index
+         * @return A matrix line
+         */
         internal::MatrixHelper<N, T>
         operator[](std::size_t i)
         {
             return internal::MatrixHelper<N, T>(_data + i * N);
         }
 
+        /**
+         * Get a proxy line
+         * @param i The line index
+         * @return A matrix line
+         */
         const internal::MatrixHelper<N, const T>
         operator[](std::size_t i) const
         {
             return internal::MatrixHelper<N, const T>(_data + i * N);
         }
 
+        /**
+         * Get a raw buffer from the matrix
+         * @return The raw buffer
+         */
         T*
         data()
         {
             return _data;
         }
 
+        /**
+         * Get a raw buffer from the matrix
+         * @return The raw buffer
+         */
         const T*
         data() const
         {
             return _data;
         }
 
+        /**
+         * Get the identity matrix
+         * @return The identity matrix
+         */
         static Matrix<N, T>
         identity()
         {
@@ -107,6 +143,12 @@ namespace lm
         T   _data[N * N];
     };
 
+    /**
+     * Multiply two matrices
+     * @param lhs The left matrix
+     * @param rhs The right matrix
+     * @return The product of the matrices
+     */
     template <std::size_t N, typename T>
     Matrix<N, T>
     operator*(const Matrix<N, T>& lhs, const Matrix<N, T>& rhs)
@@ -124,6 +166,12 @@ namespace lm
         return m;
     }
 
+    /**
+     * Multiply a matrix and a scalar
+     * @param lhs The matrix
+     * @param rhs The scalar
+     * @return The product
+     */
     template <std::size_t N, typename T>
     Matrix<N, T>
     operator*(const Matrix<N, T>& lhs, T rhs)
@@ -138,6 +186,12 @@ namespace lm
         return m;
     }
 
+    /**
+     * Multiply a matrix and a scalar
+     * @param lhs The scalar
+     * @param rhs The matrix
+     * @return The product
+     */
     template <std::size_t N, typename T>
     Matrix<N, T>
     operator*(T lhs, const Matrix<N, T>& rhs)
@@ -152,6 +206,9 @@ namespace lm
         return m;
     }
 
+    /**
+     * A 4x4 float matrix
+     */
     using Matrix4f = Matrix<4, float>;
 }
 

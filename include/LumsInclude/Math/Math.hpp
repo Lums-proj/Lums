@@ -18,6 +18,12 @@
 
 namespace lm
 {
+    /**
+     * Compute the square distance between two points
+     * @param v1 The first point
+     * @param v2 The second point
+     * @return The square distance between two points
+     */
     template <std::size_t N, typename T>
     float
     squareDist(const Vector<N, T>& v1, const Vector<N, T>& v2)
@@ -33,6 +39,12 @@ namespace lm
         return d;
     }
 
+    /**
+     * Compute the distance between two points
+     * @param v1 The first point
+     * @param v2 The second point
+     * @return The distance between two points
+     */
     template <std::size_t N, typename T>
     float
     dist(const Vector<N, T>& v1, const Vector<N, T>& v2)
@@ -40,6 +52,11 @@ namespace lm
         return std::sqrt(squareDist(v1, v2));
     }
 
+    /**
+     * Compute the square length of a vector
+     * @param v1 The vector
+     * @return The square length of the vector
+     */
     template <std::size_t N, typename T>
     float
     squareLength(const Vector<N, T>& vect)
@@ -55,6 +72,11 @@ namespace lm
         return l;
     }
 
+    /**
+     * Compute the length of a vector
+     * @param v1 The vector
+     * @return The length of the vector
+     */
     template <std::size_t N, typename T>
     float
     length(const Vector<N, T>& vect)
@@ -62,6 +84,11 @@ namespace lm
         return std::sqrt(squareLength(vect));
     }
 
+    /**
+     * Compute the normal of a vector
+     * @param v1 The vector
+     * @return The normal of the vector
+     */
     template <std::size_t N, typename T>
     Vector<N, T>
     normal(const Vector<N, T>& vect)
@@ -74,6 +101,12 @@ namespace lm
         return v;
     }
 
+    /**
+     * Compute the cross product between two vectors
+     * @param u The first vector
+     * @param v The second vector
+     * @return The cross product between two vectors
+     */
     template <typename T>
     Vector3<T>
     cross(const Vector3<T>& u, const Vector3<T>&v)
@@ -86,6 +119,12 @@ namespace lm
         return vect;
     }
 
+    /**
+     * Compute the dot product between two vectors
+     * @param lhs The first vector
+     * @param rhs The second vector
+     * @return The dot product between two vectors
+     */
     template <std::size_t N, typename T>
     T
     dot(const Vector<N, T>& lhs, const Vector<N, T>& rhs)
@@ -97,6 +136,11 @@ namespace lm
         return val;
     }
 
+    /**
+     * Check wether a vector is the null vector
+     * @param vect The vector
+     * @return True if the vector is null
+     */
     template <std::size_t N, typename T>
     bool
     null(const Vector<N, T>& vect)

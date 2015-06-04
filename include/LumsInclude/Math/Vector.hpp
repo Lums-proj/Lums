@@ -117,8 +117,11 @@ namespace lm
     /**
      * @endcond
      */
+
     /**
-     * This class represents a Vector.
+     * @brief A class representing a Vector.
+     * @tparam N The vector dimension
+     * @tparam T The vector type
      */
     template <std::size_t N, typename T>
     class Vector : public internal::VectorData<N, T>
@@ -135,18 +138,34 @@ namespace lm
                 this->_data[i] = value;
         }
 
+        /**
+         * Construct a vector from a batch of values
+         * @param a The first value
+         * @param b The second value
+         * @param values The remaining values
+         */
         template <typename A, typename B, typename... Types>
         Vector(A a, B b, Types... values)
         {
             _fill<N, A, B, Types...>(a, b, values...);
         }
 
+        /**
+         * Get a value from the vector
+         * @param i The index
+         * @return A value
+         */
         T&
         operator[](std::size_t i)
         {
             return this->_data[i];
         }
 
+        /**
+         * Get a value from the vector
+         * @param i The index
+         * @return A value
+         */
         constexpr const T&
         operator[](std::size_t i) const
         {
@@ -170,6 +189,12 @@ namespace lm
         }
     };
 
+    /**
+     * Add and assign vectors
+     * @param lhs The first vector
+     * @param rhs The second vector
+     * @return The first vector
+     */
     template <std::size_t N, typename T>
     Vector<N, T>&
     operator+=(Vector<N, T>& lhs, const Vector<N, T>& rhs)
@@ -179,6 +204,12 @@ namespace lm
         return lhs;
     }
 
+    /**
+     * Substract and assign vectors
+     * @param lhs The first vector
+     * @param rhs The second vector
+     * @return The first vector
+     */
     template <std::size_t N, typename T>
     Vector<N, T>&
     operator-=(Vector<N, T>& lhs, const Vector<N, T>& rhs)
@@ -188,6 +219,12 @@ namespace lm
         return lhs;
     }
 
+    /**
+     * Multiply and assign a vector and a scalar
+     * @param lhs The vector
+     * @param rhs The scalar
+     * @return The vector
+     */
     template <std::size_t N, typename T, typename U>
     Vector<N, T>&
     operator*=(Vector<N, T>& lhs, U rhs)
@@ -197,6 +234,12 @@ namespace lm
         return lhs;
     }
 
+    /**
+     * Divide and assign a vector and a scalar
+     * @param lhs The vector
+     * @param rhs The scalar
+     * @return The vector
+     */
     template <std::size_t N, typename T, typename U>
     Vector<N, T>&
     operator/=(Vector<N, T>& lhs, U rhs)
@@ -206,6 +249,12 @@ namespace lm
         return lhs;
     }
 
+    /**
+     * Add vectors
+     * @param lhs The first vector
+     * @param rhs The second vector
+     * @return The sum
+     */
     template <std::size_t N, typename T>
     Vector<N, T>
     operator+(const Vector<N, T>& lhs, const Vector<N, T>& rhs)
@@ -216,6 +265,12 @@ namespace lm
         return vec;
     }
 
+    /**
+     * Substract vectors
+     * @param lhs The first vector
+     * @param rhs The second vector
+     * @return The difference
+     */
     template <std::size_t N, typename T>
     Vector<N, T>
     operator-(const Vector<N, T>& lhs, const Vector<N, T>& rhs)
@@ -226,6 +281,12 @@ namespace lm
         return vec;
     }
 
+    /**
+     * Multiply a vector and a scalar
+     * @param lhs The vector
+     * @param rhs The scalar
+     * @return The product
+     */
     template <std::size_t N, typename T>
     Vector<N, T>
     operator*(const Vector<N, T>& lhs, float rhs)
@@ -236,6 +297,12 @@ namespace lm
         return vec;
     }
 
+    /**
+     * Divide and assign a vector and a scalar
+     * @param lhs The vector
+     * @param rhs The scalar
+     * @return The quotient
+     */
     template <std::size_t N, typename T>
     Vector<N, T>
     operator/(const Vector<N, T>& lhs, float rhs)
@@ -246,6 +313,11 @@ namespace lm
         return vec;
     }
 
+    /**
+     * Unary plus
+     * @param vector A vector
+     * @return The same vector
+     */
     template <std::size_t N, typename T>
     Vector<N, T>
     operator+(const Vector<N, T>& vect)
@@ -255,6 +327,11 @@ namespace lm
         return v;
     }
 
+    /**
+     * Unary minus
+     * @param vector A vector
+     * @return The opposite vector
+     */
     template <std::size_t N, typename T>
     Vector<N, T>
     operator-(const Vector<N, T>& vect)
@@ -266,23 +343,74 @@ namespace lm
         return v;
     }
 
+    /**
+     * @cond
+     */
     template <typename T> using Vector2 = Vector<2, T>;
     template <typename T> using Vector3 = Vector<3, T>;
     template <typename T> using Vector4 = Vector<4, T>;
+    /**
+     * @endcond
+     */
 
+    /**
+     * A 2D vector of floats
+     */
     using Vector2f = Vector2<float>;
+
+    /**
+     * A 2D vector of ints
+     */
     using Vector2i = Vector2<int>;
+
+    /**
+     * A 2D vector of bools
+     */
     using Vector2b = Vector2<bool>;
+
+    /**
+     * A 2D vector of angles
+     */
     using Vector2a = Vector2<Angle>;
 
+    /**
+     * A 3D vector of floats
+     */
     using Vector3f = Vector3<float>;
+
+    /**
+     * A 3D vector of ints
+     */
     using Vector3i = Vector3<int>;
+
+    /**
+     * A 3D vector of bools
+     */
     using Vector3b = Vector3<bool>;
+
+    /**
+     * A 3D vector of angles
+     */
     using Vector3a = Vector3<Angle>;
 
+    /**
+     * A 4D vector of floats
+     */
     using Vector4f = Vector4<float>;
+
+    /**
+     * A 4D vector of ints
+     */
     using Vector4i = Vector4<int>;
+
+    /**
+     * A 4D vector of bools
+     */
     using Vector4b = Vector4<bool>;
+
+    /**
+     * A 4D vector of angles
+     */
     using Vector4a = Vector4<Angle>;
 }
 
