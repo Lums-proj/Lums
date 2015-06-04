@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>Lums: include/Lums/Event.hpp Source File</title>
+<title>Lums: include/LumsInclude/Graphics/Event.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -81,7 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_ee46de4408f2d7e776fd1711f5157af0.html">Lums</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_18d78382d585ac1f211bd27199cd5d13.html">include</a></li><li class="navelem"><a class="el" href="dir_28c63c3c924facb82e9ff3d293e97377.html">LumsInclude</a></li><li class="navelem"><a class="el" href="dir_5e6da61d9b9fdf20060fbeaf9557ef5e.html">Graphics</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -105,31 +106,86 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#ifndef LUMS_EVENT_HPP</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#define LUMS_EVENT_HPP</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;Lums/Key.hpp&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacelm.html">lm</a></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structlm_1_1_event.html">   21</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structlm_1_1_event.html">Event</a></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keyword">enum class</span> Type</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            None = 0,</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;            KeyDown,</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;            KeyUp</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        };</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        Event::Type type;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keyword">union</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        {</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            Key     key;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        };</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    };</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="namespacelm_html"><div class="ttname"><a href="namespacelm.html">lm</a></div><div class="ttdef"><b>Definition:</b> Angle.hpp:26</div></div>
-<div class="ttc" id="structlm_1_1_event_html"><div class="ttname"><a href="structlm_1_1_event.html">lm::Event</a></div><div class="ttdef"><b>Definition:</b> Event.hpp:21</div></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;LumsInclude/Graphics/Key.hpp&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;LumsInclude/Singleton.hpp&gt;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacelm.html">lm</a></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;{</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="structlm_1_1_event.html">   26</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structlm_1_1_event.html">Event</a></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    {</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="structlm_1_1_event.html#acc49e2e1bb205fdeb5fdf04be1c0bd1d">   31</a></span>&#160;        <span class="keyword">enum class</span> <a class="code" href="structlm_1_1_event.html#acc49e2e1bb205fdeb5fdf04be1c0bd1d">Type</a></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            None = 0,</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            GamepadConnected,</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            GamepadDisconnected,</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            KeyDown,</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            KeyUp,</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            ButtonDown,</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            ButtonUp,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            LeftMouseDown,</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            LeftMouseUp,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            RightMouseDown,</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            RightMouseUp,</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            MouseMove,</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            LeftStick,</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            RightStick,</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            LeftTrigger,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            RightTrigger,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        };</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="structlm_1_1_event.html#a80b4cacf36b1799a0f4506b74e26374c">   54</a></span>&#160;        <a class="code" href="structlm_1_1_event.html#acc49e2e1bb205fdeb5fdf04be1c0bd1d">Event::Type</a> <a class="code" href="structlm_1_1_event.html#a80b4cacf36b1799a0f4506b74e26374c">type</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keyword">union</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        {</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="structlm_1_1_event.html#a7a1f916f51a774726e9fcdb26e768dfb">   64</a></span>&#160;            <a class="code" href="namespacelm.html#a8cf74456b1524d1725f02e0f1a88e0ba">Key</a>     <a class="code" href="structlm_1_1_event.html#a7a1f916f51a774726e9fcdb26e768dfb">key</a>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <span class="keyword">struct</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            {</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="structlm_1_1_event.html#a7c78141b5bc1c37d696d96334606a060">   74</a></span>&#160;                uintptr_t <a class="code" href="structlm_1_1_event.html#a7c78141b5bc1c37d696d96334606a060">id</a>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                <span class="keyword">union</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                {</div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="structlm_1_1_event.html#a4024576857983fe0b6ce0eb0aeb0ff57">   84</a></span>&#160;                    <span class="keywordtype">int</span>     <a class="code" href="structlm_1_1_event.html#a4024576857983fe0b6ce0eb0aeb0ff57">button</a>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="structlm_1_1_event.html#a468b99c72c4eb045930a714696d5382e">   89</a></span>&#160;                    <span class="keywordtype">float</span>   <a class="code" href="structlm_1_1_event.html#a468b99c72c4eb045930a714696d5382e">trigger</a>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;                    <span class="keyword">struct</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;                    {</div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="structlm_1_1_event.html#a0cd456b9119dd8041035700f27d8dbf8">   99</a></span>&#160;                        <span class="keywordtype">float</span> <a class="code" href="structlm_1_1_event.html#a0cd456b9119dd8041035700f27d8dbf8">x</a>;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="structlm_1_1_event.html#a92ff5da71d0d83f4854b203535a44866">  104</a></span>&#160;                        <span class="keywordtype">float</span> <a class="code" href="structlm_1_1_event.html#a92ff5da71d0d83f4854b203535a44866">y</a>;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                    } <a class="code" href="structlm_1_1_event.html#a794f9ca3dbb63629cdb6db86db7438d8">stick</a>;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                };</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;            } <a class="code" href="structlm_1_1_event.html#a8d2d17b9e197dc8c452aab15551ad79f">gamepad</a>;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            <span class="keyword">struct</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;            {</div>
+<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="structlm_1_1_event.html#a1d7db803c9b019a8155105d07de815fa">  117</a></span>&#160;                <span class="keywordtype">int</span> <a class="code" href="structlm_1_1_event.html#a1d7db803c9b019a8155105d07de815fa">x</a>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
+<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="structlm_1_1_event.html#a33c0fe9ed827a94c99fbc62ad4927f39">  122</a></span>&#160;                <span class="keywordtype">int</span> <a class="code" href="structlm_1_1_event.html#a33c0fe9ed827a94c99fbc62ad4927f39">y</a>;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;            } <a class="code" href="structlm_1_1_event.html#a97a8d7e7424670d205e2a7b2f43702ab">mouse</a>;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        };</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    };</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;}</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="structlm_1_1_event_html_a33c0fe9ed827a94c99fbc62ad4927f39"><div class="ttname"><a href="structlm_1_1_event.html#a33c0fe9ed827a94c99fbc62ad4927f39">lm::Event::y</a></div><div class="ttdeci">int y</div><div class="ttdef"><b>Definition:</b> Event.hpp:122</div></div>
+<div class="ttc" id="structlm_1_1_event_html_a468b99c72c4eb045930a714696d5382e"><div class="ttname"><a href="structlm_1_1_event.html#a468b99c72c4eb045930a714696d5382e">lm::Event::trigger</a></div><div class="ttdeci">float trigger</div><div class="ttdef"><b>Definition:</b> Event.hpp:89</div></div>
+<div class="ttc" id="structlm_1_1_event_html_a1d7db803c9b019a8155105d07de815fa"><div class="ttname"><a href="structlm_1_1_event.html#a1d7db803c9b019a8155105d07de815fa">lm::Event::x</a></div><div class="ttdeci">int x</div><div class="ttdef"><b>Definition:</b> Event.hpp:117</div></div>
+<div class="ttc" id="structlm_1_1_event_html_a794f9ca3dbb63629cdb6db86db7438d8"><div class="ttname"><a href="structlm_1_1_event.html#a794f9ca3dbb63629cdb6db86db7438d8">lm::Event::stick</a></div><div class="ttdeci">struct lm::Event::@0::@2::@4::@6 stick</div></div>
+<div class="ttc" id="structlm_1_1_event_html_a4024576857983fe0b6ce0eb0aeb0ff57"><div class="ttname"><a href="structlm_1_1_event.html#a4024576857983fe0b6ce0eb0aeb0ff57">lm::Event::button</a></div><div class="ttdeci">int button</div><div class="ttdef"><b>Definition:</b> Event.hpp:84</div></div>
+<div class="ttc" id="structlm_1_1_event_html_a0cd456b9119dd8041035700f27d8dbf8"><div class="ttname"><a href="structlm_1_1_event.html#a0cd456b9119dd8041035700f27d8dbf8">lm::Event::x</a></div><div class="ttdeci">float x</div><div class="ttdef"><b>Definition:</b> Event.hpp:99</div></div>
+<div class="ttc" id="structlm_1_1_event_html_a7a1f916f51a774726e9fcdb26e768dfb"><div class="ttname"><a href="structlm_1_1_event.html#a7a1f916f51a774726e9fcdb26e768dfb">lm::Event::key</a></div><div class="ttdeci">Key key</div><div class="ttdef"><b>Definition:</b> Event.hpp:64</div></div>
+<div class="ttc" id="structlm_1_1_event_html_a8d2d17b9e197dc8c452aab15551ad79f"><div class="ttname"><a href="structlm_1_1_event.html#a8d2d17b9e197dc8c452aab15551ad79f">lm::Event::gamepad</a></div><div class="ttdeci">struct lm::Event::@0::@2 gamepad</div></div>
+<div class="ttc" id="structlm_1_1_event_html_a92ff5da71d0d83f4854b203535a44866"><div class="ttname"><a href="structlm_1_1_event.html#a92ff5da71d0d83f4854b203535a44866">lm::Event::y</a></div><div class="ttdeci">float y</div><div class="ttdef"><b>Definition:</b> Event.hpp:104</div></div>
+<div class="ttc" id="namespacelm_html_a8cf74456b1524d1725f02e0f1a88e0ba"><div class="ttname"><a href="namespacelm.html#a8cf74456b1524d1725f02e0f1a88e0ba">lm::Key</a></div><div class="ttdeci">Key</div><div class="ttdoc">A class representing a simple key via its scancode. </div><div class="ttdef"><b>Definition:</b> Key.hpp:22</div></div>
+<div class="ttc" id="structlm_1_1_event_html_a80b4cacf36b1799a0f4506b74e26374c"><div class="ttname"><a href="structlm_1_1_event.html#a80b4cacf36b1799a0f4506b74e26374c">lm::Event::type</a></div><div class="ttdeci">Event::Type type</div><div class="ttdef"><b>Definition:</b> Event.hpp:54</div></div>
+<div class="ttc" id="structlm_1_1_event_html_a97a8d7e7424670d205e2a7b2f43702ab"><div class="ttname"><a href="structlm_1_1_event.html#a97a8d7e7424670d205e2a7b2f43702ab">lm::Event::mouse</a></div><div class="ttdeci">struct lm::Event::@0::@3 mouse</div></div>
+<div class="ttc" id="structlm_1_1_event_html_a7c78141b5bc1c37d696d96334606a060"><div class="ttname"><a href="structlm_1_1_event.html#a7c78141b5bc1c37d696d96334606a060">lm::Event::id</a></div><div class="ttdeci">uintptr_t id</div><div class="ttdef"><b>Definition:</b> Event.hpp:74</div></div>
+<div class="ttc" id="namespacelm_html"><div class="ttname"><a href="namespacelm.html">lm</a></div><div class="ttdoc">The Lums namespace. </div><div class="ttdef"><b>Definition:</b> Application.hpp:17</div></div>
+<div class="ttc" id="structlm_1_1_event_html_acc49e2e1bb205fdeb5fdf04be1c0bd1d"><div class="ttname"><a href="structlm_1_1_event.html#acc49e2e1bb205fdeb5fdf04be1c0bd1d">lm::Event::Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> Event.hpp:31</div></div>
+<div class="ttc" id="structlm_1_1_event_html"><div class="ttname"><a href="structlm_1_1_event.html">lm::Event</a></div><div class="ttdoc">A struct describing an event. </div><div class="ttdef"><b>Definition:</b> Event.hpp:26</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->

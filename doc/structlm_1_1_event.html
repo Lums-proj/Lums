@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -64,6 +65,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
+      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -83,7 +85,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><b>lm</b></li><li class="navelem"><a class="el" href="structlm_1_1_event.html">Event</a></li>  </ul>
+<li class="navelem"><a class="el" href="namespacelm.html">lm</a></li><li class="navelem"><a class="el" href="structlm_1_1_event.html">Event</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -95,30 +97,270 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">lm::Event Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A struct describing an event.  
+ <a href="structlm_1_1_event.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_event_8hpp_source.html">Event.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:acc49e2e1bb205fdeb5fdf04be1c0bd1d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc49e2e1bb205fdeb5fdf04be1c0bd1d"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>Type</b> { <b>None</b> = 0, 
+<tr class="memitem:acc49e2e1bb205fdeb5fdf04be1c0bd1d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlm_1_1_event.html#acc49e2e1bb205fdeb5fdf04be1c0bd1d">Type</a> { <br />
+&#160;&#160;<b>None</b> = 0, 
+<b>GamepadConnected</b>, 
+<b>GamepadDisconnected</b>, 
 <b>KeyDown</b>, 
-<b>KeyUp</b>
+<br />
+&#160;&#160;<b>KeyUp</b>, 
+<b>ButtonDown</b>, 
+<b>ButtonUp</b>, 
+<b>LeftMouseDown</b>, 
+<br />
+&#160;&#160;<b>LeftMouseUp</b>, 
+<b>RightMouseDown</b>, 
+<b>RightMouseUp</b>, 
+<b>MouseMove</b>, 
+<br />
+&#160;&#160;<b>LeftStick</b>, 
+<b>RightStick</b>, 
+<b>LeftTrigger</b>, 
+<b>RightTrigger</b>
+<br />
  }</td></tr>
 <tr class="separator:acc49e2e1bb205fdeb5fdf04be1c0bd1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a80b4cacf36b1799a0f4506b74e26374c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80b4cacf36b1799a0f4506b74e26374c"></a>
-Event::Type&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
+<tr class="memitem:a80b4cacf36b1799a0f4506b74e26374c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structlm_1_1_event.html#acc49e2e1bb205fdeb5fdf04be1c0bd1d">Event::Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlm_1_1_event.html#a80b4cacf36b1799a0f4506b74e26374c">type</a></td></tr>
 <tr class="separator:a80b4cacf36b1799a0f4506b74e26374c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb5cac7bc2bccd22bfb754b4af181e56"><td class="memItemLeft" ><a class="anchor" id="abb5cac7bc2bccd22bfb754b4af181e56"></a>
-union {</td></tr>
-<tr class="memitem:ad312e8cec56faa6289348cd8548f9007"><td class="memItemLeft" >
-&#160;&#160;&#160;Key&#160;&#160;&#160;<b>key</b></td></tr>
+<tr class="memitem:abb5cac7bc2bccd22bfb754b4af181e56"><td class="memItemLeft" >union {</td></tr>
+<tr class="memitem:ad312e8cec56faa6289348cd8548f9007"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="namespacelm.html#a8cf74456b1524d1725f02e0f1a88e0ba">Key</a>&#160;&#160;&#160;<a class="el" href="structlm_1_1_event.html#a7a1f916f51a774726e9fcdb26e768dfb">key</a></td></tr>
 <tr class="separator:ad312e8cec56faa6289348cd8548f9007"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f2441b845b94c89d2672112381246fa"><td class="memItemLeft" >&#160;&#160;&#160;struct {</td></tr>
+<tr class="memitem:aacd66a2f5dc6c85c6f6905648dbe841e"><td class="memItemLeft" >&#160;&#160;&#160;&#160;&#160;&#160;uintptr_t&#160;&#160;&#160;<a class="el" href="structlm_1_1_event.html#a7c78141b5bc1c37d696d96334606a060">id</a></td></tr>
+<tr class="separator:aacd66a2f5dc6c85c6f6905648dbe841e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af64b8aa32aa4dda36663d2e55b1f4495"><td class="memItemLeft" >&#160;&#160;&#160;&#160;&#160;&#160;union {</td></tr>
+<tr class="memitem:a900a642f5f669c2541e72f69a14b5f86"><td class="memItemLeft" >&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;int&#160;&#160;&#160;<a class="el" href="structlm_1_1_event.html#a4024576857983fe0b6ce0eb0aeb0ff57">button</a></td></tr>
+<tr class="separator:a900a642f5f669c2541e72f69a14b5f86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afef20edeaabb4bdd799165ba052a01df"><td class="memItemLeft" >&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;float&#160;&#160;&#160;<a class="el" href="structlm_1_1_event.html#a468b99c72c4eb045930a714696d5382e">trigger</a></td></tr>
+<tr class="separator:afef20edeaabb4bdd799165ba052a01df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a642e0cbd45676049ded3743dc52b682b"><td class="memItemLeft" >&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;struct {</td></tr>
+<tr class="memitem:a8dedfabac1b3f87b48eac6efdcc1653a"><td class="memItemLeft" >&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;float&#160;&#160;&#160;<a class="el" href="structlm_1_1_event.html#a0cd456b9119dd8041035700f27d8dbf8">x</a></td></tr>
+<tr class="separator:a8dedfabac1b3f87b48eac6efdcc1653a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63ed764acd59c36c87f56c9f2f1bc37b"><td class="memItemLeft" >&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;float&#160;&#160;&#160;<a class="el" href="structlm_1_1_event.html#a92ff5da71d0d83f4854b203535a44866">y</a></td></tr>
+<tr class="separator:a63ed764acd59c36c87f56c9f2f1bc37b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a642e0cbd45676049ded3743dc52b682b"><td class="memItemLeft" valign="top">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;}&#160;&#160;&#160;<a class="el" href="structlm_1_1_event.html#a794f9ca3dbb63629cdb6db86db7438d8">stick</a></td></tr>
+<tr class="separator:a642e0cbd45676049ded3743dc52b682b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af64b8aa32aa4dda36663d2e55b1f4495"><td class="memItemLeft" valign="top">&#160;&#160;&#160;&#160;&#160;&#160;}&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
+<tr class="separator:af64b8aa32aa4dda36663d2e55b1f4495"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f2441b845b94c89d2672112381246fa"><td class="memItemLeft" valign="top">&#160;&#160;&#160;}&#160;&#160;&#160;<a class="el" href="structlm_1_1_event.html#a8d2d17b9e197dc8c452aab15551ad79f">gamepad</a></td></tr>
+<tr class="separator:a1f2441b845b94c89d2672112381246fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdf254b9aea73e5e646840af648301f4"><td class="memItemLeft" >&#160;&#160;&#160;struct {</td></tr>
+<tr class="memitem:ab6f288ec79e70f7d275ff74c3edf45ec"><td class="memItemLeft" >&#160;&#160;&#160;&#160;&#160;&#160;int&#160;&#160;&#160;<a class="el" href="structlm_1_1_event.html#a1d7db803c9b019a8155105d07de815fa">x</a></td></tr>
+<tr class="separator:ab6f288ec79e70f7d275ff74c3edf45ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0cbf75580143234e574f9cc64d38ccd"><td class="memItemLeft" >&#160;&#160;&#160;&#160;&#160;&#160;int&#160;&#160;&#160;<a class="el" href="structlm_1_1_event.html#a33c0fe9ed827a94c99fbc62ad4927f39">y</a></td></tr>
+<tr class="separator:af0cbf75580143234e574f9cc64d38ccd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdf254b9aea73e5e646840af648301f4"><td class="memItemLeft" valign="top">&#160;&#160;&#160;}&#160;&#160;&#160;<a class="el" href="structlm_1_1_event.html#a97a8d7e7424670d205e2a7b2f43702ab">mouse</a></td></tr>
+<tr class="separator:abdf254b9aea73e5e646840af648301f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb5cac7bc2bccd22bfb754b4af181e56"><td class="memItemLeft" valign="top">};&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
 <tr class="separator:abb5cac7bc2bccd22bfb754b4af181e56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A struct describing an event. </p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="acc49e2e1bb205fdeb5fdf04be1c0bd1d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="structlm_1_1_event.html#acc49e2e1bb205fdeb5fdf04be1c0bd1d">lm::Event::Type</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>An enum describing the event type </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="abb5cac7bc2bccd22bfb754b4af181e56"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">union { ... } </td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A tagged union for the event data </p>
+
+</div>
+</div>
+<a class="anchor" id="a4024576857983fe0b6ce0eb0aeb0ff57"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int lm::Event::button</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The button id </p>
+
+</div>
+</div>
+<a class="anchor" id="a8d2d17b9e197dc8c452aab15551ad79f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct { ... }   lm::Event::gamepad</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A struct describing the gamepad state </p>
+
+</div>
+</div>
+<a class="anchor" id="a7c78141b5bc1c37d696d96334606a060"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uintptr_t lm::Event::id</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The gamepad id </p>
+
+</div>
+</div>
+<a class="anchor" id="a7a1f916f51a774726e9fcdb26e768dfb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacelm.html#a8cf74456b1524d1725f02e0f1a88e0ba">Key</a> lm::Event::key</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The event key </p>
+
+</div>
+</div>
+<a class="anchor" id="a97a8d7e7424670d205e2a7b2f43702ab"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct { ... }   lm::Event::mouse</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A struct describing the mouse </p>
+
+</div>
+</div>
+<a class="anchor" id="a794f9ca3dbb63629cdb6db86db7438d8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct { ... }   lm::Event::stick</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A struct describing a stick </p>
+
+</div>
+</div>
+<a class="anchor" id="a468b99c72c4eb045930a714696d5382e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float lm::Event::trigger</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The normalized trigger value </p>
+
+</div>
+</div>
+<a class="anchor" id="a80b4cacf36b1799a0f4506b74e26374c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structlm_1_1_event.html#acc49e2e1bb205fdeb5fdf04be1c0bd1d">Event::Type</a> lm::Event::type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The event type </p>
+
+</div>
+</div>
+<a class="anchor" id="a0cd456b9119dd8041035700f27d8dbf8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float lm::Event::x</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The normalized stick direction on the x axis </p>
+
+</div>
+</div>
+<a class="anchor" id="a1d7db803c9b019a8155105d07de815fa"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int lm::Event::x</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The cursor x position </p>
+
+</div>
+</div>
+<a class="anchor" id="a92ff5da71d0d83f4854b203535a44866"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float lm::Event::y</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The normalized stick direction on the y axis </p>
+
+</div>
+</div>
+<a class="anchor" id="a33c0fe9ed827a94c99fbc62ad4927f39"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int lm::Event::y</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The cursor y position </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>include/Lums/<a class="el" href="_event_8hpp_source.html">Event.hpp</a></li>
+<li>include/LumsInclude/Graphics/<a class="el" href="_event_8hpp_source.html">Event.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->

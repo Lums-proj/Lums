@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['core',['Core',['../classlm_1_1_core.html',1,'lm']]]
+  ['baseprovider',['BaseProvider',['../classlm_1_1_base_provider.html',1,'lm']]]
 ];

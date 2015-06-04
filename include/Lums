@@ -1,0 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                                            */
+/*    Lums                                           oooooo       oooooo      */
+/*                                                 oooooooooo   oooooooooo    */
+/*                                                         o%%%%%o            */
+/*                                                         %:::::%            */
+/*                                                        %:::::::%           */
+/*    This file is part of the                             %:::::%            */
+/*    Lums library.                                         %%%%%             */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef LUMS
+#define LUMS
+
+#include <LumsInclude/Lums.hpp>
+
+#endif

@@ -13,7 +13,7 @@
 
 #include <iostream>
 #include "NanoTest.hpp"
-#include <Lums/Lums.hpp>
+#include <Lums>
 
 int main(int argc, char**argv)
 {

@@ -1,0 +1,5 @@
+file(GLOB SRC "*.cpp")
+file(GLOB SHADERS "*.glsl")
+add_executable(05_Cube_Polaroid ${SRC})
+file(COPY ${SHADERS} DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+target_link_libraries(05_Cube_Polaroid Lums_shared)

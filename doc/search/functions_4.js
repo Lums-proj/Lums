@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['font',['Font',['../classlm_1_1_font.html#a4e6a119206f505522100221c1fafde45',1,'lm::Font']]],
-  ['forwardevent',['forwardEvent',['../classlm_1_1_game_state.html#a30d07b057810291748e5cec25a4dabd1',1,'lm::GameState']]],
-  ['forwardrender',['forwardRender',['../classlm_1_1_game_state.html#acc56b5de03b01dd820595808402e5f61',1,'lm::GameState']]],
-  ['forwardupdate',['forwardUpdate',['../classlm_1_1_game_state.html#aa99deca228477f7c8465356db852b56b',1,'lm::GameState']]],
-  ['fromfile',['fromFile',['../classlm_1_1_image.html#a04e888d8fec48d95e4f588daf4ffa61b',1,'lm::Image']]]
+  ['enablemodule',['enableModule',['../namespacelm.html#a6300819b56fea85b68ea09d8435e380d',1,'lm']]],
+  ['end',['end',['../classlm_1_1_sprite_batch.html#a3fc5cd15f8044233bf2c5d984180c41f',1,'lm::SpriteBatch']]]
 ];

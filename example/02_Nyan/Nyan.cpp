@@ -11,13 +11,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <Lums/Lums.hpp>
+#include <Lums>
+
+static void
+resizeApp(float scale)
+{
+    auto& window = lm::Core::instance().window();
+    auto& tp = lm::TextureProvider::instance();
+    auto& ip = lm::ImageProvider::instance();
+
+    ip.set(0).setScale(scale);
+    window.resize(400 * scale, 400 * scale);
+    tp.reloadAll();
+}
 
 class Nyan : public lm::GameState
 {
 public:
     Nyan()
-    : _linear(true)
+    : _scale(1.f)
     {
         
     }
@@ -25,13 +37,10 @@ public:
     void
     load()
     {
-        glMatrixMode(GL_PROJECTION);
-        glOrtho(0, 400, 400, 0, -1, 1);
-        glMatrixMode(GL_MODELVIEW);
-        glEnable(GL_TEXTURE_2D);
-        _image.loadFile("Nyan.png");
-        _sprite.setImage(_image);
-        _sprite.setScale(2);
+        auto& shader = lm::ShaderProvider::instance().get(0);
+
+        _proj = lm::ortho(0, 400, 400, 0);
+        lm::uniform(shader, "proj", _proj);
     }
 
     void
@@ -45,37 +54,63 @@ public:
     {
         if (event.type == lm::Event::Type::KeyDown)
         {
-            if (event.key == lm::Key::V)
+            if (event.key == lm::Key::Left)
             {
-                _linear = !_linear;
-                _image.linear(_linear);
+                _scale *= 0.9f;
+                resizeApp(_scale);
+            }
+            else if (event.key == lm::Key::Right)
+            {
+                _scale *= 1.1f;
+                if (_scale > 2.f)
+                    _scale = 2.f;
+                else
+                    resizeApp(_scale);
             }
             else
-                lm::Core::get().stop();
+                lm::Core::instance().stop();
         }
     }
 
     void
     render()
     {
-        lm::SpriteBatch sb;
-        
-        sb.begin();
-        sb.draw(_sprite);
-        sb.end();
+        auto& tex = lm::TextureProvider::instance().get(0);
+
+        _batch.begin();
+        _batch.draw(tex, 0, {0.f, 0.f}, {2.f, 2.f});
+        _batch.end();
     }
 
 private:
-    lm::Image   _image;
-    lm::Sprite  _sprite;
-    lm::ShaderProgram _prog;
-    bool        _linear;
+    lm::SpriteBatch     _batch;
+    lm::Matrix4f        _proj;
+    float               _scale;
 };
 
 int
 main()
 {
-    lm::Core core(400, 400, "Nyan");
+    lm::enableModule(lm::Module::All);
+
+    lm::Core& core = lm::Core::instance();
+    core.setWindow(new lm::Window(400, 400, "Nyan"));
+
+    auto& img = lm::ImageProvider::instance().set(0);
+    img.setPath("Nyan.png");
+
+    auto& tex = lm::TextureProvider::instance().set(0);
+    tex.pushAtlas(1, 1);
+    tex.setImage(img);
+
+    auto& shader = lm::ShaderProvider::instance().set(0);
+    shader.attach(lm::Shader("nyan.vert.glsl", lm::Shader::Vertex));
+    shader.attach(lm::Shader("nyan.frag.glsl", lm::Shader::Fragment));
+    shader.bindAttribLocation(lm::Vertex::Position, "pos");
+    shader.bindAttribLocation(lm::Vertex::Texture, "texcoord");
+    shader.bindAttribLocation(lm::Vertex::Color, "color");
+    shader.link();
+    shader.use();
 
     core.push<Nyan>();
     core.start();
