@@ -18,41 +18,117 @@
 #include <OpenAL/al.h>
 #include <OpenAL/alc.h>
 #include <vorbis/vorbisfile.h>
-#include <LumsInclude/Math/vector.hpp>
+#include <LumsInclude/Math/Vector.hpp>
 
 #define BUFFER_SIZE 40960
 
 namespace lm
 {
-
+    /**
+     * @cond
+     */
     namespace Audio
     {
         void    init();
     }
+    /**
+     * @endcond
+     */
 
+    /**
+     * @brief An abstract class for sounds
+     */
     class Sound
     {
     public:
-
+        /**
+         * Set the loading path for the sound
+         * @param name The file path
+         * @param resource If true, path is relative to the resource path
+         */
         void                 setPath(const std::string name, bool resource = true);
+
+        /**
+         * Load the sound
+         */
         void                 load();
+
+        /**
+         * Check wether the sound is loaded
+         * @return true if the sound is loaded, false otherwise
+         */
         bool                 loaded();
+
+        /**
+         * Unload the sound
+         */
         void                 unload();
+
+        /**
+         * Play a sound
+         * @param pos The source position
+         */
         virtual void         play(Vector3f pos = {0.f, 0.f, 0.f}) = 0;
+
+        /**
+         * Pause the sound
+         */
         virtual void         pause() = 0;
+
+        /**
+         * Stop the sound
+         */
         virtual void         stop() = 0;
-        virtual              ~Sound() { unload(); }
+        
+        virtual
+        ~Sound()
+        {
+            unload();
+        }
 
     protected:
-
+        /**
+         * Load the ogg file and set appropriate fields.
+         */
         void                loadFileOGG();
-        void                 setVolumeLimits(ALuint* source, ALfloat* maxGain, ALfloat* minGain);
-        float               _volume;
-        FILE*               _file;
-        OggVorbis_File      _stream;
-        ALenum              _format;
-        ALsizei             _sampleRate;
-        std::string         _path;
+
+        /**
+         * Set the volume range
+         * @param source The source to use
+         * @param maxGain The maximum gain
+         * @param minGain The minimum gain
+         */
+        void                setVolumeLimits(ALuint* source, ALfloat* maxGain, ALfloat* minGain);
+
+        /**
+         * The sound current volume, between 0 and 1
+         */
+        float               volume;
+
+        /**
+         * The sound file
+         */
+        FILE*               file;
+
+        /**
+         * The current sound stream
+         */
+        OggVorbis_File      stream;
+
+        /**
+         * The sound format
+         */
+        ALenum              format;
+
+        /**
+         * The sound sample rate
+         */
+        ALsizei             sampleRate;
+
+        /**
+         * The fully resolved file path
+         */
+        std::string         path;
     };
 }
 

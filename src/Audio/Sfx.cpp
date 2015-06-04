@@ -19,8 +19,8 @@ using namespace lm;
 Sfx::Sfx()
 : _sources(0)
 {
-    _file = nullptr;
-    _volume = 1.0f;
+    file = nullptr;
+    volume = 1.0f;
 }
 
 Sfx::Sfx(Sfx&& rhs)
@@ -45,18 +45,18 @@ Sfx::play(Vector3f pos)
     alGenBuffers(1, &buffer);
     alGenSources(1, &(_sources.back()));
     alSource3f(_sources.back(), AL_POSITION, pos.x, pos.y, pos.z);
-    alSourcef(_sources.back(), AL_GAIN, _volume);
+    alSourcef(_sources.back(), AL_GAIN, volume);
     std::vector<char>   bufferData;
     char array[BUFFER_SIZE];
     ALsizei bytes;
     do
     {
-        bytes = ov_read(&_stream, array, BUFFER_SIZE, 0, 2, 1, nullptr);
+        bytes = ov_read(&stream, array, BUFFER_SIZE, 0, 2, 1, nullptr);
         bufferData.insert(bufferData.end(), array, array + bytes);
     } while (bytes > 0);
-    alBufferData(buffer, _format, &bufferData[0], static_cast<ALsizei>(bufferData.size()), _sampleRate);
+    alBufferData(buffer, format, &bufferData[0], static_cast<ALsizei>(bufferData.size()), sampleRate);
     alSourcei(_sources.back(), AL_BUFFER, buffer);
-    ov_pcm_seek(&_stream, 0);
+    ov_pcm_seek(&stream, 0);
     alSourcePlay(_sources.back());
 }
 
@@ -78,7 +78,7 @@ Sfx::stop()
 }
 
 void
-Sfx::setVolume(float volume)
+Sfx::setVolume(float newVolume)
 {
     ALfloat maxGain;
     ALfloat minGain;
@@ -87,8 +87,8 @@ Sfx::setVolume(float volume)
         setVolumeLimits(&(_sources.back()), &maxGain, &minGain);
     else
         setVolumeLimits(nullptr, &maxGain, &minGain);
-    if (volume >= minGain && volume <= maxGain)
-        _volume = volume;
+    if (newVolume >= minGain && newVolume <= maxGain)
+        volume = newVolume;
     for(auto it = _sources.begin(); it != _sources.end(); ++it)
         alSourcef(*it, AL_GAIN, volume);
 }

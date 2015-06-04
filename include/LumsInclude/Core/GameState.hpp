@@ -20,7 +20,8 @@
 namespace lm
 {
     /**
-     * This class represents a GameState.
+     * @brief This class represents a GameState.
+     *
      * A GameState defines one state of your Game.
      * A state is a well-defined and encapsulated part of the game, such as
      * the Title screen, the game itself, a menu...
@@ -126,7 +127,7 @@ namespace lm
         LUMS_EXPORTED void        remove();
 
         /**
-         * Destructor.
+         * GameState dtor
          */
         LUMS_EXPORTED virtual ~GameState();
     };

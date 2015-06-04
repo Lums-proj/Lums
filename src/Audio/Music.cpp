@@ -21,8 +21,8 @@ using namespace lm;
 Music::Music()
 : _state(Music::Stopped)
 {
-    _file = nullptr;
-    _volume = 1.0f;
+    file = nullptr;
+    volume = 1.0f;
 }
 
 Music::Music(Music&& rhs)
@@ -54,7 +54,7 @@ Music::play(Vector3f pos)
         case Music::Stopped:
         {
             _state = Music::Playing;
-            std::thread    t1([this](Vector3f pos)
+            std::thread t1([this](Vector3f pos)
             {
                 streamOGG(pos);
             }, pos);
@@ -90,7 +90,7 @@ Music::state(Music::State state, std::function<void (void)> func)
 }
 
 void
-Music::setVolume(float volume)
+Music::setVolume(float newVolume)
 {
 
     std::lock_guard<std::mutex> lock(_mtx);
@@ -98,8 +98,8 @@ Music::setVolume(float volume)
     ALfloat minGain;
 
     setVolumeLimits(&_source, &maxGain, &minGain);
-    if (volume >= minGain && volume <= maxGain)
-        _volume = volume;
+    if (newVolume >= minGain && newVolume <= maxGain)
+        volume = newVolume;
     alSourcef(_source, AL_GAIN, volume);
 }
 
@@ -116,7 +116,7 @@ Music::streamOGG(Vector3f pos)
     alGenSources(1, &_source);
     alGenBuffers(NB_BUFFERS, buffers);
     alSource3f(_source, AL_POSITION, pos.x, pos.y, pos.z);
-    alSourcef(_source, AL_GAIN, _volume);
+    alSourcef(_source, AL_GAIN, volume);
     for (int i = 0; i < NB_BUFFERS; ++i)
         bufferizeOGG(buffers[i]);
     alSourceQueueBuffers(_source, NB_BUFFERS, buffers);
@@ -141,31 +141,31 @@ Music::streamOGG(Vector3f pos)
     alSourceUnqueueBuffers(_source, NB_BUFFERS, buffers);
     alDeleteBuffers(NB_BUFFERS, buffers);
     alDeleteSources(1, &_source);
-    ov_pcm_seek(&_stream, 0);
+    ov_pcm_seek(&stream, 0);
     _mtx.unlock();
 }
 
 void
 Music::bufferizeOGG(ALuint& buffer)
 {
-    std::vector<ALshort> samples(_sampleRate);
+    std::vector<ALshort> samples(sampleRate);
     ALsizei read;
     ALsizei totalRead  = 0;
-    ALsizei totalSize  = _sampleRate * sizeof(ALshort);
+    ALsizei totalSize  = sampleRate * sizeof(ALshort);
     char*   samplesPtr = reinterpret_cast<char*>(&samples[0]);
 
     while (totalRead < totalSize)
     {
-        read = ov_read(&_stream, samplesPtr + totalRead, totalSize - totalRead, 0, 2, 1, nullptr);
+        read = ov_read(&stream, samplesPtr + totalRead, totalSize - totalRead, 0, 2, 1, nullptr);
         if (read > 0)
             totalRead += read;
         else if (read == 0)
-            ov_pcm_seek(&_stream, 0);
+            ov_pcm_seek(&stream, 0);
          else    
             break;
     }
     if (totalRead > 0)
-        alBufferData(buffer, _format, &samples[0], totalRead, _sampleRate);
+        alBufferData(buffer, format, &samples[0], totalRead, sampleRate);
 }
 
 Music::~Music()

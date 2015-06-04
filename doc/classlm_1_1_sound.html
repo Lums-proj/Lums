@@ -98,71 +98,428 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">lm::Sound Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>An abstract class for sounds.  
+ <a href="classlm_1_1_sound.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_sound_8hpp_source.html">Sound.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for lm::Sound:</div>
 <div class="dyncontent">
  <div class="center">
   <img src="classlm_1_1_sound.png" usemap="#lm::Sound_map" alt=""/>
   <map id="lm::Sound_map" name="lm::Sound_map">
-<area href="classlm_1_1_music.html" alt="lm::Music" shape="rect" coords="0,56,66,80"/>
-<area href="classlm_1_1_sfx.html" alt="lm::Sfx" shape="rect" coords="76,56,142,80"/>
+<area href="classlm_1_1_music.html" title="A class used to represent music. " alt="lm::Music" shape="rect" coords="0,56,66,80"/>
+<area href="classlm_1_1_sfx.html" title="A class used to represent sound effect. " alt="lm::Sfx" shape="rect" coords="76,56,142,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aeeae16fb78df309f853d14ffe3a13f50"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeeae16fb78df309f853d14ffe3a13f50"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPath</b> (const std::string name, bool resource=true)</td></tr>
+<tr class="memitem:aeeae16fb78df309f853d14ffe3a13f50"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_sound.html#aeeae16fb78df309f853d14ffe3a13f50">setPath</a> (const std::string name, bool resource=true)</td></tr>
 <tr class="separator:aeeae16fb78df309f853d14ffe3a13f50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a630ddaaa2d681a3adfe88efcbbb4b491"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a630ddaaa2d681a3adfe88efcbbb4b491"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>load</b> ()</td></tr>
+<tr class="memitem:a630ddaaa2d681a3adfe88efcbbb4b491"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_sound.html#a630ddaaa2d681a3adfe88efcbbb4b491">load</a> ()</td></tr>
 <tr class="separator:a630ddaaa2d681a3adfe88efcbbb4b491"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c3f7d9a9228f4cd833216c264ccb750"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c3f7d9a9228f4cd833216c264ccb750"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>loaded</b> ()</td></tr>
+<tr class="memitem:a1c3f7d9a9228f4cd833216c264ccb750"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_sound.html#a1c3f7d9a9228f4cd833216c264ccb750">loaded</a> ()</td></tr>
 <tr class="separator:a1c3f7d9a9228f4cd833216c264ccb750"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a575656357fdb9c5d3ec2dc3513e8f5fd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a575656357fdb9c5d3ec2dc3513e8f5fd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>unload</b> ()</td></tr>
+<tr class="memitem:a575656357fdb9c5d3ec2dc3513e8f5fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_sound.html#a575656357fdb9c5d3ec2dc3513e8f5fd">unload</a> ()</td></tr>
 <tr class="separator:a575656357fdb9c5d3ec2dc3513e8f5fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99fd655d67ad3d5f73339b4bc67a1a27"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a99fd655d67ad3d5f73339b4bc67a1a27"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>play</b> (<a class="el" href="classlm_1_1_vector.html">Vector3f</a> pos={0.f, 0.f, 0.f})=0</td></tr>
+<tr class="memitem:a99fd655d67ad3d5f73339b4bc67a1a27"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_sound.html#a99fd655d67ad3d5f73339b4bc67a1a27">play</a> (<a class="el" href="classlm_1_1_vector.html">Vector3f</a> pos={0.f, 0.f, 0.f})=0</td></tr>
 <tr class="separator:a99fd655d67ad3d5f73339b4bc67a1a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d66f3bc2955974a4ee46b42aaa33077"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9d66f3bc2955974a4ee46b42aaa33077"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>pause</b> ()=0</td></tr>
+<tr class="memitem:a9d66f3bc2955974a4ee46b42aaa33077"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_sound.html#a9d66f3bc2955974a4ee46b42aaa33077">pause</a> ()=0</td></tr>
 <tr class="separator:a9d66f3bc2955974a4ee46b42aaa33077"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa80aeecef0ea873c83974f2f6e11dfa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa80aeecef0ea873c83974f2f6e11dfa"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>stop</b> ()=0</td></tr>
+<tr class="memitem:aaa80aeecef0ea873c83974f2f6e11dfa"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_sound.html#aaa80aeecef0ea873c83974f2f6e11dfa">stop</a> ()=0</td></tr>
 <tr class="separator:aaa80aeecef0ea873c83974f2f6e11dfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a0141e477d039d2b9ae5b2903e48c3c8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0141e477d039d2b9ae5b2903e48c3c8b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>loadFileOGG</b> ()</td></tr>
+<tr class="memitem:a0141e477d039d2b9ae5b2903e48c3c8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_sound.html#a0141e477d039d2b9ae5b2903e48c3c8b">loadFileOGG</a> ()</td></tr>
 <tr class="separator:a0141e477d039d2b9ae5b2903e48c3c8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaaa2b647b5caf2a935026afaca936792"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaaa2b647b5caf2a935026afaca936792"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setVolumeLimits</b> (ALuint *source, ALfloat *maxGain, ALfloat *minGain)</td></tr>
+<tr class="memitem:aaaa2b647b5caf2a935026afaca936792"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_sound.html#aaaa2b647b5caf2a935026afaca936792">setVolumeLimits</a> (ALuint *source, ALfloat *maxGain, ALfloat *minGain)</td></tr>
 <tr class="separator:aaaa2b647b5caf2a935026afaca936792"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a08724d1b9edc171a4a42d9b1ec935e33"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a08724d1b9edc171a4a42d9b1ec935e33"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>_volume</b></td></tr>
-<tr class="separator:a08724d1b9edc171a4a42d9b1ec935e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc12b7a6d2ca88ee8fd4a4490ee983af"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc12b7a6d2ca88ee8fd4a4490ee983af"></a>
-FILE *&#160;</td><td class="memItemRight" valign="bottom"><b>_file</b></td></tr>
-<tr class="separator:abc12b7a6d2ca88ee8fd4a4490ee983af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08edcb71b1eeaee128d2cb32ff08bd3c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a08edcb71b1eeaee128d2cb32ff08bd3c"></a>
-OggVorbis_File&#160;</td><td class="memItemRight" valign="bottom"><b>_stream</b></td></tr>
-<tr class="separator:a08edcb71b1eeaee128d2cb32ff08bd3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c0309312415db7e10e122822be0563b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c0309312415db7e10e122822be0563b"></a>
-ALenum&#160;</td><td class="memItemRight" valign="bottom"><b>_format</b></td></tr>
-<tr class="separator:a1c0309312415db7e10e122822be0563b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8312e5fca5190890e4c272c39f74826"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad8312e5fca5190890e4c272c39f74826"></a>
-ALsizei&#160;</td><td class="memItemRight" valign="bottom"><b>_sampleRate</b></td></tr>
-<tr class="separator:ad8312e5fca5190890e4c272c39f74826"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4be6e2af78aa00c85ab8864b2c08ba48"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4be6e2af78aa00c85ab8864b2c08ba48"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>_path</b></td></tr>
-<tr class="separator:a4be6e2af78aa00c85ab8864b2c08ba48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa512eccbdd05077ac9a493527422d80a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_sound.html#aa512eccbdd05077ac9a493527422d80a">volume</a></td></tr>
+<tr class="separator:aa512eccbdd05077ac9a493527422d80a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af524751b435ba8b7f5d0a40b1718756b"><td class="memItemLeft" align="right" valign="top">FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_sound.html#af524751b435ba8b7f5d0a40b1718756b">file</a></td></tr>
+<tr class="separator:af524751b435ba8b7f5d0a40b1718756b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9faac4a0ae827a8e73c85c874cba3425"><td class="memItemLeft" align="right" valign="top">OggVorbis_File&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_sound.html#a9faac4a0ae827a8e73c85c874cba3425">stream</a></td></tr>
+<tr class="separator:a9faac4a0ae827a8e73c85c874cba3425"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61b76656d98fb686da402b980b5a44ae"><td class="memItemLeft" align="right" valign="top">ALenum&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_sound.html#a61b76656d98fb686da402b980b5a44ae">format</a></td></tr>
+<tr class="separator:a61b76656d98fb686da402b980b5a44ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7054a0ddaeb9231c5effbaed8b661edc"><td class="memItemLeft" align="right" valign="top">ALsizei&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_sound.html#a7054a0ddaeb9231c5effbaed8b661edc">sampleRate</a></td></tr>
+<tr class="separator:a7054a0ddaeb9231c5effbaed8b661edc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6396afb6693b8692e50f3491497f4a3"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_sound.html#ad6396afb6693b8692e50f3491497f4a3">path</a></td></tr>
+<tr class="separator:ad6396afb6693b8692e50f3491497f4a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>An abstract class for sounds. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a630ddaaa2d681a3adfe88efcbbb4b491"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lm::Sound::load </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Load the sound </p>
+
+</div>
+</div>
+<a class="anchor" id="a1c3f7d9a9228f4cd833216c264ccb750"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool lm::Sound::loaded </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Check wether the sound is loaded </p><dl class="section return"><dt>Returns</dt><dd>true if the sound is loaded, false otherwise </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0141e477d039d2b9ae5b2903e48c3c8b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lm::Sound::loadFileOGG </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Load the ogg file and set appropriate fields. </p>
+
+</div>
+</div>
+<a class="anchor" id="a9d66f3bc2955974a4ee46b42aaa33077"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void lm::Sound::pause </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Pause the sound </p>
+
+<p>Implemented in <a class="el" href="classlm_1_1_music.html#a6c054c0d3da107b5c35d42793426c0b8">lm::Music</a>, and <a class="el" href="classlm_1_1_sfx.html#a2520b128c9b57837a9d57969a0a3cd49">lm::Sfx</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a99fd655d67ad3d5f73339b4bc67a1a27"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void lm::Sound::play </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classlm_1_1_vector.html">Vector3f</a>&#160;</td>
+          <td class="paramname"><em>pos</em> = <code>{0.f,&#160;0.f,&#160;0.f}</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Play a sound </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pos</td><td>The source position </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="classlm_1_1_music.html#a77af85b7c5b155a5d29a380ff795a203">lm::Music</a>, and <a class="el" href="classlm_1_1_sfx.html#a575ba135f16ec3b04b187874534ea1bb">lm::Sfx</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aeeae16fb78df309f853d14ffe3a13f50"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lm::Sound::setPath </td>
+          <td>(</td>
+          <td class="paramtype">const std::string&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>resource</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set the loading path for the sound </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The file path </td></tr>
+    <tr><td class="paramname">resource</td><td>If true, path is relative to the resource path </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aaaa2b647b5caf2a935026afaca936792"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lm::Sound::setVolumeLimits </td>
+          <td>(</td>
+          <td class="paramtype">ALuint *&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ALfloat *&#160;</td>
+          <td class="paramname"><em>maxGain</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">ALfloat *&#160;</td>
+          <td class="paramname"><em>minGain</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the volume range </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">source</td><td>The source to use </td></tr>
+    <tr><td class="paramname">maxGain</td><td>The maximum gain </td></tr>
+    <tr><td class="paramname">minGain</td><td>The minimum gain </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aaa80aeecef0ea873c83974f2f6e11dfa"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void lm::Sound::stop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Stop the sound </p>
+
+<p>Implemented in <a class="el" href="classlm_1_1_music.html#a4a021fdb6b1e267826d288b4325b2e3a">lm::Music</a>, and <a class="el" href="classlm_1_1_sfx.html#a848cab2fe60ddedaa537193d3f6beb47">lm::Sfx</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a575656357fdb9c5d3ec2dc3513e8f5fd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lm::Sound::unload </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Unload the sound </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="af524751b435ba8b7f5d0a40b1718756b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">FILE* lm::Sound::file</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The sound file </p>
+
+</div>
+</div>
+<a class="anchor" id="a61b76656d98fb686da402b980b5a44ae"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ALenum lm::Sound::format</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The sound format </p>
+
+</div>
+</div>
+<a class="anchor" id="ad6396afb6693b8692e50f3491497f4a3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string lm::Sound::path</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The fully resolved file path </p>
+
+</div>
+</div>
+<a class="anchor" id="a7054a0ddaeb9231c5effbaed8b661edc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">ALsizei lm::Sound::sampleRate</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The sound sample rate </p>
+
+</div>
+</div>
+<a class="anchor" id="a9faac4a0ae827a8e73c85c874cba3425"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">OggVorbis_File lm::Sound::stream</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The current sound stream </p>
+
+</div>
+</div>
+<a class="anchor" id="aa512eccbdd05077ac9a493527422d80a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float lm::Sound::volume</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>The sound current volume, between 0 and 1 </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/LumsInclude/Audio/<a class="el" href="_sound_8hpp_source.html">Sound.hpp</a></li>
 </ul>

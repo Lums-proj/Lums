@@ -91,15 +91,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-types">Private Types</a> &#124;
-<a href="#pri-methods">Private Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="classlm_1_1_core-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">lm::Core Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This class defines a core.  
+ <a href="classlm_1_1_core.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="_core_8hpp_source.html">Core.hpp</a>&gt;</code></p>
 <div class="dynheader">
@@ -114,11 +114,9 @@ Inheritance diagram for lm::Core:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a438b99ddd734c77efa2275890892a6cc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a438b99ddd734c77efa2275890892a6cc"></a>
-<a class="el" href="classlm_1_1_window.html">Window</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>window</b> ()</td></tr>
+<tr class="memitem:a438b99ddd734c77efa2275890892a6cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classlm_1_1_window.html">Window</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_core.html#a438b99ddd734c77efa2275890892a6cc">window</a> ()</td></tr>
 <tr class="separator:a438b99ddd734c77efa2275890892a6cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a832203fa69a3ef0161261d9de6e248df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a832203fa69a3ef0161261d9de6e248df"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setWindow</b> (<a class="el" href="classlm_1_1_window.html">Window</a> *win)</td></tr>
+<tr class="memitem:a832203fa69a3ef0161261d9de6e248df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_core.html#a832203fa69a3ef0161261d9de6e248df">setWindow</a> (<a class="el" href="classlm_1_1_window.html">Window</a> *win)</td></tr>
 <tr class="separator:a832203fa69a3ef0161261d9de6e248df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d761733e4b65c641672b46262fc27ab"><td class="memItemLeft" align="right" valign="top">LUMS_EXPORTED void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_core.html#a2d761733e4b65c641672b46262fc27ab">start</a> ()</td></tr>
 <tr class="separator:a2d761733e4b65c641672b46262fc27ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,42 +136,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setWindow</b> (<a cla
 <tr class="separator:a30608d0fbc12fe5886609af368933f41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a73b2aa5adda984a288a069eb1cac67b9"><td class="memItemLeft" align="right" valign="top">LUMS_EXPORTED bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_core.html#a73b2aa5adda984a288a069eb1cac67b9">stateless</a> () const </td></tr>
 <tr class="separator:a73b2aa5adda984a288a069eb1cac67b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-types"></a>
-Private Types</h2></td></tr>
-<tr class="memitem:afde235f06b47daca5d282c6e41a73a41"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afde235f06b47daca5d282c6e41a73a41"></a>
-typedef std::vector&lt; std::unique_ptr&lt; <a class="el" href="classlm_1_1_game_state.html">GameState</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Stack</b></td></tr>
-<tr class="separator:afde235f06b47daca5d282c6e41a73a41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
-Private Member Functions</h2></td></tr>
-<tr class="memitem:a2432c33d890a2f13fdac604052bf1540"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2432c33d890a2f13fdac604052bf1540"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>doEvent</b> ()</td></tr>
-<tr class="separator:a2432c33d890a2f13fdac604052bf1540"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a619e23a0ebd77c45b7680793ab091508"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a619e23a0ebd77c45b7680793ab091508"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>doUpdate</b> ()</td></tr>
-<tr class="separator:a619e23a0ebd77c45b7680793ab091508"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7534ec31e2f8d48512cd15e7eda3b330"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7534ec31e2f8d48512cd15e7eda3b330"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>doRender</b> ()</td></tr>
-<tr class="separator:a7534ec31e2f8d48512cd15e7eda3b330"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:a555167c8b16a87094595ee3e63eb8e8b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a555167c8b16a87094595ee3e63eb8e8b"></a>
-Stack&#160;</td><td class="memItemRight" valign="bottom"><b>_stack</b></td></tr>
-<tr class="separator:a555167c8b16a87094595ee3e63eb8e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d4973948b1488657cc805f1a27c91c2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d4973948b1488657cc805f1a27c91c2"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>_it</b></td></tr>
-<tr class="separator:a2d4973948b1488657cc805f1a27c91c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeeac1128d3a429a13f6989bd38a5ac1a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeeac1128d3a429a13f6989bd38a5ac1a"></a>
-<a class="el" href="classlm_1_1_window.html">Window</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_win</b></td></tr>
-<tr class="separator:aeeac1128d3a429a13f6989bd38a5ac1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af77f2effd59aea7fbc05942ad172f9b9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af77f2effd59aea7fbc05942ad172f9b9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>_jmp</b></td></tr>
-<tr class="separator:af77f2effd59aea7fbc05942ad172f9b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6e40fd5764b9a5db572152158ff539c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad6e40fd5764b9a5db572152158ff539c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>_running</b></td></tr>
-<tr class="separator:ad6e40fd5764b9a5db572152158ff539c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83248c0c6306f3e0e81c4b4b98487c8e"><td class="memItemLeft" align="right" valign="top">LUMS_EXPORTED&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_core.html#a83248c0c6306f3e0e81c4b4b98487c8e">~Core</a> ()</td></tr>
+<tr class="separator:a83248c0c6306f3e0e81c4b4b98487c8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
@@ -184,20 +148,37 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Singleton&lt; Core &
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pub_static_methods_classlm_1_1_singleton"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classlm_1_1_singleton')"><img src="closed.png" alt="-"/>&#160;Static Public Member Functions inherited from <a class="el" href="classlm_1_1_singleton.html">lm::Singleton&lt; Core &gt;</a></td></tr>
-<tr class="memitem:a578cb7220960b2c24f4b739cd91bf061 inherit pub_static_methods_classlm_1_1_singleton"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a578cb7220960b2c24f4b739cd91bf061"></a>
-static <a class="el" href="classlm_1_1_core.html">Core</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>instance</b> ()</td></tr>
+<tr class="memitem:a578cb7220960b2c24f4b739cd91bf061 inherit pub_static_methods_classlm_1_1_singleton"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classlm_1_1_core.html">Core</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_singleton.html#a578cb7220960b2c24f4b739cd91bf061">instance</a> ()</td></tr>
 <tr class="separator:a578cb7220960b2c24f4b739cd91bf061 inherit pub_static_methods_classlm_1_1_singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classlm_1_1_singleton"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classlm_1_1_singleton')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classlm_1_1_singleton.html">lm::Singleton&lt; Core &gt;</a></td></tr>
-<tr class="memitem:a77bc9908dc92db581863640064a6b48a inherit pro_methods_classlm_1_1_singleton"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77bc9908dc92db581863640064a6b48a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Singleton</b> (const <a class="el" href="classlm_1_1_singleton.html">Singleton</a>&lt; <a class="el" href="classlm_1_1_core.html">Core</a> &gt; &amp;)=delete</td></tr>
+<tr class="memitem:a32a4e39a577bd3f58df9be210c474647 inherit pro_methods_classlm_1_1_singleton"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_singleton.html#a32a4e39a577bd3f58df9be210c474647">Singleton</a> ()=default</td></tr>
+<tr class="separator:a32a4e39a577bd3f58df9be210c474647 inherit pro_methods_classlm_1_1_singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77bc9908dc92db581863640064a6b48a inherit pro_methods_classlm_1_1_singleton"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_singleton.html#a77bc9908dc92db581863640064a6b48a">Singleton</a> (const <a class="el" href="classlm_1_1_singleton.html">Singleton</a>&lt; <a class="el" href="classlm_1_1_core.html">Core</a> &gt; &amp;)=delete</td></tr>
 <tr class="separator:a77bc9908dc92db581863640064a6b48a inherit pro_methods_classlm_1_1_singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3eac768188266c5b248b81756857f964 inherit pro_methods_classlm_1_1_singleton"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3eac768188266c5b248b81756857f964"></a>
-<a class="el" href="classlm_1_1_singleton.html">Singleton</a>&lt; <a class="el" href="classlm_1_1_core.html">Core</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classlm_1_1_singleton.html">Singleton</a>&lt; <a class="el" href="classlm_1_1_core.html">Core</a> &gt; &amp;)=delete</td></tr>
+<tr class="memitem:a3eac768188266c5b248b81756857f964 inherit pro_methods_classlm_1_1_singleton"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classlm_1_1_singleton.html">Singleton</a>&lt; <a class="el" href="classlm_1_1_core.html">Core</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_singleton.html#a3eac768188266c5b248b81756857f964">operator=</a> (const <a class="el" href="classlm_1_1_singleton.html">Singleton</a>&lt; <a class="el" href="classlm_1_1_core.html">Core</a> &gt; &amp;)=delete</td></tr>
 <tr class="separator:a3eac768188266c5b248b81756857f964 inherit pro_methods_classlm_1_1_singleton"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class defines a core. A core is composed of a window, a renderer, a state machine and a main loop. The goal of this class is to provide a simple, yet efficient way to handle the context of your game. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+<div class="textblock"><p>This class defines a core. </p>
+<p>A core is composed of a window, a renderer, a state machine and a main loop. The goal of this class is to provide a simple, yet efficient way to handle the context of your game. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a83248c0c6306f3e0e81c4b4b98487c8e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LUMS_EXPORTED lm::Core::~Core </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="classlm_1_1_core.html" title="This class defines a core. ">Core</a> dtor </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="a583b672e206ba92941fccf98ba8cfcaf"></a>
 <div class="memitem">
 <div class="memproto">
@@ -255,7 +236,7 @@ template&lt;typename T , typename... Args&gt; </div>
 </div><div class="memdoc">
 <p>Push a new State. </p><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>The class to be instanciated. Must inherit <a class="el" href="classlm_1_1_game_state.html">GameState</a>. </td></tr>
+    <tr><td class="paramname">T</td><td>The class to be instanciated. Must inherit <a class="el" href="classlm_1_1_game_state.html" title="This class represents a GameState. ">GameState</a>. </td></tr>
     <tr><td class="paramname">Args</td><td>Argument types. </td></tr>
   </table>
   </dd>
@@ -286,6 +267,36 @@ template&lt;typename T , typename... Args&gt; </div>
 <p>Remove a state from the internal stack. If the state does not exist within the internal stack, it's a no-op. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">state</td><td>The state to be removed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a832203fa69a3ef0161261d9de6e248df"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lm::Core::setWindow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classlm_1_1_window.html">Window</a> *&#160;</td>
+          <td class="paramname"><em>win</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the linked window </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">win</td><td>A pointer to a window </td></tr>
   </table>
   </dd>
 </dl>
@@ -363,7 +374,7 @@ template&lt;typename T , typename... Args&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Do a transition. This method clear the stack, then push a new <a class="el" href="classlm_1_1_game_state.html">GameState</a>. </p><dl class="tparams"><dt>Template Parameters</dt><dd>
+<p>Do a transition. This method clear the stack, then push a new <a class="el" href="classlm_1_1_game_state.html" title="This class represents a GameState. ">GameState</a>. </p><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">T</td><td>A class to be instanciated. </td></tr>
     <tr><td class="paramname">Args</td><td>Argument types. </td></tr>
@@ -377,6 +388,30 @@ template&lt;typename T , typename... Args&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A reference to the constructed object. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a438b99ddd734c77efa2275890892a6cc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classlm_1_1_window.html">Window</a>&amp; lm::Core::window </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the window linked to the core. It's undefined behavior to call this method when no window is attached. </p><dl class="section return"><dt>Returns</dt><dd>A reference to the linked window </dd></dl>
 
 </div>
 </div>
