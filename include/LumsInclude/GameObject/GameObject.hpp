@@ -44,6 +44,13 @@ namespace lm
 			return b;
 		}
 
+		template <typename... Ts>
+		bool
+		send(const char* slot, Ts... params)
+		{
+			return send(sym(slot), params...);
+		}
+
 		template <typename T>
 		T*
 		recv(int slot)
@@ -59,6 +66,13 @@ namespace lm
 				}
 			}
 			return nullptr;
+		}
+
+		template <typename T>
+		T*
+		recv(const char* slot)
+		{
+			return recv<T>(sym(slot));
 		}
 
 		template <typename T, typename... Ts>
