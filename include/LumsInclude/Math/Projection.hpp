@@ -18,15 +18,32 @@
 
 namespace lm
 {
+	/**
+	 * @brief An helper struct used to define a projection
+	 */
 	struct Projection
 	{
+		/**
+    	 * Create the identity projection
+     	 */
 		Projection()
 		{
 			model = view = projection = Matrix4f::identity();
 		}
 
+		/**
+    	 * The model
+     	 */
 		Matrix4f model;
+
+		/**
+    	 * The view
+     	 */
 		Matrix4f view;
+
+		/**
+    	 * The projection
+     	 */
 		Matrix4f projection;
 	};
 }

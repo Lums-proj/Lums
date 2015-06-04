@@ -33,6 +33,16 @@
 
 namespace lm
 {
+    /**
+     * Create a frustum projection matrix
+     * @param left The left position
+     * @param right The right position
+     * @param bottom The bottom position
+     * @param top The top position
+     * @param znear The near clipping plane
+     * @param zfar The far clipping plane
+     * @return A frustum projection matrix
+     */
     inline Matrix4f
     frustum(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat znear, GLfloat zfar)
     {
@@ -48,6 +58,14 @@ namespace lm
         return matrix;
     }
 
+    /**
+     * Create a perspective projection matrix
+     * @param fov The field of view in degrees
+     * @param aspect The aspect ratio
+     * @param znear The near clipping plane
+     * @param zfar The far clipping plane
+     * @return A perspective projection matrix
+     */
     inline Matrix4f
     perspective(GLfloat fov, GLfloat aspect, GLfloat znear, GLfloat zfar)
     {
@@ -56,6 +74,14 @@ namespace lm
         return frustum(-xmax, xmax, -ymax, ymax, znear, zfar);
     }
 
+    /**
+     * Create a orthogonal projection matrix
+     * @param left The left position
+     * @param right The right position
+     * @param bottom The bottom position
+     * @param top The top position
+     * @return A orthogonal projection matrix
+     */
     inline Matrix4f
     ortho(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top)
     {
@@ -69,6 +95,13 @@ namespace lm
         return result;
     }
 
+    /**
+     * Translate a matrix by an offset 
+     * @param matrix The matrix to be translated
+     * @param x The x offset
+     * @param x The y offset
+     * @param x The z offset
+     */
     inline void
     translate(Matrix4f& matrix, GLfloat x, GLfloat y, GLfloat z)
     {
@@ -81,12 +114,23 @@ namespace lm
         matrix *= id;
     }
 
+    /**
+     * Translate a matrix by a vector 
+     * @param matrix The matrix to be translated
+     * @param x The translation vector
+     */
     inline void
     translate(Matrix4f& matrix, Vector3f vec)
     {
         translate(matrix, vec.x, vec.y, vec.z);
     }
 
+    /**
+     * Rotate a matrix by an angle around a vector
+     * @param The matrix to be rotated
+     * @param angle The angle in degrees
+     * @param v The up vector
+     */
     inline void
     rotate(Matrix4f& matrix, float angle, Vector3f v)
     {
@@ -116,6 +160,13 @@ namespace lm
         matrix *= rot;
     }
 
+    /**
+     * Create a view matrix
+     * @param eye The eye position
+     * @param center The field of view center in space coordinates
+     * @param up The up vector
+     * @return A view matrix
+     */
     inline Matrix4f
     lookAt(Vector3f eye, Vector3f center, Vector3f up)
     {

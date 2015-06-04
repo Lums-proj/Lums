@@ -90,36 +90,195 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classlm_1_1_vertex_buffer-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">lm::VertexBuffer&lt; Attr &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A class representing a buffer of vertices.  
+ <a href="classlm_1_1_vertex_buffer.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_vertex_buffer_8hpp_source.html">VertexBuffer.hpp</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
-Public Types</h2></td></tr>
-<tr class="memitem:abe282424270ec7b9b652eb279e9f019a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe282424270ec7b9b652eb279e9f019a"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>size</b> = internal::VertexBufferSize&lt;Attr...&gt;::size
- }</td></tr>
-<tr class="separator:abe282424270ec7b9b652eb279e9f019a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a49b196806a5c67c064aa8407955fe042"><td class="memTemplParams" colspan="2"><a class="anchor" id="a49b196806a5c67c064aa8407955fe042"></a>
-template&lt;typename... Pack&gt; </td></tr>
-<tr class="memitem:a49b196806a5c67c064aa8407955fe042"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><b>push</b> (Pack...values)</td></tr>
+<tr class="memitem:a9d6bc955cfea642bf4057569d06b4f6c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_vertex_buffer.html#a9d6bc955cfea642bf4057569d06b4f6c">VertexBuffer</a> ()</td></tr>
+<tr class="separator:a9d6bc955cfea642bf4057569d06b4f6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49b196806a5c67c064aa8407955fe042"><td class="memTemplParams" colspan="2">template&lt;typename... Pack&gt; </td></tr>
+<tr class="memitem:a49b196806a5c67c064aa8407955fe042"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classlm_1_1_vertex_buffer.html#a49b196806a5c67c064aa8407955fe042">push</a> (Pack...values)</td></tr>
 <tr class="separator:a49b196806a5c67c064aa8407955fe042"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a11e50c092632c95a2313b66af16de5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7a11e50c092632c95a2313b66af16de5"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>send</b> ()</td></tr>
+<tr class="memitem:a7a11e50c092632c95a2313b66af16de5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_vertex_buffer.html#a7a11e50c092632c95a2313b66af16de5">send</a> ()</td></tr>
 <tr class="separator:a7a11e50c092632c95a2313b66af16de5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97cd9f96f0960000cd79a2aa43fded56"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97cd9f96f0960000cd79a2aa43fded56"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>draw</b> (GLenum mode)</td></tr>
+<tr class="memitem:a97cd9f96f0960000cd79a2aa43fded56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_vertex_buffer.html#a97cd9f96f0960000cd79a2aa43fded56">draw</a> (GLenum mode)</td></tr>
 <tr class="separator:a97cd9f96f0960000cd79a2aa43fded56"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a585127eaf134dda596ac3e64e8065e6f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a585127eaf134dda596ac3e64e8065e6f"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>reset</b> ()</td></tr>
+<tr class="memitem:a585127eaf134dda596ac3e64e8065e6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_vertex_buffer.html#a585127eaf134dda596ac3e64e8065e6f">reset</a> ()</td></tr>
 <tr class="separator:a585127eaf134dda596ac3e64e8065e6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;GLint... Attr&gt;<br />
+class lm::VertexBuffer&lt; Attr &gt;</h3>
+
+<p>A class representing a buffer of vertices. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Attr</td><td>The attributes </td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a9d6bc955cfea642bf4057569d06b4f6c"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;GLint... Attr&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classlm_1_1_vertex_buffer.html">lm::VertexBuffer</a>&lt; Attr &gt;::<a class="el" href="classlm_1_1_vertex_buffer.html">VertexBuffer</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Create a vertex buffer </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a97cd9f96f0960000cd79a2aa43fded56"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;GLint... Attr&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classlm_1_1_vertex_buffer.html">lm::VertexBuffer</a>&lt; Attr &gt;::draw </td>
+          <td>(</td>
+          <td class="paramtype">GLenum&#160;</td>
+          <td class="paramname"><em>mode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Draw the vertex buffer </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mode</td><td>The OpenGL draw mode, can be GL_TRIANGLES, GL_LINES or GL_POINTS </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a49b196806a5c67c064aa8407955fe042"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;GLint... Attr&gt; </div>
+<div class="memtemplate">
+template&lt;typename... Pack&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classlm_1_1_vertex_buffer.html">lm::VertexBuffer</a>&lt; Attr &gt;::push </td>
+          <td>(</td>
+          <td class="paramtype">Pack...&#160;</td>
+          <td class="paramname"><em>values</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Push values onto the vertex buffer, according to the attributes </p><dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Pack</td><td>Types for values </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">values</td><td>Values </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a585127eaf134dda596ac3e64e8065e6f"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;GLint... Attr&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classlm_1_1_vertex_buffer.html">lm::VertexBuffer</a>&lt; Attr &gt;::reset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Reset the vertex buffer </p>
+
+</div>
+</div>
+<a class="anchor" id="a7a11e50c092632c95a2313b66af16de5"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;GLint... Attr&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classlm_1_1_vertex_buffer.html">lm::VertexBuffer</a>&lt; Attr &gt;::send </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Send the vertex buffer into the GPU </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/LumsInclude/Graphics/<a class="el" href="_vertex_buffer_8hpp_source.html">VertexBuffer.hpp</a></li>
 </ul>

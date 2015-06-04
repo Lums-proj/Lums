@@ -1,18 +1,14 @@
 var searchData=
 [
-  ['send',['send',['../classlm_1_1_game_object.html#a2369a48af5c7d67b5f06e1d90fcfad5e',1,'lm::GameObject::send(int slot, Ts...params)'],['../classlm_1_1_game_object.html#a712b8b5848223918a273b998b724ea7e',1,'lm::GameObject::send(const char *slot, Ts...params)']]],
-  ['set',['set',['../classlm_1_1_base_provider.html#a283b11ca050bc9f52069e50a4473258d',1,'lm::BaseProvider']]],
-  ['setpath',['setPath',['../classlm_1_1_sound.html#aeeae16fb78df309f853d14ffe3a13f50',1,'lm::Sound']]],
-  ['setvolume',['setVolume',['../classlm_1_1_music.html#a4e8c1b923b84073ba51a7d0fbc8344b4',1,'lm::Music::setVolume()'],['../classlm_1_1_sfx.html#a6ffc9baa564b9e83f7e167004650998c',1,'lm::Sfx::setVolume()']]],
-  ['setvolumelimits',['setVolumeLimits',['../classlm_1_1_sound.html#aaaa2b647b5caf2a935026afaca936792',1,'lm::Sound']]],
-  ['setwindow',['setWindow',['../classlm_1_1_core.html#a832203fa69a3ef0161261d9de6e248df',1,'lm::Core']]],
-  ['sfx',['Sfx',['../classlm_1_1_sfx.html#a3fe95b3e32964614c91de1622798ad3c',1,'lm::Sfx::Sfx()'],['../classlm_1_1_sfx.html#a2c56ff96cadd9001d9903efe9aae7855',1,'lm::Sfx::Sfx(const Sfx &amp;)=delete'],['../classlm_1_1_sfx.html#a049dee4ce51b265ce38642d8bc3bdb53',1,'lm::Sfx::Sfx(Sfx &amp;&amp;rhs)']]],
-  ['sin',['sin',['../classlm_1_1_angle.html#a7643dcbc6ab88fc7c944580041861b8c',1,'lm::Angle']]],
-  ['singleton',['Singleton',['../classlm_1_1_singleton.html#a32a4e39a577bd3f58df9be210c474647',1,'lm::Singleton::Singleton()=default'],['../classlm_1_1_singleton.html#a77bc9908dc92db581863640064a6b48a',1,'lm::Singleton::Singleton(const Singleton&lt; T &gt; &amp;)=delete']]],
-  ['size',['size',['../classlm_1_1_base_provider.html#a5f77b39fdc4c1a0daf1d73c91565d343',1,'lm::BaseProvider']]],
-  ['start',['start',['../classlm_1_1_core.html#a2d761733e4b65c641672b46262fc27ab',1,'lm::Core']]],
-  ['stateless',['stateless',['../classlm_1_1_core.html#a73b2aa5adda984a288a069eb1cac67b9',1,'lm::Core']]],
-  ['stop',['stop',['../classlm_1_1_music.html#a4a021fdb6b1e267826d288b4325b2e3a',1,'lm::Music::stop()'],['../classlm_1_1_sfx.html#a848cab2fe60ddedaa537193d3f6beb47',1,'lm::Sfx::stop()'],['../classlm_1_1_sound.html#aaa80aeecef0ea873c83974f2f6e11dfa',1,'lm::Sound::stop()'],['../classlm_1_1_core.html#a772528a45a1b22b135e18abffdaf24cb',1,'lm::Core::stop()']]],
-  ['swap',['swap',['../classlm_1_1_window.html#a9f62d4f783d76f25bb23083d8c2f1ffd',1,'lm::Window']]],
-  ['sym',['sym',['../namespacelm.html#af9ae6d93ba5b9fb36710043e6c7a6769',1,'lm']]]
+  ['radians',['radians',['../classlm_1_1_angle.html#afdb23f85c2d6574a5cc617444ca6ba75',1,'lm::Angle']]],
+  ['recv',['recv',['../classlm_1_1_game_object.html#ac1b609477b77e31956677e3cb20f6d8f',1,'lm::GameObject::recv(int slot)'],['../classlm_1_1_game_object.html#a026d7aad6119f0c7bfcb92c62b6d0404',1,'lm::GameObject::recv(const char *slot)']]],
+  ['reload',['reload',['../classlm_1_1_game_state.html#a00d7d8f189779a8852e632f36bc956b5',1,'lm::GameState::reload()'],['../classlm_1_1_stream_provider.html#ad327b0b5bc1792ecf8a80266ade5bfa8',1,'lm::StreamProvider::reload()']]],
+  ['reloadall',['reloadAll',['../classlm_1_1_stream_provider.html#ae52af71957373302497c1fade3f15efa',1,'lm::StreamProvider']]],
+  ['remove',['remove',['../classlm_1_1_core.html#a30e288fd6d127652e32c036635c92c78',1,'lm::Core::remove()'],['../classlm_1_1_game_state.html#a5c6326be2428ae7c4ed1577e356943b3',1,'lm::GameState::remove()']]],
+  ['render',['render',['../classlm_1_1_game_state.html#a3fd7ce3cdfbe98e8c2621b7cfbb10381',1,'lm::GameState::render()'],['../classlm_1_1_component.html#a2af8d2e7e05a748dfe57fec18aa5bd0b',1,'lm::Component::render()'],['../classlm_1_1_game_object.html#a9e501d88f7623310dbf36bdec4099190',1,'lm::GameObject::render()'],['../classlm_1_1_shader_pipeline.html#a58e217c13bacb3408cd5af4a3a4c31b3',1,'lm::ShaderPipeline::render()'],['../classlm_1_1_static_sprite_batch.html#a840b3a90bd27c2b49558f2e0afcc13cb',1,'lm::StaticSpriteBatch::render()']]],
+  ['reset',['reset',['../classlm_1_1_vertex_buffer.html#a585127eaf134dda596ac3e64e8065e6f',1,'lm::VertexBuffer']]],
+  ['resize',['resize',['../classlm_1_1_window.html#a4dc9e3a37f71f014acd0248668138841',1,'lm::Window']]],
+  ['resourcepath',['resourcePath',['../namespacelm.html#a982af5a9cd9e3559934b54da7ec51d66',1,'lm']]],
+  ['respondto',['respondTo',['../classlm_1_1_component.html#a0654d963f75cb2b4535d9b2a7bc53324',1,'lm::Component']]],
+  ['rotate',['rotate',['../namespacelm.html#a64db910e12f2cd99e313b57da6d7034d',1,'lm']]]
 ];

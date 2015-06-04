@@ -23,23 +23,24 @@
 namespace lm
 {
     /**
-    * This class defines a Window.
-    */
+     * @briefThis class defines a Window.
+     */
     class Window
     {
     public:
         /**
-        * Create a new window.
-        * @param w The width of the window.
-        * @param h The height of the window.
-        * @param name The name of the window.
-        */
+         * Create a new window.
+         * @param w The width of the window.
+         * @param h The height of the window.
+         * @param name The name of the window.
+         * @param fullscreen True to create the window in fullscreen mode
+         */
         LUMS_EXPORTED Window(int w, int h, const char* name = "", bool fullscreen = false);
         
         /**
-        * Push an event on the internal event stack.
-        * @param event The event to be pushed.
-        */
+         * Push an event on the internal event stack.
+         * @param event The event to be pushed.
+         */
         void
         pushEvent(Event& event)
         {
@@ -47,12 +48,12 @@ namespace lm
         }
 
         /**
-        * Poll an event from the event stack.
-        * If the event stack is empty, the event type will
-        * be set to Event::Type::None
-        * @param event A reference to an event, which will be filled
-        * with data.
-        */
+         * Poll an event from the event stack.
+         * If the event stack is empty, the event type will
+         * be set to Event::Type::None
+         * @param event A reference to an event, which will be filled
+         * with data.
+         */
         void
         pollEvent(Event& event)
         {
@@ -60,44 +61,65 @@ namespace lm
         }
 
         /**
-        * Wait for an event from the event stack.
-        * If the event stack is empty, this method will block and wait.
-        * @param event A reference to an event, which will be filled
-        * with data.
-        */
+         * Wait for an event from the event stack.
+         * If the event stack is empty, this method will block and wait.
+         * @param event A reference to an event, which will be filled
+         * with data.
+         */
         void
         waitEvent(Event& event)
         {
         	extractEvent(event, true);
         }
 
+        /**
+         * Resize the window
+         * @param w The width
+         * @param h The height
+         * @param fullscren Whether to be in fullscreen mode or not
+         */
         LUMS_EXPORTED void      resize(int w, int h, bool fullscreen = false);
 
+        /**
+         * Check if the window is visible.
+         * This may be unreliable under some operating systems, like Windows.
+         * @return True if the window is visible, false otherwise
+         */
         LUMS_EXPORTED bool      visible() const;
 
+        /**
+         * Get the maximal window size.
+         * This is usualy used to determine a resolution.
+         * @return The maximum window size
+         */
         LUMS_EXPORTED Vector2i  maxSize() const;
 
         /**
-        * Pump event from the underlying implementation to the event stack.
-        */
+         * Pump event from the underlying implementation to the event stack.
+         */
         LUMS_EXPORTED void      pumpEvent();
 
         /**
-        * Swap the current buffer with the backbuffer.
-        */
+         * Swap the current buffer with the backbuffer.
+         */
         LUMS_EXPORTED void      swap();
 
+        /**
+         * @cond
+         */
         GLuint                  fbo(int i) const { return _fbo[i]; }
 
         GLuint                  tex(int i) const { return _texBuffer[i]; }
+        /**
+         * @endcond
+         */
         
         /**
-        * Destructor
-        */
+         * Window dtor
+         */
         LUMS_EXPORTED ~Window();
 
     private:
-
         void
         extractEvent(Event& event, bool block)
         {

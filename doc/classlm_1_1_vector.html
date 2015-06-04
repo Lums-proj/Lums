@@ -97,6 +97,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>A class representing a <a class="el" href="classlm_1_1_vector.html" title="A class representing a Vector. ">Vector</a>.  
+ <a href="classlm_1_1_vector.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_vector_8hpp_source.html">Vector.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for lm::Vector&lt; N, T &gt;:</div>
@@ -111,22 +114,26 @@ Inheritance diagram for lm::Vector&lt; N, T &gt;:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aff9b4f3094da805e42d75c473c8aff72"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_vector.html#aff9b4f3094da805e42d75c473c8aff72">Vector</a> (T value=T())</td></tr>
 <tr class="separator:aff9b4f3094da805e42d75c473c8aff72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6594e1271999a8c0421e9e85b97880b"><td class="memTemplParams" colspan="2"><a class="anchor" id="af6594e1271999a8c0421e9e85b97880b"></a>
-template&lt;typename A , typename B , typename... Types&gt; </td></tr>
-<tr class="memitem:af6594e1271999a8c0421e9e85b97880b"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><b>Vector</b> (A a, B b, Types...values)</td></tr>
+<tr class="memitem:af6594e1271999a8c0421e9e85b97880b"><td class="memTemplParams" colspan="2">template&lt;typename A , typename B , typename... Types&gt; </td></tr>
+<tr class="memitem:af6594e1271999a8c0421e9e85b97880b"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classlm_1_1_vector.html#af6594e1271999a8c0421e9e85b97880b">Vector</a> (A a, B b, Types...values)</td></tr>
 <tr class="separator:af6594e1271999a8c0421e9e85b97880b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c28261fff251b31ac2985ec57d55e50"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c28261fff251b31ac2985ec57d55e50"></a>
-T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (std::size_t i)</td></tr>
+<tr class="memitem:a0c28261fff251b31ac2985ec57d55e50"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_vector.html#a0c28261fff251b31ac2985ec57d55e50">operator[]</a> (std::size_t i)</td></tr>
 <tr class="separator:a0c28261fff251b31ac2985ec57d55e50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe11f6c2de0d2e958b9763891f426e35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe11f6c2de0d2e958b9763891f426e35"></a>
-constexpr const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (std::size_t i) const </td></tr>
+<tr class="memitem:abe11f6c2de0d2e958b9763891f426e35"><td class="memItemLeft" align="right" valign="top">constexpr const T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_vector.html#abe11f6c2de0d2e958b9763891f426e35">operator[]</a> (std::size_t i) const </td></tr>
 <tr class="separator:abe11f6c2de0d2e958b9763891f426e35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;std::size_t N, typename T&gt;<br />
 class lm::Vector&lt; N, T &gt;</h3>
 
-<p>This class represents a <a class="el" href="classlm_1_1_vector.html">Vector</a>. </p>
+<p>A class representing a <a class="el" href="classlm_1_1_vector.html" title="A class representing a Vector. ">Vector</a>. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">N</td><td>The vector dimension </td></tr>
+    <tr><td class="paramname">T</td><td>The vector type </td></tr>
+  </table>
+  </dd>
+</dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aff9b4f3094da805e42d75c473c8aff72"></a>
 <div class="memitem">
@@ -157,6 +164,125 @@ template&lt;std::size_t N, typename T&gt; </div>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a class="anchor" id="af6594e1271999a8c0421e9e85b97880b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::size_t N, typename T&gt; </div>
+<div class="memtemplate">
+template&lt;typename A , typename B , typename... Types&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classlm_1_1_vector.html">lm::Vector</a>&lt; N, T &gt;::<a class="el" href="classlm_1_1_vector.html">Vector</a> </td>
+          <td>(</td>
+          <td class="paramtype">A&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">B&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Types...&#160;</td>
+          <td class="paramname"><em>values</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Construct a vector from a batch of values </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>The first value </td></tr>
+    <tr><td class="paramname">b</td><td>The second value </td></tr>
+    <tr><td class="paramname">values</td><td>The remaining values </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a0c28261fff251b31ac2985ec57d55e50"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::size_t N, typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T&amp; <a class="el" href="classlm_1_1_vector.html">lm::Vector</a>&lt; N, T &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get a value from the vector </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>The index </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A value </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="abe11f6c2de0d2e958b9763891f426e35"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;std::size_t N, typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr const T&amp; <a class="el" href="classlm_1_1_vector.html">lm::Vector</a>&lt; N, T &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get a value from the vector </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>The index </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A value </dd></dl>
 
 </div>
 </div>

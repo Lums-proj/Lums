@@ -110,38 +110,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacelm.html">lm</a></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classlm_1_1_shader.html">   21</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classlm_1_1_shader.html">Shader</a></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classlm_1_1_shader_program.html">ShaderProgram</a>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keyword">enum</span> Type</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            Vertex,</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            Fragment</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        };</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="classlm_1_1_shader.html">Shader</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path, Type type, <span class="keywordtype">bool</span> resource = <span class="keyword">true</span>);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        GLuint</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keyword">get</span>() <span class="keyword">const</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keywordflow">return</span> _shader;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        }</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        ~<a class="code" href="classlm_1_1_shader.html">Shader</a>();</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="classlm_1_1_shader.html">Shader</a>();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">void</span>    load(<span class="keyword">const</span> <span class="keywordtype">char</span>* data, GLenum type);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        GLuint  _shader;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    };</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="classlm_1_1_shader_program_html"><div class="ttname"><a href="classlm_1_1_shader_program.html">lm::ShaderProgram</a></div><div class="ttdef"><b>Definition:</b> ShaderProgram.hpp:25</div></div>
-<div class="ttc" id="classlm_1_1_shader_html"><div class="ttname"><a href="classlm_1_1_shader.html">lm::Shader</a></div><div class="ttdef"><b>Definition:</b> Shader.hpp:21</div></div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classlm_1_1_shader.html">   24</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classlm_1_1_shader.html">Shader</a></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="classlm_1_1_shader_program.html">ShaderProgram</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classlm_1_1_shader.html#a23a53f1764180579c935beef5f772321">   32</a></span>&#160;        <span class="keyword">enum</span> <a class="code" href="classlm_1_1_shader.html#a23a53f1764180579c935beef5f772321">Type</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            Vertex,</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            Fragment</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        };</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <a class="code" href="classlm_1_1_shader.html">Shader</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path, <a class="code" href="classlm_1_1_shader.html#a23a53f1764180579c935beef5f772321">Type</a> type, <span class="keywordtype">bool</span> resource = <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        GLuint</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classlm_1_1_shader.html#aec419416ec529ad8e12f6689625d0f91">   51</a></span>&#160;        <span class="keyword">get</span>() <span class="keyword">const</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            <span class="keywordflow">return</span> _shader;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="classlm_1_1_shader.html#a266b834dd55e2bbbce9e9d6b2358e527">~Shader</a>();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <a class="code" href="classlm_1_1_shader.html">Shader</a>();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordtype">void</span>    load(<span class="keyword">const</span> <span class="keywordtype">char</span>* data, GLenum type);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        GLuint  _shader;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    };</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classlm_1_1_shader_html_a23a53f1764180579c935beef5f772321"><div class="ttname"><a href="classlm_1_1_shader.html#a23a53f1764180579c935beef5f772321">lm::Shader::Type</a></div><div class="ttdeci">Type</div><div class="ttdef"><b>Definition:</b> Shader.hpp:32</div></div>
+<div class="ttc" id="classlm_1_1_shader_program_html"><div class="ttname"><a href="classlm_1_1_shader_program.html">lm::ShaderProgram</a></div><div class="ttdoc">A class representing a linked shader. </div><div class="ttdef"><b>Definition:</b> ShaderProgram.hpp:28</div></div>
+<div class="ttc" id="classlm_1_1_shader_html"><div class="ttname"><a href="classlm_1_1_shader.html">lm::Shader</a></div><div class="ttdoc">A class representing a shader. </div><div class="ttdef"><b>Definition:</b> Shader.hpp:24</div></div>
 <div class="ttc" id="namespacelm_html"><div class="ttname"><a href="namespacelm.html">lm</a></div><div class="ttdoc">The Lums namespace. </div><div class="ttdef"><b>Definition:</b> Application.hpp:17</div></div>
+<div class="ttc" id="classlm_1_1_shader_html_a266b834dd55e2bbbce9e9d6b2358e527"><div class="ttname"><a href="classlm_1_1_shader.html#a266b834dd55e2bbbce9e9d6b2358e527">lm::Shader::~Shader</a></div><div class="ttdeci">~Shader()</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
