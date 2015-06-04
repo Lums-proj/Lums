@@ -92,55 +92,229 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classlm_1_1_font-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">lm::Font Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A class describing a font.  
+ <a href="classlm_1_1_font.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_font_8hpp_source.html">Font.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:aacf5d69c466a46aaac7371b9af238138"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacf5d69c466a46aaac7371b9af238138"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>glyphCount</b> = 128
+<tr class="memitem:aacf5d69c466a46aaac7371b9af238138"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>glyphCount</b> = 128
  }</td></tr>
 <tr class="separator:aacf5d69c466a46aaac7371b9af238138"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a50c6771f1b07ff06b045e0a4fb0e4b24"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50c6771f1b07ff06b045e0a4fb0e4b24"></a>
-const <a class="el" href="classlm_1_1_texture.html">Texture</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>texture</b> () const </td></tr>
+<tr class="memitem:ae12140b36af23d09fca323f01e825d20"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_font.html#ae12140b36af23d09fca323f01e825d20">Font</a> ()</td></tr>
+<tr class="separator:ae12140b36af23d09fca323f01e825d20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50c6771f1b07ff06b045e0a4fb0e4b24"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classlm_1_1_texture.html">Texture</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_font.html#a50c6771f1b07ff06b045e0a4fb0e4b24">texture</a> () const </td></tr>
 <tr class="separator:a50c6771f1b07ff06b045e0a4fb0e4b24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5be03019a5b7513b907f923ed7be65c3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5be03019a5b7513b907f923ed7be65c3"></a>
-const <a class="el" href="structlm_1_1_glyph.html">Glyph</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>glyph</b> (int i) const </td></tr>
+<tr class="memitem:a5be03019a5b7513b907f923ed7be65c3"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structlm_1_1_glyph.html">Glyph</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_font.html#a5be03019a5b7513b907f923ed7be65c3">glyph</a> (int i) const </td></tr>
 <tr class="separator:a5be03019a5b7513b907f923ed7be65c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5bde7195810cd64aed2801095a33394d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5bde7195810cd64aed2801095a33394d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPath</b> (const std::string &amp;path, bool resource=true)</td></tr>
+<tr class="memitem:a5bde7195810cd64aed2801095a33394d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_font.html#a5bde7195810cd64aed2801095a33394d">setPath</a> (const std::string &amp;path, bool resource=true)</td></tr>
 <tr class="separator:a5bde7195810cd64aed2801095a33394d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4c55c643401bf57bcc727a07c90bbf1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae4c55c643401bf57bcc727a07c90bbf1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setSize</b> (float size)</td></tr>
+<tr class="memitem:ae4c55c643401bf57bcc727a07c90bbf1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_font.html#ae4c55c643401bf57bcc727a07c90bbf1">setSize</a> (float size)</td></tr>
 <tr class="separator:ae4c55c643401bf57bcc727a07c90bbf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0487039cb6e2285e1b948a32db64a7c7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0487039cb6e2285e1b948a32db64a7c7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>load</b> ()</td></tr>
+<tr class="memitem:a0487039cb6e2285e1b948a32db64a7c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_font.html#a0487039cb6e2285e1b948a32db64a7c7">load</a> ()</td></tr>
 <tr class="separator:a0487039cb6e2285e1b948a32db64a7c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80b1667ce5328fe1d9d0434a7a99dfab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80b1667ce5328fe1d9d0434a7a99dfab"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>unload</b> ()</td></tr>
+<tr class="memitem:a80b1667ce5328fe1d9d0434a7a99dfab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_font.html#a80b1667ce5328fe1d9d0434a7a99dfab">unload</a> ()</td></tr>
 <tr class="separator:a80b1667ce5328fe1d9d0434a7a99dfab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:aef920ec28f18c9a93ecfa47ff1721f7b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef920ec28f18c9a93ecfa47ff1721f7b"></a>
-<a class="el" href="classlm_1_1_texture.html">Texture</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_texture</b></td></tr>
-<tr class="separator:aef920ec28f18c9a93ecfa47ff1721f7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade6e5ddb321ffc36f19c984d82fb8c05"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade6e5ddb321ffc36f19c984d82fb8c05"></a>
-<a class="el" href="structlm_1_1_glyph.html">Glyph</a>&#160;</td><td class="memItemRight" valign="bottom"><b>_glyphs</b> [glyphCount]</td></tr>
-<tr class="separator:ade6e5ddb321ffc36f19c984d82fb8c05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d765050191bd314976b9f27eb0c6ba1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6d765050191bd314976b9f27eb0c6ba1"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>_path</b></td></tr>
-<tr class="separator:a6d765050191bd314976b9f27eb0c6ba1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a886df6de268463e30d5f9bd5c29c83c5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a886df6de268463e30d5f9bd5c29c83c5"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>_size</b></td></tr>
-<tr class="separator:a886df6de268463e30d5f9bd5c29c83c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f6078bbf310290c0cf51c5ce65d5ff4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_font.html#a9f6078bbf310290c0cf51c5ce65d5ff4">~Font</a> ()</td></tr>
+<tr class="separator:a9f6078bbf310290c0cf51c5ce65d5ff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A class describing a font. </p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="aacf5d69c466a46aaac7371b9af238138"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The number of glyphs in a font </p>
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ae12140b36af23d09fca323f01e825d20"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">lm::Font::Font </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Construct an empty font </p>
+
+</div>
+</div>
+<a class="anchor" id="a9f6078bbf310290c0cf51c5ce65d5ff4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">lm::Font::~Font </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="classlm_1_1_font.html" title="A class describing a font. ">Font</a> dtor </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a5be03019a5b7513b907f923ed7be65c3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="structlm_1_1_glyph.html">Glyph</a>&amp; lm::Font::glyph </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Extract a glyph from the font </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>The glyph index </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A reference to the glyph </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0487039cb6e2285e1b948a32db64a7c7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lm::Font::load </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Load the font </p>
+
+</div>
+</div>
+<a class="anchor" id="a5bde7195810cd64aed2801095a33394d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lm::Font::setPath </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>resource</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set the load path for the font </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>The load path </td></tr>
+    <tr><td class="paramname">resource</td><td>If true, the path is relative to the resource path </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ae4c55c643401bf57bcc727a07c90bbf1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lm::Font::setSize </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set the font size in points size The size </p>
+
+</div>
+</div>
+<a class="anchor" id="a50c6771f1b07ff06b045e0a4fb0e4b24"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="classlm_1_1_texture.html">Texture</a>&amp; lm::Font::texture </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the texture associated with the font. </p><dl class="section return"><dt>Returns</dt><dd>A reference to the texture </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a80b1667ce5328fe1d9d0434a7a99dfab"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lm::Font::unload </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Unload the font </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/LumsInclude/Graphics/<a class="el" href="_font_8hpp_source.html">Font.hpp</a></li>
 </ul>

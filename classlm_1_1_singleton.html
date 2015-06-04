@@ -97,22 +97,140 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">lm::Singleton&lt; T &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>An helper template for creating singletons.  
+ <a href="classlm_1_1_singleton.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_singleton_8hpp_source.html">Singleton.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a578cb7220960b2c24f4b739cd91bf061"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a578cb7220960b2c24f4b739cd91bf061"></a>
-static T &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>instance</b> ()</td></tr>
+<tr class="memitem:a578cb7220960b2c24f4b739cd91bf061"><td class="memItemLeft" align="right" valign="top">static T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_singleton.html#a578cb7220960b2c24f4b739cd91bf061">instance</a> ()</td></tr>
 <tr class="separator:a578cb7220960b2c24f4b739cd91bf061"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a77bc9908dc92db581863640064a6b48a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77bc9908dc92db581863640064a6b48a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Singleton</b> (const <a class="el" href="classlm_1_1_singleton.html">Singleton</a>&lt; T &gt; &amp;)=delete</td></tr>
+<tr class="memitem:a32a4e39a577bd3f58df9be210c474647"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_singleton.html#a32a4e39a577bd3f58df9be210c474647">Singleton</a> ()=default</td></tr>
+<tr class="separator:a32a4e39a577bd3f58df9be210c474647"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77bc9908dc92db581863640064a6b48a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_singleton.html#a77bc9908dc92db581863640064a6b48a">Singleton</a> (const <a class="el" href="classlm_1_1_singleton.html">Singleton</a>&lt; T &gt; &amp;)=delete</td></tr>
 <tr class="separator:a77bc9908dc92db581863640064a6b48a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3eac768188266c5b248b81756857f964"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3eac768188266c5b248b81756857f964"></a>
-<a class="el" href="classlm_1_1_singleton.html">Singleton</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="classlm_1_1_singleton.html">Singleton</a>&lt; T &gt; &amp;)=delete</td></tr>
+<tr class="memitem:a3eac768188266c5b248b81756857f964"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classlm_1_1_singleton.html">Singleton</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_singleton.html#a3eac768188266c5b248b81756857f964">operator=</a> (const <a class="el" href="classlm_1_1_singleton.html">Singleton</a>&lt; T &gt; &amp;)=delete</td></tr>
 <tr class="separator:a3eac768188266c5b248b81756857f964"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename T&gt;<br />
+class lm::Singleton&lt; T &gt;</h3>
+
+<p>An helper template for creating singletons. </p>
+<p>Singletons created using this class are lazy-constructed </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a32a4e39a577bd3f58df9be210c474647"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classlm_1_1_singleton.html">lm::Singleton</a>&lt; T &gt;::<a class="el" href="classlm_1_1_singleton.html">Singleton</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Default ctor </p>
+
+</div>
+</div>
+<a class="anchor" id="a77bc9908dc92db581863640064a6b48a"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classlm_1_1_singleton.html">lm::Singleton</a>&lt; T &gt;::<a class="el" href="classlm_1_1_singleton.html">Singleton</a> </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classlm_1_1_singleton.html">Singleton</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Deleted copy ctor </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a578cb7220960b2c24f4b739cd91bf061"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static T&amp; <a class="el" href="classlm_1_1_singleton.html">lm::Singleton</a>&lt; T &gt;::instance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the single instance </p><dl class="section return"><dt>Returns</dt><dd>The single instance </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3eac768188266c5b248b81756857f964"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classlm_1_1_singleton.html">Singleton</a>&lt;T&gt;&amp; <a class="el" href="classlm_1_1_singleton.html">lm::Singleton</a>&lt; T &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classlm_1_1_singleton.html">Singleton</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Deleted assignment operator </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/LumsInclude/<a class="el" href="_singleton_8hpp_source.html">Singleton.hpp</a></li>
 </ul>

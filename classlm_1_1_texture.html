@@ -91,76 +91,344 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classlm_1_1_texture-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">lm::Texture Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A class representing a texture in the GPU.  
+ <a href="classlm_1_1_texture.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_texture_8hpp_source.html">Texture.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afb4f252670805b08cb1ad0be73318673"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afb4f252670805b08cb1ad0be73318673"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>width</b> () const </td></tr>
+<tr class="memitem:a46c6224a46893edea14b44c8b91aaae2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_texture.html#a46c6224a46893edea14b44c8b91aaae2">Texture</a> ()</td></tr>
+<tr class="separator:a46c6224a46893edea14b44c8b91aaae2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb4f252670805b08cb1ad0be73318673"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_texture.html#afb4f252670805b08cb1ad0be73318673">width</a> () const </td></tr>
 <tr class="separator:afb4f252670805b08cb1ad0be73318673"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31dd122fd2703dfee6ae8a40c1e42ff9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a31dd122fd2703dfee6ae8a40c1e42ff9"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>height</b> () const </td></tr>
+<tr class="memitem:a31dd122fd2703dfee6ae8a40c1e42ff9"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_texture.html#a31dd122fd2703dfee6ae8a40c1e42ff9">height</a> () const </td></tr>
 <tr class="separator:a31dd122fd2703dfee6ae8a40c1e42ff9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13640e761f163f7de28174ae88698b10"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a13640e761f163f7de28174ae88698b10"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>bufferWidth</b> () const </td></tr>
+<tr class="memitem:a13640e761f163f7de28174ae88698b10"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_texture.html#a13640e761f163f7de28174ae88698b10">bufferWidth</a> () const </td></tr>
 <tr class="separator:a13640e761f163f7de28174ae88698b10"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad62f1b4c62d7ff41f8b9a57ca8991692"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad62f1b4c62d7ff41f8b9a57ca8991692"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>bufferHeight</b> () const </td></tr>
+<tr class="memitem:ad62f1b4c62d7ff41f8b9a57ca8991692"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_texture.html#ad62f1b4c62d7ff41f8b9a57ca8991692">bufferHeight</a> () const </td></tr>
 <tr class="separator:ad62f1b4c62d7ff41f8b9a57ca8991692"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7b049e130f3b07557d3e9f26f739e3e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa7b049e130f3b07557d3e9f26f739e3e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setImage</b> (<a class="el" href="classlm_1_1_image.html">Image</a> &amp;image)</td></tr>
+<tr class="memitem:aa7b049e130f3b07557d3e9f26f739e3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_texture.html#aa7b049e130f3b07557d3e9f26f739e3e">setImage</a> (<a class="el" href="classlm_1_1_image.html">Image</a> &amp;image)</td></tr>
 <tr class="separator:aa7b049e130f3b07557d3e9f26f739e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96b381e9c11aa76307dc18f330c8ad0d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96b381e9c11aa76307dc18f330c8ad0d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>load</b> ()</td></tr>
+<tr class="memitem:a96b381e9c11aa76307dc18f330c8ad0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_texture.html#a96b381e9c11aa76307dc18f330c8ad0d">load</a> ()</td></tr>
 <tr class="separator:a96b381e9c11aa76307dc18f330c8ad0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4deff82d1689e60baf255d7c564ba0e8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4deff82d1689e60baf255d7c564ba0e8"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>unload</b> ()</td></tr>
+<tr class="memitem:a4deff82d1689e60baf255d7c564ba0e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_texture.html#a4deff82d1689e60baf255d7c564ba0e8">unload</a> ()</td></tr>
 <tr class="separator:a4deff82d1689e60baf255d7c564ba0e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b7678d58397b0af64c1e59a05a1bd96"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b7678d58397b0af64c1e59a05a1bd96"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>bind</b> () const </td></tr>
+<tr class="memitem:a3b7678d58397b0af64c1e59a05a1bd96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_texture.html#a3b7678d58397b0af64c1e59a05a1bd96">bind</a> () const </td></tr>
 <tr class="separator:a3b7678d58397b0af64c1e59a05a1bd96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad242ee89826612835a6b1067f02a5587"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad242ee89826612835a6b1067f02a5587"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pushAtlas</b> (const <a class="el" href="structlm_1_1_rect.html">Rect2f</a> &amp;rect)</td></tr>
+<tr class="memitem:ad242ee89826612835a6b1067f02a5587"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_texture.html#ad242ee89826612835a6b1067f02a5587">pushAtlas</a> (const <a class="el" href="namespacelm.html#ac8f074b0feecbc205e6133e5ac88359a">Rect2f</a> &amp;rect)</td></tr>
 <tr class="separator:ad242ee89826612835a6b1067f02a5587"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23fd8eeee4ea9012a127264cc352d361"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a23fd8eeee4ea9012a127264cc352d361"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>pushAtlas</b> (int w, int h)</td></tr>
+<tr class="memitem:a23fd8eeee4ea9012a127264cc352d361"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_texture.html#a23fd8eeee4ea9012a127264cc352d361">pushAtlas</a> (int w, int h)</td></tr>
 <tr class="separator:a23fd8eeee4ea9012a127264cc352d361"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5eeb6175e0d38870aac74f85d1eb6bf5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5eeb6175e0d38870aac74f85d1eb6bf5"></a>
-const <a class="el" href="structlm_1_1_rect.html">Rect2f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>atlas</b> (std::size_t i) const </td></tr>
+<tr class="memitem:a5eeb6175e0d38870aac74f85d1eb6bf5"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespacelm.html#ac8f074b0feecbc205e6133e5ac88359a">Rect2f</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_texture.html#a5eeb6175e0d38870aac74f85d1eb6bf5">atlas</a> (std::size_t i) const </td></tr>
 <tr class="separator:a5eeb6175e0d38870aac74f85d1eb6bf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d41f8af4ab5b2eb8246ea3990de5b1c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d41f8af4ab5b2eb8246ea3990de5b1c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>loaded</b> () const </td></tr>
+<tr class="memitem:a8d41f8af4ab5b2eb8246ea3990de5b1c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_texture.html#a8d41f8af4ab5b2eb8246ea3990de5b1c">loaded</a> () const </td></tr>
 <tr class="separator:a8d41f8af4ab5b2eb8246ea3990de5b1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
-Private Attributes</h2></td></tr>
-<tr class="memitem:abb37afd5db6efa95ef8c0c82082adff4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abb37afd5db6efa95ef8c0c82082adff4"></a>
-GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>_texture</b></td></tr>
-<tr class="separator:abb37afd5db6efa95ef8c0c82082adff4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbebb3cacd50c690bfb160e0c5c43b8f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acbebb3cacd50c690bfb160e0c5c43b8f"></a>
-<a class="el" href="classlm_1_1_image.html">Image</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>_image</b></td></tr>
-<tr class="separator:acbebb3cacd50c690bfb160e0c5c43b8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad58b85ed54139466e09c92bd865c3166"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad58b85ed54139466e09c92bd865c3166"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>_width</b></td></tr>
-<tr class="separator:ad58b85ed54139466e09c92bd865c3166"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a614c33102f8c503f6017e4b78eb5b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9a614c33102f8c503f6017e4b78eb5b7"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>_height</b></td></tr>
-<tr class="separator:a9a614c33102f8c503f6017e4b78eb5b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfd1a6d8c9b0704e002a341a882ae625"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abfd1a6d8c9b0704e002a341a882ae625"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>_bufferWidth</b></td></tr>
-<tr class="separator:abfd1a6d8c9b0704e002a341a882ae625"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3a930f6fda71ae41424648353ad96f7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3a930f6fda71ae41424648353ad96f7"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>_bufferHeight</b></td></tr>
-<tr class="separator:ae3a930f6fda71ae41424648353ad96f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a961ff66046f2f0f3178634604da88473"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a961ff66046f2f0f3178634604da88473"></a>
-std::vector&lt; <a class="el" href="structlm_1_1_rect.html">Rect2f</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>_atlas</b></td></tr>
-<tr class="separator:a961ff66046f2f0f3178634604da88473"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78d42f04eebdf1568f059e3bdaf85783"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_texture.html#a78d42f04eebdf1568f059e3bdaf85783">~Texture</a> ()</td></tr>
+<tr class="separator:a78d42f04eebdf1568f059e3bdaf85783"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A class representing a texture in the GPU. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a46c6224a46893edea14b44c8b91aaae2"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">lm::Texture::Texture </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Create a texture </p>
+
+</div>
+</div>
+<a class="anchor" id="a78d42f04eebdf1568f059e3bdaf85783"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">lm::Texture::~Texture </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="classlm_1_1_texture.html" title="A class representing a texture in the GPU. ">Texture</a> dtor </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a5eeb6175e0d38870aac74f85d1eb6bf5"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="namespacelm.html#ac8f074b0feecbc205e6133e5ac88359a">Rect2f</a>&amp; lm::Texture::atlas </td>
+          <td>(</td>
+          <td class="paramtype">std::size_t&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Get a rect from the atlas </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>The atlas index </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The rect </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a3b7678d58397b0af64c1e59a05a1bd96"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lm::Texture::bind </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Bind the texture </p>
+
+</div>
+</div>
+<a class="anchor" id="ad62f1b4c62d7ff41f8b9a57ca8991692"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float lm::Texture::bufferHeight </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the texture buffer height </p><dl class="section return"><dt>Returns</dt><dd>The texture buffer height </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a13640e761f163f7de28174ae88698b10"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float lm::Texture::bufferWidth </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the texture buffer width </p><dl class="section return"><dt>Returns</dt><dd>The texture buffer width </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a31dd122fd2703dfee6ae8a40c1e42ff9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float lm::Texture::height </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the texture height </p><dl class="section return"><dt>Returns</dt><dd>The texture height </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a96b381e9c11aa76307dc18f330c8ad0d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lm::Texture::load </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Load the texture </p>
+
+</div>
+</div>
+<a class="anchor" id="a8d41f8af4ab5b2eb8246ea3990de5b1c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool lm::Texture::loaded </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Check wether a texture is loaded </p><dl class="section return"><dt>Returns</dt><dd>true if the texture is loaded, false otherwise </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ad242ee89826612835a6b1067f02a5587"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lm::Texture::pushAtlas </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespacelm.html#ac8f074b0feecbc205e6133e5ac88359a">Rect2f</a> &amp;&#160;</td>
+          <td class="paramname"><em>rect</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Add a rect to the texture atlas </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rect</td><td>The rect to be added </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a23fd8eeee4ea9012a127264cc352d361"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lm::Texture::pushAtlas </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>h</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Cut the texture into equal parts </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w</td><td>the texture part width </td></tr>
+    <tr><td class="paramname">h</td><td>the texture part height </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa7b049e130f3b07557d3e9f26f739e3e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lm::Texture::setImage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classlm_1_1_image.html">Image</a> &amp;&#160;</td>
+          <td class="paramname"><em>image</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set the texture image. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">image</td><td>The image </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a4deff82d1689e60baf255d7c564ba0e8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lm::Texture::unload </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Unload the texture </p>
+
+</div>
+</div>
+<a class="anchor" id="afb4f252670805b08cb1ad0be73318673"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float lm::Texture::width </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Get the texture width </p><dl class="section return"><dt>Returns</dt><dd>The texture width </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/LumsInclude/Graphics/<a class="el" href="_texture_8hpp_source.html">Texture.hpp</a></li>
 </ul>

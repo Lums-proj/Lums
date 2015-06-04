@@ -111,30 +111,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacelm.html">lm</a></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classlm_1_1_sfx.html">   22</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classlm_1_1_sfx.html">Sfx</a> : <span class="keyword">public</span> <a class="code" href="classlm_1_1_sound.html">Sound</a></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="classlm_1_1_sfx.html">Sfx</a>();</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <a class="code" href="classlm_1_1_sfx.html">Sfx</a>(<span class="keyword">const</span> <a class="code" href="classlm_1_1_sfx.html">Sfx</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <a class="code" href="classlm_1_1_sfx.html">Sfx</a>(<a class="code" href="classlm_1_1_sfx.html">Sfx</a>&amp;&amp; rhs);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <a class="code" href="classlm_1_1_sfx.html">Sfx</a>&amp;  operator=(<span class="keyword">const</span> <a class="code" href="classlm_1_1_sfx.html">Sfx</a>&amp;) = <span class="keyword">delete</span>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="classlm_1_1_sfx.html">Sfx</a>&amp;  operator=(<a class="code" href="classlm_1_1_sfx.html">Sfx</a>&amp;&amp; rhs);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">void</span>    play(<a class="code" href="classlm_1_1_vector.html">Vector3f</a> pos = {0.f, 0.f, 0.f});</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">void</span>    pause();</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordtype">void</span>    stop();</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordtype">void</span>    setVolume(<span class="keywordtype">float</span> volume);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        ~<a class="code" href="classlm_1_1_sfx.html">Sfx</a>();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        std::vector&lt;ALuint&gt; _sources;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    };</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="classlm_1_1_sfx_html"><div class="ttname"><a href="classlm_1_1_sfx.html">lm::Sfx</a></div><div class="ttdef"><b>Definition:</b> Sfx.hpp:22</div></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classlm_1_1_sfx.html">   25</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classlm_1_1_sfx.html">Sfx</a> : <span class="keyword">public</span> <a class="code" href="classlm_1_1_sound.html">Sound</a></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="classlm_1_1_sfx.html#a3fe95b3e32964614c91de1622798ad3c">Sfx</a>();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="classlm_1_1_sfx.html#a3fe95b3e32964614c91de1622798ad3c">Sfx</a>(<span class="keyword">const</span> <a class="code" href="classlm_1_1_sfx.html">Sfx</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <a class="code" href="classlm_1_1_sfx.html#a3fe95b3e32964614c91de1622798ad3c">Sfx</a>(<a class="code" href="classlm_1_1_sfx.html">Sfx</a>&amp;&amp; rhs);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="classlm_1_1_sfx.html">Sfx</a>&amp;  <a class="code" href="classlm_1_1_sfx.html#a42ff1a7e34e125e00d7113a3e524cbb2">operator=</a>(<span class="keyword">const</span> <a class="code" href="classlm_1_1_sfx.html">Sfx</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="classlm_1_1_sfx.html">Sfx</a>&amp;  <a class="code" href="classlm_1_1_sfx.html#a42ff1a7e34e125e00d7113a3e524cbb2">operator=</a>(<a class="code" href="classlm_1_1_sfx.html">Sfx</a>&amp;&amp; rhs);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keywordtype">void</span>    <a class="code" href="classlm_1_1_sfx.html#a575ba135f16ec3b04b187874534ea1bb">play</a>(<a class="code" href="namespacelm.html#a8cc344a08f6653e8dd53c17303e8ac7a">Vector3f</a> pos = {0.f, 0.f, 0.f});</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordtype">void</span>    <a class="code" href="classlm_1_1_sfx.html#a2520b128c9b57837a9d57969a0a3cd49">pause</a>();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordtype">void</span>    <a class="code" href="classlm_1_1_sfx.html#a848cab2fe60ddedaa537193d3f6beb47">stop</a>();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">void</span>    <a class="code" href="classlm_1_1_sfx.html#a6ffc9baa564b9e83f7e167004650998c">setVolume</a>(<span class="keywordtype">float</span> <a class="code" href="classlm_1_1_sound.html#aa512eccbdd05077ac9a493527422d80a">volume</a>);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <a class="code" href="classlm_1_1_sfx.html#adb08d10b1626165d317efd74a88754a4">~Sfx</a>();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        std::vector&lt;ALuint&gt; _sources;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    };</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classlm_1_1_sfx_html_a2520b128c9b57837a9d57969a0a3cd49"><div class="ttname"><a href="classlm_1_1_sfx.html#a2520b128c9b57837a9d57969a0a3cd49">lm::Sfx::pause</a></div><div class="ttdeci">void pause()</div></div>
+<div class="ttc" id="classlm_1_1_sfx_html_a848cab2fe60ddedaa537193d3f6beb47"><div class="ttname"><a href="classlm_1_1_sfx.html#a848cab2fe60ddedaa537193d3f6beb47">lm::Sfx::stop</a></div><div class="ttdeci">void stop()</div></div>
+<div class="ttc" id="classlm_1_1_sfx_html_adb08d10b1626165d317efd74a88754a4"><div class="ttname"><a href="classlm_1_1_sfx.html#adb08d10b1626165d317efd74a88754a4">lm::Sfx::~Sfx</a></div><div class="ttdeci">~Sfx()</div></div>
+<div class="ttc" id="namespacelm_html_a8cc344a08f6653e8dd53c17303e8ac7a"><div class="ttname"><a href="namespacelm.html#a8cc344a08f6653e8dd53c17303e8ac7a">lm::Vector3f</a></div><div class="ttdeci">Vector3&lt; float &gt; Vector3f</div><div class="ttdef"><b>Definition:</b> Vector.hpp:379</div></div>
+<div class="ttc" id="classlm_1_1_sfx_html_a42ff1a7e34e125e00d7113a3e524cbb2"><div class="ttname"><a href="classlm_1_1_sfx.html#a42ff1a7e34e125e00d7113a3e524cbb2">lm::Sfx::operator=</a></div><div class="ttdeci">Sfx &amp; operator=(const Sfx &amp;)=delete</div></div>
+<div class="ttc" id="classlm_1_1_sfx_html"><div class="ttname"><a href="classlm_1_1_sfx.html">lm::Sfx</a></div><div class="ttdoc">A class used to represent sound effect. </div><div class="ttdef"><b>Definition:</b> Sfx.hpp:25</div></div>
 <div class="ttc" id="namespacelm_html"><div class="ttname"><a href="namespacelm.html">lm</a></div><div class="ttdoc">The Lums namespace. </div><div class="ttdef"><b>Definition:</b> Application.hpp:17</div></div>
-<div class="ttc" id="classlm_1_1_sound_html"><div class="ttname"><a href="classlm_1_1_sound.html">lm::Sound</a></div><div class="ttdef"><b>Definition:</b> Sound.hpp:33</div></div>
-<div class="ttc" id="classlm_1_1_vector_html"><div class="ttname"><a href="classlm_1_1_vector.html">lm::Vector</a></div><div class="ttdef"><b>Definition:</b> Vector.hpp:24</div></div>
+<div class="ttc" id="classlm_1_1_sfx_html_a3fe95b3e32964614c91de1622798ad3c"><div class="ttname"><a href="classlm_1_1_sfx.html#a3fe95b3e32964614c91de1622798ad3c">lm::Sfx::Sfx</a></div><div class="ttdeci">Sfx()</div></div>
+<div class="ttc" id="classlm_1_1_sfx_html_a575ba135f16ec3b04b187874534ea1bb"><div class="ttname"><a href="classlm_1_1_sfx.html#a575ba135f16ec3b04b187874534ea1bb">lm::Sfx::play</a></div><div class="ttdeci">void play(Vector3f pos={0.f, 0.f, 0.f})</div></div>
+<div class="ttc" id="classlm_1_1_sound_html"><div class="ttname"><a href="classlm_1_1_sound.html">lm::Sound</a></div><div class="ttdoc">An abstract class for sounds. </div><div class="ttdef"><b>Definition:</b> Sound.hpp:41</div></div>
+<div class="ttc" id="classlm_1_1_sound_html_aa512eccbdd05077ac9a493527422d80a"><div class="ttname"><a href="classlm_1_1_sound.html#aa512eccbdd05077ac9a493527422d80a">lm::Sound::volume</a></div><div class="ttdeci">float volume</div><div class="ttdef"><b>Definition:</b> Sound.hpp:106</div></div>
+<div class="ttc" id="classlm_1_1_sfx_html_a6ffc9baa564b9e83f7e167004650998c"><div class="ttname"><a href="classlm_1_1_sfx.html#a6ffc9baa564b9e83f7e167004650998c">lm::Sfx::setVolume</a></div><div class="ttdeci">void setVolume(float volume)</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->
