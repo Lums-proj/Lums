@@ -99,8 +99,8 @@ namespace lm
      * Translate a matrix by an offset 
      * @param matrix The matrix to be translated
      * @param x The x offset
-     * @param x The y offset
-     * @param x The z offset
+     * @param y The y offset
+     * @param z The z offset
      */
     inline void
     translate(Matrix4f& matrix, GLfloat x, GLfloat y, GLfloat z)
@@ -117,7 +117,7 @@ namespace lm
     /**
      * Translate a matrix by a vector 
      * @param matrix The matrix to be translated
-     * @param x The translation vector
+     * @param vec The translation vector
      */
     inline void
     translate(Matrix4f& matrix, Vector3f vec)
@@ -127,7 +127,7 @@ namespace lm
 
     /**
      * Rotate a matrix by an angle around a vector
-     * @param The matrix to be rotated
+     * @param matrix The matrix to be rotated
      * @param angle The angle in degrees
      * @param v The up vector
      */

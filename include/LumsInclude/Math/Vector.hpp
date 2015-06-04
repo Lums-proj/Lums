@@ -315,7 +315,7 @@ namespace lm
 
     /**
      * Unary plus
-     * @param vector A vector
+     * @param vect A vector
      * @return The same vector
      */
     template <std::size_t N, typename T>
@@ -329,7 +329,7 @@ namespace lm
 
     /**
      * Unary minus
-     * @param vector A vector
+     * @param vect A vector
      * @return The opposite vector
      */
     template <std::size_t N, typename T>

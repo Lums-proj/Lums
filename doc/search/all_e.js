@@ -9,7 +9,7 @@ var searchData=
   ['pos',['pos',['../classlm_1_1_sprite.html#a45643a70c5d1667189c05317e67fe6a2',1,'lm::Sprite::pos()'],['../structlm_1_1_rect.html#a6e7d2c934bc8ea2711396b86982a6420',1,'lm::Rect::pos()']]],
   ['prepend',['prepend',['../classlm_1_1_shader_pipeline.html#a3c9f2767f36140a8991238842871b6b4',1,'lm::ShaderPipeline']]],
   ['program',['program',['../classlm_1_1_shader_program.html#a51668217fa79961705fa22aeb49697f4',1,'lm::ShaderProgram']]],
-  ['projection',['projection',['../structlm_1_1_projection.html#a8c780270a5dc18a5591159724866055e',1,'lm::Projection::projection()'],['../structlm_1_1_projection.html#ac360dd7bcf2c540eefd181209eac5842',1,'lm::Projection::Projection()']]],
+  ['projection',['Projection',['../structlm_1_1_projection.html#ac360dd7bcf2c540eefd181209eac5842',1,'lm::Projection::Projection()'],['../structlm_1_1_projection.html#a8c780270a5dc18a5591159724866055e',1,'lm::Projection::projection()']]],
   ['projection',['Projection',['../structlm_1_1_projection.html',1,'lm']]],
   ['provider',['Provider',['../classlm_1_1_provider.html',1,'lm']]],
   ['pumpevent',['pumpEvent',['../classlm_1_1_window.html#a0e9ac10ca74f485bd376390c939f605d',1,'lm::Window']]],

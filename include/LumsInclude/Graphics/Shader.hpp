@@ -39,7 +39,7 @@ namespace lm
 		 * Construct a shader from it's type and path
 		 * @param path The shader path
 		 * @param type The shader type
-		 * @params resource If true, path is relative to the resource path
+		 * @param resource If true, path is relative to the resource path
 		 */
 		Shader(const char* path, Type type, bool resource = true);
 		

@@ -54,7 +54,7 @@ namespace lm
 
     /**
      * Compute the square length of a vector
-     * @param v1 The vector
+     * @param vect The vector
      * @return The square length of the vector
      */
     template <std::size_t N, typename T>
@@ -74,7 +74,7 @@ namespace lm
 
     /**
      * Compute the length of a vector
-     * @param v1 The vector
+     * @param vect The vector
      * @return The length of the vector
      */
     template <std::size_t N, typename T>
@@ -86,7 +86,7 @@ namespace lm
 
     /**
      * Compute the normal of a vector
-     * @param v1 The vector
+     * @param vect The vector
      * @return The normal of the vector
      */
     template <std::size_t N, typename T>

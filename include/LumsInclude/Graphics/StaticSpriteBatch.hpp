@@ -94,8 +94,15 @@ namespace lm
         ~StaticSpriteBatch();
 
     protected:
-        VertexBufferP2T2C4          _vbo;
-        const Texture*              _texture;
+        /**
+         * A vertex buffer object
+         */
+        VertexBufferP2T2C4          vbo;
+
+        /**
+         * A texture
+         */
+        const Texture*              texture;
     };
 };
 

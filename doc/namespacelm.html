@@ -190,6 +190,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class representing a buffer of vertices.  <a href="classlm_1_1_vertex_buffer.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classlm_1_1_window.html">Window</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class defines a <a class="el" href="classlm_1_1_window.html" title="This class defines a Window. ">Window</a>.  <a href="classlm_1_1_window.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
@@ -900,7 +901,7 @@ template&lt;std::size_t N, typename T &gt; </div>
 </div><div class="memdoc">
 <p>Compute the length of a vector </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">v1</td><td>The vector </td></tr>
+    <tr><td class="paramname">vect</td><td>The vector </td></tr>
   </table>
   </dd>
 </dl>
@@ -974,7 +975,7 @@ template&lt;std::size_t N, typename T &gt; </div>
 </div><div class="memdoc">
 <p>Compute the normal of a vector </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">v1</td><td>The vector </td></tr>
+    <tr><td class="paramname">vect</td><td>The vector </td></tr>
   </table>
   </dd>
 </dl>
@@ -1240,7 +1241,7 @@ template&lt;std::size_t N, typename T &gt; </div>
 </div><div class="memdoc">
 <p>Unary plus </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">vector</td><td>A vector </td></tr>
+    <tr><td class="paramname">vect</td><td>A vector </td></tr>
   </table>
   </dd>
 </dl>
@@ -1337,7 +1338,7 @@ template&lt;std::size_t N, typename T &gt; </div>
 </div><div class="memdoc">
 <p>Unary minus </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">vector</td><td>A vector </td></tr>
+    <tr><td class="paramname">vect</td><td>A vector </td></tr>
   </table>
   </dd>
 </dl>
@@ -1620,7 +1621,7 @@ template&lt;std::size_t N, typename T , typename U &gt; </div>
 </div><div class="memdoc">
 <p>Rotate a matrix by an angle around a vector </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">The</td><td>matrix to be rotated </td></tr>
+    <tr><td class="paramname">matrix</td><td>The matrix to be rotated </td></tr>
     <tr><td class="paramname">angle</td><td>The angle in degrees </td></tr>
     <tr><td class="paramname">v</td><td>The up vector </td></tr>
   </table>
@@ -1682,7 +1683,7 @@ template&lt;std::size_t N, typename T &gt; </div>
 </div><div class="memdoc">
 <p>Compute the square length of a vector </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">v1</td><td>The vector </td></tr>
+    <tr><td class="paramname">vect</td><td>The vector </td></tr>
   </table>
   </dd>
 </dl>
@@ -1768,8 +1769,8 @@ template&lt;std::size_t N, typename T &gt; </div>
   <table class="params">
     <tr><td class="paramname">matrix</td><td>The matrix to be translated </td></tr>
     <tr><td class="paramname">x</td><td>The x offset </td></tr>
-    <tr><td class="paramname">x</td><td>The y offset </td></tr>
-    <tr><td class="paramname">x</td><td>The z offset </td></tr>
+    <tr><td class="paramname">y</td><td>The y offset </td></tr>
+    <tr><td class="paramname">z</td><td>The z offset </td></tr>
   </table>
   </dd>
 </dl>
@@ -1810,7 +1811,7 @@ template&lt;std::size_t N, typename T &gt; </div>
 <p>Translate a matrix by a vector </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">matrix</td><td>The matrix to be translated </td></tr>
-    <tr><td class="paramname">x</td><td>The translation vector </td></tr>
+    <tr><td class="paramname">vec</td><td>The translation vector </td></tr>
   </table>
   </dd>
 </dl>
