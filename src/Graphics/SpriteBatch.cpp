@@ -18,7 +18,7 @@ using namespace lm;
 void
 SpriteBatch::begin()
 {
-    _texture = nullptr;
+    texture = nullptr;
 }
 
 void
@@ -32,10 +32,10 @@ SpriteBatch::end()
 void
 SpriteBatch::setTexture(const Texture* texture)
 {
-    if (_texture != texture)
+    if (this->texture != texture)
     {
-        if (_texture != nullptr)
+        if (this->texture != nullptr)
             end();
-        _texture = texture;
+        this->texture = texture;
     }
 }

@@ -16,7 +16,7 @@
 using namespace lm;
 
 StaticSpriteBatch::StaticSpriteBatch()
-: _texture(nullptr)
+: texture(nullptr)
 {
 
 }
@@ -51,12 +51,12 @@ StaticSpriteBatch::draw(const Texture& texture, int atlas, Vector2f pos, Vector2
 
     // We create two triangles from a single quad
 
-    _vbo.push(pos.x, pos.y, frame.pos.x, frame.pos.y, color[0], color[1], color[2], color[3]);
-    _vbo.push(pos.x + w, pos.y, frame.pos.x + frame.size.x, frame.pos.y, color[0], color[1], color[2], color[3]);
-    _vbo.push(pos.x + w, pos.y + h, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
-    _vbo.push(pos.x, pos.y, frame.pos.x, frame.pos.y, color[0], color[1], color[2], color[3]);
-    _vbo.push(pos.x + w, pos.y + h, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
-    _vbo.push(pos.x, pos.y + h, frame.pos.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
+    vbo.push(pos.x, pos.y, frame.pos.x, frame.pos.y, color[0], color[1], color[2], color[3]);
+    vbo.push(pos.x + w, pos.y, frame.pos.x + frame.size.x, frame.pos.y, color[0], color[1], color[2], color[3]);
+    vbo.push(pos.x + w, pos.y + h, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
+    vbo.push(pos.x, pos.y, frame.pos.x, frame.pos.y, color[0], color[1], color[2], color[3]);
+    vbo.push(pos.x + w, pos.y + h, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
+    vbo.push(pos.x, pos.y + h, frame.pos.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
 }
 
 void
@@ -85,26 +85,26 @@ StaticSpriteBatch::draw(const Font& font, const char* text, Vector2f pos, Vector
 void
 StaticSpriteBatch::setTexture(const Texture* texture)
 {
-    _texture = texture;
+    this->texture = texture;
 }
 
 void
 StaticSpriteBatch::send()
 {
-    _vbo.send();
+    vbo.send();
 }
 
 void
 StaticSpriteBatch::flush()
 {
-    _vbo.reset();
+    vbo.reset();
 }
 
 void
 StaticSpriteBatch::render()
 {
-    _texture->bind();
-    _vbo.draw(GL_TRIANGLES);
+    texture->bind();
+    vbo.draw(GL_TRIANGLES);
 }
 
 StaticSpriteBatch::~StaticSpriteBatch()

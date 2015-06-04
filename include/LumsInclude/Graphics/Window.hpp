@@ -23,7 +23,7 @@
 namespace lm
 {
     /**
-     * @briefThis class defines a Window.
+     * @brief This class defines a Window.
      */
     class Window
     {
@@ -76,7 +76,7 @@ namespace lm
          * Resize the window
          * @param w The width
          * @param h The height
-         * @param fullscren Whether to be in fullscreen mode or not
+         * @param fullscreen Whether to be in fullscreen mode or not
          */
         LUMS_EXPORTED void      resize(int w, int h, bool fullscreen = false);
 

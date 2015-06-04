@@ -2,7 +2,7 @@ var searchData=
 [
   ['tan',['tan',['../classlm_1_1_angle.html#a61000ae2880282317eefcaa742f6fc3c',1,'lm::Angle']]],
   ['texture',['Texture',['../classlm_1_1_texture.html',1,'lm']]],
-  ['texture',['texture',['../classlm_1_1_font.html#a50c6771f1b07ff06b045e0a4fb0e4b24',1,'lm::Font::texture()'],['../classlm_1_1_sprite.html#a431e9bfe33a44d105c176311f7627643',1,'lm::Sprite::texture()'],['../classlm_1_1_texture.html#a46c6224a46893edea14b44c8b91aaae2',1,'lm::Texture::Texture()']]],
+  ['texture',['texture',['../classlm_1_1_static_sprite_batch.html#acf2a34082e2b6052a62146f19badc2ed',1,'lm::StaticSpriteBatch::texture()'],['../classlm_1_1_font.html#a50c6771f1b07ff06b045e0a4fb0e4b24',1,'lm::Font::texture()'],['../classlm_1_1_sprite.html#a431e9bfe33a44d105c176311f7627643',1,'lm::Sprite::texture()'],['../classlm_1_1_texture.html#a46c6224a46893edea14b44c8b91aaae2',1,'lm::Texture::Texture()']]],
   ['textureprovider',['TextureProvider',['../namespacelm.html#ac447f58254187481b80acdcc19193f91',1,'lm']]],
   ['todegrees',['toDegrees',['../classlm_1_1_angle.html#a436d279d2f5eed0a1845732ec29dbdc9',1,'lm::Angle']]],
   ['top',['top',['../structlm_1_1_glyph.html#a01be2b8baad6c5c6e8bfdbce84e4b70c',1,'lm::Glyph']]],

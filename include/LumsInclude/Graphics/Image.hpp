@@ -147,6 +147,7 @@ namespace lm
          * @param buffer The new buffer
          * @param w The new buffer width
          * @param h The new buffer height
+         * @param format The image format
          */
         LUMS_EXPORTED void  setBuffer(unsigned char* buffer, unsigned int w, unsigned int h, GLenum format);
 
