@@ -79,8 +79,8 @@ Texture::pushAtlas(int w, int h)
 
     for (int j = 0; j < h; ++j)
     {
-        for (int i = 0; i < w; i++)
-            pushAtlas({{i * fw, j * fw}, {fw, fh}});
+        for (int i = 0; i < w; ++i)
+            pushAtlas({{i * fw, j * fh}, {fw, fh}});
     }
 }
 
