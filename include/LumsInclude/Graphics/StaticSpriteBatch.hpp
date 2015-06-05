@@ -71,7 +71,7 @@ namespace lm
          * Set the batch texture
          * @param texture The texture
          */
-        LUMS_EXPORTED void              setTexture(const Texture* texture);
+        LUMS_EXPORTED virtual void      setTexture(const Texture* texture);
 
         /**
          * Send the batch to the GPU
