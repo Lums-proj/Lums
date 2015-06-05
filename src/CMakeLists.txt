@@ -45,5 +45,6 @@ if (APPLE)
     list(APPEND LUMS_ALL lums_framework)
 endif ()
 
-#install(FILES $ DESTINATION include)
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/LumsInclude DESTINATION include)
+install(FILES ${CMAKE_SOURCE_DIR}/include/Lums DESTINATION include)
 add_custom_target(Lums DEPENDS ${LUMS_ALL})
