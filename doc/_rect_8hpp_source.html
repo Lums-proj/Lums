@@ -110,26 +110,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacelm.html">lm</a></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">template</span> &lt;std::<span class="keywordtype">size_t</span> N, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structlm_1_1_rect.html">   22</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structlm_1_1_rect.html">Rect</a></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    {</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">using</span> <a class="code" href="classlm_1_1_vector.html">Vect</a> = <a class="code" href="classlm_1_1_vector.html">Vector&lt;N, T&gt;</a>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <a class="code" href="classlm_1_1_vector.html">Vect</a>    pos;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <a class="code" href="classlm_1_1_vector.html">Vect</a>    size;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    };</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">using</span> <a class="code" href="structlm_1_1_rect.html">Rect2</a> = <a class="code" href="structlm_1_1_rect.html">Rect&lt;2, T&gt;</a>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">using</span> <a class="code" href="structlm_1_1_rect.html">Rect3</a> = <a class="code" href="structlm_1_1_rect.html">Rect&lt;3, T&gt;</a>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">using</span> <a class="code" href="structlm_1_1_rect.html">Rect2f</a> = <a class="code" href="structlm_1_1_rect.html">Rect2&lt;float&gt;</a>;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">using</span> <a class="code" href="structlm_1_1_rect.html">Rect2i</a> = <a class="code" href="structlm_1_1_rect.html">Rect2&lt;int&gt;</a>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">template</span> &lt;std::<span class="keywordtype">size_t</span> N, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structlm_1_1_rect.html">   25</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structlm_1_1_rect.html">Rect</a></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    {</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="structlm_1_1_rect.html#a49b375a704d36b0d33aa4cf85a0c2f33">   30</a></span>&#160;        <span class="keyword">using</span> <a class="code" href="classlm_1_1_vector.html">Vect</a> = <a class="code" href="classlm_1_1_vector.html">Vector&lt;N, T&gt;</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="structlm_1_1_rect.html#a6e7d2c934bc8ea2711396b86982a6420">   35</a></span>&#160;        <a class="code" href="classlm_1_1_vector.html">Vect</a>    <a class="code" href="structlm_1_1_rect.html#a6e7d2c934bc8ea2711396b86982a6420">pos</a>;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="structlm_1_1_rect_html"><div class="ttname"><a href="structlm_1_1_rect.html">lm::Rect</a></div><div class="ttdef"><b>Definition:</b> Rect.hpp:22</div></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="structlm_1_1_rect.html#aad4b5b3b6d883581fc6b365e880f3cff">   40</a></span>&#160;        <a class="code" href="classlm_1_1_vector.html">Vect</a>    <a class="code" href="structlm_1_1_rect.html#aad4b5b3b6d883581fc6b365e880f3cff">size</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    };</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">using</span> Rect2 = <a class="code" href="structlm_1_1_rect.html">Rect&lt;2, T&gt;</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="keyword">using</span> Rect3 = <a class="code" href="structlm_1_1_rect.html">Rect&lt;3, T&gt;</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="namespacelm.html#ac8f074b0feecbc205e6133e5ac88359a">   55</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="namespacelm.html#ac8f074b0feecbc205e6133e5ac88359a">Rect2f</a> = Rect2&lt;float&gt;;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="namespacelm.html#a81c5553da3e54d762b3c9ffe41a71a09">   60</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="namespacelm.html#a81c5553da3e54d762b3c9ffe41a71a09">Rect2i</a> = Rect2&lt;int&gt;;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="namespacelm_html_a81c5553da3e54d762b3c9ffe41a71a09"><div class="ttname"><a href="namespacelm.html#a81c5553da3e54d762b3c9ffe41a71a09">lm::Rect2i</a></div><div class="ttdeci">Rect2&lt; int &gt; Rect2i</div><div class="ttdef"><b>Definition:</b> Rect.hpp:60</div></div>
+<div class="ttc" id="structlm_1_1_rect_html_a6e7d2c934bc8ea2711396b86982a6420"><div class="ttname"><a href="structlm_1_1_rect.html#a6e7d2c934bc8ea2711396b86982a6420">lm::Rect::pos</a></div><div class="ttdeci">Vect pos</div><div class="ttdef"><b>Definition:</b> Rect.hpp:35</div></div>
+<div class="ttc" id="namespacelm_html_ac8f074b0feecbc205e6133e5ac88359a"><div class="ttname"><a href="namespacelm.html#ac8f074b0feecbc205e6133e5ac88359a">lm::Rect2f</a></div><div class="ttdeci">Rect2&lt; float &gt; Rect2f</div><div class="ttdef"><b>Definition:</b> Rect.hpp:55</div></div>
+<div class="ttc" id="structlm_1_1_rect_html_aad4b5b3b6d883581fc6b365e880f3cff"><div class="ttname"><a href="structlm_1_1_rect.html#aad4b5b3b6d883581fc6b365e880f3cff">lm::Rect::size</a></div><div class="ttdeci">Vect size</div><div class="ttdef"><b>Definition:</b> Rect.hpp:40</div></div>
+<div class="ttc" id="structlm_1_1_rect_html"><div class="ttname"><a href="structlm_1_1_rect.html">lm::Rect</a></div><div class="ttdoc">A struct defining a rectangle. </div><div class="ttdef"><b>Definition:</b> Rect.hpp:25</div></div>
 <div class="ttc" id="namespacelm_html"><div class="ttname"><a href="namespacelm.html">lm</a></div><div class="ttdoc">The Lums namespace. </div><div class="ttdef"><b>Definition:</b> Application.hpp:17</div></div>
-<div class="ttc" id="classlm_1_1_vector_html"><div class="ttname"><a href="classlm_1_1_vector.html">lm::Vector</a></div><div class="ttdef"><b>Definition:</b> Vector.hpp:24</div></div>
+<div class="ttc" id="classlm_1_1_vector_html"><div class="ttname"><a href="classlm_1_1_vector.html">lm::Vector</a></div><div class="ttdoc">A class representing a Vector. </div><div class="ttdef"><b>Definition:</b> Vector.hpp:24</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->

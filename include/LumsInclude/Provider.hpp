@@ -25,43 +25,54 @@
 namespace lm
 {
     /**
-     * @cond
+     * @brief A basic abstract class for providers
      */
-    namespace internal
+    template <typename T>
+    class BaseProvider
     {
-        template <typename T>
-        class ProviderImpl
+    public:
+        /**
+         * Get a resource by ID
+         * @param i The resource identifier
+         * @return A reference to the resource
+         */
+        T&
+        get(int i)
         {
-        public:
-            T&
-            get(int i)
-            {
-                return *_buffer[i];
-            }
+            return *buffer[i];
+        }
 
-            T&
-            set(int i)
-            {
-                if (i >= _buffer.size())
-                    _buffer.resize(i + 1);
-                if (_buffer[i] == nullptr)
-                    _buffer[i] = new T();
-                return *_buffer[i];
-            }
+        /**
+         * Allocate and return a resource using it's ID
+         * @param i The resource identifier
+         * @return A reference to the resource
+         */
+        T&
+        set(int i)
+        {
+            if (i >= buffer.size())
+                buffer.resize(i + 1);
+            if (buffer[i] == nullptr)
+                buffer[i] = new T();
+            return *buffer[i];
+        }
 
-            std::size_t
-            size() const
-            {
-                return _buffer.size();
-            }
+        /**
+         * Get the resource count
+         * @return The number of resources loaded into the allocator
+         */
+        std::size_t
+        size() const
+        {
+            return buffer.size();
+        }
 
-        protected:
-            std::vector<T*> _buffer;
-        };
-    }
-    /**
-     * @endcond
-     */
+    protected:
+        /**
+         * The resource container
+         */
+        std::vector<T*> buffer;
+    };
 
     /**
      * @brief A provider for assets that are loaded once
@@ -69,7 +80,7 @@ namespace lm
      * This is a template used to create custom providers for assets.
      */
     template <typename T>
-    class Provider : public internal::ProviderImpl<T>, public Singleton<Provider<T>>
+    class Provider : public BaseProvider<T>, public Singleton<Provider<T>>
     {
 
     };
@@ -81,62 +92,118 @@ namespace lm
      * Assets should implement load(), unload() and loaded().
      */
     template <typename T>
-    class StreamProvider : public internal::ProviderImpl<T>, public Singleton<StreamProvider<T>>
+    class StreamProvider : public BaseProvider<T>, public Singleton<StreamProvider<T>>
     {
     public:
+
+        /**
+         * @brief Get a resource by ID
+         * 
+         * If the resource is not currently loaded, a call to load()
+         * will be isued.
+         * @param i The resource identifier
+         * @return A reference to the resource
+         */
         T&
         get(int i)
         {
-            if (!internal::ProviderImpl<T>::_buffer[i]->loaded())
+            if (!BaseProvider<T>::buffer[i]->loaded())
                 return load(i);
-            return internal::ProviderImpl<T>::get(i);
+            return BaseProvider<T>::get(i);
         }
 
+        /**
+         * Load a resource
+         *
+         * @param i The resource ID
+         * @return A reference to the resource
+         */
         T&
         load(int i)
         {
-            internal::ProviderImpl<T>::_buffer[i]->load();
-            return internal::ProviderImpl<T>::get(i);
+            BaseProvider<T>::buffer[i]->load();
+            return BaseProvider<T>::get(i);
         }
 
+        /**
+         * Unload a resource
+         *
+         * @param i The resource ID
+         * @return A reference to the resource
+         */
         T&
         unload(int i)
         {
-            internal::ProviderImpl<T>::_buffer[i]->unload();
-            return internal::ProviderImpl<T>::get(i);
+            BaseProvider<T>::buffer[i]->unload();
+            return BaseProvider<T>::get(i);
         }
 
-        void
+        /**
+         * Reload a resource
+         *
+         * @param i The resource ID
+         * @return A reference to the resource
+         */
+        T&
         reload(int i)
         {
             unload(i);
-            load(i);
+            return load(i);
         }
 
+        /**
+         * Reload every resource
+         */
         void
         reloadAll()
         {
-            for (std::size_t i = 0; i < internal::ProviderImpl<T>::size(); ++i)
+            for (std::size_t i = 0; i < BaseProvider<T>::size(); ++i)
             {
-                if (internal::ProviderImpl<T>::_buffer[i]->loaded())
+                if (BaseProvider<T>::buffer[i]->loaded())
                     reload(i);
             }
         }
 
+        /**
+         * Unload every resource
+         */
         void
         unloadAll()
         {
-            for (std::size_t i = 0; i < internal::ProviderImpl<T>::size(); ++i)
+            for (std::size_t i = 0; i < BaseProvider<T>::size(); ++i)
                 unload(i);
         }
 
     };
 
+    /**
+     * A provider for shader programs
+     */
     using ShaderProvider = Provider<ShaderProgram>;
+
+    /**
+     * A stream provider for images
+     */
     using ImageProvider = StreamProvider<Image>;
+
+    /**
+     * A stream provider for textures
+     */
     using TextureProvider = StreamProvider<Texture>;
+
+    /**
+     * A stream provider for fonts
+     */
     using FontProvider = StreamProvider<Font>;
+
+    /**
+     * A stream provider for sound effects
+     */
     using SfxProvider = StreamProvider<Sfx>;
+
+    /**
+     * A stream provider for musics
+     */
     using MusicProvider = StreamProvider<Music>;
 }
 

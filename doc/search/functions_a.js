@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['pollevent',['pollEvent',['../classlm_1_1_window.html#aef49fce78acab55e9539be7a0b13e723',1,'lm::Window']]],
-  ['pop',['pop',['../classlm_1_1_core.html#ac44050685e8e9269d54b6a2542ef9e2f',1,'lm::Core']]],
-  ['pumpevent',['pumpEvent',['../classlm_1_1_window.html#a0e9ac10ca74f485bd376390c939f605d',1,'lm::Window']]],
-  ['push',['push',['../classlm_1_1_core.html#a2ef644dfc1c05a2103580c874e780120',1,'lm::Core']]],
-  ['pushevent',['pushEvent',['../classlm_1_1_window.html#aa1b8c9e36e889e2d62010abff05f6f7e',1,'lm::Window']]]
+  ['matrix',['Matrix',['../classlm_1_1_matrix.html#a13570eed24db190c99318213171904c5',1,'lm::Matrix']]],
+  ['maxsize',['maxSize',['../classlm_1_1_window.html#a01590ec56881d046a4fe36a2805609ea',1,'lm::Window']]],
+  ['music',['Music',['../classlm_1_1_music.html#aa1427b73023499e6dc38e999d19118de',1,'lm::Music::Music()'],['../classlm_1_1_music.html#a5f13beeecca1329d7242d7c4223bba10',1,'lm::Music::Music(const Music &amp;)=delete'],['../classlm_1_1_music.html#ae34ca5c4a9e86b1b95dfa773f5936806',1,'lm::Music::Music(Music &amp;&amp;rhs)']]]
 ];

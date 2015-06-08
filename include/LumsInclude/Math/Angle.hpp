@@ -41,7 +41,7 @@ namespace lm
      */
     
     /**
-     * A class used to represent arbitrary angles.
+     * @brief A class used to represent arbitrary angles.
      */
     class Angle
     {

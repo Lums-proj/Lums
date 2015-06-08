@@ -1,20 +1,7 @@
 var searchData=
 [
-  ['t',['T',['../namespacelm.html#a8cf74456b1524d1725f02e0f1a88e0baab9ece18c950afbfa6b0fdbfa4ff731d3',1,'lm']]],
-  ['tab',['Tab',['../namespacelm.html#a8cf74456b1524d1725f02e0f1a88e0baa5c6ba25104401c9ee0650230fc6ba413',1,'lm']]],
-  ['tan',['tan',['../classlm_1_1_angle.html#a61000ae2880282317eefcaa742f6fc3c',1,'lm::Angle']]],
-  ['tex',['tex',['../classlm_1_1_window.html#a384cf0450fdc3bbc227ec2ffaeb8a881',1,'lm::Window']]],
-  ['texture',['texture',['../classlm_1_1_font.html#a50c6771f1b07ff06b045e0a4fb0e4b24',1,'lm::Font::texture()'],['../classlm_1_1_sprite.html#a431e9bfe33a44d105c176311f7627643',1,'lm::Sprite::texture()'],['../classlm_1_1_texture.html#a46c6224a46893edea14b44c8b91aaae2',1,'lm::Texture::Texture()'],['../namespacelm_1_1_vertex.html#a640b67e91a360b1d1abbecd2c8de4084ae3762f467ee5e6f28be7fb560bb9d777',1,'lm::Vertex::Texture()']]],
-  ['texture',['Texture',['../classlm_1_1_texture.html',1,'lm']]],
-  ['texture_2ehpp',['Texture.hpp',['../_texture_8hpp.html',1,'']]],
-  ['textureprovider',['TextureProvider',['../namespacelm.html#ac447f58254187481b80acdcc19193f91',1,'lm']]],
-  ['todegrees',['toDegrees',['../classlm_1_1_angle.html#a436d279d2f5eed0a1845732ec29dbdc9',1,'lm::Angle']]],
-  ['top',['top',['../structlm_1_1_glyph.html#a01be2b8baad6c5c6e8bfdbce84e4b70c',1,'lm::Glyph']]],
-  ['toradians',['toRadians',['../classlm_1_1_angle.html#a6f1215a11cb615f3f4f89062de675b17',1,'lm::Angle']]],
-  ['toturns',['toTurns',['../classlm_1_1_angle.html#a3ca7aefdb77bbe0eb7302315fba15b0e',1,'lm::Angle']]],
-  ['transition',['transition',['../classlm_1_1_core.html#a30608d0fbc12fe5886609af368933f41',1,'lm::Core']]],
-  ['translate',['translate',['../namespacelm.html#a8860990d6a92e4e6b51c0372f79b0b6b',1,'lm::translate(Matrix4f &amp;matrix, GLfloat x, GLfloat y, GLfloat z)'],['../namespacelm.html#ae489667fe4942966f94759637849d099',1,'lm::translate(Matrix4f &amp;matrix, Vector3f vec)']]],
-  ['trigger',['trigger',['../structlm_1_1_event.html#a468b99c72c4eb045930a714696d5382e',1,'lm::Event']]],
-  ['turns',['turns',['../classlm_1_1_angle.html#ad33a3f0dd49283ac542af6f8f412afcb',1,'lm::Angle']]],
-  ['type',['Type',['../structlm_1_1_event.html#acc49e2e1bb205fdeb5fdf04be1c0bd1d',1,'lm::Event::Type()'],['../classlm_1_1_shader.html#a23a53f1764180579c935beef5f772321',1,'lm::Shader::Type()'],['../structlm_1_1_event.html#a80b4cacf36b1799a0f4506b74e26374c',1,'lm::Event::type()']]]
+  ['waitevent',['waitEvent',['../classlm_1_1_window.html#a2303b068ae1bfe86366dba2af1da359a',1,'lm::Window']]],
+  ['width',['width',['../structlm_1_1_glyph.html#a85e73bb7077baddfdb71e16aa93568f1',1,'lm::Glyph::width()'],['../classlm_1_1_image.html#a048d5cd8e0ad5324b6c1820599a4ee1e',1,'lm::Image::width()'],['../classlm_1_1_sprite.html#a9669971836ac1dbfbda4f333896bbaf4',1,'lm::Sprite::width()'],['../classlm_1_1_texture.html#afb4f252670805b08cb1ad0be73318673',1,'lm::Texture::width()']]],
+  ['window',['Window',['../classlm_1_1_window.html#a99f8ab7cb8b4b35699a022a8d10e0e0a',1,'lm::Window::Window()'],['../classlm_1_1_core.html#a438b99ddd734c77efa2275890892a6cc',1,'lm::Core::window()']]],
+  ['window',['Window',['../classlm_1_1_window.html',1,'lm']]]
 ];

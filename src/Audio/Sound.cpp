@@ -44,7 +44,7 @@ Audio::init()
 void
 Sound::setPath(const std::string name, bool resource)
 {
-    _path = resource ? resourcePath() + name : name;
+    path = resource ? resourcePath() + name : name;
 }
 
 void
@@ -55,7 +55,7 @@ Sound::load()
         {"ogg", &Sound::loadFileOGG}
     };
 
-    std::string ext = _path.substr(_path.find_last_of('.') + 1);
+    std::string ext = path.substr(path.find_last_of('.') + 1);
 
     if (extFuncs.find(ext) != extFuncs.end())
         (this->*(extFuncs.at(ext)))();
@@ -64,38 +64,38 @@ Sound::load()
 bool
 Sound::loaded()
 {   
-    return (_file != nullptr);
+    return (file != nullptr);
 }
 
 void
 Sound::unload()
 {
-    if (!_file)
+    if (!file)
         return;
-    ov_clear(&_stream);
-    fclose(_file);
-    _file = nullptr;
+    ov_clear(&stream);
+    fclose(file);
+    file = nullptr;
 }
 
 void
 Sound::loadFileOGG()
 {
-    _file = fopen(_path.c_str(), "rb");
-    if (!_file)
+    file = fopen(path.c_str(), "rb");
+    if (!file)
     {
-        std::cerr << "File not found: " << _path << std::endl;
+        std::cerr << "File not found: " << path << std::endl;
         return;
     }
-    if (ov_open_callbacks(_file, &_stream, 0, 0, OV_CALLBACKS_DEFAULT) < 0)
+    if (ov_open_callbacks(file, &stream, 0, 0, OV_CALLBACKS_DEFAULT) < 0)
     {
-        fclose(_file);
-        _file = 0;
-        std::cerr << "Stream error: " << _path << std::endl;
+        fclose(file);
+        file = 0;
+        std::cerr << "Stream error: " << path << std::endl;
         return;
     }
-    vorbis_info* infos = ov_info(&_stream, -1);
-    _format = (infos->channels == 1) ? AL_FORMAT_MONO16 : AL_FORMAT_STEREO16;
-    _sampleRate = infos->rate;
+    vorbis_info* infos = ov_info(&stream, -1);
+    format = (infos->channels == 1) ? AL_FORMAT_MONO16 : AL_FORMAT_STEREO16;
+    sampleRate = infos->rate;
 }
 
 void

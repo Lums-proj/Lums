@@ -1,3 +1,5 @@
+require 'new'
+
 def main args
   if args.empty?
     usage
@@ -20,5 +22,11 @@ def usage
 end
 
 def command_new args
+  if args.size != 1
+    puts "usage: lums new <name>"
+  else
+    Action::New.run! args.first
+  end
+end
 
 main ARGV

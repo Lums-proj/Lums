@@ -115,42 +115,66 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">class </span>Image;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classlm_1_1_texture.html">   26</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classlm_1_1_texture.html">Texture</a></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="classlm_1_1_texture.html">Texture</a>();</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">float</span>           width()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _width; }</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordtype">float</span>           height()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _height; }</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordtype">float</span>           bufferWidth()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _bufferWidth; }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordtype">float</span>           bufferHeight()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _bufferHeight; }</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordtype">void</span>            setImage(<a class="code" href="classlm_1_1_image.html">Image</a>&amp; image);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordtype">void</span>            load();</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordtype">void</span>            unload();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordtype">void</span>            bind() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordtype">void</span>            pushAtlas(<span class="keyword">const</span> <a class="code" href="structlm_1_1_rect.html">Rect2f</a>&amp; rect);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordtype">void</span>            pushAtlas(<span class="keywordtype">int</span> w, <span class="keywordtype">int</span> h);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keyword">const</span> <a class="code" href="structlm_1_1_rect.html">Rect2f</a>&amp;   atlas(std::size_t i) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">bool</span>            loaded() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        ~<a class="code" href="classlm_1_1_texture.html">Texture</a>();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        GLuint              _texture;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="classlm_1_1_image.html">Image</a>*              _image;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordtype">float</span>               _width;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordtype">float</span>               _height;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordtype">float</span>               _bufferWidth;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordtype">float</span>               _bufferHeight;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        std::vector&lt;Rect2f&gt; _atlas;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    };</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="ttc" id="classlm_1_1_texture_html"><div class="ttname"><a href="classlm_1_1_texture.html">lm::Texture</a></div><div class="ttdef"><b>Definition:</b> Texture.hpp:26</div></div>
-<div class="ttc" id="classlm_1_1_image_html"><div class="ttname"><a href="classlm_1_1_image.html">lm::Image</a></div><div class="ttdef"><b>Definition:</b> Image.hpp:31</div></div>
-<div class="ttc" id="structlm_1_1_rect_html"><div class="ttname"><a href="structlm_1_1_rect.html">lm::Rect</a></div><div class="ttdef"><b>Definition:</b> Rect.hpp:22</div></div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classlm_1_1_texture.html">   29</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classlm_1_1_texture.html">Texture</a></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <a class="code" href="classlm_1_1_texture.html#a46c6224a46893edea14b44c8b91aaae2">Texture</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classlm_1_1_texture.html#afb4f252670805b08cb1ad0be73318673">   41</a></span>&#160;        <span class="keywordtype">float</span>           <a class="code" href="classlm_1_1_texture.html#afb4f252670805b08cb1ad0be73318673">width</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _width; }</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classlm_1_1_texture.html#a31dd122fd2703dfee6ae8a40c1e42ff9">   47</a></span>&#160;        <span class="keywordtype">float</span>           <a class="code" href="classlm_1_1_texture.html#a31dd122fd2703dfee6ae8a40c1e42ff9">height</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _height; }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classlm_1_1_texture.html#a13640e761f163f7de28174ae88698b10">   53</a></span>&#160;        <span class="keywordtype">float</span>           <a class="code" href="classlm_1_1_texture.html#a13640e761f163f7de28174ae88698b10">bufferWidth</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _bufferWidth; }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="classlm_1_1_texture.html#ad62f1b4c62d7ff41f8b9a57ca8991692">   59</a></span>&#160;        <span class="keywordtype">float</span>           <a class="code" href="classlm_1_1_texture.html#ad62f1b4c62d7ff41f8b9a57ca8991692">bufferHeight</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _bufferHeight; }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordtype">void</span>            <a class="code" href="classlm_1_1_texture.html#aa7b049e130f3b07557d3e9f26f739e3e">setImage</a>(<a class="code" href="classlm_1_1_image.html">Image</a>&amp; image);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordtype">void</span>            <a class="code" href="classlm_1_1_texture.html#a96b381e9c11aa76307dc18f330c8ad0d">load</a>();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordtype">void</span>            <a class="code" href="classlm_1_1_texture.html#a4deff82d1689e60baf255d7c564ba0e8">unload</a>();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordtype">void</span>            <a class="code" href="classlm_1_1_texture.html#a3b7678d58397b0af64c1e59a05a1bd96">bind</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordtype">void</span>            <a class="code" href="classlm_1_1_texture.html#ad242ee89826612835a6b1067f02a5587">pushAtlas</a>(<span class="keyword">const</span> <a class="code" href="namespacelm.html#ac8f074b0feecbc205e6133e5ac88359a">Rect2f</a>&amp; rect);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordtype">void</span>            <a class="code" href="classlm_1_1_texture.html#ad242ee89826612835a6b1067f02a5587">pushAtlas</a>(<span class="keywordtype">int</span> w, <span class="keywordtype">int</span> h);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keyword">const</span> <a class="code" href="namespacelm.html#ac8f074b0feecbc205e6133e5ac88359a">Rect2f</a>&amp;   <a class="code" href="classlm_1_1_texture.html#a5eeb6175e0d38870aac74f85d1eb6bf5">atlas</a>(std::size_t i) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordtype">bool</span>            <a class="code" href="classlm_1_1_texture.html#a8d41f8af4ab5b2eb8246ea3990de5b1c">loaded</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        <a class="code" href="classlm_1_1_texture.html#a78d42f04eebdf1568f059e3bdaf85783">~Texture</a>();</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        GLuint              _texture;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <a class="code" href="classlm_1_1_image.html">Image</a>*              _image;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <span class="keywordtype">float</span>               _width;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="keywordtype">float</span>               _height;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordtype">float</span>               _bufferWidth;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        <span class="keywordtype">float</span>               _bufferHeight;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        std::vector&lt;Rect2f&gt; _atlas;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    };</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;}</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="classlm_1_1_texture_html_a5eeb6175e0d38870aac74f85d1eb6bf5"><div class="ttname"><a href="classlm_1_1_texture.html#a5eeb6175e0d38870aac74f85d1eb6bf5">lm::Texture::atlas</a></div><div class="ttdeci">const Rect2f &amp; atlas(std::size_t i) const </div></div>
+<div class="ttc" id="classlm_1_1_texture_html_a4deff82d1689e60baf255d7c564ba0e8"><div class="ttname"><a href="classlm_1_1_texture.html#a4deff82d1689e60baf255d7c564ba0e8">lm::Texture::unload</a></div><div class="ttdeci">void unload()</div></div>
+<div class="ttc" id="classlm_1_1_texture_html"><div class="ttname"><a href="classlm_1_1_texture.html">lm::Texture</a></div><div class="ttdoc">A class representing a texture in the GPU. </div><div class="ttdef"><b>Definition:</b> Texture.hpp:29</div></div>
+<div class="ttc" id="classlm_1_1_texture_html_a96b381e9c11aa76307dc18f330c8ad0d"><div class="ttname"><a href="classlm_1_1_texture.html#a96b381e9c11aa76307dc18f330c8ad0d">lm::Texture::load</a></div><div class="ttdeci">void load()</div></div>
+<div class="ttc" id="classlm_1_1_texture_html_a46c6224a46893edea14b44c8b91aaae2"><div class="ttname"><a href="classlm_1_1_texture.html#a46c6224a46893edea14b44c8b91aaae2">lm::Texture::Texture</a></div><div class="ttdeci">Texture()</div></div>
+<div class="ttc" id="classlm_1_1_image_html"><div class="ttname"><a href="classlm_1_1_image.html">lm::Image</a></div><div class="ttdoc">This class represents an image in memory. </div><div class="ttdef"><b>Definition:</b> Image.hpp:37</div></div>
+<div class="ttc" id="classlm_1_1_texture_html_a3b7678d58397b0af64c1e59a05a1bd96"><div class="ttname"><a href="classlm_1_1_texture.html#a3b7678d58397b0af64c1e59a05a1bd96">lm::Texture::bind</a></div><div class="ttdeci">void bind() const </div></div>
+<div class="ttc" id="classlm_1_1_texture_html_ad242ee89826612835a6b1067f02a5587"><div class="ttname"><a href="classlm_1_1_texture.html#ad242ee89826612835a6b1067f02a5587">lm::Texture::pushAtlas</a></div><div class="ttdeci">void pushAtlas(const Rect2f &amp;rect)</div></div>
+<div class="ttc" id="classlm_1_1_texture_html_afb4f252670805b08cb1ad0be73318673"><div class="ttname"><a href="classlm_1_1_texture.html#afb4f252670805b08cb1ad0be73318673">lm::Texture::width</a></div><div class="ttdeci">float width() const </div><div class="ttdef"><b>Definition:</b> Texture.hpp:41</div></div>
+<div class="ttc" id="namespacelm_html_ac8f074b0feecbc205e6133e5ac88359a"><div class="ttname"><a href="namespacelm.html#ac8f074b0feecbc205e6133e5ac88359a">lm::Rect2f</a></div><div class="ttdeci">Rect2&lt; float &gt; Rect2f</div><div class="ttdef"><b>Definition:</b> Rect.hpp:55</div></div>
+<div class="ttc" id="classlm_1_1_texture_html_a31dd122fd2703dfee6ae8a40c1e42ff9"><div class="ttname"><a href="classlm_1_1_texture.html#a31dd122fd2703dfee6ae8a40c1e42ff9">lm::Texture::height</a></div><div class="ttdeci">float height() const </div><div class="ttdef"><b>Definition:</b> Texture.hpp:47</div></div>
+<div class="ttc" id="classlm_1_1_texture_html_a8d41f8af4ab5b2eb8246ea3990de5b1c"><div class="ttname"><a href="classlm_1_1_texture.html#a8d41f8af4ab5b2eb8246ea3990de5b1c">lm::Texture::loaded</a></div><div class="ttdeci">bool loaded() const </div></div>
 <div class="ttc" id="namespacelm_html"><div class="ttname"><a href="namespacelm.html">lm</a></div><div class="ttdoc">The Lums namespace. </div><div class="ttdef"><b>Definition:</b> Application.hpp:17</div></div>
+<div class="ttc" id="classlm_1_1_texture_html_a78d42f04eebdf1568f059e3bdaf85783"><div class="ttname"><a href="classlm_1_1_texture.html#a78d42f04eebdf1568f059e3bdaf85783">lm::Texture::~Texture</a></div><div class="ttdeci">~Texture()</div></div>
+<div class="ttc" id="classlm_1_1_texture_html_aa7b049e130f3b07557d3e9f26f739e3e"><div class="ttname"><a href="classlm_1_1_texture.html#aa7b049e130f3b07557d3e9f26f739e3e">lm::Texture::setImage</a></div><div class="ttdeci">void setImage(Image &amp;image)</div></div>
+<div class="ttc" id="classlm_1_1_texture_html_ad62f1b4c62d7ff41f8b9a57ca8991692"><div class="ttname"><a href="classlm_1_1_texture.html#ad62f1b4c62d7ff41f8b9a57ca8991692">lm::Texture::bufferHeight</a></div><div class="ttdeci">float bufferHeight() const </div><div class="ttdef"><b>Definition:</b> Texture.hpp:59</div></div>
+<div class="ttc" id="classlm_1_1_texture_html_a13640e761f163f7de28174ae88698b10"><div class="ttname"><a href="classlm_1_1_texture.html#a13640e761f163f7de28174ae88698b10">lm::Texture::bufferWidth</a></div><div class="ttdeci">float bufferWidth() const </div><div class="ttdef"><b>Definition:</b> Texture.hpp:53</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- HTML footer for doxygen 1.8.9.1-->
 <!-- start footer part -->

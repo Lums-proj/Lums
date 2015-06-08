@@ -16,9 +16,15 @@
 
 namespace lm
 {
+    /**
+     * @brief A class representing a simple key via its scancode
+     */
     enum class Key
     {
 
+        /**
+         * @cond
+         */
 #if defined(__APPLE__)
         A = 0x00,
         S = 0x01,
@@ -248,7 +254,9 @@ namespace lm
         Down = 0x28,
         Up = 0x26
 #endif
-
+        /**
+         * @endcond
+         */
     };
 }
 
