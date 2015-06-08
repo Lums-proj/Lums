@@ -1,4 +1,6 @@
 require 'new'
+require 'build'
+require 'run'
 
 def main args
   if args.empty?
@@ -8,6 +10,11 @@ def main args
     case args.shift
     when 'new'
       command_new args
+    when 'build', 'b'
+      build
+    when 'run', 'r'
+      build
+      run
     else
       puts "Unknown action"
       exit 1
@@ -19,6 +26,14 @@ def usage
   puts "usage: lums <action> [params ...]"
   puts
   puts "See `lums help` for more informations"
+end
+
+def build
+  Action::build
+end
+
+def run
+  Action::run
 end
 
 def command_new args

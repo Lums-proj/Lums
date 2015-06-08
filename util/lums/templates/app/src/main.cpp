@@ -5,7 +5,7 @@
 int
 main()
 {
-    lm::enableModules(lm::Module::All);
+    lm::enableModule(lm::Module::All);
     auto& core = lm::Core::instance();
     core.setWindow(new lm::Window(800, 600, "<%= @params[:name] %>"));
     core.push<Game>();

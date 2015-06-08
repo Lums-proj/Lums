@@ -23,7 +23,7 @@ source 'meta-assets'
 dest 'assets'
 
 # Manifest file destination
-manifest 'src/Assets/Assets.hpp', load_method: true
+manifest 'src/Assets.hpp', 'src/Assets.cpp'
 
 ############################################################
 #                         ~~EOF~~                          #
