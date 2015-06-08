@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+# Load the actual ruby script
+$:.unshift(File.dirname(__FILE__) + '/../etc/lums/lums/lib')
+require 'lums'
