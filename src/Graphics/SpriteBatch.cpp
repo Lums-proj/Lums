@@ -35,11 +35,7 @@ SpriteBatch::setTexture(const Texture* texture)
     if (this->texture != texture)
     {
         if (this->texture != nullptr)
-        {
-            this->texture = texture;
             end();
-        }
-        else
-            this->texture = texture;
+        this->texture = texture;
     }
 }
