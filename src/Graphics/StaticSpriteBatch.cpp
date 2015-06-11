@@ -103,6 +103,8 @@ StaticSpriteBatch::flush()
 void
 StaticSpriteBatch::render()
 {
+    if (!texture)
+        return;
     texture->bind();
     vbo.draw(GL_TRIANGLES);
 }
