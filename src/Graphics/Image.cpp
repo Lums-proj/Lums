@@ -26,6 +26,8 @@ Image::Image()
 , _height(0u)
 , _bufferWidth(0u)
 , _bufferHeight(0u)
+, _xScaleHint(1u)
+, _yScaleHint(1u)
 , _data(nullptr)
 , _scale(1.f)
 {
@@ -100,6 +102,13 @@ Image::setScale(float scale)
     _scale = scale;
 }
 
+void
+Image::setScaleHint(unsigned int x, unsigned int y)
+{
+    _xScaleHint = x;
+    _yScaleHint = y;
+}
+
 Image::~Image()
 {
     unload();
@@ -113,8 +122,17 @@ Image::resize()
     if (_scale == 1.f)
         return;
 
-    const unsigned int newWidth = _bufferWidth * _scale;
-    const unsigned int newHeight = _bufferHeight * _scale;
+    unsigned int newWidth = std::ceil(_bufferWidth * _scale);
+    unsigned int newHeight = std::ceil(_bufferHeight * _scale);
+
+    if (newWidth % _xScaleHint)
+        newWidth += _xScaleHint - (newWidth % _xScaleHint);
+    if (newHeight % _yScaleHint)
+        newHeight += _yScaleHint - (newHeight % _yScaleHint);
+
+    float xScale = float(newWidth) / _bufferWidth;
+    float yScale = float(newHeight) / _bufferHeight;
+
     const int pixelSize = (_format == GL_RGB) ? 3 : 4;
 
     unsigned char* buffer = new unsigned char[newWidth * newHeight * pixelSize];
@@ -123,7 +141,7 @@ Image::resize()
         const unsigned int x = i % newWidth;
         const unsigned int y = i / newWidth;
         unsigned char* dst = buffer + x * pixelSize + y * newWidth * pixelSize;
-        const unsigned char* src = _data + int(x / _scale) * pixelSize + int(y / _scale) * _bufferWidth * pixelSize;
+        const unsigned char* src = _data + int(x / xScale) * pixelSize + int(y / yScale) * _bufferWidth * pixelSize;
 
         std::memcpy(dst, src, pixelSize);
     }

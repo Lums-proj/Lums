@@ -159,6 +159,14 @@ namespace lm
         LUMS_EXPORTED void  setScale(float scale);
 
         /**
+         * Set the image scale hint.
+         * This should be done when atlasing.
+         * @param x The x hint
+         * @param y The y hint
+         */
+        LUMS_EXPORTED void  setScaleHint(unsigned int x, unsigned int y);
+
+        /**
          * Load the image
          */
         LUMS_EXPORTED void  load();
@@ -180,6 +188,8 @@ namespace lm
         unsigned int    _height;
         unsigned int    _bufferWidth;
         unsigned int    _bufferHeight;
+        unsigned int    _xScaleHint;
+        unsigned int    _yScaleHint;
         std::string     _path;
         GLenum          _format;
         unsigned char*  _data;
