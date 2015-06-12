@@ -120,7 +120,6 @@ Font::load()
         _texture.pushAtlas({{float(left[idx]) / bitmapSize, float(top[idx]) / bitmapSize}, {float(_glyphs[idx].width) / bitmapSize, float(_glyphs[idx].height) / bitmapSize}});
         delete [] bitmap[idx];
     }
-    std::printf("%d\n", bitmapSize);
     img.setBuffer(buffer, bitmapSize, bitmapSize, GL_RGBA);
     _texture.setImage(img);
     _texture.load();
@@ -131,6 +130,13 @@ Font::unload()
 {
     _texture.unload();
 }
+
+bool
+Font::loaded() const
+{
+    return _texture.loaded();
+}
+
 
 Font::~Font()
 {

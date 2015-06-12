@@ -107,7 +107,7 @@ namespace lm
         /**
          * @cond
          */
-        GLuint                  fbo(int i) const { return _fbo[i]; }
+        GLuint                  fbo() const { return _fbo; }
 
         GLuint                  tex(int i) const { return _texBuffer[i]; }
         /**
@@ -144,9 +144,9 @@ namespace lm
         void*               _openGlHandle;
         bool                _fullscreen;
         std::queue<Event>   _events;
-        GLuint              _fbo[2];
+        GLuint              _fbo;
         GLuint              _texBuffer[2];
-        GLuint              _depthBuffer[2];
+        GLuint              _depthBuffer;
     };
 }
 

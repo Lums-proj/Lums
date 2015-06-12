@@ -25,12 +25,6 @@ public:
     load()
     {
         auto& shader = lm::ShaderProvider::instance().get(0);
-
-        _font.setPath("/Library/Fonts/AppleGothic.ttf", false);
-        _font.setSize(50.f);
-        _font.load();
-        _ssb.draw(_font, "Hello voisin AVA");
-        _ssb.send();
         _proj = lm::ortho(0, 400, 400, 0);
         lm::uniform(shader, "proj", _proj);
     }
@@ -51,13 +45,14 @@ public:
     void
     render()
     {
-        _ssb.render();
+        _sb.begin();
+        _sb.draw(lm::FontProvider::instance().get(0), "Salut Voisin AVA!");
+        _sb.end();
     }
 
 private:
-    lm::StaticSpriteBatch _ssb;
+    lm::SpriteBatch       _sb;
     lm::Matrix4f          _proj;
-    lm::Font              _font;
 };
 
 int
@@ -76,6 +71,10 @@ main()
     shader.bindAttribLocation(lm::Vertex::Color, "color");
     shader.link();
     shader.use();
+
+    auto& font = lm::FontProvider::instance().set(0);
+    font.setPath("/Library/Fonts/AppleGothic.ttf", false);
+    font.setSize(50.f);
 
     GLint max;
     glGetIntegerv(GL_MAX_ARRAY_TEXTURE_LAYERS, &max);

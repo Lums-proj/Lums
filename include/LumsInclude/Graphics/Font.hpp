@@ -126,6 +126,12 @@ namespace lm
         void    unload();
 
         /**
+         * Check wether the font was loaded.
+         * @return True if the font was loaded.
+         */
+        bool    loaded() const;
+
+        /**
          * Font dtor
          */
         ~Font();

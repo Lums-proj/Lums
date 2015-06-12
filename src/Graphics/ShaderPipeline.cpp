@@ -39,8 +39,9 @@ ShaderPipeline::bind()
 {
 	if (!_shaders.empty())
 	{
-		glBindFramebuffer(GL_FRAMEBUFFER, _win->fbo(0));
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glBindFramebuffer(GL_FRAMEBUFFER, _win->fbo());
+		glDrawBuffer(GL_COLOR_ATTACHMENT0);
+		glClear(GL_COLOR_BUFFER_BIT/* | GL_DEPTH_BUFFER_BIT */);
 	}
 }
 
@@ -76,13 +77,15 @@ ShaderPipeline::render()
 			glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		else
 		{
-			glBindFramebuffer(GL_FRAMEBUFFER, _win->fbo(1 - in));
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+			if (in)
+				glDrawBuffer(GL_COLOR_ATTACHMENT0);
+			else
+				glDrawBuffer(GL_COLOR_ATTACHMENT1);
+			//glClear(GL_DEPTH_BUFFER_BIT);
 		}
 		_vbo.draw(GL_TRIANGLES);
 		in = 1 - in;
 	}
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 ShaderPipeline::~ShaderPipeline()
