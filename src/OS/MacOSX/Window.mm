@@ -95,7 +95,7 @@ Window::resize(int w, int h, bool fullscreen)
     }
     NSRect oldFrame = [[win contentView] convertRectToBacking:[win frame]];
     NSRect frame = NSMakeRect(oldFrame.origin.x, oldFrame.origin.y, w, h);
-    frame = [[win contentView] convertRectFromBacking:frame];
+    NSRect retinaFrame = [[win contentView] convertRectFromBacking:frame];
     for (int i = 0; i < 2; ++i)
     {
         glBindFramebuffer(GL_FRAMEBUFFER, _fbo[i]);
@@ -108,7 +108,7 @@ Window::resize(int w, int h, bool fullscreen)
     }
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glBindTexture(GL_TEXTURE_2D, 0);
-    frame = [win frameRectForContentRect:frame];
+    frame = [win frameRectForContentRect:retinaFrame];
     [win setFrame:frame display:YES animate:YES];
     [context update];
     [win makeKeyAndOrderFront:nil];
