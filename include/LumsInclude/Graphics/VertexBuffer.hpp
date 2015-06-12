@@ -120,10 +120,11 @@ namespace lm
 		/**
          * Create a vertex buffer
          */
-		VertexBuffer()
+		VertexBuffer(GLenum hint = GL_STATIC_DRAW)
 		: _vao(0)
 		, _vbo(0)
 		, _count(0)
+        , _hint(hint)
 		{
 			glGenVertexArrays(1, &_vao);
 			glGenBuffers(1, &_vbo);
@@ -154,7 +155,7 @@ namespace lm
 		send()
 		{
 			glBindBuffer(GL_ARRAY_BUFFER, _vbo);
-			glBufferData(GL_ARRAY_BUFFER, size * sizeof(float) * _count, _values.data(), GL_DYNAMIC_DRAW);
+			glBufferData(GL_ARRAY_BUFFER, size * sizeof(float) * _count, _values.data(), _hint);
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 			_values.clear();
 		}
@@ -186,6 +187,7 @@ namespace lm
 		GLuint				_vao;
 		GLuint				_vbo;
 		GLuint				_count;
+        GLenum              _hint;
 	};
 
 	/**

@@ -15,6 +15,12 @@
 
 using namespace lm;
 
+SpriteBatch::SpriteBatch(GLenum hint)
+: StaticSpriteBatch(hint)
+{
+    
+}
+
 void
 SpriteBatch::begin()
 {

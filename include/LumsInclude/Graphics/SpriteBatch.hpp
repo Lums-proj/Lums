@@ -24,6 +24,8 @@ namespace lm
     class SpriteBatch : public StaticSpriteBatch
     {
     public:
+        SpriteBatch(GLenum hint = GL_STREAM_DRAW);
+        
     	/**
          * Begin the batch
          */

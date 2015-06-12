@@ -15,8 +15,9 @@
 
 using namespace lm;
 
-StaticSpriteBatch::StaticSpriteBatch()
-: texture(nullptr)
+StaticSpriteBatch::StaticSpriteBatch(GLenum hint)
+: vbo(hint)
+, texture(nullptr)
 {
 
 }

@@ -31,7 +31,7 @@ namespace lm
         /**
          * Create a static sprite batch
          */
-        StaticSpriteBatch();
+        StaticSpriteBatch(GLenum hint = GL_STATIC_DRAW);
 
         /**
          * Draw a texture into the batch
