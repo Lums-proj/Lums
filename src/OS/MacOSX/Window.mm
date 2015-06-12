@@ -95,7 +95,9 @@ Window::resize(int w, int h, bool fullscreen)
     }
     NSRect oldFrame = [[win contentView] convertRectToBacking:[win frame]];
     NSRect frame = NSMakeRect(oldFrame.origin.x, oldFrame.origin.y, w, h);
-    frame = [[win contentView] convertRectFromBacking:frame];
+
+    NSRect retinaFrame = [[win contentView] convertRectFromBacking:frame];
+
     glBindFramebuffer(GL_FRAMEBUFFER, _fbo);
     glBindTexture(GL_TEXTURE_2D, _texBuffer[0]);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, frame.size.width, frame.size.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
@@ -106,9 +108,10 @@ Window::resize(int w, int h, bool fullscreen)
     //glBindTexture(GL_TEXTURE_2D, _depthBuffer[i]);
     //glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT16, frame.size.width, frame.size.height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, nullptr);
     //glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, _depthBuffer[i], 0);
+
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glBindTexture(GL_TEXTURE_2D, 0);
-    frame = [win frameRectForContentRect:frame];
+    frame = [win frameRectForContentRect:retinaFrame];
     [win setFrame:frame display:YES animate:YES];
     [context update];
     [win makeKeyAndOrderFront:nil];
