@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+# Load the actual ruby script
+$:.unshift(File.dirname(__FILE__) + '/../etc/lums/spine2lums/lib')
+require 'spine2lums'
+

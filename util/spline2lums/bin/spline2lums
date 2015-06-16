@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-
-# Load the actual ruby script
-$:.unshift(File.dirname(__FILE__) + '/../etc/lums/spline2lums/lib')
-require 'spline2lums'
-

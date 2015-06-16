@@ -1,6 +1,6 @@
 require 'json'
 
-class Spliner
+class Spiner
   def initialize file
     root = JSON.parse(File.read file)
     read_bones root
@@ -40,8 +40,8 @@ class Spliner
 end
 
 if ARGV.size != 2
-  puts "usage: spline2lums <spline.json> <output>"
+  puts "usage: spine2lums <spine.json> <output>"
 else
-  spliner = Spliner.new ARGV[0]
-  spliner.run! ARGV[1]
+  spiner = Spiner.new ARGV[0]
+  spiner.run! ARGV[1]
 end
