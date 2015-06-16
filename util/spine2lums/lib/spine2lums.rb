@@ -10,12 +10,16 @@ class Spiner
   end
 
   def run! spine, atlas
-    puts "Bones"
-    ap @bones
-    ap @skins 
-    buffer = ""
+    buffer = ''
     write_bones buffer
+    write_skins buffer
     f = File.open spine, 'wb'
+    f.write buffer
+    f.close
+
+    buffer = ''
+    write_atlas buffer
+    f = File.open atlas, 'wb'
     f.write buffer
     f.close
   end
@@ -42,6 +46,14 @@ class Spiner
     {size: size, atlas: atlas}
   end
 
+  def write_atlas buffer
+    buffer << [@atlas[:atlas].size].pack('L<')
+    @atlas[:atlas].each do |h|
+      buffer << h[:pos].pack('FF')
+      buffer << h[:size].pack('FF')
+    end
+  end
+
   def read_bones root
     @bones = []
     root['bones'].each do |b|
@@ -66,7 +78,6 @@ class Spiner
     @skins = []
     skin = {}
     root['skins'].each_value {|s| skin.merge! s}
-    ap skin
     skin.each do |key, value|
       bone = root['slots'].find{|h| h['name'] == key }['bone']
       bone_id = @bones.find_index {|b| b[0] == bone}
@@ -79,6 +90,11 @@ class Spiner
         @skins << [texture, bone_id, x, y, rotation]
       end
     end
+  end
+
+  def write_skins buffer
+    buffer << [@skins.size].pack('L<')
+    @skins.each {|s| buffer << s.pack('l<L<FFF')}
   end
 
 end
