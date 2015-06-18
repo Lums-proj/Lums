@@ -1,5 +1,4 @@
 require 'json'
-require 'awesome_print'
 
 class Spiner
   def initialize spine, atlas

@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+# Load the actual ruby script
+$:.unshift(File.dirname(__FILE__) + '/../etc/lums/json2lums/lib')
+$:.unshift(File.dirname(__FILE__) + '/../lib')
+require 'json2lums'
