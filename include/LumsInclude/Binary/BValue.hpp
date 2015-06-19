@@ -31,8 +31,8 @@ namespace lm
         String
     };
 
-    using BInteger = int;
-    using BFloating = float;
+    using BInt = int;
+    using BFloat = float;
     using BString = char*;
 
     class BValue
@@ -40,6 +40,22 @@ namespace lm
     public:
         BValue();
         void    parse(std::ifstream& file);
+        bool    is(BType type) const { return type == _type; }
+        bool    isObject() const { return is(BType::Object); }
+        bool    isArray() const { return is(BType::Array); }
+        bool    isInt() const { return is(BType::Int); }
+        bool    isFloat() const { return is(BType::Float); }
+        bool    isString() const { return is(BType::String); }
+
+        BInt            asInt() const;
+        BFloat          asFloat() const;
+        const BObject&  asObject() const;
+        const BString   asString() const;
+        const BArray&   asArray() const;
+
+        const BValue&   operator[](int i) const;
+        const BValue&   operator[](const BString str) const;
+
         ~BValue();
 
     private:
@@ -48,11 +64,13 @@ namespace lm
         {
             BObject*    _object;
             BArray*     _array;
-            BInteger    _int;
-            BFloating   _float;
+            BInt        _int;
+            BFloat      _float;
             BString     _string;
         };
     };
+
+    using BPair = std::pair<BString, BValue>;
 }
 
 #endif

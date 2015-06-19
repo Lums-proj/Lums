@@ -50,6 +50,48 @@ BValue::parse(std::ifstream& file)
     } 
 }
 
+BInt
+BValue::asInt() const
+{
+    return _int;
+}
+
+BFloat
+BValue::asFloat() const
+{
+    return _float;
+}
+
+const BObject&
+BValue::asObject() const
+{
+    return *_object;
+}
+
+const BString
+BValue::asString() const
+{
+    return _string;
+}
+
+const BArray&
+BValue::asArray() const
+{
+    return *_array;
+}
+
+const BValue&
+BValue::operator[](int i) const
+{
+    return (*_array)[i];
+}
+
+const BValue&
+BValue::operator[](const BString str) const
+{
+    return (*_object)[str];
+}
+
 BValue::~BValue()
 {
     switch (_type)

@@ -19,13 +19,12 @@
 
 namespace lm
 {
-    using BPair = std::pair<BString, BValue>;
-
     class BObject
     {
     public:
         BObject();
         void    parse(std::ifstream& file);
+        const BValue& operator[](const BString str) const;
         ~BObject();
     private:
         int        _size;

@@ -24,6 +24,7 @@ namespace lm
     public:
        BArray();
        void     parse(std::ifstream& file);
+       const BValue&  operator[](int i) const { return _values[i]; }
        ~BArray();
 
     private:

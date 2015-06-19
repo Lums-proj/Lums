@@ -1,3 +1,4 @@
+#include <cstring>
 #include <LumsInclude/Binary/BObject.hpp>
 #include <LumsInclude/Binary/BValue.hpp>
 
@@ -26,6 +27,18 @@ BObject::parse(std::ifstream& file)
         _values[i].second.parse(file);
     }
 }
+
+const BValue&
+BObject::operator[](const BString str) const
+{
+    for (int i = 0; i < _size; ++i)
+    {
+        if (strcmp(str, _values[i].first) == 0)
+            return _values[i].second;
+    }
+    return *(BValue*)nullptr;
+}
+
 
 BObject::~BObject()
 {
