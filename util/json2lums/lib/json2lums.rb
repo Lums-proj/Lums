@@ -1,5 +1,4 @@
 require 'json'
-require 'awesome_print'
 
 class JsonCompiler
   def initialize folder
@@ -11,6 +10,7 @@ class JsonCompiler
 
   def run! file
     buffer = ''
+    buffer << [@objects.size].pack('L<')
     @objects.each do |object|
       write_object buffer, object
     end
@@ -27,7 +27,7 @@ class JsonCompiler
     buffer << 'o'
     buffer << [object.size].pack('L<')
     object.each do |key, value|
-      buffer << [key].pack('Z*')
+      buffer << [key.size, key].pack('L<A*')
       write_value buffer, value
     end
   end
@@ -43,7 +43,7 @@ class JsonCompiler
   def write_value buffer, value
     case value
     when String
-      buffer << ['s'.ord, value].pack('cZ*')
+      buffer << ['s'.ord, value.size, value].pack('cL<A*')
     when Integer
       buffer << ['i'.ord, value.to_i].pack('cL<')
     when Float

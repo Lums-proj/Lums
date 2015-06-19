@@ -32,6 +32,10 @@
 #endif
 
 #include <LumsInclude/Application.hpp>
+#include <LumsInclude/Binary/BArray.hpp>
+#include <LumsInclude/Binary/BFile.hpp>
+#include <LumsInclude/Binary/BObject.hpp>
+#include <LumsInclude/Binary/BValue.hpp>
 #include <LumsInclude/Common.hpp>
 #include <LumsInclude/Core/Core.hpp>
 #include <LumsInclude/Core/GameState.hpp>

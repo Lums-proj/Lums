@@ -14,33 +14,43 @@
 #ifndef LUMS_BVALUE_HPP
 #define LUMS_BVALUE_HPP
 
-#include <LumsInclude/Binary/BObject.hpp>
+#include <fstream>
 
 namespace lm
 {
+    class BArray;
+    class BObject;
+
+    enum class BType
+    {
+        None,
+        Object,
+        Array,
+        Int,
+        Float,
+        String
+    };
+
     using BInteger = int;
     using BFloating = float;
     using BString = char*;
 
-    enum class BType
+    class BValue
     {
-        Object,
-        Array,
-        Integer,
-        Floating,
-        String
-    };
+    public:
+        BValue();
+        void    parse(std::ifstream& file);
+        ~BValue();
 
-    struct BValue
-    {
-        BType type;
+    private:
+        BType           _type;
         union
         {
-            BObject     object;
-            BArray      array;
-            BInteger    integer;
-            BFloating   floating;
-            BString     string;
+            BObject*    _object;
+            BArray*     _array;
+            BInteger    _int;
+            BFloating   _float;
+            BString     _string;
         };
     };
 }

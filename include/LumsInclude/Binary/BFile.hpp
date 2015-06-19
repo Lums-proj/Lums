@@ -14,18 +14,21 @@
 #ifndef LUMS_BFILE_HPP
 #define LUMS_BFILE_HPP
 
-#include <LumsInclude/Binary/BObject.hpp>
+#include <string>
+#include <LumsInclude/Binary/BValue.hpp>
 
 namespace lm
 {
     class BFile
     {
     public:
-
+        BFile();
+        void    open(const std::string& path, bool resource = true);
+        ~BFile();
 
     private:
         int         _size;
-        BObject*    _objects;
+        BValue*     _values;
     };
 }
 

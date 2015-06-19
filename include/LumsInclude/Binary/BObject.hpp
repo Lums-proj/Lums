@@ -14,17 +14,22 @@
 #ifndef LUMS_BOBJECT_HPP
 #define LUMS_BOBJECT_HPP
 
+#include <fstream>
+#include <LumsInclude/Binary/BValue.hpp>
+
 namespace lm
 {
-    struct BPair;
+    using BPair = std::pair<BString, BValue>;
 
-    struct BObject
+    class BObject
     {
     public:
-
+        BObject();
+        void    parse(std::ifstream& file);
+        ~BObject();
     private:
-        int         size;
-        BObject*    objects;
+        int        _size;
+        BPair*    _values;
     };
 }
 

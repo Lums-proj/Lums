@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    BPair.hpp                                      oooooo       oooooo      */
+/*    BArray.hpp                                     oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,18 +11,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_BPAIR_HPP
-#define LUMS_BPAIR_HPP
+#ifndef LUMS_BARRAY_HPP
+#define LUMS_BARRAY_HPP
 
+#include <fstream>
 #include <LumsInclude/Binary/BValue.hpp>
 
 namespace lm
 {
-    struct BPair
+    class BArray
     {
-        char*   key;
-        BValue  value;
-    };
+    public:
+       BArray();
+       void     parse(std::ifstream& file);
+       ~BArray();
+
+    private:
+        int     _size;
+        BValue* _values;   
+    };   
 }
 
 #endif
