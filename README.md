@@ -1,4 +1,7 @@
-# <img src="https://rawgit.com/Lums-proj/Lums/dev/logo.svg" height="30"/> Lums 
+<div align="center">
+<img src="misc/images/logo.png" alt="Lums logo">
+<h1>Lums</h1>
+</div>
 
 **Lums** is a powerful, easy to use, C++ game library.
 The basic idea behind Lums is to provide a framework-based solution, where the developper
@@ -20,7 +23,11 @@ the magic happen.
 
 ## Getting started
 
-// TODO
+Lums is bundled with some tools. To create a working Lums project, the lums command line tool can be used.
+
+    lums new MyAwesomeGame
+    cd MyAwesomeGame
+    lums run
 
 ## Documentation
 
