@@ -15,6 +15,8 @@
 #define LUMS_FONT_HPP
 
 #include <LumsInclude/Graphics/Texture.hpp>
+#include <LumsInclude/Binary/BValue.hpp>
+#include <LumsInclude/Binary/BObject.hpp>
 
 namespace lm
 {
@@ -130,6 +132,8 @@ namespace lm
          * @return True if the font was loaded.
          */
         bool    loaded() const;
+
+        void    loadBinary(const BObject& object);
 
         /**
          * Font dtor

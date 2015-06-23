@@ -137,6 +137,12 @@ Font::loaded() const
     return _texture.loaded();
 }
 
+void
+Font::loadBinary(const BObject& object)
+{
+    setPath(object["path"].asString());
+    setSize(object["size"].asFloat());
+}
 
 Font::~Font()
 {

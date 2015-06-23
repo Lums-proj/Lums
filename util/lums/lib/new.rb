@@ -12,7 +12,6 @@ module Action
       puts "Creating project #{name}..."
       t = Template.new
       t.run! :app, name: name
-      `lmac init`
     end
   end
 end
