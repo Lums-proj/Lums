@@ -14,13 +14,18 @@
 #ifndef PROVIDER_HPP
 #define PROVIDER_HPP
 
-#include <vector>
+#include <unordered_map>
+#include <iterator>
 #include <cstdint>
+#include <string>
 #include <LumsInclude/Graphics/ShaderProgram.hpp>
 #include <LumsInclude/Graphics/Image.hpp>
 #include <LumsInclude/Graphics/Texture.hpp>
 #include <LumsInclude/Graphics/Font.hpp>
+#include <LumsInclude/Binary/BFile.hpp>
+#include <LumsInclude/Binary/BObject.hpp>
 #include <LumsInclude/Singleton.hpp>
+#include <LumsInclude/Common.hpp>
 
 namespace lm
 {
@@ -31,6 +36,19 @@ namespace lm
     class BaseProvider
     {
     public:
+        using iterator = typename std::unordered_map<int, T*>::iterator;
+
+        /**
+         * Get a resource by name
+         * @param str The resource name
+         * @return A reference to the resource
+         */
+        T&
+        get(const char* str)
+        {
+            return get(sym(str));
+        }
+
         /**
          * Get a resource by ID
          * @param i The resource identifier
@@ -43,6 +61,17 @@ namespace lm
         }
 
         /**
+         * Allocate and return a resource using it's name
+         * @param str The resource identifier
+         * @return A reference to the resource
+         */
+        T&
+        set(const char* str)
+        {
+            return set(sym(str));
+        }
+
+        /**
          * Allocate and return a resource using it's ID
          * @param i The resource identifier
          * @return A reference to the resource
@@ -50,28 +79,49 @@ namespace lm
         T&
         set(int i)
         {
-            if (i >= buffer.size())
-                buffer.resize(i + 1);
             if (buffer[i] == nullptr)
                 buffer[i] = new T();
             return *buffer[i];
         }
 
         /**
-         * Get the resource count
-         * @return The number of resources loaded into the allocator
+         * Get the begin iterator.
+         * @return An iterator to the first resource.
          */
-        std::size_t
-        size() const
+        iterator
+        begin()
         {
-            return buffer.size();
+            return buffer.begin();
+        }
+
+        /**
+         * Get the end iterator.
+         * @return An iterator past the last resource.
+         */
+        iterator
+        end()
+        {
+            return buffer.end();
+        }
+
+        void
+        loadBinary(const std::string& path, bool resource = true)
+        {
+            BFile file;
+
+            file.open(path, resource);
+            for (auto& o : file)
+            {
+                T& res = set(o["name"].asString());
+                res.loadBinary(o.asObject());
+            }
         }
 
     protected:
         /**
          * The resource container
          */
-        std::vector<T*> buffer;
+        std::unordered_map<int, T*> buffer;
     };
 
     /**
@@ -95,6 +145,20 @@ namespace lm
     class StreamProvider : public BaseProvider<T>, public Singleton<StreamProvider<T>>
     {
     public:
+
+        /**
+         * @brief Get a resource by name
+         * 
+         * If the resource is not currently loaded, a call to load()
+         * will be isued.
+         * @param str The resource name
+         * @return A reference to the resource
+         */
+        T&
+        get(const char* str)
+        {
+            return get(sym(str));
+        }
 
         /**
          * @brief Get a resource by ID
@@ -134,7 +198,7 @@ namespace lm
         T&
         unload(int i)
         {
-            BaseProvider<T>::buffer[i]->unload();
+            this->buffer[i]->unload();
             return BaseProvider<T>::get(i);
         }
 
@@ -157,10 +221,10 @@ namespace lm
         void
         reloadAll()
         {
-            for (std::size_t i = 0; i < BaseProvider<T>::size(); ++i)
+            for (auto r : this->buffer)
             {
-                if (BaseProvider<T>::buffer[i]->loaded())
-                    reload(i);
+                if (r.second->loaded())
+                    reload(r.first);
             }
         }
 
@@ -170,8 +234,8 @@ namespace lm
         void
         unloadAll()
         {
-            for (std::size_t i = 0; i < BaseProvider<T>::size(); ++i)
-                unload(i);
+            for (auto r : this->buffer)
+                unload(r.first);
         }
 
     };

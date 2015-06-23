@@ -17,6 +17,7 @@
 #include <vector>
 #include <LumsInclude/Graphics/OpenGL.hpp>
 #include <LumsInclude/Math/Matrix.hpp>
+#include <LumsInclude/Binary/BObject.hpp>
 
 namespace lm
 {
@@ -69,6 +70,8 @@ namespace lm
 		 * Use the shader
 		 */
 		void	use() const;
+
+        void    loadBinary(const BObject& object);
 
 		/**
 		 * Shader program dtor

@@ -18,6 +18,7 @@
 #include <vector>
 #include <LumsInclude/Math/Rect.hpp>
 #include <LumsInclude/Graphics/OpenGL.hpp>
+#include <LumsInclude/Binary/BObject.hpp>
 
 namespace lm
 {
@@ -104,6 +105,8 @@ namespace lm
          * @return true if the texture is loaded, false otherwise
          */
         bool            loaded() const;
+
+        void            loadBinary(const BObject& object);
 
         /**
          * Texture dtor

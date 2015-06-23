@@ -13,7 +13,7 @@
 
 #include <LumsInclude/Graphics/Texture.hpp>
 #include <LumsInclude/Graphics/Image.hpp>
-#include <iostream>
+#include <LumsInclude/Binary/BArray.hpp>
 
 using namespace lm;
 
@@ -96,6 +96,19 @@ bool
 Texture::loaded() const
 {
     return _texture != 0;
+}
+
+void
+Texture::loadBinary(const BObject& object)
+{
+    char* path = object["path"].asString();
+    auto& atlas = object["atlas"].asArray();
+    int atlasWidth = atlas[0].asInt();
+    int atlasHeight = atlas[1].asInt();
+
+    _image = new lm::Image;
+    _image->setPath(path, true);
+    pushAtlas(atlasWidth, atlasHeight);
 }
 
 Texture::~Texture()

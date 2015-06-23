@@ -29,7 +29,7 @@ BObject::parse(std::ifstream& file)
 }
 
 const BValue&
-BObject::operator[](const BString str) const
+BObject::operator[](const char* str) const
 {
     for (int i = 0; i < _size; ++i)
     {

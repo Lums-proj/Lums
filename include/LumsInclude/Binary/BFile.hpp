@@ -29,10 +29,10 @@ namespace lm
             Iterator        operator++(int) { _index++; return *this; }
             Iterator        operator--() { Iterator i = *this; _index--; return i; }
             Iterator        operator--(int) { _index--; return *this; }
-            const BValue&   operator*(int) { return _file[_index]; }
+            const BValue&   operator*() { return _file[_index]; }
             const BValue&   operator->() { return _file[_index]; }
             bool            operator==(const Iterator& rhs) { return _index == rhs._index; }
-            bool            operator!=(const Iterator& rhs) { return *this != rhs; }
+            bool            operator!=(const Iterator& rhs) { return !(*this == rhs); }
 
         private:
             const BFile&    _file;

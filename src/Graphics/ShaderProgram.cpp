@@ -64,6 +64,16 @@ ShaderProgram::use() const
 	glUseProgram(_program);
 }
 
+void
+ShaderProgram::loadBinary(const BObject& object)
+{
+    attach(Shader(object["vertex"].asString(), Shader::Vertex));
+    attach(Shader(object["fragment"].asString(), Shader::Fragment));
+    for (auto& a : object["attachments"].asObject())
+        bindAttribLocation(a.second.asInt(), a.first);
+    link();
+}
+
 ShaderProgram::~ShaderProgram()
 {
 	glDeleteProgram(_program);

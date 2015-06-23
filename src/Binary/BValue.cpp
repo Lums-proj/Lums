@@ -87,7 +87,7 @@ BValue::operator[](int i) const
 }
 
 const BValue&
-BValue::operator[](const BString str) const
+BValue::operator[](const char* str) const
 {
     return (*_object)[str];
 }

@@ -54,7 +54,7 @@ namespace lm
         const BArray&   asArray() const;
 
         const BValue&   operator[](int i) const;
-        const BValue&   operator[](const BString str) const;
+        const BValue&   operator[](const char* str) const;
 
         ~BValue();
 
@@ -70,7 +70,7 @@ namespace lm
         };
     };
 
-    using BPair = std::pair<BString, BValue>;
+    using BPair = std::pair<const char*, BValue>;
 }
 
 #endif
