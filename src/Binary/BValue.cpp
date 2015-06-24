@@ -11,6 +11,58 @@ BValue::BValue()
 
 }
 
+BValue::BValue(const BValue& rhs)
+: _type(rhs._type)
+{
+    switch (_type)
+    {
+        case BType::Int:
+            _int = rhs._int;
+            break;
+        case BType::Float:
+            _float = rhs._float;
+            break;
+        case BType::String:
+            _string = new char[strlen(rhs._string) + 1];
+            strcpy(_string, rhs._string);
+            break;
+        case BType::Array:
+            _array = new BArray(*(rhs._array));
+            break;
+        case BType::Object:
+            _object = new BObject(*(rhs._object));
+        default:
+            break;
+    }
+}
+
+BValue&
+BValue::operator=(const BValue& rhs)
+{
+    _type = rhs._type;
+    switch (_type)
+    {
+        case BType::Int:
+            _int = rhs._int;
+            break;
+        case BType::Float:
+            _float = rhs._float;
+            break;
+        case BType::String:
+            _string = new char[strlen(rhs._string) + 1];
+            strcpy(_string, rhs._string);
+            break;
+        case BType::Array:
+            _array = new BArray(*(rhs._array));
+            break;
+        case BType::Object:
+            _object = new BObject(*(rhs._object));
+        default:
+            break;
+    }
+    return *this;
+}
+
 void
 BValue::parse(std::ifstream& file)
 {

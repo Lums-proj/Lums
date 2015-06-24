@@ -11,6 +11,45 @@ BObject::BObject()
 
 }
 
+BObject::BObject(const BObject& rhs)
+: _size(rhs._size)
+{
+    if (!_size)
+        _values = nullptr;
+    else
+    {
+        _values = new BPair[_size];
+        for (int i = 0; i < _size; ++i)
+        {
+            _values[i].first = new char[strlen(rhs._values[i].first) + 1];
+            strcpy(_values[i].first, rhs._values[i].first);
+            _values[i].second = rhs._values[i].second;
+        }
+    }
+}
+
+BObject&
+BObject::operator=(const BObject& rhs)
+{
+    for (int i = 0; i < _size; ++i)
+        delete [] _values[i].first;
+    delete [] _values;
+    _size = rhs._size;
+    if (!_size)
+        _values = nullptr;
+    else
+    {
+        _values = new BPair[_size];
+        for (int i = 0; i < _size; ++i)
+        {
+            _values[i].first = new char[strlen(rhs._values[i].first) + 1];
+            strcpy(_values[i].first, rhs._values[i].first);
+            _values[i].second = rhs._values[i].second;
+        }
+    }
+    return *this;
+}
+
 void
 BObject::parse(std::ifstream& file)
 {

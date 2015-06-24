@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    GameObject.hpp                                 oooooo       oooooo      */
+/*    GameObjectTemplate.hpp                         oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,34 +11,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_GAME_OBJECT_HPP
-#define LUMS_GAME_OBJECT_HPP
+#ifndef LUMS_GAME_OBJECT_TEMPLATE
+#define LUMS_GAME_OBJECT_TEMPLATE
 
-#include <vector>
-#include <functional>
-#include <type_traits>
-#include <LumsInclude/GameObject/Component.hpp>
-#include <LumsInclude/Math/Vector.hpp>
+#include <string>
+#include <unordered_map>
+#include <LumsInclude/Binary/BValue.hpp>
+#include <LumsInclude/GameObject/GameObject.hpp>
 
-namespace lm
+class GameObjectTemplate
 {
-	class GameObject
-	{
-	public:
-		GameObject();
-		Component*		attach(const char* name) { return attach(sym(name)); }
-		Component*		attach(size_t id);
-		void			detach(const char* name) { detach(sym(name)); }
-		void			detach(size_t id);
-		~GameObject();
+public:
+    GameObjectTemplate();
+    void        load();
+    void        loadBinary(const BObject& object);
+    GameObject* operator()();
+    ~GameObject();
 
-		Vector3f pos;
-		Vector3f rot;
-		Vector3f scale;
-
-	private:
-		std::vector<Component*>	_components;
-	};
-}
+private:
+    std::unordered_map<size_t, BObject>     _components;
+};
 
 #endif

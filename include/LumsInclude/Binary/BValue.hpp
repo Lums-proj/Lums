@@ -39,6 +39,9 @@ namespace lm
     {
     public:
         BValue();
+        BValue(const BValue& rhs);
+        BValue& operator=(const BValue& rhs);
+
         void    parse(std::ifstream& file);
         bool    is(BType type) const { return type == _type; }
         bool    isObject() const { return is(BType::Object); }
@@ -70,7 +73,7 @@ namespace lm
         };
     };
 
-    using BPair = std::pair<const char*, BValue>;
+    using BPair = std::pair<char*, BValue>;
 }
 
 #endif

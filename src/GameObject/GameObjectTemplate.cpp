@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    GameObject.hpp                                 oooooo       oooooo      */
+/*    GameObjectTemplate.cpp                         oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,34 +11,44 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_GAME_OBJECT_HPP
-#define LUMS_GAME_OBJECT_HPP
+#include <LumsInclude/GameObject/GameObjectTemplate.hpp>
 
-#include <vector>
-#include <functional>
-#include <type_traits>
-#include <LumsInclude/GameObject/Component.hpp>
-#include <LumsInclude/Math/Vector.hpp>
+using namespace lm;
 
-namespace lm
+GameObjectTemplate::GameObjectTemplate()
 {
-	class GameObject
-	{
-	public:
-		GameObject();
-		Component*		attach(const char* name) { return attach(sym(name)); }
-		Component*		attach(size_t id);
-		void			detach(const char* name) { detach(sym(name)); }
-		void			detach(size_t id);
-		~GameObject();
 
-		Vector3f pos;
-		Vector3f rot;
-		Vector3f scale;
-
-	private:
-		std::vector<Component*>	_components;
-	};
 }
 
-#endif
+void
+GameObjectTemplate::load()
+{
+
+}
+
+void
+GameObjectTemplate::loadBinary(const BObject& object)
+{
+    for (auto o : object)
+    {
+        if (strcmp(o.first, "name") == 0)
+            continue;
+        _components[sym(o.first)] = o.second.asObject();
+    }
+}
+
+GameObject*
+GameObjectTemplate::operator()()
+{
+    GameObject* go = new GameObject;
+    for (auto& o : _components)
+    {
+        Component* c = go->attach(o.first);
+        c->loadBinary(o.second);
+    }
+}
+
+GameObjectTemplate::~GameObjectTemplate()
+{
+
+}

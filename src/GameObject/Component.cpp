@@ -11,12 +11,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <LumsInclude/GameObject/Component.hpp>
 #include <unordered_map>
+#include <LumsInclude/GameObject/Component.hpp>
+#include <LumsInclude/Binary/BObject.hpp>
 
 using namespace lm;
-
-static std::unordered_map<size_t, std::unordered_map<int, Component::method>> bindings;
 
 Component::Component()
 {
@@ -24,21 +23,15 @@ Component::Component()
 }
 
 void
-Component::bind(int slot, Component::method function) const
+Component::loadBinary(const BObject& object)
 {
-	bindings[classId()][slot] = function;
-}
+    for (auto& p : object)
+    {
+        void (Component::*setter)(const BValue&);
 
-Component::method
-Component::handle(int slot) const
-{
-	return bindings[classId()][slot];
-}
-
-bool
-Component::respondTo(int slot) const
-{
-	return handle(slot);
+        setter = ComponentBindings::instance().getSetter(id(), p.first);
+        (this->*setter)(p.second);
+    }
 }
 
 Component::~Component()

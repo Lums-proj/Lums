@@ -14,124 +14,142 @@
 #ifndef LUMS_COMPONENT_HPP
 #define LUMS_COMPONENT_HPP
 
+#include <unordered_map>
 #include <LumsInclude/Common.hpp>
-
-
+#include <LumsInclude/Singleton.hpp>
+#include <LumsInclude/Binary/BValue.hpp>
+ 
 /**
  * This macro is used to flag a component.
  * You should ALWAYS use this macro in a class used as a component
  */
-#define LUMS_COMPONENT public: size_t static Id()                  \
-					   { static int dummy   ;                      \
-					   	return reinterpret_cast<size_t>(&dummy); } \
-					   virtual size_t classId() const			   \
-					   { return Id(); }
+#define LUMS_COMPONENT										public:											\
+ 																size_t id() { return _id; }					\
+ 																static void setId(size_t id) { _id = id; }	\
+ 															private:										\
+ 																static size_t _id;
 
-
+#define LUMS_REGISTER_COMPONENT(Class, Name) 				static lm::internal::RegisterComponent<Class> _reg_ ## __COUNTER__ (Name)
+#define LUMS_BIND_SETTER(ClassName, Name, Method)			static lm::internal::BindSetterComponent _bindSetter_ ## __COUNTER__ (ClassName, Name, reinterpret_cast<void (Component::*)(const BValue&)>(Method))
+#define LUMS_BIND_MESSAGE(ClassName, Name, Method)			static lm::internal::BindMessageComponent _bindMessage_ ## __COUNTER__ (ClassName, Name, reinterpret_cast<void (Component::*)()>(Method))
 
 namespace lm
 {
+	class Component;
+
+	class ComponentFactory : public Singleton<ComponentFactory>
+	{
+	public:
+		Component*
+		create(const char* str)
+		{
+			return create(sym(str));
+		}
+
+		Component*
+		create(size_t id)
+		{
+			return _ctors[id]();
+		}
+
+		template <typename T>
+		void
+		reg(const char* str)
+		{
+			_ctors[sym(str)] = &construct<T>;
+		}
+
+	private:
+		template <typename T>
+		Component*
+		construct()
+		{
+			return new T;
+		}
+
+		std::unordered_map<size_t, Component*(*)()>	_ctors;
+	};
+
+	class ComponentBindings : public Singleton<ComponentBindings>
+	{
+	public:
+		void
+		bindSetter(const char* className, const char* name, void (Component::*method)(const BValue&))
+		{
+			_bindings[sym(className)].setters[sym(name)] = method;
+		}
+
+		void
+		bindMessage(const char* className, const char* name, void (Component::*method)())
+		{
+			_bindings[sym(className)].messages[sym(name)] = method;
+		}
+
+		void
+		(Component::*getSetter(size_t id, const char* name))(const BValue&)
+		{
+			return _bindings[id].setters[sym(name)];
+		}
+
+		void
+		(Component::*getMessage(size_t id, const char* name))()
+		{
+			return _bindings[id].messages[sym(name)];
+		}
+
+	private:
+		struct Binding
+		{
+			std::unordered_map<size_t, void (Component::*)(const BValue&)> setters;
+			std::unordered_map<size_t, void (Component::*)()> messages;
+		};
+
+		std::unordered_map<size_t, Binding>	_bindings;
+	};
+
+	namespace internal
+	{
+		template <typename T>
+		struct RegisterComponent
+		{
+			RegisterComponent(const char* name)
+			{
+				ComponentFactory::instance().reg<T>(name);
+				T::setId(sym(name));
+			}
+		};
+
+		struct BindSetterComponent
+		{
+			BindSetterComponent(const char* className, const char* name, void (Component::*method)(const BValue&))
+			{
+				ComponentBindings::instance().bindSetter(className, name, method);
+			}
+		};
+
+		struct BindMessageComponent
+		{
+			BindMessageComponent(const char* className, const char* name, void (Component::*method)())
+			{
+				ComponentBindings::instance().bindMessage(className, name, method);
+			}
+		};
+	}
+
 	/**
 	 * @brief A class that defines behavior and attributes for a GameObject
 	 */
 	class Component
 	{
 	public:
-		LUMS_COMPONENT
-
-		/**
-		 * An alias
-		 */
-		using method = void (Component::*)();
-
 		/**
 		 * Component ctor
 		 */
 		Component();
 		
-		/**
-		 * Bind a method to a slot
-		 * @tparam T Used for type erasure
-		 * @param slot The destination slot
-		 * @param function The method to bind
-		 */
-		template <typename T>
-		void
-		bind(int slot, T function) const
-		{
-			bind(slot, reinterpret_cast<Component::method>(function));
-		}
+		virtual size_t 	id() = 0;
 
-		/**
-		 * Bind a method to a slot
-		 * @tparam T Used for type erasure
-		 * @param slot A string representing a slot - it will be hashed
-		 * (at compile time if possible)
-		 * @param function The method to bind
-		 */
-		template <typename T>
-		void
-		bind(const char* slot, T function) const
-		{
-			bind(sym(slot), function);
-		}
-
-		/**
-		 * A no-op, catch-all implementation of update
-		 * @tparam Ts Used for type erasure
-		 * @param params Any parameters
-		 */
-		template <typename... Ts>
-		void
-		update(Ts... params)
-		{
-
-		}
-
-		/**
-		 * A no-op, catch-all implementation of render
-		 * @tparam Ts Used for type erasure
-		 * @param params Any parameters
-		 */
-		template <typename... Ts>
-		void
-		render(Ts... params)
-		{
-			
-		}
-
-		/**
-		 * A no-op, catch-all implementation of handleEvent
-		 * @tparam Ts Used for type erasure
-		 * @param params Any parameters
-		 */
-		template <typename... Ts>
-		void
-		handleEvent(Ts... params)
-		{
-		
-		}
-
-		/**
-		 * Bind a method to a slot
-		 * @param slot The destination slot
-		 * @param function The method to bind
-		 */
-		void				bind(int slot, Component::method function) const;
-
-		/**
-		 * Get an untyped handle to a slot
-		 * @param slot The target slot
-		 * @return An untyped handle to the slot
-		 */
-		Component::method	handle(int slot) const;
-
-		/**
-		 * Check if the component react to a slot
-		 * @param slot The slot
-		 * @return True if the component react, false otherwise
-		 */
-		bool				respondTo(int slot) const;
+		void			loadBinary(const BObject& object);
 
 		/**
 		 * Pure virtual dtor

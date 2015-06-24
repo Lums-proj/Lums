@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    GameObject.hpp                                 oooooo       oooooo      */
+/*    GameObject.cpp                                 oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,34 +11,39 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_GAME_OBJECT_HPP
-#define LUMS_GAME_OBJECT_HPP
+#include <LumsInclude/GameObject/GameObject.hpp>
 
-#include <vector>
-#include <functional>
-#include <type_traits>
-#include <LumsInclude/GameObject/Component.hpp>
-#include <LumsInclude/Math/Vector.hpp>
+using namespace lm;
 
-namespace lm
+GameObject::GameObject()
 {
-	class GameObject
-	{
-	public:
-		GameObject();
-		Component*		attach(const char* name) { return attach(sym(name)); }
-		Component*		attach(size_t id);
-		void			detach(const char* name) { detach(sym(name)); }
-		void			detach(size_t id);
-		~GameObject();
 
-		Vector3f pos;
-		Vector3f rot;
-		Vector3f scale;
-
-	private:
-		std::vector<Component*>	_components;
-	};
 }
 
-#endif
+Component*
+GameObject::attach(size_t id)
+{
+    Component* c = ComponentFactory::instance().create(id);
+    _components.push_back(c);
+    return c;
+}
+
+void
+GameObject::detach(size_t id)
+{
+    for (int i  = 0; i < _components.size(); ++i)
+    {
+        if (_components[i]->id() == id)
+        {
+            delete _components[i];
+            _components.erase(_components.begin() + i);
+            return;
+        }
+    }
+}
+
+GameObject::~GameObject()
+{
+    for (auto c : _components)
+        delete c;
+}

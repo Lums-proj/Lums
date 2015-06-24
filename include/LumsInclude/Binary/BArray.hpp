@@ -22,10 +22,13 @@ namespace lm
     class BArray
     {
     public:
-       BArray();
-       void     parse(std::ifstream& file);
-       const BValue&  operator[](int i) const { return _values[i]; }
-       ~BArray();
+        BArray();
+        BArray(const BArray& rhs);
+        BArray&         operator=(const BArray& rhs);
+
+        void            parse(std::ifstream& file);
+        const BValue&   operator[](int i) const { return _values[i]; }
+        ~BArray();
 
     private:
         int     _size;

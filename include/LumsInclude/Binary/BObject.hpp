@@ -41,11 +41,15 @@ namespace lm
         };
 
         BObject();
+        BObject(const BObject& rhs);
+        BObject&    operator=(const BObject& rhs);
+        
         Iterator    begin() const { return Iterator(*this, 0); }
         Iterator    end() const { return Iterator(*this, _size); }
         void        parse(std::ifstream& file);
         const BValue& operator[](const char* str) const;
         ~BObject();
+
     private:
         int       _size;
         BPair*    _values;
