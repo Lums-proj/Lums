@@ -45,4 +45,20 @@ namespace lm
         appsupport_path += "/";
         return appsupport_path;
     }
+
+    int
+    mkAppDataDir(const char * dirname)
+    {
+        NSFileManager *fileManager= [NSFileManager defaultManager];
+        NSError *error = nil;
+        NSString *directory = [NSString stringWithUTF8String:dirname];
+        
+        if(![fileManager createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:&error])
+        {
+            // An error has occurred, do something to handle it
+            NSLog(@"Failed to create directory \"%@\". Error: %@", directory, error);
+            return -1;
+        }
+        return 0;
+    }
 }

@@ -32,6 +32,8 @@ namespace lm
      * @return A const reference to the application data path string.
      */
     const std::string&  userDataPath();
+
+    int                 mkAppDataDir(const char * dirname);
 }
 
 #endif
