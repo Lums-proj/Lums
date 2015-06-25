@@ -55,12 +55,24 @@ namespace lm
 		bool
 		hasComponent(size_t id)
 		{
+			return getComponent(id) != nullptr;
+		}
+
+		Component*
+		getComponent(const char* name)
+		{
+			return getComponent(sym(name));
+		}
+
+		Component*
+		getComponent(size_t id)
+		{
 			for (auto c : _components)
 			{
 				if (c->id() == id)
-					return true;
+					return c;
 			}
-			return false;
+			return nullptr;
 		}
 
 		~GameObject();
