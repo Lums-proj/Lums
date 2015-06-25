@@ -15,6 +15,7 @@
 #import <LumsInclude/OperatingSystem.hpp>
 
 static std::string  res_path;
+static std::string  appsupport_path;
 
 namespace lm
 {
@@ -29,5 +30,35 @@ namespace lm
             res_path = ".";
         res_path += "/";
         return res_path;
+    }
+
+    const std::string&
+    userDataPath()
+    {
+        if (!appsupport_path.empty())
+            return appsupport_path;
+
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+        NSString *applicationSupportDirectory = [paths firstObject];
+
+        appsupport_path = [applicationSupportDirectory cStringUsingEncoding:NSASCIIStringEncoding];
+        appsupport_path += "/";
+        return appsupport_path;
+    }
+
+    int
+    mkAppDataDir(const char * dirname)
+    {
+        NSFileManager *fileManager= [NSFileManager defaultManager];
+        NSError *error = nil;
+        NSString *directory = [NSString stringWithUTF8String:dirname];
+        
+        if(![fileManager createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:&error])
+        {
+            // An error has occurred, do something to handle it
+            NSLog(@"Failed to create directory \"%@\". Error: %@", directory, error);
+            return -1;
+        }
+        return 0;
     }
 }
