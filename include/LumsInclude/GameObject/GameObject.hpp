@@ -77,8 +77,8 @@ namespace lm
 
 		~GameObject();
 
-		Vector3f pos;
-		Vector3f rot;
+		Vector3f position;
+		Vector3f rotation;
 		Vector3f scale;
 
 	private:

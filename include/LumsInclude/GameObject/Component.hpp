@@ -29,9 +29,10 @@
  															private:										\
  																static size_t _id;
 
-#define LUMS_REGISTER_COMPONENT(Class, Name) 				static lm::internal::RegisterComponent<Class> _reg_ ## __COUNTER__ (Name)
-#define LUMS_BIND_SETTER(ClassName, Name, Method)			static lm::internal::BindSetterComponent _bindSetter_ ## __COUNTER__ (ClassName, Name, reinterpret_cast<void (Component::*)(const BValue&)>(Method))
-#define LUMS_BIND_MESSAGE(ClassName, Name, Method)			static lm::internal::BindMessageComponent _bindMessage_ ## __COUNTER__ (ClassName, Name, reinterpret_cast<void (Component::*)()>(Method))
+#define LUMS_REGISTER_COMPONENT(Class, Name) 				size_t Class::_id = 0u;														\
+ 															static lm::internal::RegisterComponent<Class> _reg_ ## __COUNTER__ (Name)
+#define LUMS_BIND_SETTER(ClassName, Name, Method)			static lm::internal::BindSetterComponent _bindSetter_ ## __COUNTER__ (ClassName, Name, reinterpret_cast<void (lm::Component::*)(const lm::BValue&)>(Method))
+#define LUMS_BIND_MESSAGE(ClassName, Name, Method)			static lm::internal::BindMessageComponent _bindMessage_ ## __COUNTER__ (ClassName, Name, reinterpret_cast<void (lm::Component::*)()>(Method))
 
 namespace lm
 {
@@ -61,7 +62,7 @@ namespace lm
 
 	private:
 		template <typename T>
-		Component*
+		static Component*
 		construct()
 		{
 			return new T;

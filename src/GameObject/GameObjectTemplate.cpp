@@ -30,12 +30,9 @@ GameObjectTemplate::load()
 void
 GameObjectTemplate::loadBinary(const BObject& object)
 {
-    for (auto o : object)
-    {
-        if (strcmp(o.first, "name") == 0)
-            continue;
-        _components[sym(o.first)] = o.second.asObject();
-    }
+    auto& components = object["components"].asObject();
+    for (auto c : components)
+        _components[sym(c.first)] = c.second.asObject();
 }
 
 GameObject*

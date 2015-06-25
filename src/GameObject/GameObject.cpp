@@ -16,6 +16,9 @@
 using namespace lm;
 
 GameObject::GameObject()
+: position(0.f)
+, rotation(0.f)
+, scale(1.f)
 {
 
 }

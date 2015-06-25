@@ -83,15 +83,17 @@ namespace lm
      * @return A orthogonal projection matrix
      */
     inline Matrix4f
-    ortho(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top)
+    ortho(GLfloat left, GLfloat right, GLfloat bottom, GLfloat top, GLfloat znear = 0, GLfloat zfar = 1)
     {
-        Matrix4f result = Matrix4f::identity();
+        Matrix4f result;
 
         result[0][0] = 2.f / (right - left);
         result[1][1] = 2.f / (top - bottom);
-        result[2][2] = -1.f;
+        result[2][2] = -2.f / (zfar - znear);
         result[3][0] = -(right + left) / (right - left);
         result[3][1] = -(top + bottom) / (top - bottom);
+        result[3][2] = -(zfar + znear) / (zfar - znear);
+        result[3][3] = 1.f;
         return result;
     }
 
