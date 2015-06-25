@@ -41,7 +41,7 @@ ShaderPipeline::bind()
 	{
 		glBindFramebuffer(GL_FRAMEBUFFER, _win->fbo());
 		glDrawBuffer(GL_COLOR_ATTACHMENT0);
-		glClear(GL_COLOR_BUFFER_BIT/* | GL_DEPTH_BUFFER_BIT */);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 }
 
@@ -81,7 +81,7 @@ ShaderPipeline::render()
 				glDrawBuffer(GL_COLOR_ATTACHMENT0);
 			else
 				glDrawBuffer(GL_COLOR_ATTACHMENT1);
-			glClear(GL_COLOR_BUFFER_BIT);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		}
 		_vbo.draw(GL_TRIANGLES);
 		in = 1 - in;

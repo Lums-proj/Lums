@@ -78,7 +78,7 @@ public:
         auto& tex = lm::TextureProvider::instance().get(0);
 
         _batch.begin();
-        _batch.draw(tex, 0, {0.f, 0.f}, {2.f, 2.f});
+        _batch.draw(tex, 0, {0.f, 0.f, 0.f}, {2.f, 2.f});
         _batch.end();
     }
 

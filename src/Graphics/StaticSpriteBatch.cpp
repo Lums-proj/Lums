@@ -23,7 +23,7 @@ StaticSpriteBatch::StaticSpriteBatch(GLenum hint)
 }
 
 void
-StaticSpriteBatch::draw(const Texture& texture, int atlas, Vector2f pos, Vector2f scale, Vector4f color, Vector2b flip)
+StaticSpriteBatch::draw(const Texture& texture, int atlas, Vector3f pos, Vector2f scale, Vector4f color, Vector2b flip)
 {
     setTexture(&texture);
     Rect2f frame = texture.atlas(atlas);
@@ -42,8 +42,8 @@ StaticSpriteBatch::draw(const Texture& texture, int atlas, Vector2f pos, Vector2
         h = -h;
     }
 
-    const float fcorx = 1.0f / texture.bufferWidth();
-    const float fcory = 1.0f / texture.bufferHeight();
+    // const float fcorx = 1.0f / texture.bufferWidth();
+    // const float fcory = 1.0f / texture.bufferHeight();
 
     // frame.pos.x += fcorx * 0.5f;
     // frame.pos.y += fcory * 0.5f;
@@ -52,12 +52,12 @@ StaticSpriteBatch::draw(const Texture& texture, int atlas, Vector2f pos, Vector2
 
     // We create two triangles from a single quad
 
-    vbo.push(pos.x, pos.y, frame.pos.x, frame.pos.y, color[0], color[1], color[2], color[3]);
-    vbo.push(pos.x + w, pos.y, frame.pos.x + frame.size.x, frame.pos.y, color[0], color[1], color[2], color[3]);
-    vbo.push(pos.x + w, pos.y + h, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
-    vbo.push(pos.x, pos.y, frame.pos.x, frame.pos.y, color[0], color[1], color[2], color[3]);
-    vbo.push(pos.x + w, pos.y + h, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
-    vbo.push(pos.x, pos.y + h, frame.pos.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
+    vbo.push(pos.x, pos.y, pos.z, frame.pos.x, frame.pos.y, color[0], color[1], color[2], color[3]);
+    vbo.push(pos.x + w, pos.y, pos.z, frame.pos.x + frame.size.x, frame.pos.y, color[0], color[1], color[2], color[3]);
+    vbo.push(pos.x + w, pos.y + h, pos.z, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
+    vbo.push(pos.x, pos.y, pos.z, frame.pos.x, frame.pos.y, color[0], color[1], color[2], color[3]);
+    vbo.push(pos.x + w, pos.y + h, pos.z, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
+    vbo.push(pos.x, pos.y + h, pos.z, frame.pos.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
 }
 
 void
@@ -67,7 +67,7 @@ StaticSpriteBatch::draw(const Sprite& sprite)
 }
 
 void
-StaticSpriteBatch::draw(const Font& font, const char* text, Vector2f pos, Vector4f color)
+StaticSpriteBatch::draw(const Font& font, const char* text, Vector3f pos, Vector4f color)
 {
     int i = 0;
     int c;
@@ -78,7 +78,7 @@ StaticSpriteBatch::draw(const Font& font, const char* text, Vector2f pos, Vector
         const Glyph& g = font.glyph(c);
         const float baseline = pos.y - g.top + height;
 
-        draw(font.texture(), c, {pos.x + g.left, baseline}, {1.f, 1.f}, color);
+        draw(font.texture(), c, {pos.x + g.left, baseline, pos.z}, {1.f, 1.f}, color);
         pos.x += g.advance - g.kerning[i];
     }
 }

@@ -54,12 +54,15 @@ Window::Window(int w, int h, const char* name, bool fullscreen)
     int vsync = 1;
     [context setValues:&vsync forParameter:NSOpenGLCPSwapInterval];
     glClearColor(0, 0, 0, 1);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_DEPTH_TEST);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     _windowHandle = win;
     _openGlHandle = context;
     glGenFramebuffers(1, &_fbo);
     glGenTextures(2, _texBuffer);
-    //glGenTextures(1, &_depthBuffer);
+    glGenTextures(1, &_depthBuffer);
     for (int i = 0; i < 2; ++i)
     {
         glBindTexture(GL_TEXTURE_2D, _texBuffer[i]);
@@ -68,11 +71,11 @@ Window::Window(int w, int h, const char* name, bool fullscreen)
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
     }
-    //glBindTexture(GL_TEXTURE_2D, _depthBuffer);
-    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
-    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
+    glBindTexture(GL_TEXTURE_2D, _depthBuffer);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_BASE_LEVEL, 0);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAX_LEVEL, 0);
     [win setWindow:this];
     [win setupHid];
     resize(w, h, fullscreen);
@@ -105,10 +108,9 @@ Window::resize(int w, int h, bool fullscreen)
     glBindTexture(GL_TEXTURE_2D, _texBuffer[1]);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, frame.size.width, frame.size.height, 0, GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, nullptr);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, _texBuffer[1], 0);
-    //glBindTexture(GL_TEXTURE_2D, _depthBuffer[i]);
-    //glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT16, frame.size.width, frame.size.height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, nullptr);
-    //glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, _depthBuffer[i], 0);
-
+    glBindTexture(GL_TEXTURE_2D, _depthBuffer);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT16, frame.size.width, frame.size.height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, nullptr);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, _depthBuffer, 0);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glBindTexture(GL_TEXTURE_2D, 0);
     frame = [win frameRectForContentRect:retinaFrame];

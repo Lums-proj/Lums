@@ -44,7 +44,7 @@ namespace lm
          */
         LUMS_EXPORTED void              draw(const Texture& texture,
                                              int atlas = 0,
-                                             Vector2f pos = {0.f, 0.f},
+                                             Vector3f pos = {0.f, 0.f, 0.f},
                                              Vector2f scale = {1.f, 1.f},
                                              Vector4f color = {1.f, 1.f, 1.f, 1.f},
                                              Vector2b flip = {false, false});
@@ -64,7 +64,7 @@ namespace lm
          */
         LUMS_EXPORTED void              draw(const Font& font,
                                              const char* text,
-                                             Vector2f pos = {0.f, 0.f},
+                                             Vector3f pos = {0.f, 0.f, 0.f},
                                              Vector4f color = {1.f, 1.f, 1.f, 1.f});
 
         /**
@@ -97,7 +97,7 @@ namespace lm
         /**
          * A vertex buffer object
          */
-        VertexBufferP2T2C4          vbo;
+        VertexBufferP3T2C4          vbo;
 
         /**
          * A texture

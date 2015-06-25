@@ -150,7 +150,7 @@ namespace lm
         /**
          * The sprite position
          */
-        Vector2f    pos;
+        Vector3f    pos;
 
         /**
          * The sprite scale
@@ -169,11 +169,11 @@ namespace lm
 
     private:
         Texture*        _texture;
-        std::size_t     _baseFrame;
-        std::size_t     _currentFrame;
-        std::size_t     _length;
-        std::size_t     _acc;
-        std::size_t     _speed;
+        size_t          _baseFrame;
+        size_t          _currentFrame;
+        size_t          _length;
+        size_t          _acc;
+        size_t          _speed;
         bool            _loop;
         bool            _finished;
 

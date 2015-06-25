@@ -195,6 +195,11 @@ namespace lm
      */
 	using VertexBufferP2T2C4 = VertexBuffer<Vertex::Position, 2, Vertex::Texture, 2, Vertex::Color, 4>;
 
+    /**
+     * A vertex buffer with 3 values for position, 2 for texture, and 4 for color
+     */
+    using VertexBufferP3T2C4 = VertexBuffer<Vertex::Position, 3, Vertex::Texture, 2, Vertex::Color, 4>;
+
 	/**
      * A vertex buffer with 3 values for position, and 4 for color
      */

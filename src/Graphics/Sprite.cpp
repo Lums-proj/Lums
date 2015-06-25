@@ -18,7 +18,7 @@
 using namespace lm;
 
 Sprite::Sprite()
-: pos(0.f, 0.f)
+: pos(0.f, 0.f, 0.f)
 , scale(1.f, 1.f)
 , color(1.f, 1.f, 1.f, 1.f)
 , flip(false, false)
