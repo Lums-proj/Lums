@@ -46,6 +46,23 @@ namespace lm
 				c->recvMessage(*this, id, std::forward<Ts...>(params...));
 		}
 
+		bool
+		hasComponent(const char* name)
+		{
+			return hasComponent(sym(name));
+		}
+
+		bool
+		hasComponent(size_t id)
+		{
+			for (auto c : _components)
+			{
+				if (c->id() == id)
+					return true;
+			}
+			return false;
+		}
+
 		~GameObject();
 
 		Vector3f pos;
