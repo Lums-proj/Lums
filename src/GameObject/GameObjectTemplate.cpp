@@ -12,6 +12,7 @@
 /* ************************************************************************** */
 
 #include <LumsInclude/GameObject/GameObjectTemplate.hpp>
+#include <LumsInclude/Binary/BObject.hpp>
 
 using namespace lm;
 
@@ -46,6 +47,7 @@ GameObjectTemplate::operator()()
         Component* c = go->attach(o.first);
         c->loadBinary(o.second);
     }
+    return go;
 }
 
 GameObjectTemplate::~GameObjectTemplate()

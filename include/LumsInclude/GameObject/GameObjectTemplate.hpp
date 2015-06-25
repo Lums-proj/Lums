@@ -19,17 +19,20 @@
 #include <LumsInclude/Binary/BValue.hpp>
 #include <LumsInclude/GameObject/GameObject.hpp>
 
-class GameObjectTemplate
+namespace lm
 {
-public:
-    GameObjectTemplate();
-    void        load();
-    void        loadBinary(const BObject& object);
-    GameObject* operator()();
-    ~GameObject();
+    class GameObjectTemplate
+    {
+    public:
+        GameObjectTemplate();
+        void        load();
+        void        loadBinary(const BObject& object);
+        GameObject* operator()();
+        ~GameObjectTemplate();
 
-private:
-    std::unordered_map<size_t, BObject>     _components;
-};
+    private:
+        std::unordered_map<size_t, BObject>     _components;
+    };
+}
 
 #endif

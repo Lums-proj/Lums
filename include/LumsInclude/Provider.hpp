@@ -26,6 +26,7 @@
 #include <LumsInclude/Binary/BObject.hpp>
 #include <LumsInclude/Singleton.hpp>
 #include <LumsInclude/Common.hpp>
+#include <LumsInclude/GameObject/GameObjectTemplate.hpp>
 
 namespace lm
 {
@@ -269,6 +270,11 @@ namespace lm
      * A stream provider for musics
      */
     using MusicProvider = StreamProvider<Music>;
+
+    /**
+     * A provider for game object templates
+     */
+    using GameObjectProvider = Provider<GameObjectTemplate>;
 }
 
 #endif

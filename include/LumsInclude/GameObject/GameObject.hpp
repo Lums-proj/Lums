@@ -30,6 +30,22 @@ namespace lm
 		Component*		attach(size_t id);
 		void			detach(const char* name) { detach(sym(name)); }
 		void			detach(size_t id);
+		
+		template <typename... Ts>
+		void
+		send(const char* name, Ts... params)
+		{
+			send(sym(name), std::forward<Ts...>(params...));
+		}
+
+		template <typename... Ts>
+		void
+		send(size_t id, Ts... params)
+		{
+			for (auto c : _components)
+				c->recvMessage(*this, id, std::forward<Ts...>(params...));
+		}
+
 		~GameObject();
 
 		Vector3f pos;

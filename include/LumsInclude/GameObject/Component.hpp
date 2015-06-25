@@ -97,6 +97,13 @@ namespace lm
 			return _bindings[id].messages[sym(name)];
 		}
 
+		void
+		(Component::*getMessage(size_t id, size_t name))()
+		{
+			return _bindings[id].messages[name];
+		}
+
+
 	private:
 		struct Binding
 		{
@@ -136,9 +143,12 @@ namespace lm
 		};
 	}
 
+	class GameObject;
+
 	/**
 	 * @brief A class that defines behavior and attributes for a GameObject
 	 */
+
 	class Component
 	{
 	public:
@@ -150,6 +160,17 @@ namespace lm
 		virtual size_t 	id() = 0;
 
 		void			loadBinary(const BObject& object);
+
+		template <typename... Ts>
+		void
+		recvMessage(GameObject& go, size_t id, Ts... params)
+		{
+			auto cb = ComponentBindings::instance().getMessage(this->id(), id);
+			if (!cb)
+				return;
+			auto ccb = reinterpret_cast<void (Component::*)(GameObject&, Ts...)>(cb);
+			(this->*ccb)(go, std::forward<Ts...>(params...));
+		}
 
 		/**
 		 * Pure virtual dtor
