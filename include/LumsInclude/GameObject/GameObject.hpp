@@ -30,7 +30,8 @@ namespace lm
 		Component*		attach(size_t id);
 		void			detach(const char* name) { detach(sym(name)); }
 		void			detach(size_t id);
-		
+		void			init();
+
 		template <typename... Ts>
 		void
 		send(const char* name, Ts... params)

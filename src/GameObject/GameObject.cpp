@@ -45,6 +45,13 @@ GameObject::detach(size_t id)
     }
 }
 
+void
+GameObject::init()
+{
+    for (auto& c : _components)
+        c->init(*this);
+}
+
 GameObject::~GameObject()
 {
     for (auto c : _components)

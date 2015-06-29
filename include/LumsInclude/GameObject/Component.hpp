@@ -167,6 +167,8 @@ namespace lm
 		
 		virtual size_t 	id() = 0;
 
+		virtual void	init(GameObject& object) {}
+
 		void			loadBinary(const BObject& object);
 
 		template <typename... Ts>

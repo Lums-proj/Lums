@@ -44,6 +44,7 @@ GameObjectTemplate::operator()()
         Component* c = go->attach(o.first);
         c->loadBinary(o.second);
     }
+    go->init();
     return go;
 }
 
