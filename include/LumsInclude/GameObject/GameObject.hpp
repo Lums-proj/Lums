@@ -35,7 +35,7 @@ namespace lm
 		void
 		send(const char* name, Ts... params)
 		{
-			send(sym(name), std::forward<Ts...>(params...));
+			send(sym(name), std::forward<Ts>(params)...);
 		}
 
 		template <typename... Ts>
@@ -43,7 +43,7 @@ namespace lm
 		send(size_t id, Ts... params)
 		{
 			for (auto c : _components)
-				c->recvMessage(*this, id, std::forward<Ts...>(params...));
+				c->recvMessage(*this, id, std::forward<Ts>(params)...);
 		}
 
 		bool
