@@ -57,6 +57,7 @@ class Spiner
     @bones = []
     root['bones'].each do |b|
       bone = []
+      bone << b['name'].size
       bone << b['name']
       bone << ((@bones.find_index {|o| o[0] == b['parent']}) || 0)
       bone << (b['x'] || 0).to_f
@@ -70,7 +71,7 @@ class Spiner
 
   def write_bones buffer
     buffer << [@bones.size].pack('L<')
-    @bones.each {|b| buffer << b.pack('Z*L<FFFFF')}
+    @bones.each {|b| buffer << b.pack('L<A*L<FFFFF')}
   end
 
   def read_skins root
@@ -79,7 +80,7 @@ class Spiner
     root['skins'].each_value {|s| skin.merge! s}
     skin.each do |key, value|
       bone = root['slots'].find{|h| h['name'] == key }['bone']
-      bone_id = @bones.find_index {|b| b[0] == bone}
+      bone_id = @bones.find_index {|b| b[1] == bone}
       value.each do |key, value|
         name = value['name'] || key
         texture = @atlas[:atlas].find_index{|h| h[:name] == name}
