@@ -11,6 +11,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cstdio>
 #include <cstdint>
 #include <fstream>
 #include <LumsInclude/Skeleton/Skeleton.hpp>
@@ -38,6 +39,7 @@ Skeleton::load(const std::string& path, bool resource)
         file.read((char*)&nameLen, 4);
         name = new char[nameLen + 1];
         name[nameLen] = 0;
+        delete [] name;
         file.read(name, nameLen);
         file.read((char*)&parent, 4);
         file.read((char*)&position.x, sizeof(float));

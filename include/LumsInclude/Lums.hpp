@@ -65,6 +65,8 @@
 #include <LumsInclude/Math/Projection.hpp>
 #include <LumsInclude/Math/Rect.hpp>
 #include <LumsInclude/Math/Vector.hpp>
+#include <LumsInclude/Skeleton/Skeleton.hpp>
+#include <LumsInclude/Skeleton/Bone.hpp>
 #include <LumsInclude/OperatingSystem.hpp>
 #include <LumsInclude/Provider.hpp>
 #include <LumsInclude/Singleton.hpp>
