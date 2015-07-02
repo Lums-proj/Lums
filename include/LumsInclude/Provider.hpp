@@ -19,6 +19,8 @@
 #include <cstdint>
 #include <string>
 #include <LumsInclude/Graphics/ShaderProgram.hpp>
+#include <LumsInclude/Audio/Sfx.hpp>
+#include <LumsInclude/Audio/Music.hpp>
 #include <LumsInclude/Graphics/Image.hpp>
 #include <LumsInclude/Graphics/Texture.hpp>
 #include <LumsInclude/Graphics/Font.hpp>

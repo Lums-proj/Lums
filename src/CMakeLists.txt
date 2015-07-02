@@ -1,4 +1,4 @@
-file(GLOB SRC "*.cpp" "Binary/*.cpp" "Graphics/*.cpp" "Graphics/ImageFormat/*.cpp" "Audio/*.cpp" "Core/*.cpp" "GameObject/*.cpp")
+file(GLOB SRC "*.cpp" "Binary/*.cpp" "Graphics/*.cpp" "Graphics/ImageFormat/*.cpp" "Audio/*.cpp" "Core/*.cpp" "GameObject/*.cpp" "Skeleton/*.cpp")
 file(GLOB_RECURSE HEADER "../include/LumsInclude/**.hpp" "../include/Lums")
 set(LINK_LIB ${OPENGL_gl_LIBRARY} ${OPENAL_LIBRARY} ${PNG_LIBRARIES} ${FREETYPE_LIBRARIES} ${VORBIS_LIBRARIES})
 

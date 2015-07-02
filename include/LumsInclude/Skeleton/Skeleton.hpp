@@ -14,6 +14,9 @@
 #ifndef LUMS_SKELETON_HPP
 #define LUMS_SKELETON_HPP
 
+#include <string>
+#include <vector>
+#include <LumsInclude/Provider.hpp>
 #include <LumsInclude/Skeleton/Bone.hpp>
 
 namespace lm
@@ -25,8 +28,10 @@ namespace lm
         void    loadBinary(const BObject& object);
 
     private:
-        std::vector<Bone>       _bones;
+        std::vector<Bone>   _bones;
     };
+
+    using SkeletonProvider = Provider<Skeleton>;
 }
 
 #endif

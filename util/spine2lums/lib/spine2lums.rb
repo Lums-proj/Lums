@@ -59,7 +59,7 @@ class Spiner
       bone = []
       bone << b['name'].size
       bone << b['name']
-      bone << ((@bones.find_index {|o| o[0] == b['parent']}) || 0)
+      bone << ((@bones.find_index {|o| o[1] == b['parent']}) || -1)
       bone << (b['x'] || 0).to_f
       bone << (b['y'] || 0).to_f
       bone << (b['scaleX'] || 1).to_f
@@ -71,7 +71,7 @@ class Spiner
 
   def write_bones buffer
     buffer << [@bones.size].pack('L<')
-    @bones.each {|b| buffer << b.pack('L<A*L<FFFFF')}
+    @bones.each {|b| buffer << b.pack('L<A*l<FFFFF')}
   end
 
   def read_skins root

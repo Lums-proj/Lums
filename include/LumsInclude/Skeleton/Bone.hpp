@@ -14,7 +14,8 @@
 #ifndef LUMS_BONE_HPP
 #define LUMS_BONE_HPP
 
-#include <list>
+#include <vector>
+#include <LumsInclude/Math/Vector.hpp>
 
 namespace lm
 {
@@ -23,16 +24,23 @@ namespace lm
     public:
         using Array = std::vector<int>;
 
-        Bone();
-        Bone(size_t parent);
-        bool            root() const { return _root; }
-        size_t          parent() const { return _parent; }
+        Bone(int parent) : _parent(parent) {};
+        
+        bool            root() const { return _parent == -1; }
+        int             parent() const { return _parent; }
         const Array&    children() const { return _children; }
 
+        void            addChild(int child) { _children.push_back(child); }
+        void            setPosition(const lm::Vector2f& position) { _position = position; }
+        void            setScale(const lm::Vector2f& scale) { _scale = scale; }
+        void            setRotation(float rotation) { _rotation = rotation; }
+
     private:
-        bool                    _root;
         int                     _parent;
         Array                   _children;
+        lm::Vector2f            _position;
+        lm::Vector2f            _scale;
+        float                   _rotation;
     };
 }
 
