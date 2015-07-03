@@ -23,10 +23,13 @@ namespace lm
     public:
         Skin(int bone, int texture);
 
-        void    setTexture(int texture) { _texture = texture; }
-        void    setPosition(const Vector2f& position) { _position = position; }
-        void    setRotation(float rotation) { _rotation = rotation; }
-        int     bone() const { return _bone; }
+        void        setTexture(int texture) { _texture = texture; }
+        void        setPosition(const Vector2f& position) { _position = position; }
+        void        setRotation(float rotation) { _rotation = rotation; }
+        int         bone() const { return _bone; }
+        int         texture() const { return _texture; }
+        Vector2f    position() const { return _position; }
+        float       rotation() const { return _rotation; }
 
         ~Skin();
 
