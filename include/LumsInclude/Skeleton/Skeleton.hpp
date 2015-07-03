@@ -25,12 +25,14 @@ namespace lm
     class Skeleton
     {
     public:
+    	Skeleton();
         void    load(const std::string& path, bool resource = true);
         void    loadBinary(const BObject& object);
 
     private:
         std::vector<Bone>   _bones;
         std::vector<Skin>   _skins;
+        Texture*			_texture;
     };
 
     using SkeletonProvider = Provider<Skeleton>;

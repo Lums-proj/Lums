@@ -46,6 +46,8 @@ namespace lm
                                              int atlas = 0,
                                              Vector3f pos = {0.f, 0.f, 0.f},
                                              Vector2f scale = {1.f, 1.f},
+                                             Vector2f rotOrigin = {0.f, 0.f},
+                                             float rotation = 0.f,
                                              Vector4f color = {1.f, 1.f, 1.f, 1.f},
                                              Vector2b flip = {false, false});
 

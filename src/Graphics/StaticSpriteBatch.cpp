@@ -23,7 +23,7 @@ StaticSpriteBatch::StaticSpriteBatch(GLenum hint)
 }
 
 void
-StaticSpriteBatch::draw(const Texture& texture, int atlas, Vector3f pos, Vector2f scale, Vector4f color, Vector2b flip)
+StaticSpriteBatch::draw(const Texture& texture, int atlas, Vector3f pos, Vector2f scale, Vector2f rotOrigin, float rotation, Vector4f color, Vector2b flip)
 {
     setTexture(&texture);
     Rect2f frame = texture.atlas(atlas);

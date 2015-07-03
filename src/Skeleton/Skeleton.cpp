@@ -19,6 +19,12 @@
 
 using namespace lm;
 
+Skeleton::Skeleton()
+: _texture(nullptr)
+{
+
+}
+
 void
 Skeleton::load(const std::string& path, bool resource)
 {
