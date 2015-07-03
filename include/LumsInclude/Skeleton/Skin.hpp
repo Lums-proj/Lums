@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Skeleton.hpp                                   oooooo       oooooo      */
+/*    Skin.hpp                                       oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,29 +11,31 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_SKELETON_HPP
-#define LUMS_SKELETON_HPP
+#ifndef LUMS_SKIN_HPP
+#define LUMS_SKIN_HPP
 
-#include <string>
-#include <vector>
-#include <LumsInclude/Provider.hpp>
-#include <LumsInclude/Skeleton/Bone.hpp>
-#include <LumsInclude/Skeleton/Skin.hpp>
+#include <LumsInclude/Math/Vector.hpp>
 
 namespace lm
 {
-    class Skeleton
+    class Skin
     {
     public:
-        void    load(const std::string& path, bool resource = true);
-        void    loadBinary(const BObject& object);
+        Skin(int bone, int texture);
+
+        void    setTexture(int texture) { _texture = texture; }
+        void    setPosition(const Vector2f& position) { _position = position; }
+        void    setRotation(float rotation) { _rotation = rotation; }
+        int     bone() const { return _bone; }
+
+        ~Skin();
 
     private:
-        std::vector<Bone>   _bones;
-        std::vector<Skin>   _skins;
+        int         _bone;
+        int         _texture;
+        Vector2f    _position;
+        float       _rotation;
     };
-
-    using SkeletonProvider = Provider<Skeleton>;
 }
 
 #endif

@@ -56,6 +56,27 @@ Skeleton::load(const std::string& path, bool resource)
         if (parent != -1)
             _bones[parent].addChild(i);
     }
+
+    uint32_t skinCount;
+    file.read((char*)&skinCount, 4);
+    for (unsigned i = 0; i < skinCount; ++i)
+    {
+        int bone;
+        int texture;
+        lm::Vector2f position;
+        float rotation;
+
+        file.read((char*)&texture, 4);
+        file.read((char*)&bone, 4);
+        file.read((char*)&position.x, sizeof(float));
+        file.read((char*)&position.y, sizeof(float));
+        file.read((char*)&rotation, sizeof(float));
+
+        Skin s(bone, texture);
+        s.setPosition(position);
+        s.setRotation(rotation);
+        _skins.push_back(s);
+    }
 }
 
 void
