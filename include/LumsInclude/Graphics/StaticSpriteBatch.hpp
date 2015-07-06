@@ -18,6 +18,7 @@
 #include <LumsInclude/Graphics/Texture.hpp>
 #include <LumsInclude/Graphics/Sprite.hpp>
 #include <LumsInclude/Graphics/Font.hpp>
+#include <LumsInclude/Skeleton/Skeleton.hpp>
 #include <LumsInclude/ExportDll.hpp>
 
 namespace lm
@@ -43,13 +44,79 @@ namespace lm
          * @param flip The flip values
          */
         LUMS_EXPORTED void              draw(const Texture& texture,
-                                             int atlas = 0,
-                                             Vector3f pos = {0.f, 0.f, 0.f},
-                                             Vector2f scale = {1.f, 1.f},
-                                             Vector2f rotOrigin = {0.f, 0.f},
-                                             float rotation = 0.f,
-                                             Vector4f color = {1.f, 1.f, 1.f, 1.f},
-                                             Vector2b flip = {false, false});
+                                             int atlas,
+                                             Vector3f pos,
+                                             Vector2f scale,
+                                             Vector2f rotOrigin,
+                                             float rotation,
+                                             Vector4f color,
+                                             Vector2b flip);
+
+        void                            draw(const Texture& texture,
+                                             int atlas,
+                                             Vector3f pos,
+                                             Vector2f scale,
+                                             Vector4f color,
+                                             Vector2b flip)
+        {
+            draw(texture, atlas, pos, scale, {}, 0, color, flip);
+        }
+
+        void                            draw(const Texture& texture)
+        {
+            draw(texture, 0);
+        }
+
+        void                            draw(const Texture& texture,
+                                             int atlas)
+        {
+            draw(texture, atlas, {});
+        }
+
+        void                            draw(const Texture& texture,
+                                             int atlas,
+                                             Vector3f pos)
+        {
+            draw(texture, atlas, pos, {1.f, 1.f});
+        }
+
+        void                            draw(const Texture& texture,
+                                             int atlas,
+                                             Vector3f pos,
+                                             Vector2f scale)
+        {
+            draw(texture, atlas, pos, scale, {1.f, 1.f, 1.f, 1.f});
+        }
+
+        void                            draw(const Texture& texture,
+                                             int atlas,
+                                             Vector3f pos,
+                                             Vector2f scale,
+                                             Vector4f color)
+        {
+            draw(texture, atlas, pos, scale, color, {false, false});
+        }
+
+        void              draw(const Texture& texture,
+                                             int atlas,
+                                             Vector3f pos,
+                                             Vector2f scale,
+                                             Vector2f rotOrigin,
+                                             float rotation)
+        {
+            draw(texture, atlas, pos, scale, rotOrigin, rotation, {1.0f, 1.0f, 1.0f, 1.0f});
+        }
+
+        void              draw(const Texture& texture,
+                                             int atlas,
+                                             Vector3f pos,
+                                             Vector2f scale,
+                                             Vector2f rotOrigin,
+                                             float rotation,
+                                             Vector4f color)
+        {
+            draw(texture, atlas, pos, scale, rotOrigin, rotation, color, {false, false});
+        }
 
         /**
          * Draw a sprite into the batch

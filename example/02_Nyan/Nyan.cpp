@@ -30,6 +30,7 @@ class Nyan : public lm::GameState
 public:
     Nyan()
     : _scale(1.f)
+    , _rot(0.f)
     {
         
     }
@@ -67,6 +68,12 @@ public:
                 else
                     resizeApp(_scale);
             }
+            else if (event.key == lm::Key::Up)
+                _flip.y = !_flip.y;
+            else if (event.key == lm::Key::Down)
+                _flip.x = !_flip.x;
+            else if (event.key == lm::Key::P)
+                _rot += 1.f;
             else
                 lm::Core::instance().stop();
         }
@@ -78,7 +85,7 @@ public:
         auto& tex = lm::TextureProvider::instance().get(0);
 
         _batch.begin();
-        _batch.draw(tex, 0, {0.f, 0.f, 0.f}, {2.f, 2.f});
+        _batch.draw(tex, 0, {0.f, 0.f, 0.f}, {2.f, 2.f}, {200, 200}, _rot, {1.f, 1.f, 1.f, 1.f}, _flip);
         _batch.end();
     }
 
@@ -86,6 +93,8 @@ private:
     lm::SpriteBatch     _batch;
     lm::Matrix4f        _proj;
     float               _scale;
+    float               _rot;
+    lm::Vector2b        _flip;
 };
 
 int
@@ -100,8 +109,8 @@ main()
     img.setPath("Nyan.png");
 
     auto& tex = lm::TextureProvider::instance().set(0);
-    tex.pushAtlas(1, 1);
     tex.setImage(img);
+    tex.pushAtlas(1, 1);
 
     auto& shader = lm::ShaderProvider::instance().set(0);
     shader.attach(lm::Shader("nyan.vert.glsl", lm::Shader::Vertex));

@@ -11,6 +11,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <LumsInclude/OperatingSystem.hpp>
 #include <LumsInclude/Graphics/Texture.hpp>
 #include <LumsInclude/Graphics/Image.hpp>
 #include <LumsInclude/Binary/BArray.hpp>
@@ -84,6 +85,25 @@ Texture::pushAtlas(int w, int h)
     }
     if (_image)
         _image->setScaleHint(w, h);
+}
+
+void
+Texture::pushAtlas(const std::string& path, bool resource)
+{
+    std::string fpath = resource ? resourcePath() + path : path;
+    std::ifstream f(fpath);
+
+    uint32_t len;
+    f.read((char*)&len, 4);
+    for (unsigned i = 0; i < len; ++i)
+    {
+        Rect2f rect;
+        f.read((char*)&rect.pos.x, 4);
+        f.read((char*)&rect.pos.y, 4);
+        f.read((char*)&rect.size.x, 4);
+        f.read((char*)&rect.size.y, 4);
+        pushAtlas(rect);
+    }
 }
 
 const Rect2f&

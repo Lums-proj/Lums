@@ -14,7 +14,7 @@
 #ifndef LUMS_MATRIX_HPP
 #define LUMS_MATRIX_HPP
 
-#include <iostream>
+#include <LumsInclude/Math/Vector.hpp>
 
 namespace lm
 {
@@ -204,6 +204,19 @@ namespace lm
                 m[i][j] = lhs * rhs[i][j];
         }
         return m;
+    }
+
+    template <std::size_t N, typename T>
+    Vector<N, T>
+    operator*(const Matrix<N, T>& mat, const Vector<N, T>& vect)
+    {
+        Vector<N, T> result;
+        for (unsigned j = 0; j < N; ++j)
+        {
+            for (unsigned i = 0; i < N; ++i)
+                result[j] += mat[i][j] * vect[i];
+        }
+        return result;
     }
 
     /**

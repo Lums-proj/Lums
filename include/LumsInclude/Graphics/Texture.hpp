@@ -93,6 +93,8 @@ namespace lm
          */
         void            pushAtlas(int w, int h);
 
+        void            pushAtlas(const std::string& path, bool resource = true);
+
         /**
          * Get a rect from the atlas
          * @param i The atlas index

@@ -11,9 +11,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <cmath>
 #include <LumsInclude/Graphics/StaticSpriteBatch.hpp>
+#include <LumsInclude/Graphics/OpenGL.hpp>
 
 using namespace lm;
+
+#ifdef M_PI
+# undef M_PI
+#endif
+
+#define M_PI 3.14159265358979323846f
 
 StaticSpriteBatch::StaticSpriteBatch(GLenum hint)
 : vbo(hint)
@@ -25,6 +33,8 @@ StaticSpriteBatch::StaticSpriteBatch(GLenum hint)
 void
 StaticSpriteBatch::draw(const Texture& texture, int atlas, Vector3f pos, Vector2f scale, Vector2f rotOrigin, float rotation, Vector4f color, Vector2b flip)
 {
+    lm::Vector2f points[4];
+
     setTexture(&texture);
     Rect2f frame = texture.atlas(atlas);
     float w = frame.size.x * texture.width() * scale.x;
@@ -42,6 +52,18 @@ StaticSpriteBatch::draw(const Texture& texture, int atlas, Vector3f pos, Vector2
         h = -h;
     }
 
+    float sinx = sin(rotation * M_PI / 180.f);
+    float cosx = cos(rotation * M_PI / 180.f);
+
+    points[0] = { cosx * (pos.x - rotOrigin.x) - sinx * (pos.y - rotOrigin.y) + rotOrigin.x,
+        sinx * (pos.x - rotOrigin.x) + cosx * (pos.y - rotOrigin.y) + rotOrigin.y };
+    points[1] = { cosx * (pos.x + w - rotOrigin.x) - sinx * (pos.y - rotOrigin.y) + rotOrigin.x,
+        sinx * (pos.x + w - rotOrigin.x) + cosx * (pos.y - rotOrigin.y) + rotOrigin.y };
+    points[2] = { cosx * (pos.x + w - rotOrigin.x) - sinx * (pos.y + h - rotOrigin.y) + rotOrigin.x,
+        sinx * (pos.x + w - rotOrigin.x) + cosx * (pos.y + h - rotOrigin.y) + rotOrigin.y };
+    points[3] = { cosx * (pos.x - rotOrigin.x) - sinx * (pos.y + h - rotOrigin.y) + rotOrigin.x,
+        sinx * (pos.x - rotOrigin.x) + cosx * (pos.y + h - rotOrigin.y) + rotOrigin.y };
+
     // const float fcorx = 1.0f / texture.bufferWidth();
     // const float fcory = 1.0f / texture.bufferHeight();
 
@@ -52,12 +74,12 @@ StaticSpriteBatch::draw(const Texture& texture, int atlas, Vector3f pos, Vector2
 
     // We create two triangles from a single quad
 
-    vbo.push(pos.x, pos.y, pos.z, frame.pos.x, frame.pos.y, color[0], color[1], color[2], color[3]);
-    vbo.push(pos.x + w, pos.y, pos.z, frame.pos.x + frame.size.x, frame.pos.y, color[0], color[1], color[2], color[3]);
-    vbo.push(pos.x + w, pos.y + h, pos.z, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
-    vbo.push(pos.x, pos.y, pos.z, frame.pos.x, frame.pos.y, color[0], color[1], color[2], color[3]);
-    vbo.push(pos.x + w, pos.y + h, pos.z, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
-    vbo.push(pos.x, pos.y + h, pos.z, frame.pos.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
+    vbo.push(points[0].x, points[0].y, pos.z, frame.pos.x, frame.pos.y, color[0], color[1], color[2], color[3]);
+    vbo.push(points[1].x, points[1].y, pos.z, frame.pos.x + frame.size.x, frame.pos.y, color[0], color[1], color[2], color[3]);
+    vbo.push(points[2].x, points[2].y, pos.z, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
+    vbo.push(points[0].x, points[0].y, pos.z, frame.pos.x, frame.pos.y, color[0], color[1], color[2], color[3]);
+    vbo.push(points[2].x, points[2].y, pos.z, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
+    vbo.push(points[3].x, points[3].y, pos.z, frame.pos.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
 }
 
 void
@@ -80,6 +102,46 @@ StaticSpriteBatch::draw(const Font& font, const char* text, Vector3f pos, Vector
 
         draw(font.texture(), c, {pos.x + g.left, baseline, pos.z}, {1.f, 1.f}, color);
         pos.x += g.advance - g.kerning[i];
+    }
+}
+
+static void
+applyMatrixTrasform(Matrix4f& mat, const Skeleton& skeleton, int bone)
+{
+    const Bone& b = skeleton.bones()[bone];
+    int parent = b.parent();
+    if (parent != -1)
+        applyMatrixTrasform(mat, skeleton, parent);
+    Vector4f nullPoint = {0.f, 0.f, 0.f, 1.f};
+    nullPoint = mat * nullPoint;
+    Vector3f origin = { nullPoint.x, nullPoint.y, 0 };
+    Vector3f pos = { b.position().x, b.position().y, 0 };
+    translate(mat, pos);
+    translate(mat, -origin);
+    rotate(mat, b.rotation(), { 0.f, 0.f, 1.f });
+    translate(mat, origin);
+}
+
+void
+StaticSpriteBatch::draw(const Skeleton& skeleton, const Texture& texture, Vector3f pos)
+{
+    for (auto& skin : skeleton.skins())
+    {
+        Matrix4f mat = Matrix4f::identity();
+        applyMatrixTrasform(mat, skeleton, skin.bone());
+        
+        Vector4f nullPoint = { 0.f, 0.f, 0.f, 1.f };
+        nullPoint = mat * nullPoint;
+        Vector3f origin = { nullPoint.x, nullPoint.y, 0.f };
+        Vector3f sPos = { skin.position().x, skin.position().y, 0 };
+
+        translate(mat, sPos);
+        translate(mat, -origin);
+        rotate(mat, skin.rotation(), { 0.f, 0.f, 1.f });
+        translate(mat, origin);
+        translate(mat, pos);
+
+        draw(texture, skin.texture(), mat);
     }
 }
 

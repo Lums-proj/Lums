@@ -20,7 +20,6 @@
 using namespace lm;
 
 Skeleton::Skeleton()
-: _texture(nullptr)
 {
 
 }

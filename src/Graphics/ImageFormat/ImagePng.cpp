@@ -11,6 +11,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
 #include <png.h>
 #include <LumsInclude/Graphics/Image.hpp>
 

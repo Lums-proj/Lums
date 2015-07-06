@@ -24,7 +24,7 @@ namespace lm
     public:
         using Array = std::vector<int>;
 
-        Bone(int parent) : _parent(parent) {};
+        Bone(int parent);
         
         bool            root() const { return _parent == -1; }
         int             parent() const { return _parent; }
@@ -34,6 +34,12 @@ namespace lm
         void            setPosition(const lm::Vector2f& position) { _position = position; }
         void            setScale(const lm::Vector2f& scale) { _scale = scale; }
         void            setRotation(float rotation) { _rotation = rotation; }
+
+        lm::Vector2f    position() const { return _position; }
+        lm::Vector2f    scale() const { return _scale; }
+        float           rotation() const { return _rotation; }
+
+        ~Bone();
 
     private:
         int                     _parent;
