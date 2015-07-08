@@ -82,6 +82,7 @@ class Spiner
       bone = root['slots'].find{|h| h['name'] == key }['bone']
       bone_id = @bones.find_index {|b| b[1] == bone}
       value.each do |key, value|
+        break unless value["type"].nil?
         name = value['name'] || key
         texture = @atlas[:atlas].find_index{|h| h[:name] == name}
         x = value['x'].to_f

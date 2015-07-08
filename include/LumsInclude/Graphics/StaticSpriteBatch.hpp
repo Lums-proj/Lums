@@ -34,6 +34,16 @@ namespace lm
          */
         StaticSpriteBatch(GLenum hint = GL_STATIC_DRAW);
 
+        LUMS_EXPORTED void              draw(const Texture& texture,
+                                             int atlas,
+                                             Vector3f quad[4],
+                                             Vector4f color,
+                                             Vector2b flip);
+
+        LUMS_EXPORTED void              draw(const Texture& texture,
+                                             int atlas,
+                                             const Matrix4f& mat);
+
         /**
          * Draw a texture into the batch
          * @param texture The texture to be drawn
@@ -70,7 +80,7 @@ namespace lm
         void                            draw(const Texture& texture,
                                              int atlas)
         {
-            draw(texture, atlas, {});
+            draw(texture, atlas, {0.f, 0.f, 0.f});
         }
 
         void                            draw(const Texture& texture,
@@ -135,6 +145,10 @@ namespace lm
                                              const char* text,
                                              Vector3f pos = {0.f, 0.f, 0.f},
                                              Vector4f color = {1.f, 1.f, 1.f, 1.f});
+
+        LUMS_EXPORTED void              draw(const Skeleton& skeleton,
+                                             const Texture& texture,
+                                             Vector3f pos = {0.f, 0.f, 0.f});
 
         /**
          * Set the batch texture

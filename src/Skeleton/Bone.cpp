@@ -17,6 +17,7 @@ using namespace lm;
 
 Bone::Bone(int parent)
 : _parent(parent)
+, _transform(Matrix4f::identity())
 {
 
 }

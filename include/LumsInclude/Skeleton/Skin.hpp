@@ -14,7 +14,8 @@
 #ifndef LUMS_SKIN_HPP
 #define LUMS_SKIN_HPP
 
-#include <LumsInclude/Math/Vector.hpp>
+#include <LumsInclude/Math/Matrix.hpp>
+#include <LumsInclude/Graphics/OpenGL.hpp>
 
 namespace lm
 {
@@ -23,22 +24,20 @@ namespace lm
     public:
         Skin(int bone, int texture);
 
-        void        setTexture(int texture) { _texture = texture; }
-        void        setPosition(const Vector2f& position) { _position = position; }
-        void        setRotation(float rotation) { _rotation = rotation; }
+        void                setTexture(int texture) { _texture = texture; }
+        void                translate(Vector3f v) { ::lm::translate(_transform, v); }
+        void                rotate(float r) { ::lm::rotate(_transform, r, { 0.f, 0.f, -1.f }); }
         
-        int         bone() const { return _bone; }
-        int         texture() const { return _texture; }
-        Vector2f    position() const { return _position; }
-        float       rotation() const { return _rotation; }
+        int                 bone() const { return _bone; }
+        int                 texture() const { return _texture; }
+        const Matrix4f&     transform() const { return _transform; }
 
         ~Skin();
 
     private:
         int         _bone;
         int         _texture;
-        Vector2f    _position;
-        float       _rotation;
+        Matrix4f    _transform;
     };
 }
 

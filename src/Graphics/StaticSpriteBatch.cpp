@@ -31,55 +31,73 @@ StaticSpriteBatch::StaticSpriteBatch(GLenum hint)
 }
 
 void
+StaticSpriteBatch::draw(const Texture& texture, int atlas, Vector3f quad[4], Vector4f color, Vector2b flip)
+{
+    setTexture(&texture);
+    Rect2f frame = texture.atlas(atlas);
+    if (flip.x)
+    {
+        frame.pos.x += frame.size.x;
+        frame.size.x *= -1;
+    }
+    if (flip.y)
+    {
+        frame.pos.y += frame.size.y;
+        frame.size.y *= -1;
+    }
+
+    vbo.push(quad[0].x, quad[0].y, quad[0].z, frame.pos.x, frame.pos.y, color[0], color[1], color[2], color[3]);
+    vbo.push(quad[1].x, quad[1].y, quad[1].z, frame.pos.x + frame.size.x, frame.pos.y, color[0], color[1], color[2], color[3]);
+    vbo.push(quad[2].x, quad[2].y, quad[2].z, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
+    vbo.push(quad[0].x, quad[0].y, quad[0].z, frame.pos.x, frame.pos.y, color[0], color[1], color[2], color[3]);
+    vbo.push(quad[2].x, quad[2].y, quad[2].z, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
+    vbo.push(quad[3].x, quad[3].y, quad[3].z, frame.pos.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
+}
+
+void
+StaticSpriteBatch::draw(const Texture& texture, int atlas, const Matrix4f& mat)
+{
+    lm::Vector3f quad[4];
+
+    Rect2f frame = texture.atlas(atlas);
+    float w = frame.size.x * texture.width();
+    float h = frame.size.y * texture.height();
+
+    auto q0 = mat * Vector4f(0.f, 0.f, 0.f, 1.0f);
+    auto q1 = mat * Vector4f(w, 0.f, 0.f, 1.0f);
+    auto q2 = mat * Vector4f(w, h, 0.f, 1.0f);
+    auto q3 = mat * Vector4f(0.f, h, 0.f, 1.0f);
+
+    quad[0] = { q0.x, q0.y, q0.z };
+    quad[1] = { q1.x, q1.y, q1.z };
+    quad[2] = { q2.x, q2.y, q2.z };
+    quad[3] = { q3.x, q3.y, q3.z };
+
+    draw(texture, atlas, quad, {1.0f, 1.0f, 1.0f, 1.0f}, {false, false});
+}
+
+void
 StaticSpriteBatch::draw(const Texture& texture, int atlas, Vector3f pos, Vector2f scale, Vector2f rotOrigin, float rotation, Vector4f color, Vector2b flip)
 {
-    lm::Vector2f points[4];
+    lm::Vector3f quad[4];
 
-    setTexture(&texture);
     Rect2f frame = texture.atlas(atlas);
     float w = frame.size.x * texture.width() * scale.x;
     float h = frame.size.y * texture.height() * scale.y;
 
-    if (flip.x)
-    {
-        pos.x += w;
-        w = -w;
-    }
-
-    if (flip.y)
-    {
-        pos.y += h;
-        h = -h;
-    }
-
     float sinx = sin(rotation * M_PI / 180.f);
     float cosx = cos(rotation * M_PI / 180.f);
 
-    points[0] = { cosx * (pos.x - rotOrigin.x) - sinx * (pos.y - rotOrigin.y) + rotOrigin.x,
-        sinx * (pos.x - rotOrigin.x) + cosx * (pos.y - rotOrigin.y) + rotOrigin.y };
-    points[1] = { cosx * (pos.x + w - rotOrigin.x) - sinx * (pos.y - rotOrigin.y) + rotOrigin.x,
-        sinx * (pos.x + w - rotOrigin.x) + cosx * (pos.y - rotOrigin.y) + rotOrigin.y };
-    points[2] = { cosx * (pos.x + w - rotOrigin.x) - sinx * (pos.y + h - rotOrigin.y) + rotOrigin.x,
-        sinx * (pos.x + w - rotOrigin.x) + cosx * (pos.y + h - rotOrigin.y) + rotOrigin.y };
-    points[3] = { cosx * (pos.x - rotOrigin.x) - sinx * (pos.y + h - rotOrigin.y) + rotOrigin.x,
-        sinx * (pos.x - rotOrigin.x) + cosx * (pos.y + h - rotOrigin.y) + rotOrigin.y };
+    quad[0] = { cosx * (pos.x - rotOrigin.x) - sinx * (pos.y - rotOrigin.y) + rotOrigin.x,
+        sinx * (pos.x - rotOrigin.x) + cosx * (pos.y - rotOrigin.y) + rotOrigin.y, pos.z };
+    quad[1] = { cosx * (pos.x + w - rotOrigin.x) - sinx * (pos.y - rotOrigin.y) + rotOrigin.x,
+        sinx * (pos.x + w - rotOrigin.x) + cosx * (pos.y - rotOrigin.y) + rotOrigin.y, pos.z };
+    quad[2] = { cosx * (pos.x + w - rotOrigin.x) - sinx * (pos.y + h - rotOrigin.y) + rotOrigin.x,
+        sinx * (pos.x + w - rotOrigin.x) + cosx * (pos.y + h - rotOrigin.y) + rotOrigin.y, pos.z };
+    quad[3] = { cosx * (pos.x - rotOrigin.x) - sinx * (pos.y + h - rotOrigin.y) + rotOrigin.x,
+        sinx * (pos.x - rotOrigin.x) + cosx * (pos.y + h - rotOrigin.y) + rotOrigin.y, pos.z };
 
-    // const float fcorx = 1.0f / texture.bufferWidth();
-    // const float fcory = 1.0f / texture.bufferHeight();
-
-    // frame.pos.x += fcorx * 0.5f;
-    // frame.pos.y += fcory * 0.5f;
-    // frame.size.x -= fcorx;
-    // frame.size.y -= fcory;
-
-    // We create two triangles from a single quad
-
-    vbo.push(points[0].x, points[0].y, pos.z, frame.pos.x, frame.pos.y, color[0], color[1], color[2], color[3]);
-    vbo.push(points[1].x, points[1].y, pos.z, frame.pos.x + frame.size.x, frame.pos.y, color[0], color[1], color[2], color[3]);
-    vbo.push(points[2].x, points[2].y, pos.z, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
-    vbo.push(points[0].x, points[0].y, pos.z, frame.pos.x, frame.pos.y, color[0], color[1], color[2], color[3]);
-    vbo.push(points[2].x, points[2].y, pos.z, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
-    vbo.push(points[3].x, points[3].y, pos.z, frame.pos.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
+    draw(texture, atlas, quad, color, flip);
 }
 
 void
@@ -110,16 +128,9 @@ applyMatrixTrasform(Matrix4f& mat, const Skeleton& skeleton, int bone)
 {
     const Bone& b = skeleton.bones()[bone];
     int parent = b.parent();
+    mat *= b.transform();
     if (parent != -1)
         applyMatrixTrasform(mat, skeleton, parent);
-    Vector4f nullPoint = {0.f, 0.f, 0.f, 1.f};
-    nullPoint = mat * nullPoint;
-    Vector3f origin = { nullPoint.x, nullPoint.y, 0 };
-    Vector3f pos = { b.position().x, b.position().y, 0 };
-    translate(mat, pos);
-    translate(mat, -origin);
-    rotate(mat, b.rotation(), { 0.f, 0.f, 1.f });
-    translate(mat, origin);
 }
 
 void
@@ -127,20 +138,14 @@ StaticSpriteBatch::draw(const Skeleton& skeleton, const Texture& texture, Vector
 {
     for (auto& skin : skeleton.skins())
     {
+        Rect2f frame = texture.atlas(skin.texture());
+        float w = frame.size.x * texture.width();
+        float h = frame.size.y * texture.height();
         Matrix4f mat = Matrix4f::identity();
-        applyMatrixTrasform(mat, skeleton, skin.bone());
-        
-        Vector4f nullPoint = { 0.f, 0.f, 0.f, 1.f };
-        nullPoint = mat * nullPoint;
-        Vector3f origin = { nullPoint.x, nullPoint.y, 0.f };
-        Vector3f sPos = { skin.position().x, skin.position().y, 0 };
-
-        translate(mat, sPos);
-        translate(mat, -origin);
-        rotate(mat, skin.rotation(), { 0.f, 0.f, 1.f });
-        translate(mat, origin);
+        translate(mat, { -w / 2.f, -h / 2.f, 0.f});
         translate(mat, pos);
-
+        mat *= skin.transform();
+        applyMatrixTrasform(mat, skeleton, skin.bone());
         draw(texture, skin.texture(), mat);
     }
 }

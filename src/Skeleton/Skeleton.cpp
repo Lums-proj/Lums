@@ -37,7 +37,7 @@ Skeleton::load(const std::string& path, bool resource)
         int32_t nameLen;
         char* name;
         int32_t parent;
-        lm::Vector2f position;
+        lm::Vector3f position;
         lm::Vector2f scale;
         float rotation;
 
@@ -53,10 +53,11 @@ Skeleton::load(const std::string& path, bool resource)
         file.read((char*)&scale.y, sizeof(float));
         file.read((char*)&rotation, sizeof(float));
 
+        position.y *= -1;
+
         Bone b(parent);
-        b.setPosition(position);
-        b.setScale(scale);
-        b.setRotation(rotation);
+        b.rotate(rotation);
+        b.translate(position);
         _bones.push_back(b);
         if (parent != -1)
             _bones[parent].addChild(i);
@@ -68,7 +69,7 @@ Skeleton::load(const std::string& path, bool resource)
     {
         int bone;
         int texture;
-        lm::Vector2f position;
+        lm::Vector3f position;
         float rotation;
 
         file.read((char*)&texture, 4);
@@ -77,9 +78,11 @@ Skeleton::load(const std::string& path, bool resource)
         file.read((char*)&position.y, sizeof(float));
         file.read((char*)&rotation, sizeof(float));
 
+        position.y *= -1;
+
         Skin s(bone, texture);
-        s.setPosition(position);
-        s.setRotation(rotation);
+        s.rotate(rotation);
+        s.translate(position);
         _skins.push_back(s);
     }
 }

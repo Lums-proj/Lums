@@ -15,7 +15,9 @@
 #define LUMS_BONE_HPP
 
 #include <vector>
-#include <LumsInclude/Math/Vector.hpp>
+#include <LumsInclude/Math/Matrix.hpp>
+#include <LumsInclude/Graphics/OpenGL.hpp>
+
 
 namespace lm
 {
@@ -26,27 +28,22 @@ namespace lm
 
         Bone(int parent);
         
-        bool            root() const { return _parent == -1; }
-        int             parent() const { return _parent; }
-        const Array&    children() const { return _children; }
+        bool                root() const { return _parent == -1; }
+        int                 parent() const { return _parent; }
+        const Array&        children() const { return _children; }
 
-        void            addChild(int child) { _children.push_back(child); }
-        void            setPosition(const lm::Vector2f& position) { _position = position; }
-        void            setScale(const lm::Vector2f& scale) { _scale = scale; }
-        void            setRotation(float rotation) { _rotation = rotation; }
+        void                addChild(int child) { _children.push_back(child); }
+        void                translate(Vector3f v) { ::lm::translate(_transform, v); }
+        void                rotate(float r) { ::lm::rotate(_transform, r, { 0.f, 0.f, -1.f }); }
 
-        lm::Vector2f    position() const { return _position; }
-        lm::Vector2f    scale() const { return _scale; }
-        float           rotation() const { return _rotation; }
+        const Matrix4f&     transform() const { return _transform; }
 
         ~Bone();
 
     private:
-        int                     _parent;
-        Array                   _children;
-        lm::Vector2f            _position;
-        lm::Vector2f            _scale;
-        float                   _rotation;
+        int                 _parent;
+        Array               _children;
+        Matrix4f            _transform;
     };
 }
 
