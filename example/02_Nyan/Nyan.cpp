@@ -42,6 +42,9 @@ public:
 
         _proj = lm::ortho(0, 400, 400, 0);
         lm::uniform(shader, "proj", _proj);
+        _mat = lm::Matrix4f::identity();
+        lm::translate(_mat, {100, 0, 0});
+        lm::rotate(_mat, 60, {0, 0, -1});
     }
 
     void
@@ -85,7 +88,7 @@ public:
         auto& tex = lm::TextureProvider::instance().get(0);
 
         _batch.begin();
-        _batch.draw(tex, 0, {0.f, 0.f, 0.f}, {2.f, 2.f}, {200, 200}, _rot, {1.f, 1.f, 1.f, 1.f}, _flip);
+        _batch.draw(tex, 0, _mat);
         _batch.end();
     }
 
@@ -95,6 +98,7 @@ private:
     float               _scale;
     float               _rot;
     lm::Vector2b        _flip;
+    lm::Matrix4f        _mat;
 };
 
 int

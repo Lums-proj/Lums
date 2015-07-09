@@ -141,11 +141,13 @@ StaticSpriteBatch::draw(const Skeleton& skeleton, const Texture& texture, Vector
         Rect2f frame = texture.atlas(skin.texture());
         float w = frame.size.x * texture.width();
         float h = frame.size.y * texture.height();
+
         Matrix4f mat = Matrix4f::identity();
-        translate(mat, { -w / 2.f, -h / 2.f, 0.f});
-        translate(mat, pos);
+        translate(mat, { -w / 2.f, -h / 2.f, 0.f });
         mat *= skin.transform();
         applyMatrixTrasform(mat, skeleton, skin.bone());
+        //translate(mat, { -w / 2.f, -h / 2.f , 0.f });
+        //translate(mat, pos);
         draw(texture, skin.texture(), mat);
     }
 }
