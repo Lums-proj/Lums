@@ -95,7 +95,8 @@ namespace lm
 		{
 			Position = 0,
 			Color = 1,
-			Texture = 2
+			Texture = 2,
+            Normal = 3
 		};
 	}
 
@@ -204,6 +205,11 @@ namespace lm
      * A vertex buffer with 3 values for position, and 4 for color
      */
 	using VertexBufferP3C4 = VertexBuffer<Vertex::Position, 3, Vertex::Color, 4>;
+
+    /**
+     * A vertex buffer with 3 values for position, 3 for normal and 2 for texture
+     */
+    using VertexBufferP3N3T2 = VertexBuffer<Vertex::Position, 3, Vertex::Normal, 3, Vertex::Texture, 2>;
 }
 
 #endif
