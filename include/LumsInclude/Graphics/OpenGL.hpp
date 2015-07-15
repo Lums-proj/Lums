@@ -162,6 +162,19 @@ namespace lm
         matrix *= rot;
     }
 
+    inline void
+    rotate(Matrix2f& matrix, float angle)
+    {
+        const float rad = angle * LUMS_PI / 180.f;
+        const float s = sin(rad);
+        const float c = cos(rad);
+
+        matrix[0][0] = c;
+        matrix[0][1] = -s;
+        matrix[1][0] = s;
+        matrix[1][1] = c;
+    }
+
     /**
      * Create a view matrix
      * @param eye The eye position

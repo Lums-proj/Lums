@@ -19,25 +19,33 @@
 
 namespace lm
 {
+    class Skeleton;
+
     class Skin
     {
     public:
         Skin(int bone, int texture);
 
         void                setTexture(int texture) { _texture = texture; }
-        void                translate(Vector3f v) { ::lm::translate(_transform, v); }
-        void                rotate(float r) { ::lm::rotate(_transform, r, { 0.f, 0.f, -1.f }); }
+        void                setPosition(const Vector2f& position) { _position = position; }
+        void                setRotation(float rotation) { _rotation = rotation; }
         
         int                 bone() const { return _bone; }
         int                 texture() const { return _texture; }
-        const Matrix4f&     transform() const { return _transform; }
+        const Vector2f&     worldPosition() const { return _worldPosition; }
+        float               worldRotation() const { return _worldRotation; }
+
+        void                updateWorldTransform(const Skeleton& skeleton);
 
         ~Skin();
 
     private:
-        int         _bone;
-        int         _texture;
-        Matrix4f    _transform;
+        int             _bone;
+        int             _texture;
+        Vector2f        _position;
+        float           _rotation;
+        Vector2f        _worldPosition;
+        float           _worldRotation;
     };
 }
 

@@ -37,9 +37,10 @@ Skeleton::load(const std::string& path, bool resource)
         int32_t nameLen;
         char* name;
         int32_t parent;
-        lm::Vector3f position;
+        lm::Vector2f position;
         lm::Vector2f scale;
         float rotation;
+        bool ir;
 
         file.read((char*)&nameLen, 4);
         name = new char[nameLen + 1];
@@ -52,12 +53,14 @@ Skeleton::load(const std::string& path, bool resource)
         file.read((char*)&scale.x, sizeof(float));
         file.read((char*)&scale.y, sizeof(float));
         file.read((char*)&rotation, sizeof(float));
+        file.read((char*)&ir, 1);
 
         position.y *= -1;
 
         Bone b(parent);
-        b.rotate(rotation);
-        b.translate(position);
+        b.setInheritRotation(ir);
+        b.setRotation(rotation);
+        b.setPosition(position);
         _bones.push_back(b);
         if (parent != -1)
             _bones[parent].addChild(i);
@@ -69,7 +72,7 @@ Skeleton::load(const std::string& path, bool resource)
     {
         int bone;
         int texture;
-        lm::Vector3f position;
+        lm::Vector2f position;
         float rotation;
 
         file.read((char*)&texture, 4);
@@ -81,14 +84,32 @@ Skeleton::load(const std::string& path, bool resource)
         position.y *= -1;
 
         Skin s(bone, texture);
-        s.rotate(rotation);
-        s.translate(position);
+        s.setRotation(rotation);
+        s.setPosition(position);
         _skins.push_back(s);
     }
+
+    update();
 }
 
 void
 Skeleton::loadBinary(const BObject& object)
 {
     load(object["path"].asString());
+}
+
+void
+Skeleton::update()
+{
+    static float rot = 0.f;
+
+    rot += 1.6f;
+
+    _bones[10].setRotation(rot);
+    _bones[16].setRotation(rot * 0.8f);
+
+    for (auto& b : _bones)
+        b.updateWorldTransform(*this);
+    for (auto& s : _skins)
+        s.updateWorldTransform(*this);
 }

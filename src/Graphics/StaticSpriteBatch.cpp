@@ -123,16 +123,6 @@ StaticSpriteBatch::draw(const Font& font, const char* text, Vector3f pos, Vector
     }
 }
 
-static void
-applyMatrixTrasform(Matrix4f& mat, const Skeleton& skeleton, int bone)
-{
-    const Bone& b = skeleton.bones()[bone];
-    int parent = b.parent();
-    mat *= b.transform();
-    if (parent != -1)
-        applyMatrixTrasform(mat, skeleton, parent);
-}
-
 void
 StaticSpriteBatch::draw(const Skeleton& skeleton, const Texture& texture, Vector3f pos)
 {
@@ -144,10 +134,10 @@ StaticSpriteBatch::draw(const Skeleton& skeleton, const Texture& texture, Vector
 
         Matrix4f mat = Matrix4f::identity();
         translate(mat, { -w / 2.f, -h / 2.f, 0.f });
-        mat *= skin.transform();
-        applyMatrixTrasform(mat, skeleton, skin.bone());
-        //translate(mat, { -w / 2.f, -h / 2.f , 0.f });
-        //translate(mat, pos);
+        Vector2f pos = skin.worldPosition();
+        float rot = skin.worldRotation();
+        rotate(mat, rot, { 0, 0, -1 });
+        translate(mat, { pos.x, pos.y, 0 });
         draw(texture, skin.texture(), mat);
     }
 }

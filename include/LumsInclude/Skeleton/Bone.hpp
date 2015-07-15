@@ -21,9 +21,13 @@
 
 namespace lm
 {
+    class Skeleton;
+
     class Bone
     {
     public:
+        friend class Skin;
+
         using Array = std::vector<int>;
 
         Bone(int parent);
@@ -31,19 +35,29 @@ namespace lm
         bool                root() const { return _parent == -1; }
         int                 parent() const { return _parent; }
         const Array&        children() const { return _children; }
-
         void                addChild(int child) { _children.push_back(child); }
-        void                translate(Vector3f v) { ::lm::translate(_transform, v); }
-        void                rotate(float r) { ::lm::rotate(_transform, r, { 0.f, 0.f, -1.f }); }
 
-        const Matrix4f&     transform() const { return _transform; }
+        void                setInheritRotation(bool ir) { _inheritRotation = ir; }
+        void                setPosition(const Vector2f& position) { _position = position; }
+        void                setRotation(float rotation) { _rotation = rotation; }
+
+        bool                inheritRotation() const { return _inheritRotation; }
+        const Vector2f&     worldPosition() const { return _worldPosition; }
+        float               worldRotation() const { return _worldRotation; }
+
+        void                updateWorldTransform(const Skeleton& skeleton);
 
         ~Bone();
 
     private:
         int                 _parent;
         Array               _children;
-        Matrix4f            _transform;
+        Vector2f            _position;
+        float               _rotation;
+        Vector2f            _worldPosition;
+        float               _worldRotation;
+        Matrix2f            _worldRotMatrix;
+        bool                _inheritRotation;
     };
 }
 

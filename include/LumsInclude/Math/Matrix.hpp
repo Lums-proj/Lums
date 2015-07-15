@@ -219,6 +219,10 @@ namespace lm
         return result;
     }
 
+    using Matrix2f = Matrix<2, float>;
+
+    using Matrix3f = Matrix<3, float>;
+
     /**
      * A 4x4 float matrix
      */

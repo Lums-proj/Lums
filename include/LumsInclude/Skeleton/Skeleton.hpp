@@ -29,6 +29,8 @@ namespace lm
         
         void        load(const std::string& path, bool resource = true);
         void        loadBinary(const BObject& object);
+
+        void        update();
         
         const std::vector<Bone>&    bones() const { return _bones; }
         const std::vector<Skin>&    skins() const { return _skins; }

@@ -13,35 +13,33 @@
 
 #include <Lums>
 
-static void
-applyMatrixTrasform(lm::Matrix4f& mat, const lm::Skeleton& skeleton, int bone)
-{
-    const lm::Bone& b = skeleton.bones()[bone];
-    int parent = b.parent();
-    mat *= b.transform();
-    if (parent != -1)
-        applyMatrixTrasform(mat, skeleton, parent);
-}
-
 class Anim : public lm::GameState
 {
 public:
+    lm::Matrix4f
+    matFromBone(const lm::Bone& bone)
+    {
+        lm::Matrix4f mat = lm::Matrix4f::identity();
+        lm::Vector2f pos = bone.worldPosition();
+        float rot = bone.worldRotation();
+        lm::rotate(mat, rot, { 0, 0, -1 });
+        lm::translate(mat, { pos.x, pos.y, 0 });
+        return mat;
+    }
+
     void
     sk(const lm::Skeleton& skeleton)
     {
+        _batch.reset();
+        _bones.reset();
         int i = -1;
         for (auto& bone : skeleton.bones())
         {
             ++i;
             if (i == 0)
                 continue;
-            //if (i != 1 && i != 8)
-              //  continue;
-            lm::Matrix4f parentMat = lm::Matrix4f::identity();
-            lm::Matrix4f childMat = lm::Matrix4f::identity();
-
-            applyMatrixTrasform(parentMat, skeleton, bone.parent());
-            applyMatrixTrasform(childMat, skeleton, i);
+            lm::Matrix4f parentMat = matFromBone(bone);
+            lm::Matrix4f childMat = matFromBone(skeleton.bones()[bone.parent()]);
 
             lm::Vector4f p0 = { 0, 0, 0, 1 };
             lm::Vector4f p1 = p0;
@@ -87,7 +85,9 @@ public:
     void
     update()
     {
-
+        auto& sk = lm::SkeletonProvider::instance().get(0);
+        sk.update();
+        this->sk(sk);
     }
 
     void
@@ -103,16 +103,16 @@ public:
         auto& sp = lm::ShaderProvider::instance();
         auto& sk = lm::SkeletonProvider::instance().get(0);
 
+        sp.get(1).use();
+        _sb.begin();
+        _sb.draw(sk, lm::TextureProvider::instance().get(0));
+        _sb.end();
+
         sp.get(0).use();
 
         glPointSize(5);
         _batch.draw(GL_LINES);
         _bones.draw(GL_POINTS);
-
-        sp.get(1).use();
-        _sb.begin();
-        _sb.draw(sk, lm::TextureProvider::instance().get(0));
-        _sb.end();
     }
 
 private:
@@ -159,6 +159,9 @@ main(int argc, char* argv[])
     shader1.bindAttribLocation(lm::Vertex::Texture, "tex");
     shader1.bindAttribLocation(lm::Vertex::Color, "color");
     shader1.link();
+
+
+    glDisable(GL_DEPTH_TEST);
 
     core.push<Anim>();
     core.start();

@@ -65,21 +65,27 @@ class Spiner
       bone << (b['scaleX'] || 1).to_f
       bone << (b['scaleY'] || 1).to_f
       bone << (b['rotation'] || 0).to_f
+      ir = b['inheritRotation']
+      ir = true if ir.nil?
+      bone << (ir ? 1 : 0)
       @bones << bone
     end
   end
 
   def write_bones buffer
     buffer << [@bones.size].pack('L<')
-    @bones.each {|b| buffer << b.pack('L<A*l<FFFFF')}
+    @bones.each {|b| buffer << b.pack('L<A*l<FFFFFC')}
   end
 
   def read_skins root
     @skins = []
     skin = {}
     root['skins'].each_value {|s| skin.merge! s}
-    skin.each do |key, value|
-      bone = root['slots'].find{|h| h['name'] == key }['bone']
+    root['slots'].each do |s|
+      next if s['attachment'].nil?
+      key = s['name']
+      value = skin[key]
+      bone = s['bone']
       bone_id = @bones.find_index {|b| b[1] == bone}
       value.each do |key, value|
         break unless value["type"].nil?
