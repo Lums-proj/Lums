@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Skeleton.cpp                                   oooooo       oooooo      */
+/*    SkeletonAnimation.hpp                          oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,29 +11,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <LumsInclude/Skeleton/Skeleton.hpp>
+#ifndef LUMS_SKELETON_ANIMATION_HPP
+#define LUMS_SKELETON_ANIMATION_HPP
 
-using namespace lm;
+#include <vector>
 
-Skeleton::Skeleton(const SkeletonData& data)
-: _data(&data)
+namespace lm
 {
-    *this = data.pose;
-    setToPose();
+    struct SkeletonAnimation
+    {
+        std::vector<BoneAnimation>  bones;
+    };
 }
 
-void
-Skeleton::setToPose()
-{
-    for (auto& b : bones())
-    {
-        b.setRotation(0.f);
-        b.setPosition({0.f, 0.f});
-    }
-    for (auto& s : skins())
-    {
-        s.setRotation(0.f);
-        s.setPosition({0.f, 0.f});
-    }
-    SkeletonPose::update();
-}
+#endif

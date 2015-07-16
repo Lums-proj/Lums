@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Skeleton.cpp                                   oooooo       oooooo      */
+/*    SkeletonPose.hpp                               oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,29 +11,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <LumsInclude/Skeleton/Skeleton.hpp>
+#ifndef LUMS_SKELETON_POSE_HPP
+#define LUMS_SKELETON_POSE_HPP
 
-using namespace lm;
+#include <fstream>
+#include <vector>
+#include <LumsInclude/Provider.hpp>
+#include <LumsInclude/Skeleton/Bone.hpp>
+#include <LumsInclude/Skeleton/Skin.hpp>
 
-Skeleton::Skeleton(const SkeletonData& data)
-: _data(&data)
+namespace lm
 {
-    *this = data.pose;
-    setToPose();
+    class SkeletonPose
+    {
+    public:
+    	SkeletonPose();
+        
+        void        load(std::ifstream& file);
+
+        void        update();
+        
+        const std::vector<Bone>&    bones() const { return _bones; }
+        const std::vector<Skin>&    skins() const { return _skins; }
+
+    private:
+        std::vector<Bone>   _bones;
+        std::vector<Skin>   _skins;
+    };
 }
 
-void
-Skeleton::setToPose()
-{
-    for (auto& b : bones())
-    {
-        b.setRotation(0.f);
-        b.setPosition({0.f, 0.f});
-    }
-    for (auto& s : skins())
-    {
-        s.setRotation(0.f);
-        s.setPosition({0.f, 0.f});
-    }
-    SkeletonPose::update();
-}
+#endif

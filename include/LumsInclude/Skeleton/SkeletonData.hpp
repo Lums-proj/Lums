@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Skeleton.cpp                                   oooooo       oooooo      */
+/*    SkeletonData.hpp                               oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,29 +11,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <LumsInclude/Skeleton/Skeleton.hpp>
+#ifndef LUMS_SKELETON_DATA_HPP
+#define LUMS_SKELETON_DATA_HPP
 
-using namespace lm;
+#include <fstream>
+#include <unordered_map>
+#include <LumsInclude/Skeleton/SkeletonPose.hpp>
+#include <LumsInclude/Skeleton/SkeletonAnimation.hpp>
 
-Skeleton::Skeleton(const SkeletonData& data)
-: _data(&data)
+namespace lm
 {
-    *this = data.pose;
-    setToPose();
+    struct SkeletonData
+    {
+        void    loadFromFile(std::ifstream& file);
+
+        SkeletonPose                                    pose;
+        std::unordered_map<size_t, SkeletonAnimation>   animations;
+    };
 }
 
-void
-Skeleton::setToPose()
-{
-    for (auto& b : bones())
-    {
-        b.setRotation(0.f);
-        b.setPosition({0.f, 0.f});
-    }
-    for (auto& s : skins())
-    {
-        s.setRotation(0.f);
-        s.setPosition({0.f, 0.f});
-    }
-    SkeletonPose::update();
-}
+#endif

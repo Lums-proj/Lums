@@ -14,33 +14,20 @@
 #ifndef LUMS_SKELETON_HPP
 #define LUMS_SKELETON_HPP
 
-#include <string>
-#include <vector>
-#include <LumsInclude/Provider.hpp>
-#include <LumsInclude/Skeleton/Bone.hpp>
-#include <LumsInclude/Skeleton/Skin.hpp>
+#include <LumsInclude/Skeleton/SkeletonPose.hpp>
 
 namespace lm
 {
-    class Skeleton
+    class Skeleton : public SkeletonPose
     {
     public:
-    	Skeleton();
-        
-        void        load(const std::string& path, bool resource = true);
-        void        loadBinary(const BObject& object);
+        explicit Skeleton(const SkeletonData& data);
 
-        void        update();
-        
-        const std::vector<Bone>&    bones() const { return _bones; }
-        const std::vector<Skin>&    skins() const { return _skins; }
+        void    setToPose();
 
     private:
-        std::vector<Bone>   _bones;
-        std::vector<Skin>   _skins;
+        const SkeletonData*   _data;
     };
-
-    using SkeletonProvider = Provider<Skeleton>;
 }
 
 #endif

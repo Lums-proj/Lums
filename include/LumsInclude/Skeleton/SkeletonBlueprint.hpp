@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Skeleton.cpp                                   oooooo       oooooo      */
+/*    SkeletonBlueprint.hpp                          oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,29 +11,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <LumsInclude/Skeleton/Skeleton.hpp>
+#ifndef LUMS_SKELETON_BLUEPRINT_HPP
+#define LUMS_SKELETON_BLUEPRINT_HPP
 
-using namespace lm;
+#include <LumsInclude/Provider.hpp>
+#include <LumsInclude/Binary/BObject.hpp>
+#include <LumsInclude/Skeleton/SkeletonData.hpp>
 
-Skeleton::Skeleton(const SkeletonData& data)
-: _data(&data)
+namespace lm
 {
-    *this = data.pose;
-    setToPose();
+    class SkeletonBlueprint
+    {
+    public:
+        SkeletonBlueprint();
+        void    loadBinary(const BObject& object);
+        ~SkeletonBlueprint();
+
+    private:
+        SkeletonData    _data;
+    };
+
+    using SkeletonProvider = Provider<SkeletonBlueprint>;
 }
 
-void
-Skeleton::setToPose()
-{
-    for (auto& b : bones())
-    {
-        b.setRotation(0.f);
-        b.setPosition({0.f, 0.f});
-    }
-    for (auto& s : skins())
-    {
-        s.setRotation(0.f);
-        s.setPosition({0.f, 0.f});
-    }
-    SkeletonPose::update();
-}
+#endif

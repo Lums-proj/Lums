@@ -1,4 +1,5 @@
 require 'json'
+require 'ap'
 
 class Spiner
   def initialize spine, atlas
@@ -6,12 +7,14 @@ class Spiner
     root = JSON.parse(File.read spine)
     read_bones root
     read_skins root
+    read_animations root
   end
 
   def run! spine, atlas
     buffer = ''
     write_bones buffer
     write_skins buffer
+    write_animations buffer
     f = File.open spine, 'wb'
     f.write buffer
     f.close
@@ -104,6 +107,88 @@ class Spiner
     @skins.each {|s| buffer << s.pack('l<L<FFF')}
   end
 
+  def read_animations root
+    @animations = []
+    root['animations'].each do |key, value|
+      anim = {}
+      anim[:name] = key
+      bones = []
+      value['bones'].each do |k, v|
+        bone = {}
+        bone[:bone] = @bones.find_index {|b| b[1] == k}
+        bone[:rotate] = []
+        bone[:translate] = []
+        # 0 for rotation
+        # 1 for translation
+        # 2 for scale
+        if v['rotate']
+          v['rotate'].each do |vv|
+            rot = {}
+            time = (vv['time'] * 120.0).round.to_i
+            angle = (vv['angle'] || 0)
+            # 0 linear
+            # 1 stepped
+            # 2 bezier
+            curve = 0
+            curve = 1 if vv['curve'] == "stepped"
+            curve = 2 if vv['curve'].class == Array
+            rot[:time] = time
+            rot[:angle] = angle
+            rot[:curve] = curve
+            rot[:bezier] = vv['curve'] if curve == 2
+            bone[:rotate] << rot
+          end
+        end
+        if v['translate']
+          v['translate'].each do |vv|
+            t = {}
+            time = (vv['time'] * 120.0).round.to_i
+            x = (vv['x'] || 0.0).to_f
+            y = (vv['y'] || 0.0).to_f
+            curve = 0
+            curve = 1 if vv['curve'] == "stepped"
+            curve = 2 if vv['curve'].class == Array
+            t[:time] = time
+            t[:x] = x
+            t[:y] = y
+            t[:curve] = curve
+            t[:bezier] = vv['curve'] if curve == 2
+            bone[:translate] << t
+          end
+        end
+        bones << bone
+      end
+      anim[:bones] = bones
+      @animations << anim
+    end
+  end
+
+  def write_animations buffer
+    buffer << [@animations.size].pack('L<')
+    @animations.each do |anim|
+      name = anim[:name]
+      buffer << [name.size, name].pack('L<A*')
+      buffer << [anim[:bones].size].pack('L<')
+      anim[:bones].each do |bone|
+        id = bone[:bone]
+        rotate = bone[:rotate]
+        translate = bone[:translate]
+        buffer << [id, rotate.size, translate.size].pack('L<L<L<')
+        rotate.each do |rot|
+          buffer << [rot[:time], rot[:angle], rot[:curve]].pack('L<FC')
+          if rot[:curve] == 2
+            buffer << rot[:bezier].pack('L<L<L<L<')
+          end
+        end
+        translate.each do |t|
+          buffer << [t[:time], t[:x], t[:y], t[:curve]].pack('L<FFC')
+          if t[:curve] == 2
+            buffer << t[:bezier].pack('L<L<L<L<')
+          end
+        end
+      end
+    end
+  end
 end
 
 if ARGV.size != 4

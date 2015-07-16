@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Skeleton.cpp                                   oooooo       oooooo      */
+/*    SkeletonData.cpp                               oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,29 +11,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <LumsInclude/Skeleton/Skeleton.hpp>
+#include <cstdint>
+#include <LumsInclude/Skeleton/SkeletonData.hpp>
 
 using namespace lm;
 
-Skeleton::Skeleton(const SkeletonData& data)
-: _data(&data)
-{
-    *this = data.pose;
-    setToPose();
-}
-
 void
-Skeleton::setToPose()
+SkeletonData::loadFromFile(std::ifstream& file)
 {
-    for (auto& b : bones())
+    pose.loadFromFile(file);
+    uint32_t animCount;
+    file.read((char*)&animCount, 4);
+    for (unsigned i = 0; i < animCount; ++i)
     {
-        b.setRotation(0.f);
-        b.setPosition({0.f, 0.f});
+        char* name;
+        uint32_t nameLen;
+        file.read((char*)&nameLen, 4);
+        name = new char[nameLen + 1];
+        name[nameLen] = 0;
+        file.read(name, nameLen);
+        animations[sym(name)].loadFromFile(file);
+        delete [] name;
     }
-    for (auto& s : skins())
-    {
-        s.setRotation(0.f);
-        s.setPosition({0.f, 0.f});
-    }
-    SkeletonPose::update();
 }

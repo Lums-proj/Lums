@@ -14,10 +14,10 @@
 #ifndef LUMS_BONE_HPP
 #define LUMS_BONE_HPP
 
+#include <ifstream>
 #include <vector>
 #include <LumsInclude/Math/Matrix.hpp>
 #include <LumsInclude/Graphics/OpenGL.hpp>
-
 
 namespace lm
 {
@@ -31,7 +31,7 @@ namespace lm
         using Array = std::vector<int>;
 
         Bone(int parent);
-        
+
         bool                root() const { return _parent == -1; }
         int                 parent() const { return _parent; }
         const Array&        children() const { return _children; }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Skeleton.cpp                                   oooooo       oooooo      */
+/*    TranslationKeyFrame.hpp                        oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,29 +11,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <LumsInclude/Skeleton/Skeleton.hpp>
+#ifndef LUMS_TRANSLATION_KEY_FRAME_HPP
+#define LUMS_TRANSLATION_KEY_FRAME_HPP
 
-using namespace lm;
+#include <LumsInclude/Skeleton/KeyFrameCurve.hpp>
 
-Skeleton::Skeleton(const SkeletonData& data)
-: _data(&data)
+namespace lm
 {
-    *this = data.pose;
-    setToPose();
+    struct TranslationKeyFrame
+    {
+        unsigned        time;
+        float           x;
+        float           y;
+        KeyFrameCurve   curve;
+    };
 }
 
-void
-Skeleton::setToPose()
-{
-    for (auto& b : bones())
-    {
-        b.setRotation(0.f);
-        b.setPosition({0.f, 0.f});
-    }
-    for (auto& s : skins())
-    {
-        s.setRotation(0.f);
-        s.setPosition({0.f, 0.f});
-    }
-    SkeletonPose::update();
-}
+#endif

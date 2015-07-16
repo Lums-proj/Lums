@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Skeleton.cpp                                   oooooo       oooooo      */
+/*    SkeletonBlueprint.cpp                          oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,29 +11,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <LumsInclude/Skeleton/Skeleton.hpp>
+#include <LumsInclude/OperatingSystem.hpp>
+#include <LumsInclude/Skeleton/SkeletonBlueprint.hpp>
 
 using namespace lm;
 
-Skeleton::Skeleton(const SkeletonData& data)
-: _data(&data)
+SkeletonBlueprint::SkeletonBlueprint()
 {
-    *this = data.pose;
-    setToPose();
+
 }
 
 void
-Skeleton::setToPose()
+SkeletonBlueprint::loadBinary(const BObject& object)
 {
-    for (auto& b : bones())
-    {
-        b.setRotation(0.f);
-        b.setPosition({0.f, 0.f});
-    }
-    for (auto& s : skins())
-    {
-        s.setRotation(0.f);
-        s.setPosition({0.f, 0.f});
-    }
-    SkeletonPose::update();
+    std::string path = object["path"].asString();
+    load(path);
+}
+
+void
+SkeletonBlueprint::load(const std::string& path, bool resource)
+{
+    std::string fpath = resource ? resourcePath() + path : path;
+    std::ifstream file(fpath);
+    _data.loadFromFile(file);
+}
+
+SkeletonBlueprint::~SkeletonBlueprint()
+{
+
 }
