@@ -22,6 +22,10 @@ namespace lm
 {
     struct BoneAnimation
     {
+        void        loadFromFile(std::ifstream& file);
+        float       interpolateRotation(int frame) const;
+        Vector2f    interpolateTranslation(int frame) const;
+
         int                                 bone;
         std::vector<RotationKeyFrame>       rotations;
         std::vector<TranslationKeyFrame>    translations;

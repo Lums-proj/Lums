@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    RotationKeyFrame.hpp                           oooooo       oooooo      */
+/*    KeyFrameCurve.cpp                              oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,19 +11,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_ROTATION_KEY_FRAME_HPP
-#define LUMS_ROTATION_KEY_FRAME_HPP
-
 #include <LumsInclude/Skeleton/KeyFrameCurve.hpp>
 
-namespace lm
-{
-    struct RotationKeyFrame
-    {
-        unsigned        frame;
-        float           angle;
-        KeyFrameCurve   curve;
-    };
-}
+using namespace lm;
 
-#endif
+void
+KeyFrameCurve::loadFromFile(std::ifstream& file)
+{
+    file.read((char*)&type, 1);
+    if (type == Type::Bezier)
+    {
+        file.read((char*)&c0.x, 4);
+        file.read((char*)&c0.y, 4);
+        file.read((char*)&c1.x, 4);
+        file.read((char*)&c1.y, 4);
+    }
+}

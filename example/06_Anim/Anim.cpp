@@ -52,6 +52,7 @@ public:
         auto& shader1 = lm::ShaderProvider::instance().get(1);
 
         _sk = lm::SkeletonProvider::instance().get(0).create();
+        _sk.setAnimation("Idle_1");
 
         shader.use();
 
@@ -75,6 +76,14 @@ public:
     void
     update()
     {
+        static int i = -1;
+
+        ++i;
+        if (i > 200)
+        {
+            _sk.setAnimation("Idle_1");
+            i = 0;
+        }
         _sk.update();
         this->sk(_sk);
     }

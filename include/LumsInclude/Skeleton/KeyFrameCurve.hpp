@@ -14,10 +14,15 @@
 #ifndef LUMS_KEY_FRAME_CURVE_HPP
 #define LUMS_KEY_FRAME_CURVE_HPP
 
+#include <fstream>
+#include <LumsInclude/Math/Vector.hpp>
+
 namespace lm
 {
     struct KeyFrameCurve
     {
+        void    loadFromFile(std::ifstream& file);
+
         enum class Type : unsigned char
         {
             Linear,

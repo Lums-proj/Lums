@@ -26,11 +26,15 @@ namespace lm
         explicit Skeleton(const SkeletonData& data);
 
         void    setToPose();
+        void    setAnimation(const char* animation);
         void    transformBone(Matrix4f& matrix, int bone) const;
         void    transformSkin(Matrix4f& matrix, int skin) const;
+        void    update();
 
     private:
-        const SkeletonData*   _data;
+        const SkeletonData*             _data;
+        int                             _frame;
+        const SkeletonAnimation*        _animation;
     };
 }
 

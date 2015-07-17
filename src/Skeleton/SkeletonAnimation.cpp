@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    RotationKeyFrame.hpp                           oooooo       oooooo      */
+/*    SkeletonAnimation.cpp                          oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,19 +11,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_ROTATION_KEY_FRAME_HPP
-#define LUMS_ROTATION_KEY_FRAME_HPP
+#include <cstdint>
+#include <LumsInclude/Skeleton/SkeletonAnimation.hpp>
 
-#include <LumsInclude/Skeleton/KeyFrameCurve.hpp>
+using namespace lm;
 
-namespace lm
+void
+SkeletonAnimation::loadFromFile(std::ifstream& file)
 {
-    struct RotationKeyFrame
-    {
-        unsigned        frame;
-        float           angle;
-        KeyFrameCurve   curve;
-    };
-}
+    uint32_t boneCount;
 
-#endif
+    file.read((char*)&boneCount, 4);
+    bones.resize(boneCount);
+    for (auto& b : bones)
+        b.loadFromFile(file);
+}

@@ -12,6 +12,7 @@
 /* ************************************************************************** */
 
 #include <cstdint>
+#include <iostream>
 #include <LumsInclude/Skeleton/SkeletonData.hpp>
 
 using namespace lm;
@@ -30,7 +31,9 @@ SkeletonData::loadFromFile(std::ifstream& file)
         name = new char[nameLen + 1];
         name[nameLen] = 0;
         file.read(name, nameLen);
-        //animations[sym(name)].loadFromFile(file);
+        animations[sym(name)].loadFromFile(file);
+        std::cout << i << std::endl;
+        std::cout << name << std::endl;
         delete [] name;
     }
 }

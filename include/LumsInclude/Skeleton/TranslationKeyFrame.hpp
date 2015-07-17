@@ -20,9 +20,8 @@ namespace lm
 {
     struct TranslationKeyFrame
     {
-        unsigned        time;
-        float           x;
-        float           y;
+        unsigned        frame;
+        Vector2f        translation;
         KeyFrameCurve   curve;
     };
 }
