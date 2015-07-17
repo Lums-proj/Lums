@@ -19,7 +19,7 @@
 
 namespace lm
 {
-    class Skeleton;
+    class SkeletonPose;
 
     class Skin
     {
@@ -35,7 +35,9 @@ namespace lm
         const Vector2f&     worldPosition() const { return _worldPosition; }
         float               worldRotation() const { return _worldRotation; }
 
-        void                updateWorldTransform(const Skeleton& skeleton);
+        void                transform(Matrix4f& matrix) const;
+
+        void                updateWorldTransform(const SkeletonPose& skeleton);
 
         ~Skin();
 

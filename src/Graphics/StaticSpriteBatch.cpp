@@ -126,18 +126,16 @@ StaticSpriteBatch::draw(const Font& font, const char* text, Vector3f pos, Vector
 void
 StaticSpriteBatch::draw(const Skeleton& skeleton, const Texture& texture, Vector3f pos)
 {
-    for (auto& skin : skeleton.skins())
+    for (unsigned i = 0; i < skeleton.skins().size(); ++i)
     {
+        const Skin& skin = skeleton.skins()[i];
         Rect2f frame = texture.atlas(skin.texture());
         float w = frame.size.x * texture.width();
         float h = frame.size.y * texture.height();
 
         Matrix4f mat = Matrix4f::identity();
         translate(mat, { -w / 2.f, -h / 2.f, 0.f });
-        Vector2f pos = skin.worldPosition();
-        float rot = skin.worldRotation();
-        rotate(mat, rot, { 0, 0, -1 });
-        translate(mat, { pos.x, pos.y, 0 });
+        skeleton.transformSkin(mat, i);
         draw(texture, skin.texture(), mat);
     }
 }

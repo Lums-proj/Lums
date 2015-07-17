@@ -17,6 +17,7 @@
 #include <LumsInclude/Provider.hpp>
 #include <LumsInclude/Binary/BObject.hpp>
 #include <LumsInclude/Skeleton/SkeletonData.hpp>
+#include <LumsInclude/Skeleton/Skeleton.hpp>
 
 namespace lm
 {
@@ -24,7 +25,9 @@ namespace lm
     {
     public:
         SkeletonBlueprint();
-        void    loadBinary(const BObject& object);
+        void        loadBinary(const BObject& object);
+        void        load(const std::string& path, bool resource = true);
+        Skeleton    create() const;
         ~SkeletonBlueprint();
 
     private:

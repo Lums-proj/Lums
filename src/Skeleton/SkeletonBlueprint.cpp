@@ -36,6 +36,12 @@ SkeletonBlueprint::load(const std::string& path, bool resource)
     _data.loadFromFile(file);
 }
 
+Skeleton
+SkeletonBlueprint::create() const
+{
+    return Skeleton(_data);
+}
+
 SkeletonBlueprint::~SkeletonBlueprint()
 {
 

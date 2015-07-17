@@ -15,6 +15,8 @@
 #define LUMS_BONE_ANIMATION_HPP
 
 #include <vector>
+#include <LumsInclude/Skeleton/RotationKeyFrame.hpp>
+#include <LumsInclude/Skeleton/TranslationKeyFrame.hpp>
 
 namespace lm
 {

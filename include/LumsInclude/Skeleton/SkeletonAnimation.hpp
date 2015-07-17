@@ -15,6 +15,7 @@
 #define LUMS_SKELETON_ANIMATION_HPP
 
 #include <vector>
+#include <LumsInclude/Skeleton/BoneAnimation.hpp>
 
 namespace lm
 {

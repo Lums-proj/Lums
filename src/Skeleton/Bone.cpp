@@ -12,7 +12,7 @@
 /* ************************************************************************** */
 
 #include <LumsInclude/Skeleton/Bone.hpp>
-#include <LumsInclude/Skeleton/Skeleton.hpp>
+#include <LumsInclude/Skeleton/SkeletonPose.hpp>
 #include <iostream>
 
 using namespace lm;
@@ -24,7 +24,14 @@ Bone::Bone(int parent)
 }
 
 void
-Bone::updateWorldTransform(const Skeleton& skeleton)
+Bone::transform(Matrix4f& matrix) const
+{
+    rotate(matrix, _worldRotation, {0, 0, -1});
+    translate(matrix, {_worldPosition.x, _worldPosition.y, 0});
+}
+
+void
+Bone::updateWorldTransform(const SkeletonPose& skeleton)
 {
     if (_parent != -1)
     {

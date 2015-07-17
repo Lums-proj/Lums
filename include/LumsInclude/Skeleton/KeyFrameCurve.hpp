@@ -18,7 +18,7 @@ namespace lm
 {
     struct KeyFrameCurve
     {
-        enum class : unsigned char Type
+        enum class Type : unsigned char
         {
             Linear,
             Stepped,

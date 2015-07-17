@@ -16,30 +16,18 @@
 class Anim : public lm::GameState
 {
 public:
-    lm::Matrix4f
-    matFromBone(const lm::Bone& bone)
-    {
-        lm::Matrix4f mat = lm::Matrix4f::identity();
-        lm::Vector2f pos = bone.worldPosition();
-        float rot = bone.worldRotation();
-        lm::rotate(mat, rot, { 0, 0, -1 });
-        lm::translate(mat, { pos.x, pos.y, 0 });
-        return mat;
-    }
-
     void
     sk(const lm::Skeleton& skeleton)
     {
         _batch.reset();
         _bones.reset();
-        int i = -1;
-        for (auto& bone : skeleton.bones())
+        for (unsigned i = 1; i < skeleton.bones().size(); ++i)
         {
-            ++i;
-            if (i == 0)
-                continue;
-            lm::Matrix4f parentMat = matFromBone(bone);
-            lm::Matrix4f childMat = matFromBone(skeleton.bones()[bone.parent()]);
+            lm::Matrix4f parentMat = lm::Matrix4f::identity();
+            lm::Matrix4f childMat = parentMat;
+
+            skeleton.transformBone(childMat, i);
+            skeleton.transformBone(parentMat, skeleton.bones()[i].parent());
 
             lm::Vector4f p0 = { 0, 0, 0, 1 };
             lm::Vector4f p1 = p0;
@@ -63,6 +51,8 @@ public:
         auto& shader = lm::ShaderProvider::instance().get(0);
         auto& shader1 = lm::ShaderProvider::instance().get(1);
 
+        _sk = lm::SkeletonProvider::instance().get(0).create();
+
         shader.use();
 
         _proj = lm::ortho(0, 800, 600, 0, -100, 100);
@@ -79,15 +69,14 @@ public:
         shader1.use();
         lm::uniform(shader1, "view", _view);
 
-        sk(lm::SkeletonProvider::instance().get(0));
+        sk(_sk);
     }
 
     void
     update()
     {
-        auto& sk = lm::SkeletonProvider::instance().get(0);
-        sk.update();
-        this->sk(sk);
+        _sk.update();
+        this->sk(_sk);
     }
 
     void
@@ -101,11 +90,10 @@ public:
     render()
     {
         auto& sp = lm::ShaderProvider::instance();
-        auto& sk = lm::SkeletonProvider::instance().get(0);
 
         sp.get(1).use();
         _sb.begin();
-        _sb.draw(sk, lm::TextureProvider::instance().get(0));
+        _sb.draw(_sk, lm::TextureProvider::instance().get(0));
         _sb.end();
 
         sp.get(0).use();
@@ -117,6 +105,7 @@ public:
 
 private:
     lm::SpriteBatch             _sb;
+    lm::Skeleton                _sk;
     lm::VertexBufferP3C4        _batch;
     lm::VertexBufferP3C4        _bones;
     lm::Matrix4f                _proj;
@@ -148,7 +137,6 @@ main(int argc, char* argv[])
     shader.attach(lm::Shader("anim.vert.glsl", lm::Shader::Vertex));
     shader.attach(lm::Shader("anim.frag.glsl", lm::Shader::Fragment));
     shader.bindAttribLocation(lm::Vertex::Position, "pos");
-    //shader.bindAttribLocation(lm::Vertex::Texture, "texcoord");
     shader.bindAttribLocation(lm::Vertex::Color, "color");
     shader.link();
     

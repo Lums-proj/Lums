@@ -12,7 +12,7 @@
 /* ************************************************************************** */
 
 #include <LumsInclude/Skeleton/Skin.hpp>
-#include <LumsInclude/Skeleton/Skeleton.hpp>
+#include <LumsInclude/Skeleton/SkeletonPose.hpp>
 
 using namespace lm;
 
@@ -24,7 +24,14 @@ Skin::Skin(int bone, int texture)
 }
 
 void
-Skin::updateWorldTransform(const Skeleton& skeleton)
+Skin::transform(Matrix4f& matrix) const
+{
+    rotate(matrix, _worldRotation, {0, 0, -1});
+    translate(matrix, {_worldPosition.x, _worldPosition.y, 0});
+}
+
+void
+Skin::updateWorldTransform(const SkeletonPose& skeleton)
 {
     const Bone& parent = skeleton.bones()[_bone];
     _worldPosition = parent._worldRotMatrix * _position + parent._worldPosition;
