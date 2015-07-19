@@ -65,6 +65,7 @@
 #include <LumsInclude/Math/Projection.hpp>
 #include <LumsInclude/Math/Rect.hpp>
 #include <LumsInclude/Math/Vector.hpp>
+#include <LumsInclude/Memory/PoolAllocator.hpp>
 #include <LumsInclude/Skeleton/SkeletonBlueprint.hpp>
 #include <LumsInclude/Skeleton/Bone.hpp>
 #include <LumsInclude/OperatingSystem.hpp>
