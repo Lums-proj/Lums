@@ -30,6 +30,8 @@ namespace lm
         void    transformBone(Matrix4f& matrix, int bone) const;
         void    transformSkin(Matrix4f& matrix, int skin) const;
         void    update();
+        void    applyIk(int target, int bone);
+        void    applyIk(int target, int parent, int child, float duration);
 
     private:
         const SkeletonData*             _data;

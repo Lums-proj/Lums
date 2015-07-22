@@ -46,12 +46,12 @@ StaticSpriteBatch::draw(const Texture& texture, int atlas, Vector3f quad[4], Vec
         frame.size.y *= -1;
     }
 
-    vbo.push(quad[0].x, quad[0].y, quad[0].z, frame.pos.x, frame.pos.y, color[0], color[1], color[2], color[3]);
-    vbo.push(quad[1].x, quad[1].y, quad[1].z, frame.pos.x + frame.size.x, frame.pos.y, color[0], color[1], color[2], color[3]);
-    vbo.push(quad[2].x, quad[2].y, quad[2].z, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
-    vbo.push(quad[0].x, quad[0].y, quad[0].z, frame.pos.x, frame.pos.y, color[0], color[1], color[2], color[3]);
-    vbo.push(quad[2].x, quad[2].y, quad[2].z, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
-    vbo.push(quad[3].x, quad[3].y, quad[3].z, frame.pos.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
+    vbo.push(quad[0].x, quad[0].y, quad[0].z, frame.pos.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
+    vbo.push(quad[1].x, quad[1].y, quad[1].z, frame.pos.x + frame.size.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
+    vbo.push(quad[2].x, quad[2].y, quad[2].z, frame.pos.x + frame.size.x, frame.pos.y, color[0], color[1], color[2], color[3]);
+    vbo.push(quad[0].x, quad[0].y, quad[0].z, frame.pos.x, frame.pos.y + frame.size.y, color[0], color[1], color[2], color[3]);
+    vbo.push(quad[2].x, quad[2].y, quad[2].z, frame.pos.x + frame.size.x, frame.pos.y, color[0], color[1], color[2], color[3]);
+    vbo.push(quad[3].x, quad[3].y, quad[3].z, frame.pos.x, frame.pos.y, color[0], color[1], color[2], color[3]);
 }
 
 void

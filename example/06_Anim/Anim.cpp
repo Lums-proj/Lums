@@ -56,13 +56,13 @@ public:
 
         shader.use();
 
-        _proj = lm::ortho(0, 800, 600, 0, -100, 100);
+        _proj = lm::ortho(0, 800, 0, 600, -100, 100);
         lm::uniform(shader, "proj", _proj);
         
         shader1.use();
         lm::uniform(shader1, "proj", _proj);
         _view = lm::Matrix4f::identity();
-        lm::translate(_view, { 400, 600, 0 });
+        lm::translate(_view, { 400, 0, 0 });
 
         shader.use();
         lm::uniform(shader, "view", _view);

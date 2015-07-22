@@ -34,6 +34,7 @@ SkeletonPose::loadFromFile(std::ifstream& file)
         int32_t nameLen;
         char* name;
         int32_t parent;
+        float length;
         lm::Vector2f position;
         lm::Vector2f scale;
         float rotation;
@@ -45,6 +46,7 @@ SkeletonPose::loadFromFile(std::ifstream& file)
         delete [] name;
         file.read(name, nameLen);
         file.read((char*)&parent, 4);
+        file.read((char*)&length, 4);
         file.read((char*)&position.x, sizeof(float));
         file.read((char*)&position.y, sizeof(float));
         file.read((char*)&scale.x, sizeof(float));
@@ -52,12 +54,11 @@ SkeletonPose::loadFromFile(std::ifstream& file)
         file.read((char*)&rotation, sizeof(float));
         file.read((char*)&ir, 1);
 
-        position.y *= -1;
-
         Bone b(parent);
         b.setInheritRotation(ir);
         b.setRotation(rotation);
         b.setPosition(position);
+        b.setLength(length);
         _bones.push_back(b);
         if (parent != -1)
             _bones[parent].addChild(i);
@@ -77,8 +78,6 @@ SkeletonPose::loadFromFile(std::ifstream& file)
         file.read((char*)&position.x, sizeof(float));
         file.read((char*)&position.y, sizeof(float));
         file.read((char*)&rotation, sizeof(float));
-
-        position.y *= -1;
 
         Skin s(bone, texture);
         s.setRotation(rotation);

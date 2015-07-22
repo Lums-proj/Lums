@@ -7,6 +7,7 @@ class Spiner
     root = JSON.parse(File.read spine)
     read_bones root
     read_skins root
+    read_iks root
     read_animations root
   end
 
@@ -14,6 +15,7 @@ class Spiner
     buffer = ''
     write_bones buffer
     write_skins buffer
+    write_iks buffer
     write_animations buffer
     f = File.open spine, 'wb'
     f.write buffer
@@ -63,6 +65,7 @@ class Spiner
       bone << b['name'].size
       bone << b['name']
       bone << ((@bones.find_index {|o| o[1] == b['parent']}) || -1)
+      bone << (b['length'] || 0).to_f
       bone << (b['x'] || 0).to_f
       bone << (b['y'] || 0).to_f
       bone << (b['scaleX'] || 1).to_f
@@ -77,7 +80,7 @@ class Spiner
 
   def write_bones buffer
     buffer << [@bones.size].pack('L<')
-    @bones.each {|b| buffer << b.pack('L<A*l<FFFFFC')}
+    @bones.each {|b| buffer << b.pack('L<A*l<FFFFFFC')}
   end
 
   def read_skins root
@@ -105,6 +108,26 @@ class Spiner
   def write_skins buffer
     buffer << [@skins.size].pack('L<')
     @skins.each {|s| buffer << s.pack('l<L<FFF')}
+  end
+
+  def read_iks root
+    iks = root['ik']
+    @iks = []
+    iks.each do |ik|
+      ik_data = {}
+      ik_data[:target] = @bones.find_index {|b| b[1] == ik['target']}
+      ik_data[:bones] = ik['bones'].map {|b| @bones.find_index {|bb| bb[1] == b }}
+      ik_data[:bones] << -1 if ik_data[:bones].size == 1
+      ik_data[:bend_positive] = ik['bendPositive'].nil? ? 1 : (ik['bendPositive'] ? 1 : 0)
+      @iks << ik_data
+    end
+  end
+
+  def write_iks buffer
+    buffer << [@iks.size].pack('L<')
+    @iks.each do |ik|
+      buffer << ([ik[:target]] + ik[:bones] + [ik[:bend_positive]]).pack('L<L<L<C')
+    end
   end
 
   def read_animations root

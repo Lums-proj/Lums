@@ -21,7 +21,12 @@ void
 SkeletonData::loadFromFile(std::ifstream& file)
 {
     pose.loadFromFile(file);
+    uint32_t ikCount;
     uint32_t animCount;
+    file.read((char*)&ikCount, 4);
+    iks.resize(ikCount);
+    for (auto& ik : iks)
+        ik.loadFromFile(file);
     file.read((char*)&animCount, 4);
     for (unsigned i = 0; i < animCount; ++i)
     {

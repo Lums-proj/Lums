@@ -74,7 +74,6 @@ lookupKeyFrame(const std::vector<T>& vect, int frame)
 static float
 clamp(float angle)
 {
-    std::cout << "CLAMP :" << angle << std::endl;
     while (angle < 0.f)
         angle += 360.f;
     while (angle >= 360.f)
@@ -115,11 +114,12 @@ BoneAnimation::interpolateTranslation(int frame) const
         return translations.back().translation;
     const auto& kf0 = translations[keyFrame];
     const auto& kf1 = translations[keyFrame + 1];
-    float alpha = float(frame - kf0.frame) / float(kf1.frame - kf0.frame);
+    float alpha;
+    if (kf0.curve.type == KeyFrameCurve::Type::Stepped)
+        alpha = 0;
+    else
+        alpha = float(frame - kf0.frame) / float(kf1.frame - kf0.frame);
     Vector2f t0 = kf0.translation;
     Vector2f t1 = kf1.translation;
-    std::cout << "TR-ALPHA: " << alpha << std::endl;
-    std::cout << "P0: " << t0.x << " | " << t0.y << std::endl; 
-    std::cout << "P1: " << t1.x << " | " << t1.y << std::endl; 
     return t0 * (1 - alpha) + t1 * alpha;   
 }

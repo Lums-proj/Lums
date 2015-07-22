@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    SkeletonData.hpp                               oooooo       oooooo      */
+/*    SkeletonIK.cpp                                 oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,26 +11,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_SKELETON_DATA_HPP
-#define LUMS_SKELETON_DATA_HPP
-
-#include <fstream>
-#include <vector>
-#include <unordered_map>
-#include <LumsInclude/Skeleton/SkeletonPose.hpp>
-#include <LumsInclude/Skeleton/SkeletonAnimation.hpp>
 #include <LumsInclude/Skeleton/SkeletonIK.hpp>
 
-namespace lm
+using namespace lm;
+
+void
+SkeletonIK::loadFromFile(std::ifstream& file)
 {
-    struct SkeletonData
-    {
-        void    loadFromFile(std::ifstream& file);
+    char positive;
 
-        SkeletonPose                                    pose;
-        std::vector<SkeletonIK>                         iks;
-        std::unordered_map<size_t, SkeletonAnimation>   animations;
-    };
+    file.read((char*)&target, 4);
+    file.read((char*)bones, 8);
+    file.read(&positive, 1);
+    bendPositive = positive;
 }
-
-#endif

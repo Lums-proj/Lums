@@ -26,8 +26,19 @@ Bone::Bone(int parent)
 void
 Bone::transform(Matrix4f& matrix) const
 {
-    rotate(matrix, _worldRotation, {0, 0, -1});
+    rotate(matrix, _worldRotation, {0, 0, 1});
     translate(matrix, {_worldPosition.x, _worldPosition.y, 0});
+}
+
+void
+Bone::worldToLocal(Vector2f& world) const
+{
+    Matrix2f wr = _worldRotMatrix;
+    Vector2f diff = world - _worldPosition;
+
+    float invDet = 1.f / (wr[0][0] * wr[1][1] - wr[0][1] * wr[1][0]);
+    world.x = diff.x * wr[0][0] * invDet - diff.y * wr[1][0] * invDet;
+    world.y = diff.y * wr[1][1] * invDet - diff.x * wr[0][1] * invDet;
 }
 
 void

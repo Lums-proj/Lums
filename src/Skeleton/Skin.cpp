@@ -26,7 +26,7 @@ Skin::Skin(int bone, int texture)
 void
 Skin::transform(Matrix4f& matrix) const
 {
-    rotate(matrix, _worldRotation, {0, 0, -1});
+    rotate(matrix, _worldRotation, {0, 0, 1});
     translate(matrix, {_worldPosition.x, _worldPosition.y, 0});
 }
 

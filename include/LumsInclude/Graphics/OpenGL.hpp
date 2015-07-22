@@ -170,8 +170,8 @@ namespace lm
         const float c = cos(rad);
 
         matrix[0][0] = c;
-        matrix[0][1] = -s;
-        matrix[1][0] = s;
+        matrix[1][0] = -s;
+        matrix[0][1] = s;
         matrix[1][1] = c;
     }
 

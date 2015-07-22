@@ -39,15 +39,18 @@ namespace lm
         void                setInheritRotation(bool ir) { _inheritRotation = ir; }
         void                setPosition(const Vector2f& position) { _position = position; }
         void                setRotation(float rotation) { _rotation = rotation; }
+        void                setLength(float length) { _length = length; }
 
         bool                inheritRotation() const { return _inheritRotation; }
         const Vector2f&     position() const { return _position; }
         const Vector2f&     worldPosition() const { return _worldPosition; }
         float               rotation() const { return _rotation; }
         float               worldRotation() const { return _worldRotation; }
+        float               length() const { return _length; }
 
         void                transform(Matrix4f& matrix) const;
 
+        void                worldToLocal(lm::Vector2f& world) const;
         void                updateWorldTransform(const SkeletonPose& skeleton);
 
         ~Bone();
@@ -57,6 +60,7 @@ namespace lm
         Array               _children;
         Vector2f            _position;
         float               _rotation;
+        float               _length;
         Vector2f            _worldPosition;
         float               _worldRotation;
         Matrix2f            _worldRotMatrix;
