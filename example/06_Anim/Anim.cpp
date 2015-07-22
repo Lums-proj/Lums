@@ -52,7 +52,7 @@ public:
         auto& shader1 = lm::ShaderProvider::instance().get(1);
 
         _sk = lm::SkeletonProvider::instance().get(0).create();
-        _sk.setAnimation("Idle_1");
+        _sk.setAnimation("Walk");
 
         shader.use();
 
@@ -79,13 +79,13 @@ public:
         static int i = -1;
 
         ++i;
-        if (i > 200)
+        if (i > 180)
         {
-            _sk.setAnimation("Idle_1");
+            _sk.setAnimation("Walk");
             i = 0;
         }
         _sk.update();
-        this->sk(_sk);
+        //this->sk(_sk);
     }
 
     void
@@ -108,8 +108,8 @@ public:
         sp.get(0).use();
 
         glPointSize(5);
-        _batch.draw(GL_LINES);
-        _bones.draw(GL_POINTS);
+        //_batch.draw(GL_LINES);
+        //_bones.draw(GL_POINTS);
     }
 
 private:

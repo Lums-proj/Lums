@@ -152,6 +152,33 @@ namespace lm
         }
         return true;
     }
+
+    inline float
+    bezier4p(const Vector2f& p1, const Vector2f& p2, float t)
+    {
+        Vector2f point = p1 * 3 * t * (1 - t) * (1 - t) + p2 * 3 * t * t * (1 - t) + Vector2f(1.f, 1.f) * t * t * t;
+        return point.y;
+    }
+
+    static const int sample_size = 10;
+
+    inline float
+    bezier4(const Vector2f& p1, const Vector2f& p2, float t)
+    {
+        Vector2f samples[sample_size];
+        for (int i = 0; i < sample_size; ++i)
+            samples[i] = bezier4p(p1, p2, i * 0.1f);
+        int i;
+        for (i = 0; i < sample_size - 1; ++i)
+        {
+            if (samples[i].x <= t && samples[i + 1].x > t)
+                break;
+        }
+        if (i == sample_size - 1)
+            --i;
+        float alpha = (t - samples[i].x) / (samples[i + 1].x - samples[i].x);
+        return (1 - alpha) * samples[i].y + alpha * samples[i + 1].y;
+    }
 }
 
 #endif

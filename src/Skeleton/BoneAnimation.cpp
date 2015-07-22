@@ -14,6 +14,7 @@
 #include <cstdint>
 #include <iostream>
 #include <LumsInclude/Skeleton/BoneAnimation.hpp>
+#include <LumsInclude/Math/Math.hpp>
 
 using namespace lm;
 
@@ -84,6 +85,8 @@ clamp(float angle)
 float
 BoneAnimation::interpolateRotation(int frame) const
 {
+    if (rotations.empty())
+        return 0.f;
     int keyFrame = lookupKeyFrame(rotations, frame);
     if (keyFrame == -1)
         return rotations.back().angle;
@@ -94,6 +97,8 @@ BoneAnimation::interpolateRotation(int frame) const
         alpha = 0;
     else
         alpha = float(frame - kf0.frame) / float(kf1.frame - kf0.frame);
+    if (kf0.curve.type == KeyFrameCurve::Type::Bezier)
+        alpha = bezier4(kf0.curve.c0, kf0.curve.c1, alpha);
     float a0 = clamp(kf0.angle);
     float a1 = clamp(kf1.angle);
     if (fabs(a0 - a1) > 180.f)
@@ -109,6 +114,8 @@ BoneAnimation::interpolateRotation(int frame) const
 Vector2f
 BoneAnimation::interpolateTranslation(int frame) const
 {
+    if (translations.empty())
+        return {0.f, 0.f};
     int keyFrame = lookupKeyFrame(translations, frame);
     if (keyFrame == -1)
         return translations.back().translation;
@@ -119,6 +126,11 @@ BoneAnimation::interpolateTranslation(int frame) const
         alpha = 0;
     else
         alpha = float(frame - kf0.frame) / float(kf1.frame - kf0.frame);
+    if (kf0.curve.type == KeyFrameCurve::Type::Bezier)
+    {
+        float p = alpha;
+        alpha = bezier4(kf0.curve.c0, kf0.curve.c1, alpha);
+    }
     Vector2f t0 = kf0.translation;
     Vector2f t1 = kf1.translation;
     return t0 * (1 - alpha) + t1 * alpha;   
