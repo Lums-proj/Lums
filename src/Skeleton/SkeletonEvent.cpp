@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    SkeletonAnimation.cpp                          oooooo       oooooo      */
+/*    SkeletonEvent.cpp                              oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,23 +11,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cstdint>
-#include <LumsInclude/Skeleton/SkeletonAnimation.hpp>
+#include <LumsInclude/Common.hpp>
+#include <LumsInclude/Skeleton/SkeletonEvent.hpp>
 
 using namespace lm;
 
 void
-SkeletonAnimation::loadFromFile(std::ifstream& file)
+SkeletonEvent::loadFromFile(std::ifstream& file)
 {
-    uint32_t boneCount;
-    uint32_t eventCount;
+    uint32_t nameLen;
+    file.read((char*)&nameLen, 4);
+    char* tmp = new char[nameLen + 1];
+    tmp[nameLen] = 0;
 
-    file.read((char*)&boneCount, 4);
-    bones.resize(boneCount);
-    for (auto& b : bones)
-        b.loadFromFile(file);
-    file.read((char*)&eventCount, 4);
-    events.resize(eventCount);
-    for (auto& e : events)
-        e.loadFromFile(file);
+    file.read(tmp, nameLen);
+    name = sym(tmp);
+    file.read((char*)&frame, 4);
+
+    delete [] tmp;
 }

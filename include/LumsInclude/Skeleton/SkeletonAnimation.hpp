@@ -17,6 +17,7 @@
 #include <fstream>
 #include <vector>
 #include <LumsInclude/Skeleton/BoneAnimation.hpp>
+#include <LumsInclude/Skeleton/SkeletonEvent.hpp>
 
 namespace lm
 {
@@ -25,6 +26,7 @@ namespace lm
         void    loadFromFile(std::ifstream& file);
 
         std::vector<BoneAnimation>  bones;
+        std::vector<SkeletonEvent> events;
     };
 }
 

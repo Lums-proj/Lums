@@ -136,6 +136,7 @@ class Spiner
       anim = {}
       anim[:name] = key
       bones = []
+      events = []
       value['bones'].each do |k, v|
         bone = {}
         bone[:bone] = @bones.find_index {|b| b[1] == k}
@@ -181,7 +182,16 @@ class Spiner
         end
         bones << bone
       end
+      if value['events']
+        value['events'].each do |ev|
+          event = {}
+          event[:name] = ev['name']
+          event[:time] = (ev['time'] * 100.0).round.to_i
+          events << event
+        end
+      end
       anim[:bones] = bones
+      anim[:events] = events
       @animations << anim
     end
   end
@@ -209,6 +219,11 @@ class Spiner
             buffer << t[:bezier].pack('L<L<L<L<')
           end
         end
+      end
+      buffer << [anim[:events].size].pack('L<')
+      anim[:events].each do |event|
+        buffer << [event[:name].size].pack('L<')
+        buffer << [event[:name], event[:time]].pack('A*L<')
       end
     end
   end

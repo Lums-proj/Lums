@@ -52,7 +52,7 @@ public:
         auto& shader1 = lm::ShaderProvider::instance().get(1);
 
         _sk = lm::SkeletonProvider::instance().get(0).create();
-        _sk.setAnimation("Walk");
+        _sk.setAnimation("Idle_1");
 
         shader.use();
 
@@ -81,7 +81,7 @@ public:
         ++i;
         if (i > 180)
         {
-            _sk.setAnimation("Walk");
+            _sk.setAnimation("Idle_1");
             i = 0;
         }
         _sk.update();
