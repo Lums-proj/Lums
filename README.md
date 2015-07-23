@@ -47,4 +47,8 @@ You may find a copy of the license along with this software.
 
 ## Author
 
-**Lums**, previousely known as NGL, was created by Nax.
+**Lums**, previously known as NGL, was created by Nax.
+
+## Contributors
+
+ - spuyet
