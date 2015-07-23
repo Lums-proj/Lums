@@ -11,6 +11,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
 #include <cstdint>
 #include <LumsInclude/Skeleton/SkeletonAnimation.hpp>
 
@@ -30,4 +31,15 @@ SkeletonAnimation::loadFromFile(std::ifstream& file)
     events.resize(eventCount);
     for (auto& e : events)
         e.loadFromFile(file);
+}
+
+size_t
+SkeletonAnimation::getEvent(int frame) const
+{
+    for (auto& e : events)
+    {
+        if (e.frame == frame)
+            return e.name;
+    }
+    return 0;
 }

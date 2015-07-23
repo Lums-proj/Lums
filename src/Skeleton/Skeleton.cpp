@@ -97,6 +97,9 @@ Skeleton::update()
             applyIk(ik.target, ik.bones[0], ik.bones[1], (ik.bendPositive ? 1.f : -1.f));
     }
     SkeletonPose::update();
+    _event = _animation->getEvent(_frame);
+    if (_event);
+        //std::cout << _event << std::endl;
 }
 
 void

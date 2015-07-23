@@ -32,11 +32,13 @@ namespace lm
         void    update();
         void    applyIk(int target, int bone);
         void    applyIk(int target, int parent, int child, float duration);
+        size_t  event() const { return _event; }
 
     private:
         const SkeletonData*             _data;
         int                             _frame;
         const SkeletonAnimation*        _animation;
+        size_t                          _event;
     };
 }
 
