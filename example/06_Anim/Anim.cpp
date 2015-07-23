@@ -13,6 +13,8 @@
 
 #include <Lums>
 
+#define FDEAGE_CE_GUEDIN    40
+
 class Anim : public lm::GameState
 {
 public:
@@ -52,6 +54,11 @@ public:
         auto& shader1 = lm::ShaderProvider::instance().get(1);
 
         _sk = lm::SkeletonProvider::instance().get(0).create();
+        for (int i = 0; i < FDEAGE_CE_GUEDIN; ++i)
+        {
+            _sk2[i] = lm::SkeletonProvider::instance().get(0).create();
+            _sk2[i].setAnimation("Walk");
+        }
         _sk.setAnimation("Walk");
 
         shader.use();
@@ -76,13 +83,13 @@ public:
     void
     update()
     {
-        static int i = -1;
-
-        ++i;
-        if (i > 180)
-        {
+        if (_sk.finished())
             _sk.setAnimation("Walk");
-            i = 0;
+        for (int i = 0; i < FDEAGE_CE_GUEDIN; ++i)
+        {
+            if (_sk2[i].finished())
+                _sk2[i].setAnimation("Walk");
+            _sk2[i].update();
         }
         _sk.update();
         //this->sk(_sk);
@@ -92,7 +99,14 @@ public:
     handleEvent(const lm::Event& event)
     {
         if (event.type == lm::Event::Type::KeyDown)
-            lm::Core::instance().stop();
+        {
+            if (event.key == lm::Key::Left)
+                _sk.setFlip(false);
+            else if (event.key == lm::Key::Right)
+                _sk.setFlip(true);
+            else
+                lm::Core::instance().stop();
+        }
     }
 
     void
@@ -102,6 +116,8 @@ public:
 
         sp.get(1).use();
         _sb.begin();
+        for (int i = 0; i < FDEAGE_CE_GUEDIN; ++i)
+            _sb.draw(_sk2[i], lm::TextureProvider::instance().get(0), {(i - FDEAGE_CE_GUEDIN / 2) * (400.f / FDEAGE_CE_GUEDIN), 0, 0});
         _sb.draw(_sk, lm::TextureProvider::instance().get(0));
         _sb.end();
 
@@ -115,6 +131,7 @@ public:
 private:
     lm::SpriteBatch             _sb;
     lm::Skeleton                _sk;
+    lm::Skeleton                _sk2[FDEAGE_CE_GUEDIN];
     lm::VertexBufferP3C4        _batch;
     lm::VertexBufferP3C4        _bones;
     lm::Matrix4f                _proj;

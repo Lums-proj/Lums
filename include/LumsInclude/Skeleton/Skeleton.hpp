@@ -26,6 +26,7 @@ namespace lm
         explicit Skeleton(const SkeletonData& data);
 
         void    setToPose();
+        void    setFlip(bool flip) { _flipX = flip; };
         void    setAnimation(const char* animation);
         void    transformBone(Matrix4f& matrix, int bone) const;
         void    transformSkin(Matrix4f& matrix, int skin) const;
@@ -33,12 +34,16 @@ namespace lm
         void    applyIk(int target, int bone);
         void    applyIk(int target, int parent, int child, float duration);
         size_t  event() const { return _event; }
+        bool    finished() const { return _finished; }
 
     private:
         const SkeletonData*             _data;
         int                             _frame;
         const SkeletonAnimation*        _animation;
         size_t                          _event;
+        bool                            _flipX;
+        bool                            _finished;
+
     };
 }
 

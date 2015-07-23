@@ -31,6 +31,30 @@ SkeletonAnimation::loadFromFile(std::ifstream& file)
     events.resize(eventCount);
     for (auto& e : events)
         e.loadFromFile(file);
+    computeLength();
+}
+
+void
+SkeletonAnimation::computeLength()
+{
+    int max = 0;
+
+    for (auto& b : bones)
+    {
+        if (!b.translations.empty())
+        {
+            auto& t = b.translations.back();
+            if (t.frame > max)
+                max = t.frame;
+        }
+        if (!b.rotations.empty())
+        {
+            auto& r = b.rotations.back();
+            if (r.frame > max)
+                max = r.frame;
+        }
+    }
+    length = max;
 }
 
 size_t

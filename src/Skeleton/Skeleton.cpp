@@ -20,13 +20,15 @@ Skeleton::Skeleton()
 : _data(nullptr)
 , _frame(0)
 , _animation(nullptr)
+, _flipX(false)
 {
 
 }
 
 Skeleton::Skeleton(const SkeletonData& data)
-: _data(&data)
+: Skeleton()
 {
+    _data = &data;
     _bones = data.pose.bones();
     _skins = data.pose.skins();
     //setToPose();
@@ -51,6 +53,7 @@ Skeleton::setToPose()
 void
 Skeleton::setAnimation(const char* animation)
 {
+    _finished = false;
     _frame = -1;
     _animation = &(_data->animations.at(sym(animation)));
     update();
@@ -61,8 +64,13 @@ Skeleton::transformBone(Matrix4f& matrix, int bone) const
 {
     Matrix4f m = Matrix4f::identity();
     _bones[bone].transform(m);
-    //_data->pose.bones()[bone].transform(m);
     matrix *= m;
+    if (_flipX)
+    {
+        m = Matrix4f::identity();
+        m[0][0] = -1.f;
+        matrix *= m;
+    }
 }
 
 void
@@ -70,8 +78,13 @@ Skeleton::transformSkin(Matrix4f& matrix, int skin) const
 {
     Matrix4f m = Matrix4f::identity();
     _skins[skin].transform(m);
-    //_data->pose.skins()[skin].transform(m);
     matrix *= m;
+    if (_flipX)
+    {
+        m = Matrix4f::identity();
+        m[0][0] = -1.f;
+        matrix *= m;
+    }
 }
 
 void
@@ -79,6 +92,10 @@ Skeleton::update()
 {
     const auto& bones = _animation->bones;
     const unsigned max = bones.size();
+
+    if (_finished)
+        return;
+
     _frame++;
     for (int i = 0; i < max; ++i)
     {
@@ -98,8 +115,8 @@ Skeleton::update()
     }
     SkeletonPose::update();
     _event = _animation->getEvent(_frame);
-    if (_event);
-        //std::cout << _event << std::endl;
+    if (_frame == _animation->length)
+        _finished = true;
 }
 
 void

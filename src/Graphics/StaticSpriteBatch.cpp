@@ -136,6 +136,7 @@ StaticSpriteBatch::draw(const Skeleton& skeleton, const Texture& texture, Vector
         Matrix4f mat = Matrix4f::identity();
         translate(mat, { -w / 2.f, -h / 2.f, 0.f });
         skeleton.transformSkin(mat, i);
+        translate(mat, pos);
         draw(texture, skin.texture(), mat);
     }
 }

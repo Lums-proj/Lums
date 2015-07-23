@@ -24,10 +24,12 @@ namespace lm
     struct SkeletonAnimation
     {
         void    loadFromFile(std::ifstream& file);
+        void    computeLength();
         size_t  getEvent(int frame) const;
 
         std::vector<BoneAnimation>  bones;
         std::vector<SkeletonEvent>  events;
+        int                         length;
     };
 }
 
