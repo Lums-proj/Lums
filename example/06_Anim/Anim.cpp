@@ -13,7 +13,7 @@
 
 #include <Lums>
 
-#define FDEAGE_CE_GUEDIN    40
+#define SKELETON_COUNT    40
 
 class Anim : public lm::GameState
 {
@@ -54,7 +54,7 @@ public:
         auto& shader1 = lm::ShaderProvider::instance().get(1);
 
         _sk = lm::SkeletonProvider::instance().get(0).create();
-        for (int i = 0; i < FDEAGE_CE_GUEDIN; ++i)
+        for (int i = 0; i < SKELETON_COUNT; ++i)
         {
             _sk2[i] = lm::SkeletonProvider::instance().get(0).create();
             _sk2[i].setAnimation("Walk");
@@ -85,7 +85,7 @@ public:
     {
         if (_sk.finished())
             _sk.setAnimation("Walk");
-        for (int i = 0; i < FDEAGE_CE_GUEDIN; ++i)
+        for (int i = 0; i < SKELETON_COUNT; ++i)
         {
             if (_sk2[i].finished())
                 _sk2[i].setAnimation("Walk");
@@ -104,6 +104,10 @@ public:
                 _sk.setFlip(false);
             else if (event.key == lm::Key::Right)
                 _sk.setFlip(true);
+            else if (event.key == lm::Key::Up)
+                lm::setGlobalScale(lm::globalScale() * 1.1f);
+            else if (event.key == lm::Key::Down)
+                lm::setGlobalScale(lm::globalScale() * 0.9f);
             else
                 lm::Core::instance().stop();
         }
@@ -116,8 +120,8 @@ public:
 
         sp.get(1).use();
         _sb.begin();
-        for (int i = 0; i < FDEAGE_CE_GUEDIN; ++i)
-            _sb.draw(_sk2[i], lm::TextureProvider::instance().get(0), {(i - FDEAGE_CE_GUEDIN / 2) * (400.f / FDEAGE_CE_GUEDIN), 0, 0});
+        for (int i = 0; i < SKELETON_COUNT; ++i)
+            _sb.draw(_sk2[i], lm::TextureProvider::instance().get(0), {(i - SKELETON_COUNT / 2) * (400.f / SKELETON_COUNT), 0, 0});
         _sb.draw(_sk, lm::TextureProvider::instance().get(0));
         _sb.end();
 
@@ -131,7 +135,7 @@ public:
 private:
     lm::SpriteBatch             _sb;
     lm::Skeleton                _sk;
-    lm::Skeleton                _sk2[FDEAGE_CE_GUEDIN];
+    lm::Skeleton                _sk2[SKELETON_COUNT];
     lm::VertexBufferP3C4        _batch;
     lm::VertexBufferP3C4        _bones;
     lm::Matrix4f                _proj;
@@ -145,6 +149,7 @@ main(int argc, char* argv[])
         return 1;
 
     lm::enableModule(lm::Module::All);
+    lm::setGlobalScale(0.5f);
 
     lm::Core& core = lm::Core::instance();
     core.setWindow(new lm::Window(800, 600, "Anim"));

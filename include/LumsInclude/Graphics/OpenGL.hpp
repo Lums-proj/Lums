@@ -175,6 +175,21 @@ namespace lm
         matrix[1][1] = c;
     }
 
+    inline void
+    scale(Matrix4f& matrix, const Vector3f& scale)
+    {
+        Matrix4f m = Matrix4f::identity();
+        for (int i = 0; i < 3; ++i)
+            m[i][i] = scale[i];
+        matrix *= m;
+    }
+
+    inline void
+    scale(Matrix4f& matrix, float scale)
+    {
+        lm::scale(matrix, Vector3f(scale, scale, scale));
+    }
+    
     /**
      * Create a view matrix
      * @param eye The eye position

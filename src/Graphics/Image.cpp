@@ -17,6 +17,7 @@
 #include <cmath>
 #include <iostream>
 #include <LumsInclude/Graphics/Image.hpp>
+#include <LumsInclude/Graphics/Graphics.hpp>
 #include <LumsInclude/OperatingSystem.hpp>
 
 using namespace lm;
@@ -119,11 +120,12 @@ Image::~Image()
 void
 Image::resize()
 {
-    if (_scale == 1.f)
+    float scale = _scale * globalScale();
+    if (scale == 1.f)
         return;
 
-    unsigned int newWidth = std::ceil(_bufferWidth * _scale);
-    unsigned int newHeight = std::ceil(_bufferHeight * _scale);
+    unsigned int newWidth = std::ceil(_bufferWidth * scale);
+    unsigned int newHeight = std::ceil(_bufferHeight * scale);
 
     if (newWidth % _xScaleHint)
         newWidth += _xScaleHint - (newWidth % _xScaleHint);

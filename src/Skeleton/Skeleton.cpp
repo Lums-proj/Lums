@@ -12,6 +12,7 @@
 /* ************************************************************************** */
 
 #include <LumsInclude/Skeleton/Skeleton.hpp>
+#include <LumsInclude/Graphics/Graphics.hpp>
 #include <iostream>
 
 using namespace lm;
@@ -65,6 +66,7 @@ Skeleton::transformBone(Matrix4f& matrix, int bone) const
     Matrix4f m = Matrix4f::identity();
     _bones[bone].transform(m);
     matrix *= m;
+    scale(matrix, globalScale());
     if (_flipX)
     {
         m = Matrix4f::identity();
@@ -79,6 +81,7 @@ Skeleton::transformSkin(Matrix4f& matrix, int skin) const
     Matrix4f m = Matrix4f::identity();
     _skins[skin].transform(m);
     matrix *= m;
+    scale(matrix, globalScale());
     if (_flipX)
     {
         m = Matrix4f::identity();

@@ -45,6 +45,7 @@
 #include <LumsInclude/ExportDll.hpp>
 #include <LumsInclude/Graphics/Event.hpp>
 #include <LumsInclude/Graphics/Font.hpp>
+#include <LumsInclude/Graphics/Graphics.hpp>
 #include <LumsInclude/Graphics/Image.hpp>
 #include <LumsInclude/Graphics/Key.hpp>
 #include <LumsInclude/Graphics/OpenGL.hpp>
