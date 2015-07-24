@@ -29,6 +29,7 @@ namespace lm
         void    setFlip(bool flip) { _flipX = flip; };
         void    setAnimation(const char* animation);
         void    setAnimation(size_t animation);
+        size_t  animation() const { return _animationHash; }
         void    transformBone(Matrix4f& matrix, int bone) const;
         void    transformSkin(Matrix4f& matrix, int skin) const;
         void    update();
@@ -41,6 +42,7 @@ namespace lm
         const SkeletonData*             _data;
         int                             _frame;
         const SkeletonAnimation*        _animation;
+        size_t                          _animationHash;
         size_t                          _event;
         bool                            _flipX;
         bool                            _finished;

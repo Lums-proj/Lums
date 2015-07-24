@@ -58,6 +58,7 @@ Skeleton::setAnimation(const char* animation)
 void
 Skeleton::setAnimation(size_t animation)
 {
+    _animationHash = animation;
     _finished = false;
     _frame = -1;
     _animation = &(_data->animations.at(animation));
