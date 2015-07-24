@@ -85,12 +85,12 @@ Image::setPath(const std::string path, bool resource)
 }
 
 void
-Image::setBuffer(unsigned char* buffer, unsigned int w, unsigned int h, GLenum format)
+Image::setBuffer(unsigned char* buffer, unsigned int w, unsigned int h, GLenum format, float scale)
 {
     unload();
     _data = buffer;
-    _width = w;
-    _height = h;
+    _width = w * scale;
+    _height = h * scale;
     _bufferWidth = w;
     _bufferHeight = h;
     _format = format;

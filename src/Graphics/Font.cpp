@@ -19,6 +19,7 @@
 #include <LumsInclude/OperatingSystem.hpp>
 #include <LumsInclude/Graphics/Font.hpp>
 #include <LumsInclude/Graphics/Image.hpp>
+#include <LumsInclude/Graphics/Graphics.hpp>
 
 using namespace lm;
 
@@ -60,8 +61,11 @@ Font::load()
     int left[glyphCount];
     int top[glyphCount];
 
+    float size = _size * globalScale();
+    img.setScale(1.f / globalScale());
+
     FT_New_Face(ftLibrary, _path.c_str(), 0, &face);    
-    FT_Set_Char_Size(face, 0, _size * 64, 0, 0);
+    FT_Set_Char_Size(face, 0, size * 64, 0, 0);
     glyph = face->glyph;
     
     for (int i = 0; i < glyphCount; ++i)
@@ -73,7 +77,7 @@ Font::load()
         _glyphs[i].height = glyph->bitmap.rows;
         _glyphs[i].left = glyph->bitmap_left;
         _glyphs[i].top = glyph->bitmap_top;
-        _glyphs[i].advance = float(glyph->advance.x) / 64.f;
+        _glyphs[i].advance = float(glyph->advance.x) / 64.f * (1.f / globalScale());
         std::memcpy(bitmap[i], glyph->bitmap.buffer, glyph->bitmap.width * glyph->bitmap.rows);
         for (int j = 0; j < glyphCount; ++j)
         {
@@ -106,6 +110,7 @@ Font::load()
         actualX += _glyphs[i].width;
     }
 
+    _texture.resetAtlas();
     buffer = new unsigned char[bitmapSize * bitmapSize * 4];
     std::memset(buffer, 0, bitmapSize * bitmapSize * 4);
     for (int idx = 0; idx < glyphCount; ++idx)
@@ -120,7 +125,7 @@ Font::load()
         _texture.pushAtlas({{float(left[idx]) / bitmapSize, float(top[idx]) / bitmapSize}, {float(_glyphs[idx].width) / bitmapSize, float(_glyphs[idx].height) / bitmapSize}});
         delete [] bitmap[idx];
     }
-    img.setBuffer(buffer, bitmapSize, bitmapSize, GL_RGBA);
+    img.setBuffer(buffer, bitmapSize, bitmapSize, GL_RGBA, 1.f / globalScale());
     _texture.setImage(img);
     _texture.load();
 }

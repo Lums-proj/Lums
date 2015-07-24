@@ -39,7 +39,14 @@ public:
     handleEvent(const lm::Event& event)
     {
         if (event.type == lm::Event::Type::KeyDown)
-            lm::Core::instance().stop();
+        {
+            if (event.key == lm::Key::Up)
+                lm::setGlobalScale(lm::globalScale() * 1.01f);
+            else if (event.key == lm::Key::Down)
+                lm::setGlobalScale(lm::globalScale() * 0.99f);
+            else
+                lm::Core::instance().stop();
+        }
     }
 
     void

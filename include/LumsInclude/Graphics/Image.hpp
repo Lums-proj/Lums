@@ -149,7 +149,7 @@ namespace lm
          * @param h The new buffer height
          * @param format The image format
          */
-        LUMS_EXPORTED void  setBuffer(unsigned char* buffer, unsigned int w, unsigned int h, GLenum format);
+        LUMS_EXPORTED void  setBuffer(unsigned char* buffer, unsigned int w, unsigned int h, GLenum format, float scale = 1.f);
 
         /**
          * Set the image scale when loaded.

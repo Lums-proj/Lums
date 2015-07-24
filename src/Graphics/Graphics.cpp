@@ -23,6 +23,7 @@ namespace lm
     {
         gScale = scale;
         lm::TextureProvider::instance().reloadAll();
+        lm::FontProvider::instance().reloadAll();
     }
     
     float

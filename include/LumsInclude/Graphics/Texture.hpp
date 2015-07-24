@@ -95,6 +95,8 @@ namespace lm
 
         void            pushAtlas(const std::string& path, bool resource = true);
 
+        void            resetAtlas() { _atlas.clear(); }
+
         /**
          * Get a rect from the atlas
          * @param i The atlas index
