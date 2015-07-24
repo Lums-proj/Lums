@@ -124,6 +124,9 @@ StaticSpriteBatch::draw(const Font& font, const char* text, Vector3f pos, Vector
 void
 StaticSpriteBatch::draw(const Skeleton& skeleton, const Texture& texture, Vector3f pos)
 {
+    float zOffset = 0;
+    float invZ = 0.1f / skeleton.skinCount();
+
     for (unsigned i = 0; i < skeleton.skins().size(); ++i)
     {
         const Skin& skin = skeleton.skins()[i];
@@ -132,10 +135,11 @@ StaticSpriteBatch::draw(const Skeleton& skeleton, const Texture& texture, Vector
         float h = frame.size.y * texture.height();
 
         Matrix4f mat = Matrix4f::identity();
-        translate(mat, { -w / 2.f, -h / 2.f, 0.f });
+        translate(mat, { -w / 2.f, -h / 2.f, zOffset });
         skeleton.transformSkin(mat, i);
         translate(mat, pos);
         draw(texture, skin.texture(), mat);
+        zOffset -= invZ;
     }
 }
 

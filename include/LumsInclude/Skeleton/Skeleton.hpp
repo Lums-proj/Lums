@@ -27,11 +27,12 @@ namespace lm
 
         void    setToPose();
         void    setFlip(bool flip) { _flipX = flip; };
-        void    setAnimation(const char* animation);
-        void    setAnimation(size_t animation);
+        void    setAnimation(const char* animation, bool loop = false);
+        void    setAnimation(size_t animation, bool loop = false);
         size_t  animation() const { return _animationHash; }
         void    transformBone(Matrix4f& matrix, int bone) const;
         void    transformSkin(Matrix4f& matrix, int skin) const;
+        size_t  skinCount() const { return _skins.size(); }
         void    update();
         void    applyIk(int target, int bone);
         void    applyIk(int target, int parent, int child, float duration);
@@ -46,7 +47,7 @@ namespace lm
         size_t                          _event;
         bool                            _flipX;
         bool                            _finished;
-
+        bool                            _loop;
     };
 }
 

@@ -50,14 +50,15 @@ Skeleton::setToPose()
 }
 
 void
-Skeleton::setAnimation(const char* animation)
+Skeleton::setAnimation(const char* animation, bool loop)
 {
-    setAnimation(sym(animation));
+    setAnimation(sym(animation), loop);
 }
 
 void
-Skeleton::setAnimation(size_t animation)
+Skeleton::setAnimation(size_t animation, bool loop)
 {
+    _loop = loop;
     _animationHash = animation;
     _finished = false;
     _frame = -1;
@@ -122,7 +123,12 @@ Skeleton::update()
     SkeletonPose::update();
     _event = _animation->getEvent(_frame);
     if (_frame == _animation->length)
-        _finished = true;
+    {
+        if (!_loop)
+            _finished = true;
+        else
+            _frame = -1;
+    }
 }
 
 void
