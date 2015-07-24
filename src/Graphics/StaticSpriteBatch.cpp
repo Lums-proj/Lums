@@ -111,14 +111,12 @@ StaticSpriteBatch::draw(const Font& font, const char* text, Vector3f pos, Vector
 {
     int i = 0;
     int c;
-    const float height = font.glyph('|').height;
 
     while ((c = text[i++]))
     {
         const Glyph& g = font.glyph(c);
-        const float baseline = pos.y - g.top + height;
 
-        draw(font.texture(), c, {pos.x + g.left, baseline, pos.z}, {1.f, 1.f}, color);
+        draw(font.texture(), c, {pos.x + g.left, pos.y, pos.z}, {1.f, 1.f}, color);
         pos.x += g.advance - g.kerning[i];
     }
 }

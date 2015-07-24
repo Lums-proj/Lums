@@ -25,7 +25,7 @@ public:
     load()
     {
         auto& shader = lm::ShaderProvider::instance().get(0);
-        _proj = lm::ortho(0, 400, 400, 0);
+        _proj = lm::ortho(0, 400, 0, 400);
         lm::uniform(shader, "proj", _proj);
     }
 

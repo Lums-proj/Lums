@@ -17,12 +17,9 @@ static void
 resizeApp(float scale)
 {
     auto& window = lm::Core::instance().window();
-    auto& tp = lm::TextureProvider::instance();
-    auto& ip = lm::ImageProvider::instance();
 
-    ip.set(0).setScale(scale);
     window.resize(400 * scale, 400 * scale);
-    tp.reloadAll();
+    lm::setGlobalScale(scale);
 }
 
 class Nyan : public lm::GameState
@@ -30,7 +27,6 @@ class Nyan : public lm::GameState
 public:
     Nyan()
     : _scale(1.f)
-    , _rot(0.f)
     {
         
     }
@@ -40,11 +36,8 @@ public:
     {
         auto& shader = lm::ShaderProvider::instance().get(0);
 
-        _proj = lm::ortho(0, 400, 400, 0);
+        _proj = lm::ortho(0, 400, 0, 400);
         lm::uniform(shader, "proj", _proj);
-        _mat = lm::Matrix4f::identity();
-        lm::translate(_mat, {100, 0, 0});
-        lm::rotate(_mat, 60, {0, 0, -1});
     }
 
     void
@@ -75,8 +68,6 @@ public:
                 _flip.y = !_flip.y;
             else if (event.key == lm::Key::Down)
                 _flip.x = !_flip.x;
-            else if (event.key == lm::Key::P)
-                _rot += 1.f;
             else
                 lm::Core::instance().stop();
         }
@@ -88,7 +79,7 @@ public:
         auto& tex = lm::TextureProvider::instance().get(0);
 
         _batch.begin();
-        _batch.draw(tex, 0, _mat);
+        _batch.draw(tex, 0, {0, 0, 0}, {2, 2}, {}, 0, {1, 1, 1, 1}, _flip);
         _batch.end();
     }
 
@@ -96,9 +87,7 @@ private:
     lm::SpriteBatch     _batch;
     lm::Matrix4f        _proj;
     float               _scale;
-    float               _rot;
     lm::Vector2b        _flip;
-    lm::Matrix4f        _mat;
 };
 
 int

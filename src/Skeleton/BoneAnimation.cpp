@@ -12,7 +12,6 @@
 /* ************************************************************************** */
 
 #include <cstdint>
-#include <iostream>
 #include <LumsInclude/Skeleton/BoneAnimation.hpp>
 #include <LumsInclude/Math/Math.hpp>
 
@@ -127,10 +126,7 @@ BoneAnimation::interpolateTranslation(int frame) const
     else
         alpha = float(frame - kf0.frame) / float(kf1.frame - kf0.frame);
     if (kf0.curve.type == KeyFrameCurve::Type::Bezier)
-    {
-        float p = alpha;
         alpha = bezier4(kf0.curve.c0, kf0.curve.c1, alpha);
-    }
     Vector2f t0 = kf0.translation;
     Vector2f t1 = kf1.translation;
     return t0 * (1 - alpha) + t1 * alpha;   

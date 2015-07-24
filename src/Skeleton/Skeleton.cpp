@@ -13,7 +13,6 @@
 
 #include <LumsInclude/Skeleton/Skeleton.hpp>
 #include <LumsInclude/Graphics/Graphics.hpp>
-#include <iostream>
 
 using namespace lm;
 
@@ -32,7 +31,6 @@ Skeleton::Skeleton(const SkeletonData& data)
     _data = &data;
     _bones = data.pose.bones();
     _skins = data.pose.skins();
-    //setToPose();
 }
 
 void

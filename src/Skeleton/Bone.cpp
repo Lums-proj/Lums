@@ -13,7 +13,6 @@
 
 #include <LumsInclude/Skeleton/Bone.hpp>
 #include <LumsInclude/Skeleton/SkeletonPose.hpp>
-#include <iostream>
 
 using namespace lm;
 
