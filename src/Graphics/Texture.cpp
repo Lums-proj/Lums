@@ -121,14 +121,18 @@ Texture::loaded() const
 void
 Texture::loadBinary(const BObject& object)
 {
-    char* path = object["path"].asString();
-    auto& atlas = object["atlas"].asArray();
-    int atlasWidth = atlas[0].asInt();
-    int atlasHeight = atlas[1].asInt();
-
     _image = new lm::Image;
+    char* path = object["path"].asString();
+    auto& atlas = object["atlas"];
+    if (atlas.isArray())
+    {
+        int atlasWidth = atlas.asArray()[0].asInt();
+        int atlasHeight = atlas.asArray()[1].asInt();
+        pushAtlas(atlasWidth, atlasHeight);
+    }
+    else if (atlas.isString())
+        pushAtlas(atlas.asString(), true);
     _image->setPath(path, true);
-    pushAtlas(atlasWidth, atlasHeight);
 }
 
 Texture::~Texture()

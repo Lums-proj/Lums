@@ -28,6 +28,7 @@ namespace lm
         void    setToPose();
         void    setFlip(bool flip) { _flipX = flip; };
         void    setAnimation(const char* animation);
+        void    setAnimation(size_t animation);
         void    transformBone(Matrix4f& matrix, int bone) const;
         void    transformSkin(Matrix4f& matrix, int skin) const;
         void    update();

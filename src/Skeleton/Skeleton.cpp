@@ -52,9 +52,15 @@ Skeleton::setToPose()
 void
 Skeleton::setAnimation(const char* animation)
 {
+    setAnimation(sym(animation));
+}
+
+void
+Skeleton::setAnimation(size_t animation)
+{
     _finished = false;
     _frame = -1;
-    _animation = &(_data->animations.at(sym(animation)));
+    _animation = &(_data->animations.at(animation));
     update();
 }
 
