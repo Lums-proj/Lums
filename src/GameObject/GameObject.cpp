@@ -56,7 +56,7 @@ void
 GameObject::update()
 {
     for (auto* c : _components)
-        c->update();
+        c->update(*this);
 }
 
 GameObject::~GameObject()

@@ -183,7 +183,7 @@ namespace lm
 		}
 
 		virtual void
-		update()
+		update(lm::GameObject& object)
 		{
 
 		}
