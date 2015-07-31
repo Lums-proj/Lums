@@ -50,14 +50,16 @@ Skeleton::setToPose()
 }
 
 void
-Skeleton::setAnimation(const char* animation, bool loop)
+Skeleton::setAnimation(const char* animation, bool loop, bool repeat)
 {
-    setAnimation(sym(animation), loop);
+    setAnimation(sym(animation), loop, repeat);
 }
 
 void
-Skeleton::setAnimation(size_t animation, bool loop)
+Skeleton::setAnimation(size_t animation, bool loop, bool repeat)
 {
+    if (!repeat && animation == _animationHash)
+        return;
     _loop = loop;
     _animationHash = animation;
     _finished = false;
