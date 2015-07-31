@@ -31,6 +31,7 @@ namespace lm
 		void			detach(const char* name) { detach(sym(name)); }
 		void			detach(size_t id);
 		void			init();
+		void			update();
 
 		template <typename... Ts>
 		void
@@ -56,22 +57,24 @@ namespace lm
 		bool
 		hasComponent(size_t id)
 		{
-			return getComponent(id) != nullptr;
+			return getComponent<void>(id) != nullptr;
 		}
 
-		Component*
+		template <typename T>
+		T*
 		getComponent(const char* name)
 		{
-			return getComponent(sym(name));
+			return getComponent<T>(sym(name));
 		}
 
-		Component*
+		template <typename T>
+		T*
 		getComponent(size_t id)
 		{
 			for (auto c : _components)
 			{
 				if (c->id() == id)
-					return c;
+					return static_cast<T*>(c);
 			}
 			return nullptr;
 		}

@@ -52,6 +52,13 @@ GameObject::init()
         c->init(*this);
 }
 
+void
+GameObject::update()
+{
+    for (auto* c : _components)
+        c->update();
+}
+
 GameObject::~GameObject()
 {
     for (auto c : _components)

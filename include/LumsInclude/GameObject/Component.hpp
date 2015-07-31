@@ -182,6 +182,12 @@ namespace lm
 			(this->*ccb)(go, std::forward<Ts>(params)...);
 		}
 
+		virtual void
+		update()
+		{
+
+		}
+
 		/**
 		 * Pure virtual dtor
 		 */
