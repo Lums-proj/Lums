@@ -142,9 +142,7 @@ class Spiner
         bone[:bone] = @bones.find_index {|b| b[1] == k}
         bone[:rotate] = []
         bone[:translate] = []
-        # 0 for rotation
-        # 1 for translation
-        # 2 for scale
+        bone[:ik] = []
         if v['rotate']
           v['rotate'].each do |vv|
             rot = {}
@@ -190,6 +188,25 @@ class Spiner
           events << event
         end
       end
+      if value['ik']
+        p value['ik']
+        value['ik'].each do |name, v|
+          bone = bones.find {|b| b[:bone] ==  @bones.find_index {|b| b[1] == name}}
+          v.each do |vv|
+            ik = {}
+            time = (vv['time'] * 100.0).round.to_i
+            bend = vv['bendPositive'].nil? ? 1 : (vv['bendPositive'] ? 1 : 0)
+            curve = 0
+            curve = 1 if vv['curve'] == "stepped"
+            curve = 2 if vv['curve'].class == Array
+            ik[:time] = time
+            ik[:bend] = bend
+            ik[:curve] = curve
+            ik[:bezier] = vv['curve'] if curve == 2
+            bone[:ik] << ik
+          end
+        end
+      end
       anim[:bones] = bones
       anim[:events] = events
       @animations << anim
@@ -206,7 +223,8 @@ class Spiner
         id = bone[:bone]
         rotate = bone[:rotate]
         translate = bone[:translate]
-        buffer << [id, rotate.size, translate.size].pack('L<L<L<')
+        ik = bone[:ik]
+        buffer << [id, rotate.size, translate.size, ik.size].pack('L<L<L<L<')
         rotate.each do |rot|
           buffer << [rot[:time], rot[:angle], rot[:curve]].pack('L<FC')
           if rot[:curve] == 2
@@ -217,6 +235,13 @@ class Spiner
           buffer << [t[:time], t[:x], t[:y], t[:curve]].pack('L<FFC')
           if t[:curve] == 2
             buffer << t[:bezier].pack('L<L<L<L<')
+          end
+        end
+        p ik
+        ik.each do |i|
+          buffer << [i[:time], i[:bend], i[:curve]].pack('L<CC')
+          if i[:curve] == 2
+            buffer << i[:bezier].pack('L<L<L<L<')
           end
         end
       end

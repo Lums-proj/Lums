@@ -23,13 +23,16 @@ BoneAnimation::loadFromFile(std::ifstream& file)
     uint32_t boneId;
     uint32_t rotationCount;
     uint32_t translationCount;
+    uint32_t ikCount;
 
     file.read((char*)&boneId, 4);
     file.read((char*)&rotationCount, 4);
     file.read((char*)&translationCount, 4);
+    file.read((char*)&ikCount, 4);
     bone = boneId;
     rotations.resize(rotationCount);
     translations.resize(translationCount);
+    iks.resize(ikCount);
     for (unsigned i = 0; i < rotationCount; ++i)
     {
         auto& r = rotations[i];
@@ -56,6 +59,19 @@ BoneAnimation::loadFromFile(std::ifstream& file)
         t.frame = frame;
         t.translation = translation;
         t.curve.loadFromFile(file);
+    }
+    for (unsigned i = 0; i < ikCount; ++i)
+    {
+        auto& ik = iks[i];
+
+        uint32_t    frame;
+        char        bendPositive;
+
+        file.read((char*)&frame, 4);
+        file.read(&bendPositive, 1);
+        ik.frame = frame;
+        ik.bendPositive = bendPositive;
+        ik.curve.loadFromFile(file);
     }
 }
 
@@ -130,4 +146,14 @@ BoneAnimation::interpolateTranslation(int frame) const
     Vector2f t0 = kf0.translation;
     Vector2f t1 = kf1.translation;
     return t0 * (1 - alpha) + t1 * alpha;   
+}
+
+bool
+BoneAnimation::interpolateIk(int frame) const
+{
+    int keyFrame = lookupKeyFrame(iks, frame);
+    if (keyFrame == -1)
+        return iks.back().bendPositive;
+    const auto& kf0 = iks[keyFrame];
+    return kf0.bendPositive;  
 }

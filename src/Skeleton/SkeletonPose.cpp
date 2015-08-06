@@ -84,6 +84,12 @@ SkeletonPose::loadFromFile(std::ifstream& file)
         s.setPosition(position);
         _skins.push_back(s);
     }
+
+    uint32_t ikCount;
+    file.read((char*)&ikCount, 4);
+    _iks.resize(ikCount);
+    for (auto& ik : _iks)
+        ik.loadFromFile(file);
     update();
 }
 

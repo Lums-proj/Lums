@@ -19,7 +19,6 @@
 #include <unordered_map>
 #include <LumsInclude/Skeleton/SkeletonPose.hpp>
 #include <LumsInclude/Skeleton/SkeletonAnimation.hpp>
-#include <LumsInclude/Skeleton/SkeletonIK.hpp>
 
 namespace lm
 {
@@ -28,7 +27,6 @@ namespace lm
         void    loadFromFile(std::ifstream& file);
 
         SkeletonPose                                    pose;
-        std::vector<SkeletonIK>                         iks;
         std::unordered_map<size_t, SkeletonAnimation>   animations;
     };
 }

@@ -13,6 +13,7 @@
 
 #include <LumsInclude/Skeleton/Skeleton.hpp>
 #include <LumsInclude/Graphics/Graphics.hpp>
+#include <iostream>
 
 using namespace lm;
 
@@ -31,21 +32,15 @@ Skeleton::Skeleton(const SkeletonData& data)
     _data = &data;
     _bones = data.pose.bones();
     _skins = data.pose.skins();
+    _iks = data.pose.iks();
 }
 
 void
 Skeleton::setToPose()
 {
-    for (auto& b : _bones)
-    {
-        b.setRotation(0.f);
-        b.setPosition({0.f, 0.f});
-    }
-    for (auto& s : _skins)
-    {
-        s.setRotation(0.f);
-        s.setPosition({0.f, 0.f});
-    }
+    _bones = _data->pose.bones();
+    _skins = _data->pose.skins();
+    _iks = _data->pose.iks();
     SkeletonPose::update();
 }
 
@@ -99,6 +94,9 @@ Skeleton::transformSkin(Matrix4f& matrix, int skin) const
 void
 Skeleton::update()
 {
+    if (!_animation)
+        return;
+
     const auto& bones = _animation->bones;
     const unsigned max = bones.size();
 
@@ -115,12 +113,18 @@ Skeleton::update()
         _bones[bone].setPosition(_data->pose.bones()[bone].position() + translation);
     }
     SkeletonPose::update();
-    for (auto& ik : _data->iks)
+    for (auto& ik : _iks)
     {
+        bool bendPositive;
+
+        if (bones[ik.target].hasIk())
+            bendPositive = bones[ik.target].interpolateIk(_frame);
+        else
+            bendPositive = ik.bendPositive;
         if (ik.bones[1] == -1)
             applyIk(ik.target, ik.bones[0]);
         else
-            applyIk(ik.target, ik.bones[0], ik.bones[1], (ik.bendPositive ? 1.f : -1.f));
+            applyIk(ik.target, ik.bones[0], ik.bones[1], (bendPositive ? 1.f : -1.f));
     }
     SkeletonPose::update();
     _event = _animation->getEvent(_frame);
