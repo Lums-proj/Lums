@@ -41,6 +41,7 @@
 #include <LumsInclude/Core/GameState.hpp>
 #include <LumsInclude/GameObject/Component.hpp>
 #include <LumsInclude/GameObject/GameObject.hpp>
+#include <LumsInclude/GameObject/GameObjectSet.hpp>              
 #include <LumsInclude/GameObject/GameObjectTemplate.hpp>
 #include <LumsInclude/ExportDll.hpp>
 #include <LumsInclude/Graphics/Event.hpp>

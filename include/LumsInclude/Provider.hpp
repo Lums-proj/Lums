@@ -11,8 +11,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PROVIDER_HPP
-#define PROVIDER_HPP
+#ifndef LUMS_PROVIDER_HPP
+#define LUMS_PROVIDER_HPP
 
 #include <unordered_map>
 #include <iterator>
