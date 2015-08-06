@@ -28,6 +28,7 @@ namespace lm
 
         void            parse(std::ifstream& file);
         const BValue&   operator[](int i) const { return _values[i]; }
+        int             size() const { return _size; }
         ~BArray();
 
     private:

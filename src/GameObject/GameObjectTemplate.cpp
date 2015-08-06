@@ -13,6 +13,7 @@
 
 #include <LumsInclude/GameObject/GameObjectTemplate.hpp>
 #include <LumsInclude/Binary/BObject.hpp>
+#include <LumsInclude/Binary/BArray.hpp>
 
 using namespace lm;
 
@@ -33,6 +34,12 @@ GameObjectTemplate::loadBinary(const BObject& object)
     auto& components = object["components"].asObject();
     for (auto c : components)
         _components[sym(c.first)] = c.second.asObject();
+    if (object.hasProperty("tags"))
+    {
+        auto& tags = object["tags"].asArray();
+        for (unsigned i = 0; i < tags.size(); ++i)
+            _tags.push_back(sym(tags[i].asString()));
+    }
 }
 
 GameObject*
@@ -44,6 +51,8 @@ GameObjectTemplate::operator()()
         Component* c = go->attach(o.first);
         c->loadBinary(o.second);
     }
+    for (auto t : _tags)
+        go->setTag(t);
     go->init();
     return go;
 }

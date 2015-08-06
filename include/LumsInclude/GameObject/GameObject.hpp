@@ -15,6 +15,7 @@
 #define LUMS_GAME_OBJECT_HPP
 
 #include <vector>
+#include <unordered_set>
 #include <functional>
 #include <type_traits>
 #include <LumsInclude/GameObject/Component.hpp>
@@ -79,6 +80,12 @@ namespace lm
 			return nullptr;
 		}
 
+        bool    hasTag(const char* tag) const { return _tags.find(sym(tag)) != _tags.end(); }
+        void    setTag(const char* tag) { setTag(sym(tag)); }
+        void    setTag(size_t tag) { _tags.insert(tag); }
+        void    clearTag(const char* tag) { clearTag(sym(tag)); }
+        void    clearTag(size_t tag) { _tags.erase(tag); }
+
 		~GameObject();
 
 		Vector3f position;
@@ -86,7 +93,8 @@ namespace lm
 		Vector3f scale;
 
 	private:
-		std::vector<Component*>	_components;
+		std::vector<Component*>	    _components;
+        std::unordered_set<size_t>  _tags;
 	};
 }
 

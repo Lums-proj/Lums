@@ -80,6 +80,29 @@ namespace lm
             return *object;
         }
 
+        GameObject*
+        getObjectByTag(const char* tag)
+        {
+            for (auto object : _gameObjects)
+            {
+                if (object->hasTag(tag))
+                    return object;
+            }
+            return nullptr;
+        }
+
+        std::vector<GameObject*>
+        getObjectsByTag(const char* tag)
+        {
+            std::vector<GameObject*> objects;
+            for (auto object : _gameObjects)
+            {
+                if (object->hasTag(tag))
+                    objects.push_back(object);
+            }
+            return objects;
+        }
+
     private:
         container_type    _gameObjects;  
     };

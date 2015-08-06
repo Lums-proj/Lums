@@ -32,6 +32,7 @@ namespace lm
 
     private:
         std::unordered_map<size_t, BObject>     _components;
+        std::vector<size_t>                     _tags;
     };
 }
 

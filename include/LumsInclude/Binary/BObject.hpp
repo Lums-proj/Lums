@@ -47,6 +47,18 @@ namespace lm
         Iterator    begin() const { return Iterator(*this, 0); }
         Iterator    end() const { return Iterator(*this, _size); }
         void        parse(std::ifstream& file);
+        
+        bool
+        hasProperty(const char* str) const
+        {
+            for (int i = 0; i < _size; ++i)
+            {
+                if (strcmp(_values[i].first, str) == 0)
+                    return true;
+            }
+            return false;
+        }
+
         const BValue& operator[](const char* str) const;
         ~BObject();
 
