@@ -1,0 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*    Math                                           oooooo       oooooo      */
+/*                                                 oooooooooo   oooooooooo    */
+/*                                                         o%%%%%o            */
+/*                                                         %:::::%            */
+/*                                                        %:::::::%           */
+/*    This file is part of the                             %:::::%            */
+/*    Lums library.                                         %%%%%             */
+/*    (c) 2013 - 2015                                                         */
+/* ************************************************************************** */
+
+#ifndef LUMS_MATH_
+#define LUMS_MATH_
+
+#include <Lums/Math.d/Vector.hpp>
+
+#endif
