@@ -98,6 +98,33 @@ namespace lm
                 T               _data[4];
             };
         };
+
+        template <typename T, int Size, typename... Ts>
+        struct VectorInit
+        {
+            static void init(T* data)
+            {
+                *data = T();
+                VectorInit<T, Size - 1>::init(data + 1);
+            }
+        };
+
+        template <typename T>
+        struct VectorInit <T, 0>
+        {
+            static void init(T* data) {}
+        };
+
+        template <typename T, int Size, typename... Ts>
+        struct VectorInit <T, Size, typename ParamTraits<T>::const_type, Ts...>
+        {
+            static_assert(Size > 0, "too many parameters");
+            static void init(T* data, typename ParamTraits<T>::const_type head, Ts... values)
+            {
+                *data = head;
+                VectorInit<T, Size - 1, Ts...>::init(data + 1, values...);
+            };
+        };
     }
 
     template <int N, typename T>
@@ -116,12 +143,10 @@ namespace lm
                 this->_data[i] = T();
         }
 
-        explicit Vector(const Vector<N, T>& rhs)
+        template <typename... Ts>
+        Vector(Ts... values)
         {
-            for (int i = 0; i < N; ++i)
-            {
-
-            }
+            priv::VectorInit<T, N, Ts...>::init(this->_data, values...);
         }
 
         reference_type operator[](int i)
