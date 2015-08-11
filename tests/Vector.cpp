@@ -23,3 +23,10 @@ XTEST("vector param incomplete construction") {
     XASSERT_EQ(v.z, 0, "z member init");
     XASSERT_EQ(v.w, 0, "w member init");
 }
+
+XTEST("vector param vector construction") {
+    lm::Vector3i v(lm::Vector2i(1, 2), 3);
+    XASSERT_EQ(v.x, 1, "x member init");
+    XASSERT_EQ(v.y, 2, "y member init");
+    XASSERT_EQ(v.z, 3, "z member init");
+}

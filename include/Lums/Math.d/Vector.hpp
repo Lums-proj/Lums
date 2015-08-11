@@ -17,6 +17,9 @@
 
 namespace lm
 {
+    template <int, typename>
+    class Vector;
+
     namespace priv
     {
         template <int N, typename T>
@@ -99,31 +102,27 @@ namespace lm
             };
         };
 
-        template <typename T, int Size, typename... Ts>
-        struct VectorInit
-        {
-            static void init(T* data)
-            {
-                *data = T();
-                VectorInit<T, Size - 1>::init(data + 1);
-            }
-        };
-
-        template <typename T>
-        struct VectorInit <T, 0>
-        {
-            static void init(T* data) {}
-        };
-
-        template <typename T, int Size, typename... Ts>
-        struct VectorInit <T, Size, typename ParamTraits<T>::const_type, Ts...>
-        {
-            static_assert(Size > 0, "too many parameters");
-            static void init(T* data, typename ParamTraits<T>::const_type head, Ts... values)
-            {
+        template <typename T, int Size>
+        struct VectorInit {
+            template <typename... Ts>
+            static void init(T* data, typename ParamTraits<T>::const_type head, Ts... values) {
+                static_assert(Size >= 1, "too many parameters");
                 *data = head;
-                VectorInit<T, Size - 1, Ts...>::init(data + 1, values...);
-            };
+                VectorInit<T, Size - 1>::init(data + 1, values...);
+            }
+
+            template <int NN, typename TT, typename... Ts>
+            static void init(T* data, const Vector<NN, TT>& vect, Ts... values) {
+                static_assert(Size >= NN, "too many parameters");
+                for (unsigned i = 0; i < NN; ++i)
+                    data[i] = vect[i];
+                VectorInit<T, Size - NN>::init(data + NN, values...);
+            }
+
+            static void init(T* data) {
+                for (unsigned i = 0; i < Size; ++i)
+                    data[i] = T();
+            }
         };
     }
 
@@ -131,6 +130,8 @@ namespace lm
     class Vector : public priv::VectorData<N, T>
     {
     public:
+        enum  { size = N };
+
         using type              = T;
         using const_type        = typename ParamTraits<T>::const_type;
         using reference_type    = T&;
@@ -146,7 +147,14 @@ namespace lm
         template <typename... Ts>
         Vector(Ts... values)
         {
-            priv::VectorInit<T, N, Ts...>::init(this->_data, values...);
+            priv::VectorInit<T, N>::init(this->_data, values...);
+        }
+
+        template <typename TT>
+        Vector<N, T>&   operator=(const Vector<N, TT>& rhs)
+        {
+            for (unsigned i = 0; i < N; ++i)
+                this->_data[i] = rhs._data[i];
         }
 
         reference_type operator[](int i)
