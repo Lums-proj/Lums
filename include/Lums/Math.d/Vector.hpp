@@ -144,8 +144,20 @@ namespace lm
                 this->_data[i] = T();
         }
 
+        template <int NN, typename TT>
+        explicit Vector(const Vector<NN, TT>& rhs)
+        {
+            for (unsigned i = 0; i < N; ++i)
+            {
+                if (i < NN)
+                    this->_data[i] = T(rhs._data[i]);
+                else
+                    this->_data[i] = T();
+            }
+        }
+
         template <typename... Ts>
-        Vector(Ts... values)
+        explicit Vector(Ts... values)
         {
             priv::VectorInit<T, N>::init(this->_data, values...);
         }
@@ -171,6 +183,13 @@ namespace lm
         {
             for (int i = 0; i < N; ++i)
                 this->_data[i] += rhs;
+            return *this;
+        }
+
+        Vector<N, T>& operator+=(const Vector<N, T>& rhs)
+        {
+            for (unsigned i = 0; i < N; ++i)
+                this->_data[i] += rhs._data[i];
             return *this;
         }
 
@@ -209,6 +228,14 @@ namespace lm
     {
         Vector<N, T> v(rhs);
         v += lhs;
+        return v;
+    }
+
+    template <int N, typename T>
+    Vector<N, T> operator+(const Vector<N, T>& lhs, const Vector<N, T>& rhs)
+    {
+        Vector<N, T> v(lhs);
+        v += rhs;
         return v;
     }
 
