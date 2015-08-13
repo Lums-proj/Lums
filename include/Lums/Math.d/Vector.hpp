@@ -17,36 +17,28 @@
 #include <initializer_list>
 #include <Lums/Util.d/ParamTraits.hpp>
 
-namespace lm
-{
+namespace lm {
     template <int, typename>
     class Vector;
 
-    namespace priv
-    {
+    namespace priv {
         template <int N, typename T>
-        struct VectorData
-        {
+        struct VectorData {
             T   _data[N];
         };
 
         template <typename T>
-        struct VectorData<1, T>
-        {
-            union
-            {
+        struct VectorData<1, T> {
+            union {
                 T   x;
                 T   _data[1];
             };
         };
 
         template <typename T>
-        struct VectorData<2, T>
-        {
-            union
-            {
-                struct
-                {
+        struct VectorData<2, T> {
+            union {
+                struct {
                     T   x;
                     T   y;
                 };
@@ -55,12 +47,9 @@ namespace lm
         };
 
         template <typename T>
-        struct VectorData<3, T>
-        {
-            union
-            {
-                struct
-                {
+        struct VectorData<3, T> {
+            union {
+                struct {
                     T           x;
                     T           y;
                     T           z;
@@ -70,12 +59,9 @@ namespace lm
         };
 
         template <typename T>
-        struct VectorData<4, T>
-        {
-            union
-            {
-                struct
-                {
+        struct VectorData<4, T> {
+            union {
+                struct {
                     T           x;
                     T           y;
                     T           z;
@@ -110,8 +96,7 @@ namespace lm
     }
 
     template <int N, typename T>
-    class Vector : public priv::VectorData<N, T>
-    {
+    class Vector : public priv::VectorData<N, T> {
     public:
         enum  { size = N };
 
@@ -121,8 +106,7 @@ namespace lm
 
         static_assert(N > 0, "Vectors must have a positive, nonzero size.");
 
-        Vector()
-        {
+        Vector() {
             for (unsigned i = 0; i< N; ++i)
                 this->_data[i] = T();
         }
@@ -140,10 +124,8 @@ namespace lm
         }
 
         template <int NN, typename TT>
-        explicit Vector(const Vector<NN, TT>& rhs)
-        {
-            for (unsigned i = 0; i < N; ++i)
-            {
+        explicit Vector(const Vector<NN, TT>& rhs) {
+            for (unsigned i = 0; i < N; ++i) {
                 if (i < NN)
                     this->_data[i] = T(rhs._data[i]);
                 else
@@ -152,16 +134,13 @@ namespace lm
         }
 
         template <typename... Ts>
-        explicit Vector(Ts... values)
-        {
+        explicit Vector(Ts... values) {
             priv::VectorInit<T, N>::init(this->_data, values...);
         }
 
         template <int NN, typename TT>
-        Vector<N, T>&   operator=(const Vector<NN, TT>& rhs)
-        {
-            for (unsigned i = 0; i < N; ++i)
-            {
+        Vector<N, T>&   operator=(const Vector<NN, TT>& rhs) {
+            for (unsigned i = 0; i < N; ++i) {
                 if (i < NN)
                     this->_data[i] = T(rhs._data[i]);
                 else
