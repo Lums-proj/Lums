@@ -34,7 +34,8 @@
                                 close(_xpipe_);                                 \
                                 exit(1);                                        \
                             }
-
+#define XASSERT_TRUE(a, msg)     XASSERT(a == true, msg)
+#define XASSERT_FALSE(a, msg)    XASSERT(a == false, msg)
 #define XASSERT_EQ(a, b, msg)    XASSERT(a == b, msg)
 #define XASSERT_NEQ(a, b, msg)   XASSERT(a != b, msg)
 #define XASSERT_LT(a, b, msg)    XASSERT(a < b, msg)

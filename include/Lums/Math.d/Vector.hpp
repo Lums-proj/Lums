@@ -13,6 +13,8 @@
 #ifndef LUMS_MATH_VECTOR_HPP
 #define LUMS_MATH_VECTOR_HPP
 
+#include <cmath>
+#include <initializer_list>
 #include <Lums/Util.d/ParamTraits.hpp>
 
 namespace lm
@@ -34,7 +36,6 @@ namespace lm
             union
             {
                 T   x;
-                T   r;
                 T   _data[1];
             };
         };
@@ -48,11 +49,6 @@ namespace lm
                 {
                     T   x;
                     T   y;
-                };
-                struct
-                {
-                    T   r;
-                    T   g;
                 };
                 T       _data[2];
             };
@@ -69,12 +65,6 @@ namespace lm
                     T           y;
                     T           z;
                 };
-                struct
-                {
-                    T           r;
-                    T           g;
-                    T           b;
-                };
                 T               _data[3];
             };
         };
@@ -90,13 +80,6 @@ namespace lm
                     T           y;
                     T           z;
                     T           w;
-                };
-                struct
-                {
-                    T           r;
-                    T           g;
-                    T           b;
-                    T           a;
                 };
                 T               _data[4];
             };
@@ -144,6 +127,18 @@ namespace lm
                 this->_data[i] = T();
         }
 
+        Vector(std::initializer_list<T> l) {
+            auto it = l.begin();
+            for (unsigned i = 0; i < N; ++i) {
+                if (it != l.end()) {
+                    this->_data[i] = *it;
+                    ++it;
+                } else {
+                    this->_data[i] = T();
+                }
+            }
+        }
+
         template <int NN, typename TT>
         explicit Vector(const Vector<NN, TT>& rhs)
         {
@@ -152,7 +147,7 @@ namespace lm
                 if (i < NN)
                     this->_data[i] = T(rhs._data[i]);
                 else
-                    this->_data[i] = T();
+                    this->_data[i] = T(TT());
             }
         }
 
@@ -162,81 +157,185 @@ namespace lm
             priv::VectorInit<T, N>::init(this->_data, values...);
         }
 
-        template <typename TT>
-        Vector<N, T>&   operator=(const Vector<N, TT>& rhs)
+        template <int NN, typename TT>
+        Vector<N, T>&   operator=(const Vector<NN, TT>& rhs)
         {
             for (unsigned i = 0; i < N; ++i)
-                this->_data[i] = rhs._data[i];
+            {
+                if (i < NN)
+                    this->_data[i] = T(rhs._data[i]);
+                else
+                    this->_data[i] = T(TT());
+            }
         }
 
-        reference_type operator[](int i)
-        {
+        reference_type operator[](int i) {
             return this->_data[i];
         }
 
-        const_type operator[](int i) const
-        {
+        const_type operator[](int i) const {
             return this->_data[i];
         }
 
-        Vector<N, T>& operator+=(const_type rhs)
-        {
+        Vector<N, T> operator+() const {
+            return *this;
+        }
+
+        Vector<N, T> operator-() const {
+            Vector<N, T> v;
+            for (unsigned i = 0; i < N; ++i)
+                v._data[i] = -(this->_data[i]);
+            return v;
+        }
+
+        Vector<N, T>& operator+=(const_type rhs) {
             for (int i = 0; i < N; ++i)
                 this->_data[i] += rhs;
             return *this;
         }
 
-        Vector<N, T>& operator+=(const Vector<N, T>& rhs)
-        {
+        Vector<N, T>& operator+=(const Vector<N, T>& rhs) {
             for (unsigned i = 0; i < N; ++i)
                 this->_data[i] += rhs._data[i];
             return *this;
         }
 
-        Vector<N, T>& operator-=(const_type rhs)
-        {
+        Vector<N, T>& operator-=(const_type rhs) {
             for (int i = 0; i < N; ++i)
                 this->_data[i] -= rhs;
             return *this;
         }
 
-        Vector<N, T>& operator*=(const_type rhs)
-        {
+        Vector<N, T>& operator-=(const Vector<N, T>& rhs) {
+            for (unsigned i = 0; i < N; ++i)
+                this->_data[i] -= rhs._data[i];
+            return *this;
+        }
+
+        Vector<N, T>& operator*=(const_type rhs) {
             for (int i = 0; i < N; ++i)
                 this->_data[i] *= rhs;
             return *this;
         }
 
-        Vector<N, T>& operator/=(const_type rhs)
-        {
+        Vector<N, T>& operator*=(const Vector<N, T>& rhs) {
+            for (unsigned i = 0; i < N; ++i)
+                this->_data[i] *= rhs._data[i];
+            return *this;
+        }
+
+        Vector<N, T>& operator/=(const_type rhs) {
             for (int i = 0; i < N; ++i)
                 this->_data[i] /= rhs;
+            return *this;
+        }
+
+        Vector<N, T>& operator/=(const Vector<N, T>& rhs) {
+            for (unsigned i = 0; i < N; ++i)
+                this->_data[i] /= rhs._data[i];
             return *this;
         }
     };
 
     template <int N, typename T>
-    Vector<N, T> operator+(const Vector<N, T>& lhs, typename ParamTraits<T>::const_type rhs)
-    {
+    bool operator==(const Vector<N, T>& lhs, const Vector<N, T>& rhs) {
+        for (unsigned i = 0; i < N; ++i) {
+            if (lhs[i] != rhs[i])
+                return false;
+        }
+        return true;
+    }
+
+    template <int N, typename T>
+    bool operator!=(const Vector<N, T>& lhs, const Vector<N, T>& rhs) {
+        return !(lhs == rhs);
+    }
+
+    template <int N, typename T>
+    Vector<N, T> operator+(const Vector<N, T>& lhs, typename ParamTraits<T>::const_type rhs) {
         Vector<N, T> v(lhs);
         v += rhs;
         return v;
     }
 
     template <int N, typename T>
-    Vector<N, T> operator+(typename ParamTraits<T>::const_type lhs, const Vector<N, T>& rhs)
-    {
+    Vector<N, T> operator+(const Vector<N, T>& lhs, const Vector<N, T>& rhs) {
+        Vector<N, T> v(lhs);
+        v += rhs;
+        return v;
+    }
+
+    template <int N, typename T>
+    Vector<N, T> operator-(const Vector<N, T>& lhs, typename ParamTraits<T>::const_type rhs) {
+        Vector<N, T> v(lhs);
+        v -= rhs;
+        return v;
+    }
+
+    template <int N, typename T>
+    Vector<N, T> operator-(const Vector<N, T>& lhs, const Vector<N, T>& rhs) {
+        Vector<N, T> v(lhs);
+        v -= rhs;
+        return v;
+    }
+
+    template <int N, typename T>
+    Vector<N, T> operator*(const Vector<N, T>& lhs, typename ParamTraits<T>::const_type rhs) {
+        Vector<N, T> v(lhs);
+        v *= rhs;
+        return v;
+    }
+
+    template <int N, typename T>
+    Vector<N, T> operator*(typename ParamTraits<T>::const_type lhs, const Vector<N, T>& rhs) {
         Vector<N, T> v(rhs);
-        v += lhs;
+        v *= lhs;
         return v;
     }
 
     template <int N, typename T>
-    Vector<N, T> operator+(const Vector<N, T>& lhs, const Vector<N, T>& rhs)
-    {
+    Vector<N, T> operator*(const Vector<N, T>& lhs, const Vector<N, T>& rhs) {
         Vector<N, T> v(lhs);
-        v += rhs;
+        v *= rhs;
         return v;
+    }
+
+    template <int N, typename T>
+    Vector<N, T> operator/(const Vector<N, T>& lhs, typename ParamTraits<T>::const_type rhs) {
+        Vector<N, T> v(lhs);
+        v /= rhs;
+        return v;
+    }
+
+    template <int N, typename T>
+    Vector<N, T> operator/(const Vector<N, T>& lhs, const Vector<N, T>& rhs) {
+        Vector<N, T> v(lhs);
+        v /= rhs;
+        return v;
+    }
+
+    template <int N, typename T>
+    bool null(const Vector<N, T>& vector) {
+        for (unsigned i = 0; i < N; ++i) {
+            if (vector[i] != T())
+                return false;
+        }
+        return true;
+    }
+
+    template <int N, typename T>
+    float squareLength(const Vector<N, T>& lhs, const Vector<N, T>& rhs = Vector<N, T>()) {
+        float length = 0.f;
+        for (unsigned i = 0; i < N; ++i) {
+            T delta = rhs[i] - lhs[i];
+            length += float(delta * delta);
+        }
+        return length;
+    }
+
+    template <int N, typename T>
+    float length(const Vector<N, T>& lhs, const Vector<N, T>& rhs = Vector<N, T>()) {
+        return std::sqrtf(squareLength(lhs, rhs));
     }
 
     using Vector1f = Vector<1, float>;

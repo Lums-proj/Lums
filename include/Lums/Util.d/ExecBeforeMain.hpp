@@ -20,17 +20,20 @@
 #endif
 
 #define EXEC_BEFORE_MAIN    static void LUMS_CONCAT(lums_before_main, __LINE__)();  \
-                            static ::lm::ExecBeforeMain LUMS_CONCAT(lums_before_main_obj, __LINE__) \
+                            static ::lm::priv::ExecBeforeMain LUMS_CONCAT(lums_before_main_obj, __LINE__) \
                             (LUMS_CONCAT(lums_before_main, __LINE__)); \
                             static void LUMS_CONCAT(lums_before_main, __LINE__)()
 
 namespace lm
 {
-    struct ExecBeforeMain {
-        ExecBeforeMain(void(*ptr)()) {
-            ptr();
-        }
-    };
+    namespace priv
+    {
+        struct ExecBeforeMain {
+            ExecBeforeMain(void(*ptr)()) {
+                ptr();
+            }
+        };
+    }
 }
 
 #endif

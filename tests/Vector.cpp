@@ -68,3 +68,81 @@ XTEST("vector addition") {
     XASSERT_EQ(v.z, 8, "z member");
     XASSERT_EQ(v.w, 0, "w member");
 }
+
+XTEST("vector scalar addition") {
+    lm::Vector2i v(1, 5);
+    v += 7;
+    XASSERT_EQ(v.x, 8, "x member");
+    XASSERT_EQ(v.y, 12, "y member");
+}
+
+XTEST("vector substraction") {
+    lm::Vector2i v{5, 3};
+    v -= {4, 8};
+    XASSERT_EQ(v.x, 1, "x member");
+    XASSERT_EQ(v.y, -5, "y member");
+}
+
+XTEST("vector scalar substraction") {
+    lm::Vector2i v(1, 5);
+    v -= 7;
+    XASSERT_EQ(v.x, -6, "x member");
+    XASSERT_EQ(v.y, -2, "y member");
+}
+
+XTEST("vector product") {
+    lm::Vector2i v{5, 3};
+    v *= {4, 8};
+    XASSERT_EQ(v.x, 20, "x member");
+    XASSERT_EQ(v.y, 24, "y member");
+}
+
+XTEST("vector scalar product") {
+    lm::Vector2i v(1, 5);
+    v *= 7;
+    XASSERT_EQ(v.x, 7, "x member");
+    XASSERT_EQ(v.y, 35, "y member");
+}
+
+XTEST("vector quotient") {
+    lm::Vector2i v{20, 9};
+    v /= {5, 3};
+    XASSERT_EQ(v.x, 4, "x member");
+    XASSERT_EQ(v.y, 3, "y member");
+}
+
+XTEST("vector scalar quotient") {
+    lm::Vector2i v(30, 15);
+    v /= 5;
+    XASSERT_EQ(v.x, 6, "x member");
+    XASSERT_EQ(v.y, 3, "y member");
+}
+
+XTEST("vector unary plus") {
+    lm::Vector2i v(1, 2);
+    XASSERT_EQ((+v).x, 1, "x member");
+    XASSERT_EQ((+v).y, 2, "y member");
+}
+
+XTEST("vector unary minus") {
+    lm::Vector2i v(1, 2);
+    XASSERT_EQ((-v).x, -1, "x member");
+    XASSERT_EQ((-v).y, -2, "y member");
+}
+
+XTEST("vector equality") {
+    lm::Vector2i v(1, 2);
+    lm::Vector2i vv(v);
+    XASSERT_EQ(v, vv, "vector equal");
+}
+
+XTEST("vector inequality") {
+    lm::Vector2i v(1, 2);
+    lm::Vector2i vv(-v);
+    XASSERT_NEQ(v, vv, "vector not equal");
+}
+
+XTEST("null vector") {
+    XASSERT_TRUE(lm::null(lm::Vector2i()), "null vector");
+    XASSERT_FALSE(lm::null(lm::Vector2i(1, 2)), "not null vector");
+}
