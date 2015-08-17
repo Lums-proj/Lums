@@ -1,0 +1,3 @@
+#include "xtest.hpp"
+
+XMAIN

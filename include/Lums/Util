@@ -1,0 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*    Util                                           oooooo       oooooo      */
+/*                                                 oooooooooo   oooooooooo    */
+/*                                                         o%%%%%o            */
+/*                                                         %:::::%            */
+/*                                                        %:::::::%           */
+/*    This file is part of the                             %:::::%            */
+/*    Lums library.                                         %%%%%             */
+/*    (c) 2013 - 2015                                                         */
+/* ************************************************************************** */
+
+#ifndef LUMS_UTIL_
+#define LUMS_UTIL_
+
+#include <Lums/Util.d/ExecBeforeMain.hpp>
+#include <Lums/Util.d/Macros.hpp>
+#include <Lums/Util.d/ParamTraits.hpp>
+
+#endif
