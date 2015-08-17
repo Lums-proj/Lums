@@ -1,6 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*    Util                                           oooooo       oooooo      */
+/*    Core                                           oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -10,12 +10,10 @@
 /*    (c) 2013 - 2015                                                         */
 /* ************************************************************************** */
 
-#ifndef LUMS_UTIL_
-#define LUMS_UTIL_
+#ifndef LUMS_CORE_
+#define LUMS_CORE_
 
-#include <Lums/Util.d/Log.hpp>
-#include <Lums/Util.d/ExecBeforeMain.hpp>
-#include <Lums/Util.d/Macros.hpp>
-#include <Lums/Util.d/ParamTraits.hpp>
+#include <Lums/Core.d/Module.hpp>
+#include <Lums/Core.d/ModuleManager.hpp>
 
 #endif

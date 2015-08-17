@@ -19,10 +19,10 @@
 # undef EXEC_BEFORE_MAIN
 #endif
 
-#define EXEC_BEFORE_MAIN    static void LUMS_CONCAT(lums_before_main, __LINE__)();  \
-                            static ::lm::priv::ExecBeforeMain LUMS_CONCAT(lums_before_main_obj, __LINE__) \
-                            (LUMS_CONCAT(lums_before_main, __LINE__)); \
-                            static void LUMS_CONCAT(lums_before_main, __LINE__)()
+#define EXEC_BEFORE_MAIN    static void LM_CONCAT(lums_before_main, __LINE__)();  \
+                            static ::lm::priv::ExecBeforeMain LM_CONCAT(lums_before_main_obj, __LINE__) \
+                            (LM_CONCAT(lums_before_main, __LINE__)); \
+                            static void LM_CONCAT(lums_before_main, __LINE__)()
 
 namespace lm
 {

@@ -13,7 +13,10 @@
 #ifndef LUMS_UTIL_MACROS_HPP
 #define LUMS_UTIL_MACROS_HPP
 
-#define LUMS_CONCAT_(a, b)  a ## b
-#define LUMS_CONCAT(a, b) LUMS_CONCAT_(a, b)
+#define LM_CONCAT_(a, b)        a ## b
+#define LM_CONCAT(a, b)         LM_CONCAT_(a, b)
+
+#define LM_STRINGIFY_(str)      #str
+#define LM_STRINGIFY(str)       LM_STRINGIFY_(str)
 
 #endif

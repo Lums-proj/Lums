@@ -1,6 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*    Util                                           oooooo       oooooo      */
+/*    Core/ModuleManager.cpp                         oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -10,12 +10,43 @@
 /*    (c) 2013 - 2015                                                         */
 /* ************************************************************************** */
 
-#ifndef LUMS_UTIL_
-#define LUMS_UTIL_
+#include <Lums/Core.d/ModuleManager.hpp>
+#include <Lums/Core.d/Module.hpp>
 
-#include <Lums/Util.d/Log.hpp>
-#include <Lums/Util.d/ExecBeforeMain.hpp>
-#include <Lums/Util.d/Macros.hpp>
-#include <Lums/Util.d/ParamTraits.hpp>
+using namespace lm;
 
-#endif
+void
+ModuleManager::addModule(Module* module)
+{
+    _modules[module->name()] = module;
+}
+
+Module*
+ModuleManager::module(const char* name) const
+{
+    if (_modules.find(name) == _modules.end())
+        return nullptr;
+    return _modules.at(name);
+}
+
+void
+ModuleManager::load()
+{
+    for (auto& module : _modules)
+        module.second->load();
+}
+
+ModuleManager&
+ModuleManager::instance()
+{
+    static ModuleManager moduleManager;
+
+    return moduleManager;
+}
+
+/* Private */
+
+ModuleManager::ModuleManager()
+{
+
+}

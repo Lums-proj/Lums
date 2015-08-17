@@ -1,6 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*    Util                                           oooooo       oooooo      */
+/*    Core/ModuleManager.hpp                         oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -10,12 +10,33 @@
 /*    (c) 2013 - 2015                                                         */
 /* ************************************************************************** */
 
-#ifndef LUMS_UTIL_
-#define LUMS_UTIL_
+#ifndef LUMS_CODE_MODULE_MANAGER_HPP
+#define LUMS_CODE_MODULE_MANAGER_HPP
 
-#include <Lums/Util.d/Log.hpp>
-#include <Lums/Util.d/ExecBeforeMain.hpp>
-#include <Lums/Util.d/Macros.hpp>
-#include <Lums/Util.d/ParamTraits.hpp>
+#include <unordered_map>
+#include <string>
+
+namespace lm
+{
+    class Module;
+    class ModuleManager
+    {
+    public:
+        ModuleManager(const ModuleManager&) = delete;
+        ModuleManager& operator=(const ModuleManager&) = delete;
+
+        Module* module(const char* name) const;
+
+        void    addModule(Module* module);
+        void    load();
+
+        static ModuleManager& instance();
+
+    private:
+        ModuleManager();
+
+        std::unordered_map<std::string, Module*>    _modules;
+    };
+}
 
 #endif
