@@ -1,6 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*    Core                                           oooooo       oooooo      */
+/*    Window/MacOSX/WindowImpl.mm                    oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -10,11 +10,24 @@
 /*    (c) 2013 - 2015                                                         */
 /* ************************************************************************** */
 
-#ifndef LUMS_CORE_
-#define LUMS_CORE_
+#import "WindowImpl.hpp"
 
-#include <Lums/Core.d/EntryPoint.hpp>
-#include <Lums/Core.d/Module.hpp>
-#include <Lums/Core.d/ModuleManager.hpp>
+using namespace lm;
 
-#endif
+WindowImpl::WindowImpl(Window* parent, unsigned width, unsigned height, const char* name)
+: _parent(parent)
+{
+    NSWindow* win = [[NSWindow alloc] initWithContentRect:NSMakeRect(0, 0, width, height)
+        styleMask:NSTitledWindowMask backing:NSBackingStoreBuffered defer:NO];
+    [win makeKeyAndOrderFront:nil];
+    _window = win;
+}
+
+void
+lm::initApplication()
+{
+    [NSApplication sharedApplication];
+    [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
+    [NSApp activateIgnoringOtherApps:YES];
+    [NSApp finishLaunching];
+}

@@ -13,6 +13,7 @@
 #ifndef LUMS_MATH_
 #define LUMS_MATH_
 
+#include <Lums/Math.d/Rect.hpp>
 #include <Lums/Math.d/Vector.hpp>
 
 #endif

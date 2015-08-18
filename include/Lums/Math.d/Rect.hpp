@@ -1,6 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*    Core                                           oooooo       oooooo      */
+/*    Math/Rect.hpp                                  oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -10,11 +10,27 @@
 /*    (c) 2013 - 2015                                                         */
 /* ************************************************************************** */
 
-#ifndef LUMS_CORE_
-#define LUMS_CORE_
+#ifndef LUMS_MATH_RECT_HPP
+#define LUMS_MATH_RECT_HPP
 
-#include <Lums/Core.d/EntryPoint.hpp>
-#include <Lums/Core.d/Module.hpp>
-#include <Lums/Core.d/ModuleManager.hpp>
+#include <Lums/Math.d/Vector.hpp>
+
+namespace lm
+{
+    template <int N, typename T>
+    struct Rect
+    {
+        Vector<N, T>    position;
+        Vector<N, T>    size;
+    };
+
+    using Rect2f = Rect<2, float>;
+    using Rect3f = Rect<3, float>;
+    using Rect4f = Rect<4, float>;
+
+    using Rect2i = Rect<2, int>;
+    using Rect3i = Rect<3, int>;
+    using Rect4i = Rect<4, int>;
+}
 
 #endif

@@ -1,6 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*    Core                                           oooooo       oooooo      */
+/*    Core/EntryPoint.cpp                            oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -10,11 +10,18 @@
 /*    (c) 2013 - 2015                                                         */
 /* ************************************************************************** */
 
-#ifndef LUMS_CORE_
-#define LUMS_CORE_
-
 #include <Lums/Core.d/EntryPoint.hpp>
-#include <Lums/Core.d/Module.hpp>
-#include <Lums/Core.d/ModuleManager.hpp>
 
-#endif
+static lm::EntryPoint _entryPoint = nullptr;
+
+void
+lm::setEntryPoint(lm::EntryPoint entry)
+{
+    _entryPoint = entry;
+}
+
+lm::EntryPoint
+lm::entryPoint()
+{
+    return _entryPoint;
+}

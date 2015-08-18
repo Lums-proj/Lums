@@ -1,3 +1,4 @@
+#include <Lums/Util>
 #include <Lums/Core>
 
 using namespace lm;
@@ -5,6 +6,15 @@ using namespace lm;
 int
 main(int argc, char* argv[])
 {
+    EntryPoint entry;
+
     ModuleManager::instance().load();
-    return 0;
+    entry = entryPoint();
+    if (entry)
+        return entry(argc, argv);
+    else
+    {
+        logMessage("No entry point");
+        return 0;
+    }
 }

@@ -1,6 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*    Core                                           oooooo       oooooo      */
+/*    Window/MacOSX/WindowImpl.hpp                   oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -10,11 +10,31 @@
 /*    (c) 2013 - 2015                                                         */
 /* ************************************************************************** */
 
-#ifndef LUMS_CORE_
-#define LUMS_CORE_
+#ifndef LUMS_WINDOW_WINDOW_IMPL_MACOSX_HPP
+#define LUMS_WINDOW_WINDOW_IMPL_MACOSX_HPP
 
-#include <Lums/Core.d/EntryPoint.hpp>
-#include <Lums/Core.d/Module.hpp>
-#include <Lums/Core.d/ModuleManager.hpp>
+#ifdef __OBJC__
+# import <Cocoa/Cocoa.h>
+#else
+using NSOpenGLContext = void;
+using NSWindow = void;
+#endif
+
+namespace lm
+{
+    class Window;
+    class WindowImpl
+    {
+    public:
+        WindowImpl(Window* parent, unsigned width, unsigned height, const char* name = "");
+
+    private:
+        Window*             _parent;
+        NSOpenGLContext*    _openGl;
+        NSWindow*           _window;
+    };
+
+    void    initApplication();
+}
 
 #endif
