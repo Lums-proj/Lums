@@ -19,6 +19,7 @@
 #include <OpenAL/alc.h>
 #include <vorbis/vorbisfile.h>
 #include <LumsInclude/Math/Vector.hpp>
+#include <LumsInclude/Provider.hpp>
 
 #define BUFFER_SIZE 40960
 
@@ -41,12 +42,19 @@ namespace lm
     class Sound
     {
     public:
+        Sound();
+        
+        Sound(Sound&& rhs);
+
+        Sound& operator=(Sound&& rhs);
         /**
          * Set the loading path for the sound
          * @param name The file path
          * @param resource If true, path is relative to the resource path
          */
         void                 setPath(const std::string name, bool resource = true);
+
+        void                 loadBinary(const BObject& object);
 
         /**
          * Load the sound

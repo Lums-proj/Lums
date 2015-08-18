@@ -26,6 +26,7 @@ Music::Music()
 }
 
 Music::Music(Music&& rhs)
+: Sound(std::forward<Sound>(rhs))
 {
     _source = rhs._source;
     _state = rhs._state;
@@ -35,6 +36,7 @@ Music::Music(Music&& rhs)
 Music&
 Music::operator=(Music&& rhs)
 {
+    *(static_cast<Sound*>(this)) = std::forward<Sound>(rhs);
     _source = rhs._source;
     _state = rhs._state;
     return *this;

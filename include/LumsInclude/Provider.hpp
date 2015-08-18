@@ -19,8 +19,6 @@
 #include <cstdint>
 #include <string>
 #include <LumsInclude/Graphics/ShaderProgram.hpp>
-#include <LumsInclude/Audio/Sfx.hpp>
-#include <LumsInclude/Audio/Music.hpp>
 #include <LumsInclude/Graphics/Image.hpp>
 #include <LumsInclude/Graphics/Texture.hpp>
 #include <LumsInclude/Graphics/Font.hpp>
@@ -262,16 +260,6 @@ namespace lm
      * A stream provider for fonts
      */
     using FontProvider = StreamProvider<Font>;
-
-    /**
-     * A stream provider for sound effects
-     */
-    using SfxProvider = StreamProvider<Sfx>;
-
-    /**
-     * A stream provider for musics
-     */
-    using MusicProvider = StreamProvider<Music>;
 
     /**
      * A provider for game object templates

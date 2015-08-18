@@ -82,6 +82,8 @@ namespace lm
     private:
         std::vector<ALuint> _sources;
     };
+
+    using SfxProvider = StreamProvider<Sfx>;
 }
 
 #endif

@@ -96,6 +96,8 @@ namespace lm
         Music::State    _state;
         std::mutex      _mtx;
     };
+
+    using MusicProvider = StreamProvider<Music>;
 }
 
 #endif

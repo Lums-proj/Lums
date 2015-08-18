@@ -73,6 +73,7 @@ Sfx::stop()
     {
         alSourceStop(*it);
         alDeleteSources(1, &(*it));
+        // TODO : free the buffer
     }
     _sources.clear();
 }

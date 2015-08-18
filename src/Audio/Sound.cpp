@@ -18,7 +18,6 @@
 
 using namespace lm;
 
-
 void
 Audio::init()
 {
@@ -41,10 +40,46 @@ Audio::init()
     }
 }
 
+Sound::Sound()
+: file(nullptr)
+{
+
+}
+
+Sound::Sound(Sound&& rhs)
+: volume(rhs.volume)
+, file(rhs.file)
+, stream(rhs.stream)
+, format(rhs.format)
+, sampleRate(rhs.sampleRate)
+, path(rhs.path)
+{
+    rhs.file = nullptr;
+}
+
+Sound&
+Sound::operator=(Sound&& rhs)
+{
+    volume = rhs.volume;
+    file = rhs.file;
+    stream = rhs.stream;
+    format = rhs.format;
+    sampleRate = rhs.sampleRate;
+    path = rhs.path;
+    rhs.file = nullptr;
+    return *this;
+}
+
 void
 Sound::setPath(const std::string name, bool resource)
 {
     path = resource ? resourcePath() + name : name;
+}
+
+void
+Sound::loadBinary(const BObject& object)
+{
+    setPath(object["path"].asString(), true);
 }
 
 void
