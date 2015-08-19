@@ -53,7 +53,7 @@ public:
     render()
     {
         _sb.begin();
-        _sb.draw(lm::FontProvider::instance().get(0), "Salut Voisin AVA!");
+        _sb.draw(lm::FontProvider::instance().get(0), "Abcdefghijk");
         _sb.end();
     }
 

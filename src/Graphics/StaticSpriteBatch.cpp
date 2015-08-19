@@ -14,6 +14,7 @@
 #include <cmath>
 #include <LumsInclude/Graphics/StaticSpriteBatch.hpp>
 #include <LumsInclude/Graphics/OpenGL.hpp>
+#include <LumsInclude/Graphics/Graphics.hpp>
 
 using namespace lm;
 
@@ -118,12 +119,13 @@ StaticSpriteBatch::draw(const Font& font, const char* text, Vector3f pos, Vector
 {
     int i = 0;
     int c;
+    float hCoeff = 1.f / globalScale();
 
     while ((c = text[i++]))
     {
         const Glyph& g = font.glyph(c);
 
-        draw(font.texture(), c, {pos.x + g.left, pos.y, pos.z}, {1.f, 1.f}, color);
+        draw(font.texture(), c, {pos.x + g.left, pos.y + (g.top - g.height) * hCoeff, pos.z}, {1.f, 1.f}, color);
         pos.x += g.advance - g.kerning[i];
     }
 }
