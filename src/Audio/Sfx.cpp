@@ -24,6 +24,7 @@ Sfx::Sfx()
 }
 
 Sfx::Sfx(Sfx&& rhs)
+: Sound(std::forward<Sound>(rhs))
 {
     _sources = rhs._sources;
 }
@@ -31,6 +32,7 @@ Sfx::Sfx(Sfx&& rhs)
 Sfx&
 Sfx::operator=(Sfx&& rhs)
 {
+    *(static_cast<Sound*>(this)) = std::forward<Sound>(rhs);
     _sources = rhs._sources;
     return *this;
 }
