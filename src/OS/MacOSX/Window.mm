@@ -130,7 +130,7 @@ Window::visible() const
 Vector2i
 Window::maxSize() const
 {
-    NSRect screen = [[NSScreen mainScreen] visibleFrame];
+    NSRect screen = [[NSScreen mainScreen] frame];
 
     screen = [(NSWindow*)_windowHandle convertRectToBacking:screen];
     return {screen.size.width, screen.size.height};
