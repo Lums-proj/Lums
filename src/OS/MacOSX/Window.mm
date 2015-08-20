@@ -35,11 +35,13 @@ Window::Window(int w, int h, const char* name, bool fullscreen)
 , _fbo()
 , _texBuffer()
 {
+    _size = {w, h};
     NSRect frame = NSMakeRect(0, 0, w, h);
     LMWindow* win = [[[LMWindow alloc] initWithContentRect:frame
                     styleMask:NSTitledWindowMask
                     backing:NSBackingStoreBuffered
                     defer:NO] autorelease];
+    [win setCollectionBehavior:[win collectionBehavior] | NSWindowCollectionBehaviorFullScreenPrimary];
     [win setTitle:[NSString stringWithCString:name encoding:NSASCIIStringEncoding]];
     NSOpenGLPixelFormat *pixelFormat = [[NSOpenGLPixelFormat alloc]
                                         initWithAttributes:glAttributes];
@@ -84,17 +86,14 @@ Window::Window(int w, int h, const char* name, bool fullscreen)
 void
 Window::resize(int w, int h, bool fullscreen)
 {
+    _size = {w, h};
     LMWindow* win = (LMWindow*)_windowHandle;
     NSOpenGLContext* context = (NSOpenGLContext*)_openGlHandle;
-    int styleMask = fullscreen ? NSBorderlessWindowMask : 0;
-
+    
     if (fullscreen != _fullscreen)
     {
         _fullscreen = fullscreen;
-        [win setCollectionBehavior:NSWindowCollectionBehaviorFullScreenPrimary];
         [win toggleFullScreen:win];
-        [win setCollectionBehavior:0];
-        [win setStyleMask:styleMask];
     }
     NSRect oldFrame = [[win contentView] convertRectToBacking:[win frame]];
     NSRect frame = NSMakeRect(oldFrame.origin.x, oldFrame.origin.y, w, h);

@@ -189,6 +189,18 @@ namespace lm
         }
     };
 
+    template <std::size_t N, typename T>
+    bool
+    operator==(const Vector<N, T>& lhs, const Vector<N, T>& rhs)
+    {
+        for (std::size_t i = 0; i < N; ++i)
+        {
+            if (!(lhs[i] == rhs[i]))
+                return false;
+        }
+        return true;
+    }
+
     /**
      * Add and assign vectors
      * @param lhs The first vector

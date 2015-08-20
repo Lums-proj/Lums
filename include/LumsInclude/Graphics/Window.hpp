@@ -87,6 +87,10 @@ namespace lm
          */
         LUMS_EXPORTED bool      visible() const;
 
+        bool                    fullscreen() const { return _fullscreen; }
+
+        Vector2i                size() const { return _size; }
+
         /**
          * Get the maximal window size.
          * This is usualy used to determine a resolution.
@@ -140,6 +144,7 @@ namespace lm
 		    }
 		}
 
+        lm::Vector2i        _size;
         void*               _windowHandle;
         void*               _openGlHandle;
         bool                _fullscreen;
