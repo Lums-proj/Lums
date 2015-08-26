@@ -1,6 +1,6 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*    Core                                           oooooo       oooooo      */
+/*    Core/Identifier.hpp                            oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -10,12 +10,50 @@
 /*    (c) 2013 - 2015                                                         */
 /* ************************************************************************** */
 
-#ifndef LUMS_CORE_
-#define LUMS_CORE_
+#ifndef LUMS_CORE_IDENTIFIER_HPP
+#define LUMS_CORE_IDENTIFIER_HPP
 
-#include <Lums/Core.d/EntryPoint.hpp>
-#include <Lums/Core.d/Identifier.hpp>
-#include <Lums/Core.d/Module.hpp>
-#include <Lums/Core.d/ModuleManager.hpp>
+#include <functional>
+
+namespace lm
+{
+    class Identifier
+    {
+        friend struct std::hash<Identifier>;
+
+    public:
+        Identifier(const char* str = "");
+        
+        bool
+        operator==(Identifier rhs) const
+        {
+            return _index == rhs._index;
+        }
+
+        bool
+        operator!=(Identifier rhs) const
+        {
+            return !(*this == rhs);
+        }
+
+        const char*     str() const;
+
+private:
+        size_t  _index;
+    };
+}
+
+namespace std
+{
+    template <>
+    struct hash <lm::Identifier>
+    {
+        size_t
+        operator()(lm::Identifier id) const
+        {
+            return id._index;
+        }
+    };
+}
 
 #endif
