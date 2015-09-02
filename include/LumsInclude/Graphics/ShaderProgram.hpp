@@ -84,6 +84,24 @@ namespace lm
 
 	};
 
+    /**
+     * @cond
+     */
+    inline void
+    uniform(GLint loc, Matrix4f& mat)
+    {
+        glUniformMatrix4fv(loc, 1, GL_FALSE, mat.data());
+    }
+
+    inline void
+    uniform(GLint loc, float f)
+    {
+        glUniform1f(loc, f);
+    }
+    /**
+     * @endcond
+     */
+
 	/**
 	 * Set the value of an uniform
 	 * @tparam T The type of the value
@@ -98,24 +116,6 @@ namespace lm
     	GLint loc = glGetUniformLocation(program.program(), name);
     	uniform(loc, value);
     }
-
-    /**
-	 * @cond
-	 */
-    inline void
-    uniform(GLint loc, Matrix4f& mat)
-    {
-    	glUniformMatrix4fv(loc, 1, GL_FALSE, mat.data());
-    }
-
-    inline void
-    uniform(GLint loc, float f)
-    {
-        glUniform1f(loc, f);
-    }
-    /**
-     * @endcond
-     */
 }
 
 #endif
