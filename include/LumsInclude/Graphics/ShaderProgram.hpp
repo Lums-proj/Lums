@@ -107,6 +107,12 @@ namespace lm
     {
     	glUniformMatrix4fv(loc, 1, GL_FALSE, mat.data());
     }
+
+    inline void
+    uniform(GLint loc, float f)
+    {
+        glUniform1f(loc, f);
+    }
     /**
      * @endcond
      */
