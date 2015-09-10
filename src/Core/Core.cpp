@@ -35,12 +35,16 @@ Core::start()
     typedef high_resolution_clock   localClock;
     typedef localClock::time_point  localTime;
     
-    constexpr const ns  delta = 10000000; // 10ms as ns
+    constexpr const ns  delta = 8333333; // 120Hz
+    //constexpr const ns  delta = 16666666; // 120Hz
+    //constexpr const ns  delta = 4166666; // 120Hz
     ns                  acc = 0;
     ns                  frameDuration;
     localTime           currentTime = localClock::now();
     localTime           newTime;
     
+    _lagTime = 0;
+
     _running = true;
     while (_running)
     {
@@ -48,6 +52,10 @@ Core::start()
         frameDuration = duration_cast<nanoseconds>(newTime - currentTime).count();
         currentTime = newTime;
         
+        if (frameDuration >= _lagTime)
+            frameDuration -= _lagTime;
+        _lagTime = 0;
+
         acc += frameDuration;
         while (acc >= delta)
         {

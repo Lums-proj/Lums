@@ -85,9 +85,20 @@ namespace lm
         T&
         push(Args ...args)
         {
+            using namespace std::chrono;
+    
+            typedef unsigned long long      ns;
+            typedef high_resolution_clock   localClock;
+            typedef localClock::time_point  localTime;
+
+            localTime beforeLoad = localClock::now();
+
             T* state = new T(std::forward<Args>(args)...);
             _stack.insert(_stack.begin(), std::unique_ptr<GameState>(state));
             state->load();
+
+            localTime afterLoad = localClock::now();
+            _lagTime += duration_cast<nanoseconds>(afterLoad - beforeLoad).count();
             return *state;
         }
         
@@ -145,11 +156,12 @@ namespace lm
         
         typedef std::vector<std::unique_ptr<GameState>> Stack;
         
-        Stack       _stack;
-        size_t      _it;
-        Window*     _win;
-        bool        _jmp;
-        bool        _running;
+        Stack               _stack;
+        size_t              _it;
+        Window*             _win;
+        bool                _jmp;
+        bool                _running;
+        long long           _lagTime;
     };
 }
 
