@@ -35,9 +35,9 @@ Core::start()
     typedef high_resolution_clock   localClock;
     typedef localClock::time_point  localTime;
     
-    constexpr const ns  delta = 8333333; // 120Hz
-    //constexpr const ns  delta = 16666666; // 120Hz
-    //constexpr const ns  delta = 4166666; // 120Hz
+    //constexpr const ns  delta = 8333333; // 120Hz
+    constexpr const ns  delta = 16666666; // 60Hz
+    //constexpr const ns  delta = 4166666; // 240Hz
     ns                  acc = 0;
     ns                  frameDuration;
     localTime           currentTime = localClock::now();
