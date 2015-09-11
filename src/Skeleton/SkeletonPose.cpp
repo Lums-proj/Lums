@@ -43,7 +43,6 @@ SkeletonPose::loadFromFile(std::ifstream& file)
         file.read((char*)&nameLen, 4);
         name = new char[nameLen + 1];
         name[nameLen] = 0;
-        delete [] name;
         file.read(name, nameLen);
         file.read((char*)&parent, 4);
         file.read((char*)&length, 4);
@@ -62,6 +61,7 @@ SkeletonPose::loadFromFile(std::ifstream& file)
         _bones.push_back(b);
         if (parent != -1)
             _bones[parent].addChild(i);
+        delete [] name;
     }
 
     uint32_t skinCount;
