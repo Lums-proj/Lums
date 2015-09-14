@@ -189,6 +189,15 @@ namespace lm
     {
         lm::scale(matrix, Vector3f(scale, scale, scale));
     }
+
+    inline void
+    scale(Matrix2f& matrix, float scaleX, float scaleY)
+    {
+        Matrix2f m = Matrix2f::identity();
+        m[0][0] = scaleX;
+        m[1][1] = scaleY;
+        matrix *= m;
+    }
     
     /**
      * Create a view matrix

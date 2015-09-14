@@ -145,7 +145,7 @@ Skeleton::applyIk(int target, int bone)
     lm::Vector2f bPos = b.worldPosition();
     lm::Vector2f diff = tPos - bPos;
     float rotation = atan2f(diff.y, diff.x) * (180.f / M_PI);
-    float parentRotation = b.inheritRotation() ? _bones[b.parent()].rotation() : 0;
+    float parentRotation = b.inheritRotation() ? _bones[b.parent()].worldRotation() : 0;
     _bones[bone].setRotation(rotation - parentRotation);
 }
 

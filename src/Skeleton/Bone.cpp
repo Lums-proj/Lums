@@ -48,14 +48,18 @@ Bone::updateWorldTransform(const SkeletonPose& skeleton)
         const Bone& parent = skeleton.bones()[_parent];
         _worldPosition = parent._worldRotMatrix * _position + parent._worldPosition;
         _worldRotation = _inheritRotation ? (parent._worldRotation + _rotation) : _rotation;
+        _worldScale.x = _scale.x * parent._worldScale.x;
+        _worldScale.y = _scale.y * parent._worldScale.y;
     }
     else
     {
         _worldPosition = _position;
         _worldRotation = _rotation;
+        _worldScale = _scale;
     }
     _worldRotMatrix = lm::Matrix2f::identity();
     rotate(_worldRotMatrix, _worldRotation);
+    scale(_worldRotMatrix, _worldScale.x, _worldScale.y);
 }
 
 Bone::~Bone()

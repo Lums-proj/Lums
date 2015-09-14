@@ -40,6 +40,7 @@ namespace lm
         void                setPosition(const Vector2f& position) { _position = position; }
         void                setRotation(float rotation) { _rotation = rotation; }
         void                setLength(float length) { _length = length; }
+        void                setScale(const Vector2f& scale) { _scale = scale; }
 
         bool                inheritRotation() const { return _inheritRotation; }
         const Vector2f&     position() const { return _position; }
@@ -60,10 +61,12 @@ namespace lm
         Array               _children;
         Vector2f            _position;
         float               _rotation;
+        Vector2f            _scale;
         float               _length;
         Vector2f            _worldPosition;
         float               _worldRotation;
         Matrix2f            _worldRotMatrix;
+        Vector2f            _worldScale;
         bool                _inheritRotation;
     };
 }

@@ -57,6 +57,7 @@ SkeletonPose::loadFromFile(std::ifstream& file)
         b.setInheritRotation(ir);
         b.setRotation(rotation);
         b.setPosition(position);
+        b.setScale(scale);
         b.setLength(length);
         _bones.push_back(b);
         if (parent != -1)
