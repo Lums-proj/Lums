@@ -146,7 +146,7 @@ class Spiner
         if v['rotate']
           v['rotate'].each do |vv|
             rot = {}
-            time = (vv['time'] * 100.0).round.to_i
+            time = (vv['time'] * 60.0).round.to_i
             angle = (vv['angle'] || 0)
             # 0 linear
             # 1 stepped
@@ -164,7 +164,7 @@ class Spiner
         if v['translate']
           v['translate'].each do |vv|
             t = {}
-            time = (vv['time'] * 100.0).round.to_i
+            time = (vv['time'] * 60.0).round.to_i
             x = (vv['x'] || 0.0).to_f
             y = (vv['y'] || 0.0).to_f
             curve = 0
@@ -184,17 +184,16 @@ class Spiner
         value['events'].each do |ev|
           event = {}
           event[:name] = ev['name']
-          event[:time] = (ev['time'] * 100.0).round.to_i
+          event[:time] = (ev['time'] * 60.0).round.to_i
           events << event
         end
       end
       if value['ik']
-        p value['ik']
         value['ik'].each do |name, v|
           bone = bones.find {|b| b[:bone] ==  @bones.find_index {|b| b[1] == name}}
           v.each do |vv|
             ik = {}
-            time = (vv['time'] * 100.0).round.to_i
+            time = (vv['time'] * 60.0).round.to_i
             bend = vv['bendPositive'].nil? ? 1 : (vv['bendPositive'] ? 1 : 0)
             curve = 0
             curve = 1 if vv['curve'] == "stepped"
@@ -237,7 +236,6 @@ class Spiner
             buffer << t[:bezier].pack('L<L<L<L<')
           end
         end
-        p ik
         ik.each do |i|
           buffer << [i[:time], i[:bend], i[:curve]].pack('L<CC')
           if i[:curve] == 2

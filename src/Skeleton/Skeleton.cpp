@@ -13,7 +13,6 @@
 
 #include <LumsInclude/Skeleton/Skeleton.hpp>
 #include <LumsInclude/Graphics/Graphics.hpp>
-#include <iostream>
 
 using namespace lm;
 
@@ -22,6 +21,9 @@ Skeleton::Skeleton()
 , _frame(0)
 , _animation(nullptr)
 , _flipX(false)
+, _interpolationLength(0)
+, _interpolating(false)
+, _interpolationAcc(0)
 {
 
 }
@@ -45,20 +47,28 @@ Skeleton::setToPose()
 }
 
 void
-Skeleton::setAnimation(const char* animation, bool loop, bool repeat)
+Skeleton::setAnimation(const char* animation, bool loop, bool repeat, int interpolation)
 {
-    setAnimation(sym(animation), loop, repeat);
+    setAnimation(sym(animation), loop, repeat, interpolation);
 }
 
 void
-Skeleton::setAnimation(size_t animation, bool loop, bool repeat)
+Skeleton::setAnimation(size_t animation, bool loop, bool repeat, int interpolation)
 {
     if (!repeat && animation == _animationHash)
         return;
+    if (interpolation && animation != _animationHash)
+    {
+        _interpolating = true;
+        _interpolationAcc = 0;
+        _interpolationLength = interpolation;
+    }
+    else
+        _interpolating = false;
     _loop = loop;
     _animationHash = animation;
     _finished = false;
-    _frame = -1;
+    _frame = 0;
     _animation = &(_data->animations.at(animation));
     update();
 }
@@ -103,14 +113,23 @@ Skeleton::update()
     if (_finished)
         return;
 
-    _frame++;
     for (int i = 0; i < max; ++i)
     {
         int bone = bones[i].bone;
         float rotation = bones[i].interpolateRotation(_frame);
         Vector2f translation = bones[i].interpolateTranslation(_frame);
-        _bones[bone].setRotation(_data->pose.bones()[bone].rotation() + rotation);
-        _bones[bone].setPosition(_data->pose.bones()[bone].position() + translation);
+        float newRotation = _data->pose.bones()[bone].rotation() + rotation;
+        Vector2f newTranslation = _data->pose.bones()[bone].position() + translation;
+
+        if (_interpolating)
+        {
+            float alpha = 1.f / (_interpolationLength - _interpolationAcc);
+            newRotation = interpolateAngle(_bones[bone].rotation(), newRotation, alpha);
+            newTranslation.x = interpolate(_bones[bone].position().x, newTranslation.x, alpha);
+            newTranslation.y = interpolate(_bones[bone].position().y, newTranslation.y, alpha);
+        }
+        _bones[bone].setRotation(newRotation);
+        _bones[bone].setPosition(newTranslation);
     }
     SkeletonPose::update();
     for (auto& ik : _iks)
@@ -128,6 +147,12 @@ Skeleton::update()
     }
     SkeletonPose::update();
     _event = _animation->getEvent(_frame);
+    if (!_interpolating)
+        _frame++;
+    else
+        _interpolationAcc++;
+    if (_interpolationAcc >= _interpolationLength)
+        _interpolating = false;
     if (_frame == _animation->length)
     {
         if (!_loop)

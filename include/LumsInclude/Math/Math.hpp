@@ -179,6 +179,37 @@ namespace lm
         float alpha = (t - samples[i].x) / (samples[i + 1].x - samples[i].x);
         return (1 - alpha) * samples[i].y + alpha * samples[i + 1].y;
     }
+
+    inline float
+    clampAngle(float angle)
+    {
+        float turn = angle * (1.f / 360.f);
+        turn -= int(turn);
+        return turn * 360.f;
+    }
+
+    inline float
+    interpolate(float a, float b, float alpha)
+    {
+        return (1.f - alpha) * a + alpha * b;
+    }
+
+    inline float
+    interpolateAngle(float a, float b, float alpha)
+    {
+        float ca = clampAngle(a);
+        float cb = clampAngle(b);
+
+        if (fabs(ca - cb) > 180.f)
+        {
+            if (ca < cb)
+                ca += 360.f;
+            else
+                cb += 360.f;
+        }
+        return clampAngle(interpolate(ca, cb, alpha));
+    }
+
 }
 
 #endif
