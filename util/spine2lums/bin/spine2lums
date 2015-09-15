@@ -5,3 +5,5 @@ $:.unshift(File.dirname(__FILE__) + '/../etc/lums/spine2lums/lib')
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 require 'spine2lums'
 
+sp = Spine2Lums.new
+sp.run! ARGV[0]
