@@ -14,7 +14,7 @@ module KeyFrame
       super + [@x, @y].pack('FF') + @curve.serialize
     end
 
-    def read object
+    def read _, object
       super
       @x = object['x'] || 0.0
       @y = object['y'] || 0.0

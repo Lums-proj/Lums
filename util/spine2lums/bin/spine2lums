@@ -6,4 +6,8 @@ $:.unshift(File.dirname(__FILE__) + '/../lib')
 require 'spine2lums'
 
 sp = Spine2Lums.new
-sp.run! ARGV[0]
+if ARGV.count != 4
+  puts "usage: spine2lums <spine> <atlas> <spine_output> <atlas_output>"
+else
+  sp.run! ARGV[0], ARGV[1], ARGV[2], ARGV[3]
+end

@@ -10,30 +10,31 @@ class BoneAnimation
   end
 
   def serialize
-    i = spine.bones.find_index{|b| b.name == @name}
-    buffer = [i].pack('L<')
+    buffer = [@bone].pack('l<')
     buffer << pack_array(@translations)
     buffer << pack_array(@rotations)
     buffer
   end
 
-  def read key, value
-    @name = key
-    read_array(value, KeyFrame::Translation, @translations, 'translate')
-    read_array(value, KeyFrame::Rotation, @rotations, 'rotate')
+  def read spine, key, value
+    @bone = spine.find_bone_index key
+    read_array(spine, value, KeyFrame::Translation, @translations, 'translate')
+    read_array(spine, value, KeyFrame::Rotation, @rotations, 'rotate')
   end
 
   private
 
   def pack_array array
-    [array.count].pack('L<') + array.map(&:serialize).reduce(:+)
+    buffer = [array.count].pack('L<')
+    buffer << array.map(&:serialize).reduce(:+) unless array.empty?
+    buffer
   end
 
-  def read_array object, klass, array, key
+  def read_array spine, object, klass, array, key
     return if object[key].nil?
     object[key].each do |o|
       k = klass.new
-      k.read o
+      k.read spine, o
       array << k
     end
   end

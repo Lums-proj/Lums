@@ -13,7 +13,7 @@ class Curve
     curve = object['curve']
     @type = :linear if curve.nil? || curve == 'linear'
     @type = :stepped if curve == 'stepped'
-    if curve.class < Array
+    if curve.class == Array
       @type = :bezier
       @values = curve
     end

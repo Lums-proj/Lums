@@ -2,18 +2,14 @@ require_relative 'keyframe'
 
 module KeyFrame
   class Attachment < KeyFrame
-    attr_accessor :name
-
-    def initialize
-    end  
 
     def serialize
-      super + [@name.count, @name].pack('L<a*')
+      super + [@attachment].pack('l<')
     end
 
-    def read object
+    def read spine, object
       super
-      @name = object['name'] || ''
+      @attachment = spine.find_attachment_index object['name']
     end
   end
 end

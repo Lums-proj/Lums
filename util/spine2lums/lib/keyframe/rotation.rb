@@ -13,7 +13,7 @@ module KeyFrame
       super + [@angle].pack('F') + @curve.serialize
     end
 
-    def read object
+    def read _, object
       super
       @angle = object['angle'] || 0.0
       @curve.read object

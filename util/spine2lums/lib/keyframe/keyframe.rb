@@ -11,7 +11,7 @@ module KeyFrame
       [@time].pack('L<')
     end
 
-    def read object
+    def read _, object
       @time = (object['time'] * 60).round.to_i
     end
 

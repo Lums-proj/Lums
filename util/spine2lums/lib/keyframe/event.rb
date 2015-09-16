@@ -10,10 +10,10 @@ module KeyFrame
     end  
 
     def serialize
-      super + [@name.count, @name].pack('L<a*')
+      super + [@name.size, @name].pack('L<a*')
     end
 
-    def read object
+    def read _, object
       super
       @name = object['name']
     end
