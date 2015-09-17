@@ -1,4 +1,3 @@
-require 'ap'
 require 'json'
 require_relative 'bone'
 require_relative 'animation'
@@ -33,9 +32,9 @@ class Spine2Lums
   def serialize
     buffer = ""
     buffer << serialize_array(@bones)
-    buffer << serialize_array(@iks)
-    buffer << serialize_array(@attachments)
     buffer << serialize_array(@slots)
+    buffer << serialize_array(@attachments)
+    buffer << serialize_array(@iks)
     buffer << serialize_array(@animations)
   end
 
@@ -122,6 +121,10 @@ class Spine2Lums
 
   def find_slot_index name
     @slots.find_index {|t| name == t.name} || -1
+  end
+
+  def find_ik_index name
+    @iks.find_index {|t| name == t.name} || -1
   end
 
   private

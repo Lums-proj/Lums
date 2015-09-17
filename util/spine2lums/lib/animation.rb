@@ -13,7 +13,7 @@ class Animation
   end
 
   def serialize
-    buffer = ''
+    buffer = [@name.size, @name].pack('L<a*')
     buffer << serialize_array(@bone_animations)
     buffer << serialize_array(@ik_animations)
     buffer << serialize_array(@event_animations)

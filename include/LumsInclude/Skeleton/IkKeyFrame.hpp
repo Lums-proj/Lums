@@ -14,13 +14,15 @@
 #ifndef LUMS_SKELETON_IK_KEY_FRAME_HPP
 #define LUMS_SKELETON_IK_KEY_FRAME_HPP
 
+#include <LumsInclude/Skeleton/KeyFrame.hpp>
+
 namespace lm
 {
-    struct IkKeyFrame
+    struct IkKeyFrame : public KeyFrame
     {
-        int             frame;
+        void    loadFromFile(std::ifstream& file);
+
         bool            bendPositive;
-        KeyFrameCurve   curve;
     };
 }
 

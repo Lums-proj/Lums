@@ -32,8 +32,8 @@ namespace lm
         size_t  animation() const { return _animationHash; }
         void    transformBone(Matrix4f& matrix, int bone) const;
         void    transformSkin(Matrix4f& matrix, int skin) const;
-        size_t  skinCount() const { return _skins.size(); }
         void    update();
+        void    updateAnimation();
         void    applyIk(int target, int bone);
         void    applyIk(int target, int parent, int child, float duration);
         size_t  event() const { return _event; }

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Bone.hpp                                       oooooo       oooooo      */
+/*    Slot.hpp                                       oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,21 +11,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_SKELETON_BONE_HPP
-#define LUMS_SKELETON_BONE_HPP
+#ifndef LUMS_SKELETON_SLOT_HPP
+#define LUMS_SKELETON_SLOT_HPP
 
-#include <LumsInclude/Skeleton/Transformable.hpp>
+#include <fstream>
 
 namespace lm
 {
-    struct Bone : public Transformable
+    struct Slot
     {
-        void            loadFromFile(std::ifstream& stream);
-        Transformable*  parent(SkeletonPose& skeleton) const;
+        void    loadFromFile(std::ifstream& file);
         
-        float   length;
-        int     parentBone;
-        bool    inheritRotation;
+        int     bone;
+        int     attachment;
     };
 }
 

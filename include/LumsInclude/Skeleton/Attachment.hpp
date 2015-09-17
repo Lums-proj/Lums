@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Skin.cpp                                       oooooo       oooooo      */
+/*    Attachment.hpp                                 oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,34 +11,25 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <LumsInclude/Skeleton/Skin.hpp>
-#include <LumsInclude/Skeleton/SkeletonPose.hpp>
+#ifndef LUMS_SKELETON_ATTACHMENT_HPP
+#define LUMS_SKELETON_ATTACHMENT_HPP
 
-using namespace lm;
+#include <fstream>
+#include <LumsInclude/Math/Vector.hpp>
+#include <LumsInclude/Math/Matrix.hpp>
+#include <LumsInclude/Skeleton/Transformable.hpp>
 
-Skin::Skin(int bone, int texture)
-: _bone(bone)
-, _texture(texture)
+namespace lm
 {
+    struct SkeletonPose;
+    struct Attachment : public Transformable
+    {
+        void            loadFromFile(std::ifstream& file);
+        Transformable*  parent(SkeletonPose& skeleton) const;
 
+        int             texture;
+        int             bone;
+    };
 }
 
-void
-Skin::transform(Matrix4f& matrix) const
-{
-    rotate(matrix, _worldRotation, {0, 0, 1});
-    translate(matrix, {_worldPosition.x, _worldPosition.y, 0});
-}
-
-void
-Skin::updateWorldTransform(const SkeletonPose& skeleton)
-{
-    const Bone& parent = skeleton.bones()[_bone];
-    _worldPosition = parent._worldRotMatrix * _position + parent._worldPosition;
-    _worldRotation = parent._worldRotation + _rotation;
-}
-
-Skin::~Skin()
-{
-
-}
+#endif

@@ -1,7 +1,7 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Bone.hpp                                       oooooo       oooooo      */
+/*    IkAnimation.hpp                                oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,22 +11,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_SKELETON_BONE_HPP
-#define LUMS_SKELETON_BONE_HPP
+#ifndef LUMS_SKELETON_IK_ANIMATION_HPP
+#define LUMS_SKELETON_IK_ANIMATION_HPP
 
-#include <LumsInclude/Skeleton/Transformable.hpp>
+#include <vector>
+#include <LumsInclude/Skeleton/IkKeyFrame.hpp>
 
 namespace lm
 {
-    struct Bone : public Transformable
+    struct IkAnimation
     {
-        void            loadFromFile(std::ifstream& stream);
-        Transformable*  parent(SkeletonPose& skeleton) const;
-        
-        float   length;
-        int     parentBone;
-        bool    inheritRotation;
+        void    loadFromFile(std::ifstream& file);
+
+        int                                 ik;
+        std::vector<IkKeyFrame>             iks;
     };
 }
 
 #endif
+

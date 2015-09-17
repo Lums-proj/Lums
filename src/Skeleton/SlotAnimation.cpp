@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    SkeletonPose.cpp                               oooooo       oooooo      */
+/*    SlotAnimation.cpp                              oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,58 +11,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cstdio>
-#include <cstdint>
-#include <fstream>
-#include <LumsInclude/Skeleton/SkeletonPose.hpp>
-#include <LumsInclude/OperatingSystem.hpp>
+#include <LumsInclude/Skeleton/SlotAnimation.hpp>
 
 using namespace lm;
 
 void
-SkeletonPose::loadFromFile(std::ifstream& file)
+SlotAnimation::loadFromFile(std::ifstream& file)
 {
-    uint32_t boneCount;
-    file.read((char*)&boneCount, 4);
-    bones.resize(boneCount);
-    for (auto& b : bones)
-        b.loadFromFile(file);
-
-    uint32_t slotCount;
-    file.read((char*)&slotCount, 4);
-    slots.resize(slotCount);
-    for (auto& s : slots)
-        s.loadFromFile(file);
+    file.read((char*)&slot, 4);
 
     uint32_t attachmentCount;
     file.read((char*)&attachmentCount, 4);
     attachments.resize(attachmentCount);
     for (auto& attachment : attachments)
         attachment.loadFromFile(file);
-
-    uint32_t ikCount;
-    file.read((char*)&ikCount, 4);
-    iks.resize(ikCount);
-    for (auto& ik : iks)
-        ik.loadFromFile(file);
-
-    for (auto& s : slots)
-    {
-        int b = s.bone;
-        int a = s.attachment;
-        attachments[a].bone = b;
-    }
-
-    update();
-}
-
-void
-SkeletonPose::update()
-{
-    for (auto& s : slots)
-    {
-        int a = s.attachment;
-        if (a != -1)
-            attachments[a].update(*this);
-    }
 }

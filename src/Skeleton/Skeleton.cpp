@@ -13,6 +13,9 @@
 
 #include <LumsInclude/Skeleton/Skeleton.hpp>
 #include <LumsInclude/Graphics/Graphics.hpp>
+#include <LumsInclude/Math/Math.hpp>
+
+#include <iostream>
 
 using namespace lm;
 
@@ -32,17 +35,19 @@ Skeleton::Skeleton(const SkeletonData& data)
 : Skeleton()
 {
     _data = &data;
-    _bones = data.pose.bones();
-    _skins = data.pose.skins();
-    _iks = data.pose.iks();
+    bones = data.pose.bones;
+    iks = data.pose.iks;
+    slots = data.pose.slots;
+    attachments = data.pose.attachments;
 }
 
 void
 Skeleton::setToPose()
 {
-    _bones = _data->pose.bones();
-    _skins = _data->pose.skins();
-    _iks = _data->pose.iks();
+    bones = _data->pose.bones;
+    iks = _data->pose.iks;
+    slots = _data->pose.slots;
+    attachments = _data->pose.attachments;
     SkeletonPose::update();
 }
 
@@ -74,63 +79,12 @@ Skeleton::setAnimation(size_t animation, bool loop, bool repeat, int interpolati
 }
 
 void
-Skeleton::transformBone(Matrix4f& matrix, int bone) const
-{
-    Matrix4f m = Matrix4f::identity();
-    _bones[bone].transform(m);
-    matrix *= m;
-    if (_flipX)
-    {
-        m = Matrix4f::identity();
-        m[0][0] = -1.f;
-        matrix *= m;
-    }
-}
-
-void
-Skeleton::transformSkin(Matrix4f& matrix, int skin) const
-{
-    Matrix4f m = Matrix4f::identity();
-    _skins[skin].transform(m);
-    matrix *= m;
-    if (_flipX)
-    {
-        m = Matrix4f::identity();
-        m[0][0] = -1.f;
-        matrix *= m;
-    }
-}
-
-void
 Skeleton::update()
 {
-    if (!_animation)
-        return;
+    if (_animation)
+        updateAnimation();
 
-    const auto& bones = _animation->bones;
-    const unsigned max = bones.size();
-
-    if (_finished)
-        return;
-
-    for (int i = 0; i < max; ++i)
-    {
-        int bone = bones[i].bone;
-        float rotation = bones[i].interpolateRotation(_frame);
-        Vector2f translation = bones[i].interpolateTranslation(_frame);
-        float newRotation = _data->pose.bones()[bone].rotation() + rotation;
-        Vector2f newTranslation = _data->pose.bones()[bone].position() + translation;
-
-        if (_interpolating)
-        {
-            float alpha = 1.f / (_interpolationLength - _interpolationAcc);
-            newRotation = interpolateAngle(_bones[bone].rotation(), newRotation, alpha);
-            newTranslation.x = interpolate(_bones[bone].position().x, newTranslation.x, alpha);
-            newTranslation.y = interpolate(_bones[bone].position().y, newTranslation.y, alpha);
-        }
-        _bones[bone].setRotation(newRotation);
-        _bones[bone].setPosition(newTranslation);
-    }
+    /*
     SkeletonPose::update();
     for (auto& ik : _iks)
     {
@@ -147,6 +101,49 @@ Skeleton::update()
     }
     SkeletonPose::update();
     _event = _animation->getEvent(_frame);
+    */
+    SkeletonPose::update();
+}
+
+void
+Skeleton::updateAnimation()
+{
+    const auto& animBones = _animation->bones;
+
+    if (_finished)
+        return;
+
+    for (auto& aBone : animBones)
+    {
+        int boneIndex = aBone.bone;
+        Bone& bone = bones[boneIndex];
+        float rotation = aBone.getRotation(_frame);
+        Vector2f translation = aBone.getTranslation(_frame);
+        float newRotation = _data->pose.bones[boneIndex].rotation + rotation;
+        Vector2f newTranslation = _data->pose.bones[boneIndex].position + translation;
+
+        if (_interpolating)
+        {
+            float alpha = 1.f / (_interpolationLength - _interpolationAcc);
+            newRotation = interpolateAngle(bone.rotation, newRotation, alpha);
+            newTranslation.x = interpolate(bone.position.x, newTranslation.x, alpha);
+            newTranslation.y = interpolate(bone.position.y, newTranslation.y, alpha);
+        }
+        bone.rotation = newRotation;
+        bone.position = newTranslation;
+        bone.dirty = true;
+    }
+    SkeletonPose::update();
+    for (auto& ik : iks)
+    {
+        bool bendPositive = true;
+
+        if (ik.bones[1] == -1)
+            applyIk(ik.target, ik.bones[0]);
+        else
+            applyIk(ik.target, ik.bones[0], ik.bones[1], (bendPositive ? 1.f : -1.f));
+    }
+
     if (!_interpolating)
         _frame++;
     else
@@ -165,33 +162,34 @@ Skeleton::update()
 void
 Skeleton::applyIk(int target, int bone)
 {
-    const Bone& b = _bones[bone];
-    lm::Vector2f tPos = _bones[target].worldPosition();
-    lm::Vector2f bPos = b.worldPosition();
+    const Bone& b = bones[bone];
+    lm::Vector2f tPos = bones[target].worldPosition;
+    lm::Vector2f bPos = b.worldPosition;
     lm::Vector2f diff = tPos - bPos;
     float rotation = atan2f(diff.y, diff.x) * (180.f / M_PI);
-    float parentRotation = b.inheritRotation() ? _bones[b.parent()].worldRotation() : 0;
-    _bones[bone].setRotation(rotation - parentRotation);
+    float parentRotation = b.inheritRotation ? b.parent(*this)->worldRotation : 0;
+    bones[bone].rotation = rotation - parentRotation;
+    bones[bone].dirty = true;
 }
 
 void
 Skeleton::applyIk(int target, int parent, int child, float direction)
 {
-    Bone& parentBone = _bones[parent];
-    Bone& childBone = _bones[child];
-    Bone& targetBone = _bones[target];
+    Bone& parentBone = bones[parent];
+    Bone& childBone = bones[child];
+    Bone& targetBone = bones[target];
     
     Vector2f tmp;
-    Vector2f targetPos = targetBone.worldPosition();
-    Vector2f parentPos = parentBone.position();
-    Vector2f childPos = childBone.position();
+    Vector2f targetPos = targetBone.worldPosition;
+    Vector2f parentPos = parentBone.position;
+    Vector2f childPos = childBone.position;
 
-    int parentParent = parentBone.parent();
+    Bone* parentParent = static_cast<Bone*>(parentBone.parent(*this));
 
-    if (parentParent != -1)
+    if (parentParent)
     {
         tmp = targetPos;
-        _bones[parentParent].worldToLocal(tmp);
+        parentParent->worldToLocal(tmp);
         targetPos = tmp - parentPos;
     }
     else
@@ -199,12 +197,13 @@ Skeleton::applyIk(int target, int parent, int child, float direction)
 
     float offset = atan2f(childPos.y, childPos.x);
     float len1 = length(childPos);
-    float len2 = childBone.length();
+    float len2 = childBone.length;
     float cosDenom = 2.f * len1 * len2;
 
     if (cosDenom < 0.0001f)
     {
-        childBone.setRotation(childBone.rotation() + (atan2f(targetPos.y, targetPos.x) * (180.f / M_PI) - parentBone.rotation() - childBone.rotation()));
+        childBone.rotation = childBone.rotation + (atan2f(targetPos.y, targetPos.x) * (180.f / M_PI) - parentBone.rotation - childBone.rotation);
+        childBone.dirty = true;
         return;
     }
 
@@ -220,18 +219,20 @@ Skeleton::applyIk(int target, int parent, int child, float direction)
     float adjacent = len1 + len2 * cosValue;
     float opposite = len2 * sinf(childAngle);
     float parentAngle = atan2f(targetPos.y * adjacent - targetPos.x * opposite, targetPos.x * adjacent + targetPos.y * opposite);
-    float rotation = (parentAngle - offset) * (180.f / M_PI) - parentBone.rotation();
+    float rotation = (parentAngle - offset) * (180.f / M_PI) - parentBone.rotation;
 
     while (rotation > 180.f)
         rotation -= 360.f;
     while (rotation <= -180.f)
         rotation += 360.f;
 
-    parentBone.setRotation(parentBone.rotation() + rotation);
-    rotation = (childAngle - offset) * (180.f / M_PI) - childBone.rotation();
+    parentBone.rotation = parentBone.rotation + rotation;
+    parentBone.dirty = true;
+    rotation = (childAngle - offset) * (180.f / M_PI) - childBone.rotation;
     while (rotation > 180.f)
         rotation -= 360.f;
     while (rotation <= -180.f)
         rotation += 360.f;
-    childBone.setRotation(childBone.rotation() + rotation);
+    childBone.rotation = childBone.rotation + rotation;
+    childBone.dirty = true;
 }

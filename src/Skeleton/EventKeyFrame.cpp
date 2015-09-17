@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Bone.hpp                                       oooooo       oooooo      */
+/*    EventKeyFrame.hpp                              oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,22 +11,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_SKELETON_BONE_HPP
-#define LUMS_SKELETON_BONE_HPP
+#include <LumsInclude/Skeleton/EventKeyFrame.hpp>
 
-#include <LumsInclude/Skeleton/Transformable.hpp>
+using namespace lm;
 
-namespace lm
+void
+EventKeyFrame::loadFromFile(std::ifstream& file)
 {
-    struct Bone : public Transformable
-    {
-        void            loadFromFile(std::ifstream& stream);
-        Transformable*  parent(SkeletonPose& skeleton) const;
-        
-        float   length;
-        int     parentBone;
-        bool    inheritRotation;
-    };
-}
+    uint32_t nameLen;
+    char* name;
 
-#endif
+    KeyFrame::loadFromFile(file);
+    file.read((char*)&nameLen, 4);
+    name = new char[nameLen + 1];
+    name[nameLen] = 0;
+    file.read(name, nameLen);
+    event = lm::sym(name);
+    delete [] name;
+}

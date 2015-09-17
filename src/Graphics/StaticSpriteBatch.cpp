@@ -11,6 +11,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
 #include <cmath>
 #include <LumsInclude/Graphics/StaticSpriteBatch.hpp>
 #include <LumsInclude/Graphics/OpenGL.hpp>
@@ -133,22 +134,24 @@ StaticSpriteBatch::draw(const Font& font, const char* text, Vector3f pos, Vector
 void
 StaticSpriteBatch::draw(const Skeleton& skeleton, const Texture& texture, Vector3f pos)
 {
-    float zOffset = 0;
-    float invZ = 0.1f / skeleton.skinCount();
-
-    for (unsigned i = 0; i < skeleton.skins().size(); ++i)
+    std::cout << skeleton.slots.size() << std::endl;
+    for (auto& slot : skeleton.slots)
     {
-        const Skin& skin = skeleton.skins()[i];
-        Rect2f frame = texture.atlas(skin.texture());
+        int attachmentIndex = slot.attachment;
+
+        if (attachmentIndex == -1)
+            continue;
+
+        const Attachment& att = skeleton.attachments[attachmentIndex];
+        Rect2f frame = texture.atlas(att.texture);
         float w = frame.size.x * texture.width();
         float h = frame.size.y * texture.height();
 
         Matrix4f mat = Matrix4f::identity();
-        translate(mat, { -w / 2.f, -h / 2.f, zOffset });
-        skeleton.transformSkin(mat, i);
+        translate(mat, { -w / 2.f, -h / 2.f, 0 });
+        att.transform(mat);
         translate(mat, pos);
-        draw(texture, skin.texture(), mat);
-        zOffset -= invZ;
+        draw(texture, att.texture, mat);
     }
 }
 

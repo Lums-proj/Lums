@@ -1,7 +1,7 @@
-/* ************************************************************************** */
+ /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Bone.hpp                                       oooooo       oooooo      */
+/*    IkAnimation.cpp                                oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,22 +11,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_SKELETON_BONE_HPP
-#define LUMS_SKELETON_BONE_HPP
+#include <LumsInclude/Skeleton/IkAnimation.hpp>
 
-#include <LumsInclude/Skeleton/Transformable.hpp>
+using namespace lm;
 
-namespace lm
+void
+IkAnimation::loadFromFile(std::ifstream& file)
 {
-    struct Bone : public Transformable
-    {
-        void            loadFromFile(std::ifstream& stream);
-        Transformable*  parent(SkeletonPose& skeleton) const;
-        
-        float   length;
-        int     parentBone;
-        bool    inheritRotation;
-    };
-}
+    file.read((char*)&ik, 4);
 
-#endif
+    uint32_t ikCount;
+    file.read((char*)&ikCount, 4);
+    iks.resize(ikCount);
+    for (auto& i : iks)
+        i.loadFromFile(file);
+}

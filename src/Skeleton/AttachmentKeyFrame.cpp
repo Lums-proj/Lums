@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    SkeletonIK.hpp                                 oooooo       oooooo      */
+/*    AttachmentKeyFrame.cpp                         oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,21 +11,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_SKELETON_IK_HPP
-#define LUMS_SKELETON_IK_HPP
+#include <LumsInclude/Skeleton/AttachmentKeyFrame.hpp>
 
-#include <fstream>
+using namespace lm;
 
-namespace lm
+void
+AttachmentKeyFrame::loadFromFile(std::ifstream& file)
 {
-    struct SkeletonIK
-    {
-        void    loadFromFile(std::ifstream& file);
-
-        int     target;
-        int     bones[2];
-        bool    bendPositive;
-    };
+    KeyFrame::loadFromFile(file);
+    file.read((char*)&attachment, 4);
 }
-
-#endif

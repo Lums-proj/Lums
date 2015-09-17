@@ -20,22 +20,36 @@ void
 SkeletonAnimation::loadFromFile(std::ifstream& file)
 {
     uint32_t boneCount;
-    uint32_t eventCount;
-
     file.read((char*)&boneCount, 4);
     bones.resize(boneCount);
     for (auto& b : bones)
         b.loadFromFile(file);
+
+    uint32_t ikCount;
+    file.read((char*)&ikCount, 4);
+    iks.resize(ikCount);
+    for (auto& ik : iks)
+        ik.loadFromFile(file);
+
+    uint32_t eventCount;
     file.read((char*)&eventCount, 4);
     events.resize(eventCount);
-    for (auto& e : events)
-        e.loadFromFile(file);
+    for (auto& event : events)
+        event.loadFromFile(file);
+
+    uint32_t slotCount;
+    file.read((char*)&slotCount, 4);
+    slots.resize(slotCount);
+    for (auto& slot : slots)
+        slot.loadFromFile(file);
+
     computeLength();
 }
 
 void
 SkeletonAnimation::computeLength()
 {
+    /*
     int max = 0;
 
     for (auto& b : bones)
@@ -54,7 +68,11 @@ SkeletonAnimation::computeLength()
         }
     }
     length = max;
+    */
+    length = 200;
 }
+
+/*
 
 size_t
 SkeletonAnimation::getEvent(int frame) const
@@ -66,3 +84,4 @@ SkeletonAnimation::getEvent(int frame) const
     }
     return 0;
 }
+*/

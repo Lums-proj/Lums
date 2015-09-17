@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Bone.hpp                                       oooooo       oooooo      */
+/*    Slot.cpp                                       oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,22 +11,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_SKELETON_BONE_HPP
-#define LUMS_SKELETON_BONE_HPP
+#include <LumsInclude/Skeleton/Slot.hpp>
 
-#include <LumsInclude/Skeleton/Transformable.hpp>
+using namespace lm;
 
-namespace lm
+void
+Slot::loadFromFile(std::ifstream& file)
 {
-    struct Bone : public Transformable
-    {
-        void            loadFromFile(std::ifstream& stream);
-        Transformable*  parent(SkeletonPose& skeleton) const;
-        
-        float   length;
-        int     parentBone;
-        bool    inheritRotation;
-    };
+    file.read((char*)&bone, 4);
+    file.read((char*)&attachment, 4);
 }
-
-#endif

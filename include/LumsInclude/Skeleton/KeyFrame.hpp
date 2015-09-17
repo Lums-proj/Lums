@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Bone.hpp                                       oooooo       oooooo      */
+/*    KeyFrame.hpp                                   oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,21 +11,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_SKELETON_BONE_HPP
-#define LUMS_SKELETON_BONE_HPP
+#ifndef LUMS_KEY_FRAME_HPP
+#define LUMS_KEY_FRAME_HPP
 
-#include <LumsInclude/Skeleton/Transformable.hpp>
+#include <fstream>
+#include <vector>
+#include <LumsInclude/Math/Vector.hpp>
 
 namespace lm
 {
-    struct Bone : public Transformable
+    struct KeyFrame
     {
-        void            loadFromFile(std::ifstream& stream);
-        Transformable*  parent(SkeletonPose& skeleton) const;
-        
-        float   length;
-        int     parentBone;
-        bool    inheritRotation;
+        void    loadFromFile(std::ifstream& file);
+
+        int     frame;
+
+        template <typename T>
+        static int
+        lookup(const std::vector<T>& vect, int frame)
+        {
+            for (unsigned i = 0; i < vect.size() - 1; ++i)
+            {
+                if (frame >= vect[i].frame && frame < vect[i + 1].frame)
+                    return i;
+            }
+            return -1;
+        }
     };
 }
 

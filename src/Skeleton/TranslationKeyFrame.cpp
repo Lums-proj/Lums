@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Bone.hpp                                       oooooo       oooooo      */
+/*    TranslationKeyFrame.cpp                        oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,22 +11,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_SKELETON_BONE_HPP
-#define LUMS_SKELETON_BONE_HPP
+#include <LumsInclude/Skeleton/TranslationKeyFrame.hpp>
 
-#include <LumsInclude/Skeleton/Transformable.hpp>
+using namespace lm;
 
-namespace lm
+void
+TranslationKeyFrame::loadFromFile(std::ifstream& file)
 {
-    struct Bone : public Transformable
-    {
-        void            loadFromFile(std::ifstream& stream);
-        Transformable*  parent(SkeletonPose& skeleton) const;
-        
-        float   length;
-        int     parentBone;
-        bool    inheritRotation;
-    };
+    KeyFrame::loadFromFile(file);
+    file.read((char*)&translation.x, 4);
+    file.read((char*)&translation.y, 4);
+    curve.loadFromFile(file);
 }
-
-#endif

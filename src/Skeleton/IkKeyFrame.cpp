@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    SkeletonIK.cpp                                 oooooo       oooooo      */
+/*    IkKeyFrame.cpp                                 oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,17 +11,15 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <LumsInclude/Skeleton/SkeletonIK.hpp>
+#include <LumsInclude/Skeleton/IkKeyFrame.hpp>
 
 using namespace lm;
 
 void
-SkeletonIK::loadFromFile(std::ifstream& file)
+IkKeyFrame::loadFromFile(std::ifstream& file)
 {
-    char positive;
-
-    file.read((char*)&target, 4);
-    file.read((char*)bones, 8);
-    file.read(&positive, 1);
-    bendPositive = positive;
+    KeyFrame::loadFromFile(file);
+    char bp;
+    file.read(&bp, 1);
+    bendPositive = bp;
 }

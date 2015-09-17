@@ -17,7 +17,9 @@
 #include <fstream>
 #include <vector>
 #include <LumsInclude/Skeleton/BoneAnimation.hpp>
-#include <LumsInclude/Skeleton/SkeletonEvent.hpp>
+#include <LumsInclude/Skeleton/IkAnimation.hpp>
+#include <LumsInclude/Skeleton/EventKeyFrame.hpp>
+#include <LumsInclude/Skeleton/SlotAnimation.hpp>
 
 namespace lm
 {
@@ -25,10 +27,12 @@ namespace lm
     {
         void    loadFromFile(std::ifstream& file);
         void    computeLength();
-        size_t  getEvent(int frame) const;
+        //size_t  getEvent(int frame) const;
 
         std::vector<BoneAnimation>  bones;
-        std::vector<SkeletonEvent>  events;
+        std::vector<IkAnimation>    iks;
+        std::vector<EventKeyFrame>  events;
+        std::vector<SlotAnimation>  slots;
         int                         length;
     };
 }

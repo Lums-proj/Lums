@@ -16,30 +16,23 @@
 
 #include <fstream>
 #include <vector>
-#include <LumsInclude/Provider.hpp>
 #include <LumsInclude/Skeleton/Bone.hpp>
-#include <LumsInclude/Skeleton/Skin.hpp>
-#include <LumsInclude/Skeleton/SkeletonIK.hpp>
+#include <LumsInclude/Skeleton/Slot.hpp>
+#include <LumsInclude/Skeleton/Attachment.hpp>
+#include <LumsInclude/Skeleton/Ik.hpp>
+
 
 namespace lm
 {
-    class SkeletonPose
+    struct SkeletonPose
     {
-    public:
-    	SkeletonPose();
-        
         void        loadFromFile(std::ifstream& file);
-
         void        update();
         
-        const std::vector<Bone>&        bones() const { return _bones; }
-        const std::vector<Skin>&        skins() const { return _skins; }
-        const std::vector<SkeletonIK>&  iks() const { return _iks; }
-
-    protected:
-        std::vector<Bone>       _bones;
-        std::vector<Skin>       _skins;
-        std::vector<SkeletonIK> _iks;
+        std::vector<Bone>           bones;
+        std::vector<Slot>           slots;
+        std::vector<Attachment>     attachments;
+        std::vector<Ik>             iks;
     };
 }
 

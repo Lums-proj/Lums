@@ -14,13 +14,15 @@
 #ifndef LUMS_TRANSLATION_KEY_FRAME_HPP
 #define LUMS_TRANSLATION_KEY_FRAME_HPP
 
+#include <LumsInclude/Skeleton/KeyFrame.hpp>
 #include <LumsInclude/Skeleton/KeyFrameCurve.hpp>
 
 namespace lm
 {
-    struct TranslationKeyFrame
+    struct TranslationKeyFrame : public KeyFrame
     {
-        unsigned        frame;
+        void            loadFromFile(std::ifstream& file);
+        
         Vector2f        translation;
         KeyFrameCurve   curve;
     };

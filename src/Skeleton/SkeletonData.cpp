@@ -18,20 +18,21 @@ using namespace lm;
 
 void
 SkeletonData::loadFromFile(std::ifstream& file)
-{
-    uint32_t animCount;
-    
+{   
     pose.loadFromFile(file);
+
+    uint32_t animCount;
+    char* animName;
+    int animLen;
+
     file.read((char*)&animCount, 4);
-    for (unsigned i = 0; i < animCount; ++i)
+    for (int i = 0; i < animCount; ++i)
     {
-        char* name;
-        uint32_t nameLen;
-        file.read((char*)&nameLen, 4);
-        name = new char[nameLen + 1];
-        name[nameLen] = 0;
-        file.read(name, nameLen);
-        animations[sym(name)].loadFromFile(file);
-        delete [] name;
+        file.read((char*)&animLen, 4);
+        animName = new char[animLen + 1];
+        animName[animLen] = 0;
+        file.read(animName, animLen);
+        size_t key = lm::sym(animName);
+        animations[key].loadFromFile(file);
     }
 }

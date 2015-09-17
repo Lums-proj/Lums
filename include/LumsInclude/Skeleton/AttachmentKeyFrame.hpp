@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*    Bone.hpp                                       oooooo       oooooo      */
+/*    AttachmentKeyFrame.hpp                         oooooo       oooooo      */
 /*                                                 oooooooooo   oooooooooo    */
 /*                                                         o%%%%%o            */
 /*                                                         %:::::%            */
@@ -11,22 +11,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LUMS_SKELETON_BONE_HPP
-#define LUMS_SKELETON_BONE_HPP
+#ifndef LUMS_SKELETON_ATTACHMENT_KEYFRAME_HPP
+#define LUMS_SKELETON_ATTACHMENT_KEYFRAME_HPP
 
-#include <LumsInclude/Skeleton/Transformable.hpp>
+#include <LumsInclude/Skeleton/KeyFrame.hpp>
 
 namespace lm
 {
-    struct Bone : public Transformable
+    struct AttachmentKeyFrame : public KeyFrame
     {
-        void            loadFromFile(std::ifstream& stream);
-        Transformable*  parent(SkeletonPose& skeleton) const;
-        
-        float   length;
-        int     parentBone;
-        bool    inheritRotation;
+        void        loadFromFile(std::ifstream& file);
+
+        int         attachment;
     };
 }
 
 #endif
+
