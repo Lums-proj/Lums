@@ -49,7 +49,6 @@ SkeletonAnimation::loadFromFile(std::ifstream& file)
 void
 SkeletonAnimation::computeLength()
 {
-    /*
     int max = 0;
 
     for (auto& b : bones)
@@ -68,20 +67,17 @@ SkeletonAnimation::computeLength()
         }
     }
     length = max;
-    */
-    length = 200;
 }
-
-/*
 
 size_t
 SkeletonAnimation::getEvent(int frame) const
 {
+    static const size_t nullEvent = lm::sym("");
+
     for (auto& e : events)
     {
         if (e.frame == frame)
-            return e.name;
+            return e.event;
     }
-    return 0;
+    return nullEvent;
 }
-*/

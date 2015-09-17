@@ -75,7 +75,7 @@ Skeleton::setAnimation(size_t animation, bool loop, bool repeat, int interpolati
     _finished = false;
     _frame = 0;
     _animation = &(_data->animations.at(animation));
-    update();
+    //update();
 }
 
 void
@@ -83,25 +83,6 @@ Skeleton::update()
 {
     if (_animation)
         updateAnimation();
-
-    /*
-    SkeletonPose::update();
-    for (auto& ik : _iks)
-    {
-        bool bendPositive;
-
-        if (bones[ik.target].hasIk())
-            bendPositive = bones[ik.target].interpolateIk(_frame);
-        else
-            bendPositive = ik.bendPositive;
-        if (ik.bones[1] == -1)
-            applyIk(ik.target, ik.bones[0]);
-        else
-            applyIk(ik.target, ik.bones[0], ik.bones[1], (bendPositive ? 1.f : -1.f));
-    }
-    SkeletonPose::update();
-    _event = _animation->getEvent(_frame);
-    */
     SkeletonPose::update();
 }
 
@@ -112,6 +93,13 @@ Skeleton::updateAnimation()
 
     if (_finished)
         return;
+
+    if (_frame == 0 && !_interpolating)
+        slots = _data->pose.slots;
+
+    auto& animSlots = _animation->slots;
+    for (auto& aSlot : animSlots)
+        aSlot.animateSlot(*this, slots[aSlot.slot], _frame);
 
     for (auto& aBone : animBones)
     {
@@ -134,15 +122,32 @@ Skeleton::updateAnimation()
         bone.dirty = true;
     }
     SkeletonPose::update();
+
+    if (_frame == 0 && !_interpolating)
+        iks = _data->pose.iks;
+
+    auto& animIks = _animation->iks;
+    for (auto& aIk : animIks)
+    {
+        bool bendPositive;
+        if (aIk.iks.empty())
+            bendPositive = _data->pose.iks[aIk.ik].bendPositive;
+        else
+            bendPositive = aIk.getBendPositive(iks[aIk.ik].bendPositive, _frame);
+        iks[aIk.ik].bendPositive = bendPositive;
+    }
+
     for (auto& ik : iks)
     {
-        bool bendPositive = true;
+        bool bendPositive = ik.bendPositive;
 
         if (ik.bones[1] == -1)
             applyIk(ik.target, ik.bones[0]);
         else
             applyIk(ik.target, ik.bones[0], ik.bones[1], (bendPositive ? 1.f : -1.f));
     }
+
+    _event = _animation->getEvent(_frame);
 
     if (!_interpolating)
         _frame++;
@@ -162,14 +167,14 @@ Skeleton::updateAnimation()
 void
 Skeleton::applyIk(int target, int bone)
 {
-    const Bone& b = bones[bone];
+    Bone& b = bones[bone];
     lm::Vector2f tPos = bones[target].worldPosition;
     lm::Vector2f bPos = b.worldPosition;
     lm::Vector2f diff = tPos - bPos;
     float rotation = atan2f(diff.y, diff.x) * (180.f / M_PI);
     float parentRotation = b.inheritRotation ? b.parent(*this)->worldRotation : 0;
-    bones[bone].rotation = rotation - parentRotation;
-    bones[bone].dirty = true;
+    b.rotation = rotation - parentRotation;
+    b.dirty = true;
 }
 
 void

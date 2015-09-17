@@ -22,6 +22,7 @@ namespace lm
     {
         void            loadFromFile(std::ifstream& stream);
         Transformable*  parent(SkeletonPose& skeleton) const;
+        bool            doesInheritRotation() const { return inheritRotation; }
         
         float   length;
         int     parentBone;

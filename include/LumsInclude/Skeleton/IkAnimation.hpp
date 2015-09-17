@@ -22,6 +22,7 @@ namespace lm
     struct IkAnimation
     {
         void    loadFromFile(std::ifstream& file);
+        bool    getBendPositive(bool def, int frame) const;
 
         int                                 ik;
         std::vector<IkKeyFrame>             iks;

@@ -26,3 +26,14 @@ IkAnimation::loadFromFile(std::ifstream& file)
     for (auto& i : iks)
         i.loadFromFile(file);
 }
+
+bool
+IkAnimation::getBendPositive(bool def, int frame) const
+{
+    if (iks.empty())
+        return def;
+    int keyFrame = KeyFrame::lookup(iks, frame);
+    if (keyFrame == -1)
+        return iks.back().bendPositive;
+    return iks[keyFrame].bendPositive;
+}

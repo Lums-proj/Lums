@@ -26,6 +26,7 @@ namespace lm
     {
         void            loadFromFile(std::ifstream& file);
         Transformable*  parent(SkeletonPose& skeleton) const;
+        bool            doesInheritRotation() const { return true; }
 
         int             texture;
         int             bone;

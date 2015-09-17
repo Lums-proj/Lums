@@ -134,7 +134,6 @@ StaticSpriteBatch::draw(const Font& font, const char* text, Vector3f pos, Vector
 void
 StaticSpriteBatch::draw(const Skeleton& skeleton, const Texture& texture, Vector3f pos)
 {
-    std::cout << skeleton.slots.size() << std::endl;
     for (auto& slot : skeleton.slots)
     {
         int attachmentIndex = slot.attachment;
@@ -150,6 +149,12 @@ StaticSpriteBatch::draw(const Skeleton& skeleton, const Texture& texture, Vector
         Matrix4f mat = Matrix4f::identity();
         translate(mat, { -w / 2.f, -h / 2.f, 0 });
         att.transform(mat);
+        if (skeleton.flip())
+        {
+            Matrix4f flipMat = Matrix4f::identity();
+            flipMat[0][0] = -1.f;
+            mat *= flipMat;
+        }
         translate(mat, pos);
         draw(texture, att.texture, mat);
     }

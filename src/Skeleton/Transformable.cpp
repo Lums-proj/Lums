@@ -37,7 +37,7 @@ Transformable::update(SkeletonPose& skeleton)
     {
         p->update(skeleton);
         worldPosition = p->matrix * position + p->worldPosition;
-        worldRotation = p->worldRotation + rotation;
+        worldRotation = (doesInheritRotation() ? p->worldRotation : 0.f) + rotation;
         worldScale.x = scale.x * p->worldScale.x;
         worldScale.y = scale.y * p->worldScale.y;
     }

@@ -20,6 +20,7 @@ void
 Attachment::loadFromFile(std::ifstream& file)
 {
     Transformable::loadFromFile(file);
+    file.read((char*)&bone, 4);
     file.read((char*)&texture, 4);
 }
 

@@ -2,7 +2,7 @@ class Bone
 
   attr_reader :name
 
-  def serialize
+  def serialize spine
     [@name.size, @name, @x, @y, @scale_x, @scale_y, @rotation, @length, @parent, @inherit_rotation ? 1 : 0].pack('L<a*FFFFFFl<C')
   end
 

@@ -35,28 +35,6 @@ BoneAnimation::loadFromFile(std::ifstream& file)
         r.loadFromFile(file);
 }
 
-// template <typename T>
-// static int
-// lookupKeyFrame(const std::vector<T>& vect, int frame)
-// {
-//     for (unsigned i = 0; i < vect.size() - 1; ++i)
-//     {
-//         if (frame >= vect[i].frame && frame < vect[i + 1].frame)
-//             return i;
-//     }
-//     return -1;
-// }
-
-// static float
-// clamp(float angle)
-// {
-//     while (angle < 0.f)
-//         angle += 360.f;
-//     while (angle >= 360.f)
-//         angle -= 360.f;
-//     return angle;
-// }
-
 float
 BoneAnimation::getRotation(int frame) const
 {

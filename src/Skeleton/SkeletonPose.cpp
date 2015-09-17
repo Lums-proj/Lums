@@ -46,23 +46,17 @@ SkeletonPose::loadFromFile(std::ifstream& file)
     for (auto& ik : iks)
         ik.loadFromFile(file);
 
-    for (auto& s : slots)
-    {
-        int b = s.bone;
-        int a = s.attachment;
-        attachments[a].bone = b;
-    }
-
     update();
 }
 
 void
 SkeletonPose::update()
 {
-    for (auto& s : slots)
+    for (auto& b : bones)
+        b.update(*this);
+    for (auto& a : attachments)
     {
-        int a = s.attachment;
-        if (a != -1)
-            attachments[a].update(*this);
+        if (a.bone != -1)
+            a.update(*this);
     }
 }

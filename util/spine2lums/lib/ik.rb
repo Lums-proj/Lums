@@ -6,8 +6,8 @@ class Ik
     @bones = []
   end
 
-  def serialize
-    [@bones[0], @bones[1], @target, @bendPositive ? 1 : 0].pack('l<l<L<C')
+  def serialize spine
+    [@bones[0], @bones[1], @target, @bend_positive ? 1 : 0].pack('l<l<L<C')
   end
 
   def read spine, object

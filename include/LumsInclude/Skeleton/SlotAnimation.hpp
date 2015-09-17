@@ -17,14 +17,15 @@
 #include <vector>
 #include <fstream>
 #include <LumsInclude/Skeleton/AttachmentKeyFrame.hpp>
+#include <LumsInclude/Skeleton/Slot.hpp>
 
 namespace lm
 {
+    struct SkeletonPose;
     struct SlotAnimation
     {
-        void        loadFromFile(std::ifstream& file);    
-
-        //int         getAttachment(int frame);
+        void        loadFromFile(std::ifstream& file);
+        void        animateSlot(SkeletonPose& pose, Slot& slot, int frame) const;
 
         int                                 slot;
         std::vector<AttachmentKeyFrame>     attachments;

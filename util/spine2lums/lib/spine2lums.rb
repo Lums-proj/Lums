@@ -8,7 +8,7 @@ require_relative 'slot'
 
 class Spine2Lums
 
-  attr_reader :bones
+  attr_reader :bones, :slots
 
   def initialize
     @bones = []
@@ -45,8 +45,8 @@ class Spine2Lums
   def read object
     read_bones object['bones']
     read_iks object['ik']
-    read_attachments object['skins']
     read_slots object['slots']
+    read_attachments object['skins']
     read_animations object['animations']
   end
 
@@ -69,11 +69,11 @@ class Spine2Lums
   def read_attachments attachments
     skin = {}
     attachments.each {|k, v| skin.merge! v}
-    skin.each do |_, slot|
+    skin.each do |bone, slot|
       slot.each do |k, v|
         if v['type'].nil? || v['type'] == 'region'
           att = Attachment.new
-          att.read self, k, v
+          att.read self, bone, k, v
           @attachments << att
         end
       end
@@ -131,7 +131,7 @@ class Spine2Lums
 
   def serialize_array array
     buffer = [array.count].pack('L<')
-    buffer << array.map(&:serialize).reduce(:+)
+    buffer << array.map{|o| o.serialize(self) }.reduce(:+)
     buffer
   end
 

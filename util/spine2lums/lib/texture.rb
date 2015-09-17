@@ -10,7 +10,7 @@ class Texture
     @h = block[3].split(' ')[2].to_f / size[1].to_f 
   end
 
-  def serialize
+  def serialize spine
     [@x, @y, @w, @h].pack('FFFF')
   end
 

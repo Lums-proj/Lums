@@ -12,6 +12,7 @@
 /* ************************************************************************** */
 
 #include <LumsInclude/Skeleton/SlotAnimation.hpp>
+#include <LumsInclude/Skeleton/SkeletonPose.hpp>
 
 using namespace lm;
 
@@ -25,4 +26,16 @@ SlotAnimation::loadFromFile(std::ifstream& file)
     attachments.resize(attachmentCount);
     for (auto& attachment : attachments)
         attachment.loadFromFile(file);
+}
+
+void
+SlotAnimation::animateSlot(SkeletonPose& pose, Slot& slot, int frame) const
+{
+    if (attachments.empty())
+        return;
+    int kf = KeyFrame::lookup(attachments, frame);
+    if (kf == -1)
+        kf = attachments.size() - 1;
+    int att = attachments[kf].attachment;
+    slot.attachment = att;
 }

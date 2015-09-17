@@ -12,7 +12,7 @@ class Animation
     @slot_animations = []
   end
 
-  def serialize
+  def serialize spine
     buffer = [@name.size, @name].pack('L<a*')
     buffer << serialize_array(@bone_animations)
     buffer << serialize_array(@ik_animations)
