@@ -155,7 +155,7 @@ Skeleton::updateAnimation()
         _interpolationAcc++;
     if (_interpolationAcc >= _interpolationLength)
         _interpolating = false;
-    if (_frame == _animation->length)
+    if (_frame > _animation->length)
     {
         if (!_loop)
             _finished = true;
