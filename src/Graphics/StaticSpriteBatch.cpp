@@ -141,6 +141,8 @@ StaticSpriteBatch::draw(const Skeleton& skeleton, const Texture& texture, Vector
         if (attachmentIndex == -1)
             continue;
 
+        const Bone& bone = skeleton.bones[slot.bone];
+
         const Attachment& att = skeleton.attachments[attachmentIndex];
         Rect2f frame = texture.atlas(att.texture);
         float w = frame.size.x * texture.width();
@@ -148,7 +150,9 @@ StaticSpriteBatch::draw(const Skeleton& skeleton, const Texture& texture, Vector
 
         Matrix4f mat = Matrix4f::identity();
         translate(mat, { -w / 2.f, -h / 2.f, 0 });
-        att.transform(mat);
+        rotate(mat, att.rotation, { 0, 0, 1 });
+        translate(mat, { att.position.x, att.position.y, 0});
+        bone.transform(mat);
         if (skeleton.flip())
         {
             Matrix4f flipMat = Matrix4f::identity();
