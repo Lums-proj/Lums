@@ -72,7 +72,8 @@ namespace lm
 
         void remove(GameObject& object) { remove(&object); }
 
-        GameObject& create(const char* name) { return create(GameObjectProvider::instance().get(name)()); }
+        GameObject& create(const char* name) { return create(lm::sym(name)); }
+        GameObject& create(size_t object) { return create(GameObjectProvider::instance().get(object)()); }
         GameObject& create(GameObject& object) { return create(&object); }
         GameObject& create(GameObject* object)
         {
