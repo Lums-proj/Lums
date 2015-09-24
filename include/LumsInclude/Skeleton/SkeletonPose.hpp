@@ -16,6 +16,7 @@
 
 #include <fstream>
 #include <vector>
+#include <unordered_map>
 #include <LumsInclude/Skeleton/Bone.hpp>
 #include <LumsInclude/Skeleton/Slot.hpp>
 #include <LumsInclude/Skeleton/Attachment.hpp>
@@ -28,11 +29,16 @@ namespace lm
     {
         void        loadFromFile(std::ifstream& file);
         void        update();
+
+        const Bone& getBone(const char* name) const { return getBone(lm::sym(name)); }
+        const Bone& getBone(size_t boneId) const { return bones[boneMap.at(boneId)]; }
         
-        std::vector<Bone>           bones;
-        std::vector<Slot>           slots;
-        std::vector<Attachment>     attachments;
-        std::vector<Ik>             iks;
+        std::vector<Bone>               bones;
+        std::vector<Slot>               slots;
+        std::vector<Attachment>         attachments;
+        std::vector<Ik>                 iks;
+
+        std::unordered_map<size_t, int> boneMap;
     };
 }
 

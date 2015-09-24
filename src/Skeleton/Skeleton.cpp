@@ -39,6 +39,7 @@ Skeleton::Skeleton(const SkeletonData& data)
     iks = data.pose.iks;
     slots = data.pose.slots;
     attachments = data.pose.attachments;
+    boneMap = data.pose.boneMap;
 }
 
 void

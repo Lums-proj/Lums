@@ -25,8 +25,11 @@ SkeletonPose::loadFromFile(std::ifstream& file)
     uint32_t boneCount;
     file.read((char*)&boneCount, 4);
     bones.resize(boneCount);
-    for (auto& b : bones)
-        b.loadFromFile(file);
+    for (unsigned i = 0; i < bones.size(); ++i)
+    {
+        bones[i].loadFromFile(file);
+        boneMap[bones[i].name] = i;
+    }
 
     uint32_t slotCount;
     file.read((char*)&slotCount, 4);

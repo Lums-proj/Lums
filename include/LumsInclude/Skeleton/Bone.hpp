@@ -27,6 +27,7 @@ namespace lm
         float   length;
         int     parentBone;
         bool    inheritRotation;
+        size_t  name;
     };
 }
 

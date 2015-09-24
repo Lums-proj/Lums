@@ -28,6 +28,7 @@ namespace lm
         void    setToPose();
         void    setFlip(bool flip) { _flipX = flip; };
         bool    flip() const { return _flipX; }
+        int     frame() const { return _frame; }
         void    setAnimation(const char* animation, bool loop = false, bool repeat = false, int interpolation = 0);
         void    setAnimation(size_t animation, bool loop = false, bool repeat = false, int interpolation = 0);
         size_t  animation() const { return _animationHash; }
