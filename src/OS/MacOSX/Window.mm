@@ -22,7 +22,10 @@ static NSOpenGLPixelFormatAttribute
 glAttributes[] = {
     NSOpenGLPFANoRecovery,
     NSOpenGLPFAAccelerated,
-    NSOpenGLPFADepthSize, 16,
+    NSOpenGLPFAColorSize, 32,
+    NSOpenGLPFAAlphaSize, 8,
+    NSOpenGLPFADepthSize, 24,
+    NSOpenGLPFAStencilSize, 8,
     NSOpenGLPFADoubleBuffer,
     NSOpenGLPFAMinimumPolicy,
     kCGLPFAOpenGLProfile,
@@ -87,6 +90,7 @@ void
 Window::resize(int w, int h, bool fullscreen)
 {
     _size = {w, h};
+    auto screenSize = maxSize();
     LMWindow* win = (LMWindow*)_windowHandle;
     NSOpenGLContext* context = (NSOpenGLContext*)_openGlHandle;
     
@@ -96,19 +100,24 @@ Window::resize(int w, int h, bool fullscreen)
         [win toggleFullScreen:win];
     }
     NSRect oldFrame = [[win contentView] convertRectToBacking:[win frame]];
-    NSRect frame = NSMakeRect(oldFrame.origin.x, oldFrame.origin.y, w, h);
+    NSRect frame;
+
+    if (!fullscreen)
+        frame = NSMakeRect(oldFrame.origin.x, oldFrame.origin.y, w, h);
+    else
+        frame = NSMakeRect(0, 0, screenSize.x, screenSize.y);
 
     NSRect retinaFrame = [[win contentView] convertRectFromBacking:frame];
 
     glBindFramebuffer(GL_FRAMEBUFFER, _fbo);
     glBindTexture(GL_TEXTURE_2D, _texBuffer[0]);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, frame.size.width, frame.size.height, 0, GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, nullptr);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0, GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, nullptr);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, _texBuffer[0], 0);
     glBindTexture(GL_TEXTURE_2D, _texBuffer[1]);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, frame.size.width, frame.size.height, 0, GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, nullptr);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, w, h, 0, GL_BGRA, GL_UNSIGNED_INT_8_8_8_8_REV, nullptr);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT1, GL_TEXTURE_2D, _texBuffer[1], 0);
     glBindTexture(GL_TEXTURE_2D, _depthBuffer);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT16, frame.size.width, frame.size.height, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, nullptr);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, w, h, 0, GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, nullptr);
     glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, _depthBuffer, 0);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
     glBindTexture(GL_TEXTURE_2D, 0);
