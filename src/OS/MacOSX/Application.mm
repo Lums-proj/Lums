@@ -24,6 +24,7 @@ Application::init()
 {
     pool = [NSAutoreleasePool new];
     [LMApplication sharedApplication];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ApplePersistenceIgnoreState"];
     [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
     [NSApp activateIgnoringOtherApps:YES];
     [[LMApplication sharedApplication] finishLaunching];
