@@ -27,6 +27,8 @@ namespace lm
     class Music : public Sound
     {
     public:
+
+        static void     setGlobalVolume(float volume);
         /**
          * Create an empty music
          */
@@ -76,6 +78,8 @@ namespace lm
          */
         void    setVolume(float volume);
 
+        void   updateVolume();
+        
         /**
          * Music dtor
          */

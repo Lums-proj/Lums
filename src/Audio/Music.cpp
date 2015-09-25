@@ -18,6 +18,17 @@
 
 using namespace lm;
 
+static float    globalVolume = 1.f;
+static Music*   current = nullptr;
+
+void
+Music::setGlobalVolume(float volume)
+{
+    globalVolume = volume;
+    if (current)
+        current->updateVolume();
+}
+
 Music::Music()
 : _state(Music::Stopped)
 {
@@ -47,6 +58,7 @@ Music::play(Vector3f pos)
 {
     std::function<void (void)> func;
 
+    current = this;
     switch (_state)
     {
         case Music::Paused:
@@ -102,7 +114,13 @@ Music::setVolume(float newVolume)
     setVolumeLimits(&_source, &maxGain, &minGain);
     if (newVolume >= minGain && newVolume <= maxGain)
         volume = newVolume;
-    alSourcef(_source, AL_GAIN, volume);
+    alSourcef(_source, AL_GAIN, volume * globalVolume);
+}
+
+void
+Music::updateVolume()
+{
+    alSourcef(_source, AL_GAIN, volume * globalVolume);    
 }
 
 void
@@ -118,7 +136,7 @@ Music::streamOGG(Vector3f pos)
     alGenSources(1, &_source);
     alGenBuffers(NB_BUFFERS, buffers);
     alSource3f(_source, AL_POSITION, pos.x, pos.y, pos.z);
-    alSourcef(_source, AL_GAIN, volume);
+    alSourcef(_source, AL_GAIN, volume * globalVolume);
     for (int i = 0; i < NB_BUFFERS; ++i)
         bufferizeOGG(buffers[i]);
     alSourceQueueBuffers(_source, NB_BUFFERS, buffers);

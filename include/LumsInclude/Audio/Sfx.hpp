@@ -25,6 +25,9 @@ namespace lm
     class Sfx : public Sound
     {
     public:
+
+        static void    setGlobalVolume(float volume);
+
         /**
          * Create an empty sound effect
          */

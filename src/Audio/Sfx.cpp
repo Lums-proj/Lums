@@ -16,6 +16,14 @@
 
 using namespace lm;
 
+static float    globalVolume = 1.f;
+
+void
+Sfx::setGlobalVolume(float volume)
+{
+    globalVolume = volume;
+}
+
 Sfx::Sfx()
 : _sources(0)
 {
@@ -47,7 +55,7 @@ Sfx::play(Vector3f pos)
     alGenBuffers(1, &buffer);
     alGenSources(1, &(_sources.back()));
     alSource3f(_sources.back(), AL_POSITION, pos.x, pos.y, pos.z);
-    alSourcef(_sources.back(), AL_GAIN, volume);
+    alSourcef(_sources.back(), AL_GAIN, volume * globalVolume);
     std::vector<char>   bufferData;
     char array[BUFFER_SIZE];
     ALsizei bytes;
@@ -93,7 +101,7 @@ Sfx::setVolume(float newVolume)
     if (newVolume >= minGain && newVolume <= maxGain)
         volume = newVolume;
     for(auto it = _sources.begin(); it != _sources.end(); ++it)
-        alSourcef(*it, AL_GAIN, volume);
+        alSourcef(*it, AL_GAIN, volume * globalVolume);
 }
 
 Sfx::~Sfx()
