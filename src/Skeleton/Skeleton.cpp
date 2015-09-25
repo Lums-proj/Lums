@@ -148,7 +148,10 @@ Skeleton::updateAnimation()
             applyIk(ik.target, ik.bones[0], ik.bones[1], (bendPositive ? 1.f : -1.f));
     }
 
-    _event = _animation->getEvent(_frame);
+    if (!_interpolating)
+        _event = _animation->getEvent(_frame);
+    else
+        _event = 0;
 
     if (!_interpolating)
         _frame++;
