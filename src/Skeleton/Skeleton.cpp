@@ -92,7 +92,7 @@ Skeleton::updateAnimation()
 {
     const auto& animBones = _animation->bones;
 
-    if (_finished)
+    if (_finished && !_loop)
         return;
 
     if (_frame == 0 && !_interpolating)
