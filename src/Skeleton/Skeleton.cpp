@@ -61,7 +61,7 @@ Skeleton::setAnimation(const char* animation, bool loop, bool repeat, int interp
 void
 Skeleton::setAnimation(size_t animation, bool loop, bool repeat, int interpolation)
 {
-    if (!repeat && animation == _animationHash && !_finished)
+    if (!repeat && animation == _animationHash)
         return;
     if (interpolation && animation != _animationHash)
     {
@@ -161,9 +161,8 @@ Skeleton::updateAnimation()
         _interpolating = false;
     if (_frame > _animation->length)
     {
-        if (!_loop)
-            _finished = true;
-        else
+        _finished = true;
+        if (_loop)
             _frame = -1;
     }
 }
