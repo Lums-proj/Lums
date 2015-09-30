@@ -87,7 +87,6 @@ namespace lm
         {
             using namespace std::chrono;
     
-            typedef unsigned long long      ns;
             typedef high_resolution_clock   localClock;
             typedef localClock::time_point  localTime;
 

@@ -64,7 +64,7 @@ StaticSpriteBatch::draw(const Texture& texture, int atlas, Vector3f quad[4], Vec
 }
 
 void
-StaticSpriteBatch::draw(const Texture& texture, int atlas, const Matrix4f& mat)
+StaticSpriteBatch::draw(const Texture& texture, int atlas, const Matrix4f& mat, Vector4f color)
 {
     lm::Vector3f quad[4];
 
@@ -82,7 +82,7 @@ StaticSpriteBatch::draw(const Texture& texture, int atlas, const Matrix4f& mat)
     quad[2] = { q2.x, q2.y, q2.z };
     quad[3] = { q3.x, q3.y, q3.z };
 
-    draw(texture, atlas, quad, {1.0f, 1.0f, 1.0f, 1.0f}, {false, false});
+    draw(texture, atlas, quad, color, {false, false});
 }
 
 void
@@ -132,7 +132,7 @@ StaticSpriteBatch::draw(const Font& font, const char* text, Vector3f pos, Vector
 }
 
 void
-StaticSpriteBatch::draw(const Skeleton& skeleton, const Texture& texture, Vector3f pos)
+StaticSpriteBatch::draw(const Skeleton& skeleton, const Texture& texture, Vector3f pos, Vector4f color)
 {
     for (auto& slot : skeleton.slots)
     {
@@ -160,7 +160,7 @@ StaticSpriteBatch::draw(const Skeleton& skeleton, const Texture& texture, Vector
             mat *= flipMat;
         }
         translate(mat, pos);
-        draw(texture, att.texture, mat);
+        draw(texture, att.texture, mat, color);
     }
 }
 

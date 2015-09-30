@@ -42,7 +42,8 @@ namespace lm
 
         LUMS_EXPORTED void              draw(const Texture& texture,
                                              int atlas,
-                                             const Matrix4f& mat);
+                                             const Matrix4f& mat,
+                                             Vector4f color = {1.f, 1.f, 1.f, 1.f});
 
         /**
          * Draw a texture into the batch
@@ -148,7 +149,8 @@ namespace lm
 
         LUMS_EXPORTED void              draw(const Skeleton& skeleton,
                                              const Texture& texture,
-                                             Vector3f pos = {0.f, 0.f, 0.f});
+                                             Vector3f pos = {0.f, 0.f, 0.f},
+                                             Vector4f color = {1.f, 1.f, 1.f, 1.f});
 
         /**
          * Set the batch texture
