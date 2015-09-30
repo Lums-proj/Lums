@@ -77,6 +77,8 @@ namespace lm
          */
         void    setVolume(float volume);
 
+        void    clearSources();
+
         /**
          * Sound dtor
          */

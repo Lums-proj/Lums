@@ -51,6 +51,7 @@ Sfx::play(Vector3f pos)
     ALuint  source;
     ALuint  buffer;
 
+    clearSources();
     _sources.push_back(source);
     alGenBuffers(1, &buffer);
     alGenSources(1, &(_sources.back()));
@@ -79,7 +80,7 @@ Sfx::pause()
 void
 Sfx::stop()
 {
-    for(auto it = _sources.begin(); it != _sources.end(); ++it)
+    for (auto it = _sources.begin(); it != _sources.end(); ++it)
     {
         alSourceStop(*it);
         alDeleteSources(1, &(*it));
@@ -102,6 +103,22 @@ Sfx::setVolume(float newVolume)
         volume = newVolume;
     for(auto it = _sources.begin(); it != _sources.end(); ++it)
         alSourcef(*it, AL_GAIN, volume * globalVolume);
+}
+
+void
+Sfx::clearSources()
+{
+    ALint   sourceState;
+    
+    for (auto it = _sources.begin(); it != _sources.end(); ++it)
+    {
+        alGetSourcei(*it, AL_SOURCE_STATE, &sourceState);
+        if (sourceState != AL_PLAYING)
+        {
+            alSourceStop(*it);
+            alDeleteSources(1, &(*it));
+        }
+    }
 }
 
 Sfx::~Sfx()
