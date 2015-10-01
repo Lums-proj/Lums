@@ -80,7 +80,28 @@ namespace lm
 			return nullptr;
 		}
 
-        bool    hasTag(const char* tag) const { return _tags.find(sym(tag)) != _tags.end(); }
+		void
+		removeComponent(const char* name)
+		{
+			removeComponent(sym(name));
+		}
+
+		void
+		removeComponent(size_t id)
+		{
+			for (int i = 0 ; i < _components.size(); ++i)
+			{
+				if (_components[i]->id() == id)
+				{
+					delete _components[i];
+					_components.erase(_components.begin() + i);
+					return;
+				}
+			}
+		}		
+
+        bool    hasTag(const char* tag) const { return hasTag(lm::sym(tag)); }
+        bool    hasTag(size_t tag) const { return _tags.find(tag) != _tags.end(); }
         void    setTag(const char* tag) { setTag(sym(tag)); }
         void    setTag(size_t tag) { _tags.insert(tag); }
         void    clearTag(const char* tag) { clearTag(sym(tag)); }
