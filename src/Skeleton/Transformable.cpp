@@ -28,14 +28,9 @@ Transformable::loadFromFile(std::ifstream& file)
 void
 Transformable::update(SkeletonPose& skeleton)
 {
-    if (!isDirty(skeleton))
-        ;//return;
-    dirty = false;
-
     Transformable* p = parent(skeleton);
     if (p)
     {
-        p->update(skeleton);
         worldPosition = p->matrix * position + p->worldPosition;
         worldRotation = (doesInheritRotation() ? p->worldRotation : 0.f) + rotation;
         worldScale.x = scale.x * p->worldScale.x;
